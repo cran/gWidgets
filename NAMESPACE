@@ -1,0 +1,63 @@
+importFrom("stats","update")
+importFrom("methods","show")
+
+## functions to export
+export("guiToolkit")
+
+## constructors
+export("glabel", "gbutton", "gcheckbox", "gradio", "gdroplist",
+"gcheckboxgroup", "gspinbutton", "gslider", "gedit", "gtext", "gmenu",
+"gtoolbar", "gtable", "gdf", "gdfnotebook", "gtree", "gfile",
+"gfilebrowse", "gcalendar", "ggraphics", "ggraphicsnotebook",
+"gimage", "gstatusbar", "gseparator", "gcommandline", "ghelp",
+"ghelpbrowser", "ggenericwidget", "gvarbrowser", "gwindow", "ggroup",
+"gframe", "gexpandgroup", "gnotebook", "glayout", "gpanedgroup",
+"gmessage",
+"ginput", "gconfirm", "gbasicdialog",
+"addStockIcons","getStockIcons"
+)
+
+exportClasses("guiWidgetsToolkit",
+              "guiWidgetsToolkitRGtk2",
+      	"guiWidget","guiComponent","guiContainer","guiDialog")
+
+exportMethods(
+"show",
+"[", 
+"svalue", "svalue<-", "add", "addSpace", "addSpring", "delete",
+"dispose", "visible", "visible<-", "enabled", "enabled<-", "size",
+"size<-", "focus", "focus<-", "font", "font<-", "tag", "tag<-", "id",
+"id<-", "addhandlerchanged", "addhandlerkeystroke",
+"addhandlerclicked", "addhandlerdoubleclick", "addhandlerrightclick",
+"addhandlerdestroy", "addhandlerexpose", "addhandlerunrealize",
+"addhandleridle", "addpopupmenu", "add3rdmousepopupmenu",
+"adddropsource", "adddropmotion", "adddroptarget", "removehandler",
+".glabel", ".gbutton", ".gcheckbox", ".gradio", ".gdroplist",
+".gcheckboxgroup", ".gspinbutton", ".gslider", ".gedit", ".gtext",
+".gmenu", ".gtoolbar", ".gtable", ".gdf", ".gdfnotebook", ".gtree",
+".gfile", ".gfilebrowse", ".gcalendar", ".ggraphics",
+".ggraphicsnotebook", ".gimage", ".gstatusbar", ".gseparator",
+".gcommandline", ".ghelp", ".ghelpbrowser", ".ggenericwidget",
+".gvarbrowser", ".gwindow", ".ggroup", ".gframe", ".gexpandgroup",
+".gnotebook", ".glayout", ".gpanedgroup", ".svalue", ".svalue<-",
+".leftBracket", ".leftBracket<-", ".add", ".addSpace", ".addSpring",
+".delete", ".dispose", ".visible", ".visible<-", ".enabled",
+".enabled<-", ".size", ".size<-", ".focus", ".focus<-", ".font",
+".font<-", ".tag", ".tag<-", ".id", ".id<-", 
+".removehandler",
+".addhandlerchanged",
+".addhandlerkeystroke", ".addhandlerclicked",
+".addhandlerdoubleclick", ".addhandlerrightclick",
+".addhandlerdestroy", ".addhandlerexpose", ".addhandlerunrealize",
+".addhandleridle", ".addpopupmenu", ".add3rdmousepopupmenu",
+".adddropsource", ".adddropmotion", ".adddroptarget", ".gmessage",
+".ginput", ".gconfirm", ".gbasicdialog",
+".addStockIcons",".getStockIcons",
+"update",".update",
+"length",".length",
+"dim",".dim",
+"dimnames",".dimnames",
+"dimnames<-",".dimnames<-",
+"names",".names",
+"names<-",".names<-"
+ )
