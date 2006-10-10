@@ -2,6 +2,7 @@
 \newcommand{\VERSION}{0.0-2}
 %\VignetteIndexEntry{gWidgets}
 %\VignettePackage{gWidgets}
+%\VignetteDepends{methods, gWidgetsRGtk2}
 
 \usepackage{times}              % for fonts
 \usepackage[]{geometry}
@@ -107,12 +108,10 @@ following
 > require(gWidgets)
 \end{Sinput}
 \begin{Soutput}
-Loading required package: gWidgets
-Loading required package: gWidgetsRGtk2
-Loading required package: RGtk2
 [1] TRUE
 \end{Soutput}
 \end{Schunk}
+
 
 Both the \RPackage{gWidgets} and \RPackage{gWidgetsRGtk2} package use
 S4 methods and classes and load much faster under the newer
@@ -186,7 +185,6 @@ Finally, a text buffer for multiple lines of text:
 \end{Sinput}
 \end{Schunk}
 
-
 The following widgets are used for selection of a value or values from
 a vector of possible values.
 
@@ -226,8 +224,8 @@ selections. Such selection can also be achieved with a checkbox group:
 For selecting a numeric value, sliders and spinbuttons are commonly used:
 \begin{Schunk}
 \begin{Sinput}
-> obj = gslider(from = 0, to = 7734, by = 100, container = gwindow())
-> obj = gspinbutton(from = 0, to = 7734, by = 100, container = gwindow())
+> obj = gslider(from = 0, to = 7734, by = 100, value = 0, container = gwindow())
+> obj = gspinbutton(from = 0, to = 7734, by = 100, value = 0, container = gwindow())
 \end{Sinput}
 \end{Schunk}
 Both these widgets are used to select a value from a prespecified
@@ -576,7 +574,7 @@ a text label somewhere along the top, with a default using the left-hand
 side.
 \begin{Schunk}
 \begin{Sinput}
-> window = gwindow("gWidgetsDensity", visible = FALSE)
+> window = gwindow("gWidgetsDensity")
 > BigGroup = ggroup(cont = window)
 > group = ggroup(horizontal = FALSE, container = BigGroup)
 > tmp = gframe("Distribution", container = group)
@@ -587,35 +585,14 @@ side.
 > add(tmp, kernel)
 > tmp = gframe("Bandwidth adjust", container = group)
 > add(tmp, bandwidthAdjust, expand = TRUE)
-> add(BigGroup, ggraphics())
 \end{Sinput}
+\end{Schunk}
+
+Now to add a graphics device.
 \begin{Soutput}
-Loading required package: cairoDevice
-
-Attaching package: 'cairoDevice'
-
-
-	The following object(s) are masked from package:RGtk2 :
-
-	 cairo 
+> add(BigGroup, ggraphics())
 \end{Soutput}
-\end{Schunk}
 
-There was a bug with the graphics device that has been fixed. A work
-around was to wait to make the window visible until after the graphics
-device was added. This involves the following.
-\begin{Schunk}
-\begin{Sinput}
-> visible(window) <- TRUE
-\end{Sinput}
-\end{Schunk}
-
-% Finally, we draw an initial plot to get things started. Subsequent
-% changes to the  widgets will cause the graph to be redrawn due to the
-% handlers that were added to each widget.
-% \begin{Scode}
-%   updatePlot()
-% \end{Scode}
 
 A realization of this widget was captured in Figure~\ref{fig:gtkdensity}.
 
@@ -835,10 +812,13 @@ drop features of gWidgets (Figure~\ref{fig:doPlot}).
 +         do.call("plot", list(svalue(h$dropdata), main = id(h$dropdata)))
 +     })
 + }
-> doPlot()
 \end{Sinput}
 \end{Schunk}
 %%$
+\begin{Soutput}
+> doPlot()
+\end{Soutput}
+
 
 \begin{figure}[htbp]
   \centering
@@ -930,17 +910,10 @@ data is stored in the tag-key "data". The use of \RFunc{id} and
 
 Now show the two widgets, the \RFunc{gdf} function constructs the data
 frame editor widget.
-\begin{Schunk}
-\begin{Sinput}
-> gdf(mtcars, container = TRUE)
-\end{Sinput}
 \begin{Soutput}
-guiWidget of type: gGridRGtk for toolkit: guiWidgetsToolkitRGtk2 
-\end{Soutput}
-\begin{Sinput}
+> gdf(mtcars, container=TRUE)
 > makeDynamicWidget()
-\end{Sinput}
-\end{Schunk}
+\end{Soutput}
 %%$
 
 
@@ -962,24 +935,23 @@ Our widget consists of a toolbar to add or delete plots and a notebook
 to hold the different graphics devices. The basic widgets are defined
 by the following:
 
-First we make window and group containers to hold our widgets.
+First we make window and group containers to hold our widgets and then
+a notebook instance.
 \begin{Schunk}
 \begin{Sinput}
-> win = gwindow("Plot notebook", visible = FALSE)
+> win = gwindow("Plot notebook")
 > group = ggroup(horizontal = FALSE, container = win)
-\end{Sinput}
-\end{Schunk}
-Next, a notebook instance with an initial plot device.
-\begin{Schunk}
-\begin{Sinput}
 > nb = gnotebook()
-> add(nb, ggraphics(), label = "plot")
 \end{Sinput}
 \end{Schunk}
+Next, we begin with an initial plot device.
+\begin{Soutput}
+> add(nb, ggraphics(), label="plot")
+\end{Soutput}
 The \RFunc{add} method is used to add new widgets, in this case a
 graphics device. The label goes on the tab.
 
-We first define and add a toolbar.
+Now we define and add a toolbar.
 \begin{Schunk}
 \begin{Sinput}
 > tblist = list()
@@ -996,11 +968,10 @@ We first define and add a toolbar.
 The \RFunc{dispose} method is used both to close the window, and to close
 a tab on the notebook (the currently selected one).
 
-Finally we add the notebook and make the window visible.
+Finally we add the notebook.
 \begin{Schunk}
 \begin{Sinput}
 > add(group, nb, expand = TRUE)
-> visible(win) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -1419,6 +1390,7 @@ attr(,"package")
   \caption{Illustration of \RFunc{gfunction}}
   \label{fig:gfunction}
 \end{figure}
+
 
 
 

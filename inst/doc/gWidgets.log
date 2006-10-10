@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2005.5.2)  29 SEP 2006 10:27
+This is pdfTeXk, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2005.5.2)  12 OCT 2006 12:16
  file:line:error style messages enabled.
 **\nonstopmode \input /sfs/.linuxmnt/@wiener.math.csi.cuny.edu,yb25bvied72szf4d
 exbyfefnzc6i9ev8/r/home/verzani/export/Statistics/R/pmg/pmg3/projects/gWidgets/
@@ -195,6 +195,59 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \Urlmuskip=\muskip11
 Package: url 1999/03/28  ver 1.5x  Verb mode for urls, etc.
 )
+(/usr/share/texmf/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2003/01/22 v6.73n Hypertext links for LaTeX
+\@linkdim=\dimen126
+\Hy@linkcounter=\count110
+\Hy@pagecounter=\count111
+
+(/usr/share/texmf/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2003/01/22 v6.73n Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf/tex/latex/config/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive and teTeX
+)
+Package hyperref Info: Hyper figures OFF on input line 1792.
+Package hyperref Info: Link nesting OFF on input line 1797.
+Package hyperref Info: Hyper index ON on input line 1800.
+Package hyperref Info: Plain pages ON on input line 1805.
+Package hyperref Info: Backreferencing OFF on input line 1812.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 1916.
+LaTeX Info: Redefining \url on input line 2055.
+\Fld@menulength=\count112
+\Field@Width=\dimen127
+\Fld@charsize=\dimen128
+\Choice@toks=\toks22
+\Field@toks=\toks23
+Package hyperref Info: Hyper figures OFF on input line 2513.
+Package hyperref Info: Link nesting OFF on input line 2518.
+Package hyperref Info: Hyper index ON on input line 2521.
+Package hyperref Info: backreferencing OFF on input line 2528.
+Package hyperref Info: Link coloring OFF on input line 2533.
+\c@Item=\count113
+\c@Hfootnote=\count114
+)
+*hyperref using default driver hpdftex*
+(/usr/share/texmf/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2003/01/22 v6.73n Hyperref driver for pdfTeX
+
+(/usr/share/texmf/tex/latex/psnfss/pifont.sty
+Package: pifont 2002/09/08 PSNFSS-v9.0a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 62.
+
+(/usr/share/texmf/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 63.
+
+(/usr/share/texmf/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+\Fld@listcount=\count115
+\@outlinefile=\write3
+)
 (/usr/share/texmf/tex/latex/graphics/color.sty
 Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
 
@@ -207,25 +260,25 @@ Package color Info: Driver file: pdftex.def on input line 125.
 Package: fancyvrb 2000/03/21
 
 Style option: `fancyvrb' v2.7, with DG/SPQR fixes <2000/03/21> (tvz)
-\FV@CodeLineNo=\count110
+\FV@CodeLineNo=\count116
 \FV@InFile=\read1
 \FV@TabBox=\box31
-\c@FancyVerbLine=\count111
-\FV@StepNumber=\count112
-\FV@OutFile=\write3
+\c@FancyVerbLine=\count117
+\FV@StepNumber=\count118
+\FV@OutFile=\write4
 )
 (/usr/share/texmf/tex/latex/fancyhdr/fancyhdr.sty
-\headwidth=\dimen126
+\headwidth=\dimen129
 ) (./jvfloatstyle.sty
 Package: jvfloatstyle 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count113
-\float@exts=\toks22
+\c@float@type=\count119
+\float@exts=\toks24
 \float@box=\box32
-\@float@everytoks=\toks23
+\@float@everytoks=\toks25
 \@floatcapt=\box33
 )
-\@float@every@table=\toks24
-\@float@every@figure=\toks25
+\@float@every@table=\toks26
+\@float@every@figure=\toks27
 
 (/usr/local/R/lib/R/share/texmf/Sweave.sty
 
@@ -271,25 +324,27 @@ File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))) (./gWidgets.aux)
 \openout1 = `gWidgets.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 60.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 60.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 62.
 
 (/usr/share/texmf/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    ... okay on input line 62.
 -------------------- Geometry parameters
 paper: class default
 landscape: --
@@ -333,91 +388,102 @@ driver: pdftex
 (/usr/share/texmf/tex/context/base/supp-pdf.tex
 (/usr/share/texmf/tex/context/base/supp-mis.tex
 loading : Context Support Macros / Missing
-\protectiondepth=\count114
-\scratchcounter=\count115
-\scratchtoks=\toks26
-\scratchdimen=\dimen127
+\protectiondepth=\count120
+\scratchcounter=\count121
+\scratchtoks=\toks28
+\scratchdimen=\dimen130
 \scratchskip=\skip46
 \scratchmuskip=\muskip12
 \scratchbox=\box34
 \scratchread=\read2
-\scratchwrite=\write4
-\zeropoint=\dimen128
-\minusone=\count116
-\thousandpoint=\dimen129
-\emptytoks=\toks27
+\scratchwrite=\write5
+\zeropoint=\dimen131
+\minusone=\count122
+\thousandpoint=\dimen132
+\emptytoks=\toks29
 \nextbox=\box35
-\nextdepth=\dimen130
-\everyline=\toks28
-\!!counta=\count117
-\!!countb=\count118
-\recursecounter=\count119
+\nextdepth=\dimen133
+\everyline=\toks30
+\!!counta=\count123
+\!!countb=\count124
+\recursecounter=\count125
 )
 loading : Context Support Macros / PDF
-\nofMPsegments=\count120
-\nofMParguments=\count121
-\everyMPtoPDFconversion=\toks29
+\nofMPsegments=\count126
+\nofMParguments=\count127
+\everyMPtoPDFconversion=\toks31
 )
-LaTeX Font Info:    Try loading font information for OT1+ptmcm on input line 65
+Package hyperref Info: Link coloring OFF on input line 62.
+ (/usr/share/texmf/tex/latex/hyperref/nameref.sty
+Package: nameref 2001/01/27 v2.19 Cross-referencing by name of section
+\c@section@level=\count128
+)
+LaTeX Info: Redefining \ref on input line 62.
+LaTeX Info: Redefining \pageref on input line 62.
+ (./gWidgets.out)
+(./gWidgets.out)
+\openout3 = `gWidgets.out'.
+
+LaTeX Font Info:    Try loading font information for OT1+ptmcm on input line 68
 .
  (/usr/share/texmf/tex/latex/psnfss/ot1ptmcm.fd
 File: ot1ptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ptmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ptmcm on input line 65
+LaTeX Font Info:    Try loading font information for OML+ptmcm on input line 68
 .
 
 (/usr/share/texmf/tex/latex/psnfss/omlptmcm.fd
 File: omlptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ptmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 65
+LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 68
 .
 
 (/usr/share/texmf/tex/latex/psnfss/omspzccm.fd
 File: omspzccm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
 )
-LaTeX Font Info:    Try loading font information for OMX+psycm on input line 65
+LaTeX Font Info:    Try loading font information for OMX+psycm on input line 68
 .
 
 (/usr/share/texmf/tex/latex/psnfss/omxpsycm.fd
 File: omxpsycm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/psycm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 65.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 68.
 
 (/usr/share/texmf/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
-LaTeX Font Info:    Try loading font information for U+msa on input line 65.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
+LaTeX Font Info:    Try loading font information for U+msa on input line 68.
 
 (/usr/share/texmf/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2002/01/19 v2.2g AMS font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 65.
+LaTeX Font Info:    Try loading font information for U+msb on input line 68.
 
 (/usr/share/texmf/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2002/01/19 v2.2g AMS font definitions
 )
-LaTeX Font Info:    Try loading font information for T1+aett on input line 65.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 68.
 
 (/usr/share/texmf/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 79.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 81.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 79.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 81.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 79.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 81.
  (./gWidgets.toc [1
 
 {/usr/share/texmf/dvips/config/pdftex.map}])
-\tf@toc=\write5
-\openout5 = `gWidgets.toc'.
+\tf@toc=\write6
+\openout6 = `gWidgets.toc'.
 
 
 
@@ -426,96 +492,125 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2] <button.png, id=23, 153.38939pt x 157.92334pt>
+[2]
+Overfull \hbox (0.98384pt too wide) in paragraph at lines 144--148
+/aer12/The /aett12/gWid-get-sRGtk2 /aer12/pro-vides a link be-tween /aett12/gWi
+d-gets /aer12/and the GTK li-braries through
+ []
+
+
+Overfull \hbox (108.96962pt too wide) in paragraph at lines 153--155
+[]/aer12/Download the files from []http://gladewin32.sourceforge.net/modules/wf
+downloads/visit.php?lid=102[] 
+ []
+
+[3]
+Overfull \hbox (125.11119pt too wide) in paragraph at lines 200--200
+[]/aett12/> install.packages("gWidgetsRGtk2",dep = TRUE, repos = "http://www.ma
+th.csi.cuny.edu/pmg")[] 
+ []
+
+<button.png, id=148, 153.38939pt x 157.92334pt>
 File: button.png Graphic file (type png)
  <use button.png>
-<label.png, id=24, 153.38939pt x 157.92334pt>
+<label.png, id=149, 153.38939pt x 157.92334pt>
 File: label.png Graphic file (type png)
  <use label.png>
-<radio.png, id=25, 153.38939pt x 157.92334pt>
+<radio.png, id=150, 153.38939pt x 157.92334pt>
 File: radio.png Graphic file (type png)
  <use radio.png>
-<droplist.png, id=26, 153.38939pt x 157.92334pt>
+<droplist.png, id=151, 153.38939pt x 157.92334pt>
 File: droplist.png Graphic file (type png)
- <use droplist.png> [3]
-[4 <./button.png> <./label.png> <./radio.png> <./droplist.png>]
-<helloWorld.png, id=33, 208.69806pt x 180.00583pt>
+ <use droplist.png> [4]
+[5 <./button.png> <./label.png> <./radio.png> <./droplist.png>]
+<helloWorld.png, id=163, 208.69806pt x 180.00583pt>
 File: helloWorld.png Graphic file (type png)
  <use helloWorld.png>
-[5 <./helloWorld.png>] [6]
-<confirmDialog.png, id=40, 160.02643pt x 157.92334pt>
+[6] [7 <./helloWorld.png>]
+<confirmDialog.png, id=175, 160.02643pt x 157.92334pt>
 File: confirmDialog.png Graphic file (type png)
  <use confirmDialog.png>
-[7 <./confirmDialog.png>]
+[8 <./confirmDialog.png>]
 
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 398.
+(Font)              using `T1/aett/m/n' instead on input line 475.
 
-[8] [9] [10] [11] <gtkdensity.png, id=57, 447.63153pt x 327.89166pt>
+[9] [10] [11] [12] <gtkdensity.png, id=198, 447.63153pt x 327.89166pt>
 File: gtkdensity.png Graphic file (type png)
 
-<use gtkdensity.png> [12 <./gtkdensity.png>] [13] [14]
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 739
+<use gtkdensity.png> [13] [14 <./gtkdensity.png>] [15]
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 805
 .
 
 (/usr/local/R/lib/R/share/texmf/ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 739
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 805
 .
 
 (/usr/share/texmf/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <12> not available
-(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 739.
+(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 805.
 
-
-<Rmail.png, id=68, 405.59694pt x 289.08pt>
+ [16]
+<Rmail.png, id=218, 405.59694pt x 289.08pt>
 File: Rmail.png Graphic file (type png)
- <use Rmail.png> [15] [16 <./Rmail.png>] <doPlot.png, id=76, 540.5501pt x 351.3
-125pt>
-File: doPlot.png Graphic file (type png)
- <use doPlot.png> [17] [18 <./doPlot.png>] [19] <notebook.png, id=87, 349.55081
-pt x 398.15416pt>
-File: notebook.png Graphic file (type png)
+ <use Rmail.png>
+Overfull \hbox (1.06564pt too wide) in paragraph at lines 839--844
+[]/aer12/The /aett12/svalue() /aer12/and /aett12/svalue<-() /aer12/meth-ods are
+ the work-horse meth-ods of /aett12/gWidgets/aer12/.
+ []
 
-<use notebook.png> [20] [21 <./notebook.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1025--1029
+[17 <./Rmail.png>] <doPlot.png, id=226, 540.5501pt x 351.3125pt>
+File: doPlot.png Graphic file (type png)
+
+<use doPlot.png> [18] [19 <./doPlot.png>] [20] [21]
+<notebook.png, id=246, 349.55081pt x 398.15416pt>
+File: notebook.png Graphic file (type png)
+ <use notebook.png> [22 <./notebook.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1085--1089
 
  []
 
-[22] <filebrowser.png, id=97, 333.32693pt x 182.6825pt>
+[23] <filebrowser.png, id=257, 333.32693pt x 182.6825pt>
 File: filebrowser.png Graphic file (type png)
  <use filebrowser.png>
-Underfull \hbox (badness 10000) in paragraph at lines 1128--1130
+[24 <./filebrowser.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1188--1190
 
  []
 
-[23 <./filebrowser.png>] [24] [25] [26] [27] [28]
-<gfunction.png, id=117, 457.95581pt x 223.50166pt>
+[25]
+Overfull \hbox (27.79555pt too wide) in paragraph at lines 1236--1238
+[]/aer12/To il-lus-trate, a GUI for a one sam-ple t-test is given. The list use
+d by /aett12/ggenericwidget()
+ []
+
+[26] [27] [28] [29] [30] <gfunction.png, id=291, 457.95581pt x 223.50166pt>
 File: gfunction.png Graphic file (type png)
- <use gfunction.png> [29]
-[30 <./gfunction.png>] (./gWidgets.aux)
+
+<use gfunction.png> [31 <./gfunction.png>] (./gWidgets.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 3605 strings out of 95437
- 47702 string characters out of 1190234
- 96179 words of memory out of 1000001
- 6495 multiletter control sequences out of 10000+50000
- 45486 words of font info for 109 fonts, out of 500000 for 1000
+ 5189 strings out of 95437
+ 69963 string characters out of 1190234
+ 121224 words of memory out of 1000001
+ 7982 multiletter control sequences out of 10000+50000
+ 46176 words of font info for 111 fonts, out of 500000 for 1000
  14 hyphenation exceptions out of 1000
- 35i,12n,43p,415b,501s stack positions out of 1500i,500n,5000p,200000b,5000s
- 123 PDF objects out of 300000
- 0 named destinations out of 131072
- 60 words of extra memory for PDF output out of 65536
+ 35i,12n,43p,415b,508s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 296 PDF objects out of 300000
+ 66 named destinations out of 131072
+ 223 words of extra memory for PDF output out of 65536
  </var/cache/fonts/pk/ljfour/jknappen/tc/tcst1200.600pk>{/usr/share/texmf/dvi
 ps/tetex/09fbbfac.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmsltt10.pfb>{/u
 sr/share/texmf/dvips/tetex/f7b6d320.enc}</usr/share/texmf/fonts/type1/bluesky/c
 m/cmbx12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmtt12.pfb></usr/share/te
 xmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/c
 mr17.pfb>
-Output written on gWidgets.pdf (30 pages, 306770 bytes).
+Output written on gWidgets.pdf (31 pages, 329933 bytes).

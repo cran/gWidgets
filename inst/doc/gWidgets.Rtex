@@ -1,7 +1,8 @@
 \documentclass[12pt]{article}
-\newcommand{\VERSION}{0.0-2}
+\newcommand{\VERSION}{0.0-7}
 %\VignetteIndexEntry{gWidgets}
 %\VignettePackage{gWidgets}
+%\VignetteDepends{methods, gWidgetsRGtk2}
 
 \usepackage{times}              % for fonts
 \usepackage[]{geometry}
@@ -13,6 +14,7 @@
 \usepackage{amsmath}            % for amslatex stuff
 \usepackage{amsfonts}           % for amsfonts
 \usepackage{url}                % for \url,
+\usepackage{hyperref}
 \usepackage{color}
 \usepackage{fancyvrb}
 \usepackage{fancyhdr}
@@ -105,6 +107,7 @@ following
   require(gWidgets)
 \end{Scode}
 
+
 Both the \RPackage{gWidgets} and \RPackage{gWidgetsRGtk2} package use
 S4 methods and classes and load much faster under the newer
 \RPackage{methods} package accompanying R version 2.4.0 or greater.
@@ -116,6 +119,81 @@ page \RCode{gWidgets-package} for a listing of the available man pages.
 This document is a vignette. As such, the code displayed is available
 within an R session through the command
 \RCode{edit(vignette("gWidgets"))}. 
+
+
+\section{Installation}
+In case you are reading this vignette without having installed
+gWidgets, here are some instructions. As only the
+\RCode{gWidgetsRGtk2} package is available to interface with a
+toolkit, I'll describe how this is installed.
+
+Installing \RCode{gWidgets} with the \RCode{gWidgetsRGtk2} pakcage
+requires two steps: installing the GTK libraries and installing the R
+packages.
+
+
+
+\subsection{Installing the GTK libraries}
+
+The \RCode{gWidgetsRGtk2} provides a link between \RCode{gWidgets} and
+the GTK libraries through the \RCode{RGTk2} package.  \texttt{RGtk2}
+requires relatively modern versions of the GTK libraries (2.8.0 or
+higher). These may need to be installed or upgraded on your system.
+
+In case of \textbf{Windows} do this:
+
+\begin{enumerate}
+\item 
+ Download the files from
+\href{http://gladewin32.sourceforge.net/modules/wfdownloads/visit.php?lid=102}{http://gladewin32.sourceforge.net/modules/wfdownloads/visit.php?lid=102}
+
+\item run the resulting file.  This is an automated installer which will walk
+you through the installation of the Gtk2 libraries.
+\end{enumerate}
+
+In Linux, you may or may not need to upgrade the GTK libraries
+depending on your distribution.
+
+For Mac OS X, I've installed the GTK libraries from source on my older
+10.3.9 machine using Apples X11 server. You may be able to use FINK
+now, but this is not tested.
+
+
+For more details on RGtk2 refer to
+\href{http://www.ggobi.org/rgtk2}{RGtk2's home page}.
+
+
+\subsection{Install the R packages}
+
+The following R packages are needed: \texttt{RGtk2},
+\texttt{cairoDevice}, \texttt{gWidgets}, and \texttt{gWidgetsRGtk2}
+\texttt{pmg}. Install them in this order, as some depend on others to
+be installed first. All can be downloaded from CRAN.
+
+These can all be installed by following the dependencies for
+\RCode{gWidgetsRGtk2}. The following command may work for you:
+
+\begin{verbatim}
+   install.packages("gWidgetsRGtk2", dep = TRUE)
+\end{verbatim}
+
+You may need to adjust the location where the libraries will be
+installed if you do not have the proper permissions.
+
+For MAC OS X, the packages are source, not the default ``mac.binary.'' Try
+\begin{verbatim}
+   install.packages("gWidgetsRGtk2", dep = TRUE,type = "source" )
+\end{verbatim}
+
+The newest versions will be on
+\href{http://www.math.csi.cuny.edu/pmg}{gWidgets's website}. To install
+from here add the \texttt{repos=} argument, as follows:
+
+\begin{verbatim}
+> install.packages("gWidgetsRGtk2",dep = TRUE, repos = "http://www.math.csi.cuny.edu/pmg")
+\end{verbatim}
+
+
 
 \section{Hello world}
 
@@ -167,7 +245,6 @@ Finally, a text buffer for multiple lines of text:
   obj=gtext("Hello world", container = gwindow())
 \end{Scode}
 
-
 The following widgets are used for selection of a value or values from
 a vector of possible values.
 
@@ -198,8 +275,8 @@ selections. Such selection can also be achieved with a checkbox group:
 
 For selecting a numeric value, sliders and spinbuttons are commonly used:
 \begin{Scode}
-  obj = gslider(from=0, to = 7734, by =100, container=gwindow())
-  obj = gspinbutton(from=0, to = 7734, by =100, container=gwindow())
+  obj = gslider(from=0, to = 7734, by =100, value=0,container=gwindow())
+  obj = gspinbutton(from=0, to = 7734, by =100, value=0, container=gwindow())
 \end{Scode}
 Both these widgets are used to select a value from a prespecified
 sequence of numbers.
@@ -523,7 +600,7 @@ a text label somewhere along the top, with a default using the left-hand
 side.
 \begin{Scode}
 ## now layout
-window = gwindow("gWidgetsDensity", visible=FALSE)
+window = gwindow("gWidgetsDensity")
 BigGroup = ggroup(cont=window)
 
 group = ggroup(horizontal=FALSE, container=BigGroup)
@@ -538,24 +615,13 @@ add(tmp,kernel)
 
 tmp = gframe("Bandwidth adjust", container=group)
 add(tmp,bandwidthAdjust, expand=TRUE)
-
-add(BigGroup, ggraphics())
 \end{Scode}
 
-There was a bug with the graphics device that has been fixed. A work
-around was to wait to make the window visible until after the graphics
-device was added. This involves the following.
-\begin{Scode}
-## intialize plot window
-visible(window) <- TRUE
-\end{Scode}
+Now to add a graphics device.
+\begin{Soutput}
+> add(BigGroup, ggraphics())
+\end{Soutput}
 
-% Finally, we draw an initial plot to get things started. Subsequent
-% changes to the  widgets will cause the graph to be redrawn due to the
-% handlers that were added to each widget.
-% \begin{Scode}
-%   updatePlot()
-% \end{Scode}
 
 A realization of this widget was captured in Figure~\ref{fig:gtkdensity}.
 
@@ -788,9 +854,12 @@ doPlot = function() {
     do.call("plot",list(svalue(h$dropdata),main=id(h$dropdata)))
   })
 }
-doPlot()
 \end{Scode}
 %%$
+\begin{Soutput}
+> doPlot()
+\end{Soutput}
+
 
 \begin{figure}[htbp]
   \centering
@@ -887,10 +956,10 @@ plotWidget = function(widget) {
 
 Now show the two widgets, the \RFunc{gdf} function constructs the data
 frame editor widget.
-\begin{Scode}
-  gdf(mtcars, container=TRUE)
-  makeDynamicWidget()
-\end{Scode}
+\begin{Soutput}
+> gdf(mtcars, container=TRUE)
+> makeDynamicWidget()
+\end{Soutput}
 %%$
 
 
@@ -912,20 +981,21 @@ Our widget consists of a toolbar to add or delete plots and a notebook
 to hold the different graphics devices. The basic widgets are defined
 by the following:
 
-First we make window and group containers to hold our widgets.
+First we make window and group containers to hold our widgets and then
+a notebook instance.
 \begin{Scode}
-  win = gwindow("Plot notebook", visible=FALSE)
+  win = gwindow("Plot notebook")
   group = ggroup(horizontal = FALSE, container=win)
-\end{Scode}
-Next, a notebook instance with an initial plot device.
-\begin{Scode}
   nb = gnotebook()
-  add(nb, ggraphics(), label="plot")
 \end{Scode}
+Next, we begin with an initial plot device.
+\begin{Soutput}
+> add(nb, ggraphics(), label="plot")
+\end{Soutput}
 The \RFunc{add} method is used to add new widgets, in this case a
 graphics device. The label goes on the tab.
 
-We first define and add a toolbar.
+Now we define and add a toolbar.
 \begin{Scode}
   tblist = list()
   tblist$Quit$handler = function(h,...) dispose(win)
@@ -941,10 +1011,9 @@ We first define and add a toolbar.
 The \RFunc{dispose} method is used both to close the window, and to close
 a tab on the notebook (the currently selected one).
 
-Finally we add the notebook and make the window visible.
+Finally we add the notebook.
 \begin{Scode}
   add(group, nb, expand=TRUE)
-  visible(win)<-TRUE
 \end{Scode}
 
 \begin{figure}[htbp]
@@ -1231,7 +1300,7 @@ the handling of the initial variable when a formula is expected.
       if(length(out)>0)
       add(outputArea, out)
     }
-    
+    invisible(NULL)
   }
 \end{Scode}
 
@@ -1324,6 +1393,7 @@ Figure~\ref{fig:gfunction}.
   \caption{Illustration of \RFunc{gfunction}}
   \label{fig:gfunction}
 \end{figure}
+
 
 
 

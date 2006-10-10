@@ -1,0 +1,21 @@
+\BOOKMARK [1][-]{section.1}{Background}{}
+\BOOKMARK [1][-]{section.2}{Installation}{}
+\BOOKMARK [2][-]{subsection.2.1}{Installing the GTK libraries}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Install the R packages}{section.2}
+\BOOKMARK [1][-]{section.3}{Hello world}{}
+\BOOKMARK [1][-]{section.4}{Making a confirmation dialog}{}
+\BOOKMARK [1][-]{section.5}{Methods}{}
+\BOOKMARK [1][-]{section.6}{Adding a GUI to some common tasks}{}
+\BOOKMARK [2][-]{subsection.6.1}{file.choose\(\)}{section.6}
+\BOOKMARK [2][-]{subsection.6.2}{browseEnv\(\)}{section.6}
+\BOOKMARK [1][-]{section.7}{A gWidgetsDensity demo}{}
+\BOOKMARK [1][-]{section.8}{Composing email}{}
+\BOOKMARK [1][-]{section.9}{Drag and drop}{}
+\BOOKMARK [2][-]{subsection.9.1}{DND with plots}{section.9}
+\BOOKMARK [2][-]{subsection.9.2}{DND from the data frame editor}{section.9}
+\BOOKMARK [1][-]{section.10}{Notebooks}{}
+\BOOKMARK [1][-]{section.11}{The tree widget}{}
+\BOOKMARK [1][-]{section.12}{Popup menus}{}
+\BOOKMARK [1][-]{section.13}{Making widgets from an R function}{}
+\BOOKMARK [2][-]{subsection.13.1}{Using ggenericwidget\(\)}{section.13}
+\BOOKMARK [2][-]{subsection.13.2}{An alternative to ggenericwidget\(\)}{section.13}
