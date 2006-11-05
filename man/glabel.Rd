@@ -26,7 +26,7 @@ action = NULL, container = NULL, ..., toolkit = guiToolkit())
 gbutton(text = "", handler = NULL, action = NULL, container = NULL, 
     ..., toolkit = guiToolkit()) 
 
-gimage(filename, dirname = "",  size = "", 
+gimage(filename = "", dirname = "",  size = "", 
     handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit()) 
 }
 %- maybe also 'usage' for other objects documented here.

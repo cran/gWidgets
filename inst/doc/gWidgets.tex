@@ -2,7 +2,7 @@
 \newcommand{\VERSION}{0.0-7}
 %\VignetteIndexEntry{gWidgets}
 %\VignettePackage{gWidgets}
-%\VignetteDepends{methods, gWidgetsRGtk2}
+%\VignetteDepends{methods}
 
 \usepackage{times}              % for fonts
 \usepackage[]{geometry}
@@ -58,7 +58,7 @@
 \newenvironment{RArgs}{\begin{list}{}{}}{\end{list}}
 
 
-\usepackage{/usr/local/R/lib/R/share/texmf/Sweave}
+\usepackage{/home/verzani/R/lib/R/share/texmf/Sweave}
 \begin{document}
 \thispagestyle{plain}
 \title{Examples for gWidgets}
@@ -67,18 +67,22 @@
 \maketitle
 
 \section*{Abstract:}
-Examples for using the \RPackage{gWidgets} package are presented. Th
-\RCode{gWidgets} API is intended to be a cross platform means to
-interact with a graphics toolkit. Currently, the only available
-toolkit is the GTK toolkit via the \RPackage{gWidgetsRGtk2} package
-which uses the \RPackage{RGtk2} package. Although not nearly as
-powerful as any individual toolkit, the \RPackage{gWidgets} API is
-suitable for many tasks or as a rapid prototyping tool for more
-complicated applications. Hopefully the examples contained herein
-illustrate that quite a few things can be done fairly easily, and
-complicated things pieced together in a straightforward manner. To see
-an application built using \RPackage{gWidgets}, install the
-\RPackage{pmg} GUI (\url{http://www.math.csi,cuny.edu/pmg}).
+Examples for using the \RPackage{gWidgets} package are presented.  The
+\RPackage{gWidgets} API is intended to be a cross platform means
+within an R session to interact with a graphics toolkit.  Currently,
+the only available toolkit is the GTK toolkit via the
+\RPackage{gWidgetsRGtk2} package which in turn uses the
+\RPackage{RGtk2} package.  Hopefully, the API simplifies the task of
+writing basic GUIs, as it simplifies many of the steps involved to
+setting up widgets and packing them into containers. Although not
+nearly as powerful as any individual toolkit, the \RPackage{gWidgets}
+API is suitable for many tasks or as a rapid prototyping tool for more
+complicated applications. The examples contained herein illustrate
+that quite a few things can be done fairly easily, and complicated
+things pieced together in a straightforward manner.  To see an
+application built using \RPackage{gWidgets}, install the
+\RPackage{pmg} GUI (\url{http://www.math.csi.cuny.edu/pmg}).
+
 
 \setcounter{tocdepth}{3}
 \tableofcontents
@@ -113,6 +117,9 @@ following
 \end{Soutput}
 \end{Schunk}
 
+%\begin{Scode}{echo=FALSE}
+%  require(gWidgetsRGtk2)
+%\end{Scode}
 
 Both the \RPackage{gWidgets} and \RPackage{gWidgetsRGtk2} package use
 S4 methods and classes and load much faster under the newer
@@ -172,9 +179,9 @@ For more details on RGtk2 refer to
 \subsection{Install the R packages}
 
 The following R packages are needed: \texttt{RGtk2},
-\texttt{cairoDevice}, \texttt{gWidgets}, and \texttt{gWidgetsRGtk2}
-\texttt{pmg}. Install them in this order, as some depend on others to
-be installed first. All can be downloaded from CRAN.
+\texttt{cairoDevice}, \texttt{gWidgets}, and
+\texttt{gWidgetsRGtk2}. Install them in this order, as some depend on
+others to be installed first. All can be downloaded from CRAN.
 
 These can all be installed by following the dependencies for
 \RCode{gWidgetsRGtk2}. The following command may work for you:

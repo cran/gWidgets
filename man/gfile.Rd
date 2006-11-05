@@ -18,14 +18,14 @@ gfile(text = "", type = c("open", "save", "selectdir"), initialfilename = NULL,
 gfilebrowse (text = "Select a file...", type = "open", quote = TRUE, 
     container = NULL, ..., toolkit = guiToolkit()) 
 
-gcalendar(text = "", format = "\%Y-\%m-\%d", container = NULL, ..., toolkit = guiToolkit()) 
+gcalendar(text = "", format = "\%Y-\%m-\%d", handler=NULL, action=NULL, container = NULL, ..., toolkit = guiToolkit()) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{text}{Initial text}
   \item{type}{When selecting a file it can be selected for opening,
   for saving or you may want to select a directory.}
-  \item{initialfilename}{Suggested name for file save}
+\item{initialfilename}{Suggested name for file save}
   \item{filter}{Filter for files shown during selection }
   \item{quote}{Is result quoted}
   \item{format}{Format of date}

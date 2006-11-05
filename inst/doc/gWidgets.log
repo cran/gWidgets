@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2005.5.2)  12 OCT 2006 12:16
+This is pdfTeXk, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2005.5.2)  9 NOV 2006 10:45
  file:line:error style messages enabled.
 **\nonstopmode \input /sfs/.linuxmnt/@wiener.math.csi.cuny.edu,yb25bvied72szf4d
 exbyfefnzc6i9ev8/r/home/verzani/export/Statistics/R/pmg/pmg3/projects/gWidgets/
@@ -280,17 +280,17 @@ Package: jvfloatstyle 2001/11/08 v1.3d Float enhancements (AL)
 \@float@every@table=\toks26
 \@float@every@figure=\toks27
 
-(/usr/local/R/lib/R/share/texmf/Sweave.sty
+(/home/verzani/R/lib/R/share/texmf/Sweave.sty
 
-LaTeX Warning: You have requested package `/usr/local/R/lib/R/share/texmf/Sweav
-e',
+LaTeX Warning: You have requested package `/home/verzani/R/lib/R/share/texmf/Sw
+eave',
                but the package provides `Sweave'.
 
 Package: Sweave 
 (/usr/share/texmf/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/local/R/lib/R/share/texmf/upquote.sty
+(/home/verzani/R/lib/R/share/texmf/upquote.sty
 Package: upquote 2003/08/11 v1.1 Covington's upright-quote modification to verb
 atim and verb
 
@@ -474,11 +474,11 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 68.
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 81.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 84.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 81.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 84.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 81.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 84.
  (./gWidgets.toc [1
 
 {/usr/share/texmf/dvips/config/pdftex.map}])
@@ -493,19 +493,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-Overfull \hbox (0.98384pt too wide) in paragraph at lines 144--148
+Overfull \hbox (0.98384pt too wide) in paragraph at lines 151--155
 /aer12/The /aett12/gWid-get-sRGtk2 /aer12/pro-vides a link be-tween /aett12/gWi
 d-gets /aer12/and the GTK li-braries through
  []
 
 
-Overfull \hbox (108.96962pt too wide) in paragraph at lines 153--155
+Overfull \hbox (108.96962pt too wide) in paragraph at lines 160--162
 []/aer12/Download the files from []http://gladewin32.sourceforge.net/modules/wf
 downloads/visit.php?lid=102[] 
  []
 
 [3]
-Overfull \hbox (125.11119pt too wide) in paragraph at lines 200--200
+Overfull \hbox (125.11119pt too wide) in paragraph at lines 207--207
 []/aett12/> install.packages("gWidgetsRGtk2",dep = TRUE, repos = "http://www.ma
 th.csi.cuny.edu/pmg")[] 
  []
@@ -533,32 +533,32 @@ File: confirmDialog.png Graphic file (type png)
 [8 <./confirmDialog.png>]
 
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 475.
+(Font)              using `T1/aett/m/n' instead on input line 482.
 
 [9] [10] [11] [12] <gtkdensity.png, id=198, 447.63153pt x 327.89166pt>
 File: gtkdensity.png Graphic file (type png)
 
 <use gtkdensity.png> [13] [14 <./gtkdensity.png>] [15]
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 805
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 812
 .
 
-(/usr/local/R/lib/R/share/texmf/ts1aett.fd
+(/home/verzani/R/lib/R/share/texmf/ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 805
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 812
 .
 
 (/usr/share/texmf/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <12> not available
-(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 805.
+(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 812.
 
  [16]
 <Rmail.png, id=218, 405.59694pt x 289.08pt>
 File: Rmail.png Graphic file (type png)
  <use Rmail.png>
-Overfull \hbox (1.06564pt too wide) in paragraph at lines 839--844
+Overfull \hbox (1.06564pt too wide) in paragraph at lines 846--851
 []/aer12/The /aett12/svalue() /aer12/and /aett12/svalue<-() /aer12/meth-ods are
  the work-horse meth-ods of /aett12/gWidgets/aer12/.
  []
@@ -570,7 +570,7 @@ File: doPlot.png Graphic file (type png)
 <notebook.png, id=246, 349.55081pt x 398.15416pt>
 File: notebook.png Graphic file (type png)
  <use notebook.png> [22 <./notebook.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1085--1089
+Underfull \hbox (badness 10000) in paragraph at lines 1092--1096
 
  []
 
@@ -578,12 +578,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 1085--1089
 File: filebrowser.png Graphic file (type png)
  <use filebrowser.png>
 [24 <./filebrowser.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1188--1190
+Underfull \hbox (badness 10000) in paragraph at lines 1195--1197
 
  []
 
 [25]
-Overfull \hbox (27.79555pt too wide) in paragraph at lines 1236--1238
+Overfull \hbox (27.79555pt too wide) in paragraph at lines 1243--1245
 []/aer12/To il-lus-trate, a GUI for a one sam-ple t-test is given. The list use
 d by /aett12/ggenericwidget()
  []
@@ -598,8 +598,8 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
  ) 
 Here is how much of TeX's memory you used:
  5189 strings out of 95437
- 69963 string characters out of 1190234
- 121224 words of memory out of 1000001
+ 69993 string characters out of 1190234
+ 121227 words of memory out of 1000001
  7982 multiletter control sequences out of 10000+50000
  46176 words of font info for 111 fonts, out of 500000 for 1000
  14 hyphenation exceptions out of 1000
@@ -613,4 +613,4 @@ sr/share/texmf/dvips/tetex/f7b6d320.enc}</usr/share/texmf/fonts/type1/bluesky/c
 m/cmbx12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmtt12.pfb></usr/share/te
 xmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/c
 mr17.pfb>
-Output written on gWidgets.pdf (31 pages, 329933 bytes).
+Output written on gWidgets.pdf (31 pages, 330081 bytes).

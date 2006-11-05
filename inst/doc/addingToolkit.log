@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2005.5.2)  12 OCT 2006 12:16
+This is pdfTeXk, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2005.5.2)  9 NOV 2006 10:44
  file:line:error style messages enabled.
 **\nonstopmode \input /sfs/.linuxmnt/@wiener.math.csi.cuny.edu,yb25bvied72szf4d
 exbyfefnzc6i9ev8/r/home/verzani/export/Statistics/R/pmg/pmg3/projects/gWidgets/
@@ -227,17 +227,17 @@ Package: jvfloatstyle 2001/11/08 v1.3d Float enhancements (AL)
 \@float@every@table=\toks24
 \@float@every@figure=\toks25
 
-(/usr/local/R/lib/R/share/texmf/Sweave.sty
+(/home/verzani/R/lib/R/share/texmf/Sweave.sty
 
-LaTeX Warning: You have requested package `/usr/local/R/lib/R/share/texmf/Sweav
-e',
+LaTeX Warning: You have requested package `/home/verzani/R/lib/R/share/texmf/Sw
+eave',
                but the package provides `Sweave'.
 
 Package: Sweave 
 (/usr/share/texmf/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/local/R/lib/R/share/texmf/upquote.sty
+(/home/verzani/R/lib/R/share/texmf/upquote.sty
 Package: upquote 2003/08/11 v1.1 Covington's upright-quote modification to verb
 atim and verb
 
@@ -428,7 +428,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [2] [3] [4]
 LaTeX Font Info:    Try loading font information for TS1+aett on input line 306
 .
- (/usr/local/R/lib/R/share/texmf/ts1aett.fd
+ (/home/verzani/R/lib/R/share/texmf/ts1aett.fd
 File: ts1aett.fd 
 )
 LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 306
@@ -447,8 +447,8 @@ File: hello-world.png Graphic file (type png)
 [7 <./hello-world.png>] [8] (./addingToolkit.aux) ) 
 Here is how much of TeX's memory you used:
  3504 strings out of 95437
- 46233 string characters out of 1190234
- 96066 words of memory out of 1000001
+ 46263 string characters out of 1190234
+ 96069 words of memory out of 1000001
  6408 multiletter control sequences out of 10000+50000
  33432 words of font info for 80 fonts, out of 500000 for 1000
  14 hyphenation exceptions out of 1000
@@ -462,4 +462,4 @@ are/texmf/fonts/type1/bluesky/cm/cmsltt10.pfb>{/usr/share/texmf/dvips/tetex/f7b
 6d320.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf
 /fonts/type1/bluesky/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr
 12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr17.pfb>
-Output written on addingToolkit.pdf (8 pages, 64911 bytes).
+Output written on addingToolkit.pdf (8 pages, 64985 bytes).

@@ -3,20 +3,6 @@
   (lambda ()
     (LaTeX-add-environments
      "RArgs")
-    (LaTeX-add-labels
-     "fig:basic-widgets"
-     "fig:hello-world"
-     "fig:confirmDialog"
-     "sec:browseEnv"
-     "sec:repeating-plot"
-     "fig:gtkdensity"
-     "fig:Rmail"
-     "fig:doPlot"
-     "fig:notebook"
-     "fig:filebrowser"
-     "sec:using-ggenericwidget"
-     "sec:an-altern-ggenericwidget"
-     "fig:gfunction")
     (TeX-add-symbols
      '("RListel" 1)
      '("RArg" 1)

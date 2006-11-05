@@ -73,7 +73,7 @@ guiToolkit = function(name=NULL) {
       name = gsub("^gWidgets","",theChoice)
       options("guiToolkit"=name)
     } else {
-      ## not interactive -- don't pick one
+      ## not interactive 
       return(NULL)
     }
   }
@@ -524,10 +524,12 @@ setGeneric(".gfilebrowse",
 ## gcalendar
 ## the constructor
 gcalendar =function(
-  text = "", format = "%Y-%m-%d", container = NULL, ... ,
+  text = "", format = "%Y-%m-%d", 
+  handler = NULL, action=NULL, container = NULL,...,
   toolkit=guiToolkit()){
  widget =  .gcalendar (toolkit,
-   text=text, format=format, container=container ,...
+   text=text, format=format, handler=handler,action=action,
+   container=container , ...
    )
  obj = new( 'guiDialog',widget=widget,toolkit=toolkit) 
  return(obj)
@@ -537,7 +539,9 @@ gcalendar =function(
 ## generic for toolkit dispatch
 setGeneric( '.gcalendar' ,
            function(toolkit,
-                    text = "", format = "%Y-%m-%d", container = NULL, ... )
+                    text = "", format = "%Y-%m-%d", 
+                    handler=NULL, action=NULL, container = NULL,
+                    ... )
            standardGeneric( '.gcalendar' ))
 
 ## ggraphics
@@ -586,7 +590,7 @@ setGeneric( '.ggraphicsnotebook' ,
 
 ## the constructor
 gimage =function(
-  filename, dirname = "", size = "", handler = NULL,
+  filename = "", dirname = "", size = "", handler = NULL,
   action = NULL, container = NULL, ... ,
   toolkit=guiToolkit()){
   widget =  .gimage (toolkit,
@@ -600,7 +604,7 @@ gimage =function(
 ## generic for toolkit dispatch
 setGeneric( '.gimage' ,
            function(toolkit,
-                    filename, dirname = "", size = "",
+                    filename = "", dirname = "", size = "",
                     handler = NULL,action = NULL, container = NULL, ... )
            standardGeneric( '.gimage' ))
 
@@ -651,12 +655,13 @@ setGeneric( '.gseparator' ,
 
 ## the constructor
 gcommandline =function(
-  command = "", assignto = NULL, useConsole = FALSE,
+  command = "", assignto = NULL, useGUI = TRUE, useConsole = FALSE,
   prompt = getOption("prompt"), width = 500, height = 0.6 * width,
   container = NULL, ... ,
   toolkit=guiToolkit()){
   widget =  .gcommandline (toolkit,
-    command=command, assignto=assignto, useConsole=useConsole,
+    command=command, assignto=assignto,
+    useGUI = useGUI, useConsole=useConsole,
     prompt=prompt, width=width, height=height, container=container ,...
     )
   obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
@@ -667,7 +672,8 @@ gcommandline =function(
 ## generic for toolkit dispatch
 setGeneric( '.gcommandline' ,
            function(toolkit,
-                    command = "", assignto = NULL, useConsole = FALSE,
+                    command = "", assignto = NULL,
+                    useGUI = TRUE, useConsole = FALSE,
                     prompt = getOption("prompt"), width = 500,
                     height = 0.6 * width, container = NULL, ... )
            standardGeneric( '.gcommandline' ))

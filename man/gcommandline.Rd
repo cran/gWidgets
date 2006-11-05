@@ -5,13 +5,15 @@
   This constructs a simple command line interface for R
 }
 \usage{
-gcommandline(command = "", assignto = NULL, useConsole = FALSE, prompt = getOption("prompt"), width = 500, height = 0.6 * width, container = NULL, ...,toolkit =
+gcommandline(command = "", assignto = NULL, useGUI = TRUE, useConsole = FALSE, prompt = getOption("prompt"), width = 500, height = 0.6 * width, container = NULL, ...,toolkit =
                  guiToolkit())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{command}{Initial command to evalues }
   \item{assignto}{Assigns output to this variable is non-NULL}
+  \item{useGUI}{Is result also printed to GUI. Use FALSE to get
+    text-only instance}
   \item{useConsole}{Is result also printed to console?}
   \item{prompt}{Prompt to use}
   \item{width}{Width of widget in pixels}
