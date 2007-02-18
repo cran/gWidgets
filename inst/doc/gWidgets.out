@@ -2,20 +2,22 @@
 \BOOKMARK [1][-]{section.2}{Installation}{}
 \BOOKMARK [2][-]{subsection.2.1}{Installing the GTK libraries}{section.2}
 \BOOKMARK [2][-]{subsection.2.2}{Install the R packages}{section.2}
-\BOOKMARK [1][-]{section.3}{Hello world}{}
-\BOOKMARK [1][-]{section.4}{Making a confirmation dialog}{}
-\BOOKMARK [1][-]{section.5}{Methods}{}
-\BOOKMARK [1][-]{section.6}{Adding a GUI to some common tasks}{}
-\BOOKMARK [2][-]{subsection.6.1}{file.choose\(\)}{section.6}
-\BOOKMARK [2][-]{subsection.6.2}{browseEnv\(\)}{section.6}
-\BOOKMARK [1][-]{section.7}{A gWidgetsDensity demo}{}
-\BOOKMARK [1][-]{section.8}{Composing email}{}
-\BOOKMARK [1][-]{section.9}{Drag and drop}{}
-\BOOKMARK [2][-]{subsection.9.1}{DND with plots}{section.9}
-\BOOKMARK [2][-]{subsection.9.2}{DND from the data frame editor}{section.9}
-\BOOKMARK [1][-]{section.10}{Notebooks}{}
-\BOOKMARK [1][-]{section.11}{The tree widget}{}
-\BOOKMARK [1][-]{section.12}{Popup menus}{}
-\BOOKMARK [1][-]{section.13}{Making widgets from an R function}{}
-\BOOKMARK [2][-]{subsection.13.1}{Using ggenericwidget\(\)}{section.13}
-\BOOKMARK [2][-]{subsection.13.2}{An alternative to ggenericwidget\(\)}{section.13}
+\BOOKMARK [1][-]{section.3}{Loading gWidgets}{}
+\BOOKMARK [1][-]{section.4}{Hello world}{}
+\BOOKMARK [2][-]{subsection.4.1}{Using containers}{section.4}
+\BOOKMARK [1][-]{section.5}{Making a confirmation dialog}{}
+\BOOKMARK [1][-]{section.6}{Methods}{}
+\BOOKMARK [1][-]{section.7}{Adding a GUI to some common tasks}{}
+\BOOKMARK [2][-]{subsection.7.1}{file.choose\(\)}{section.7}
+\BOOKMARK [2][-]{subsection.7.2}{browseEnv\(\)}{section.7}
+\BOOKMARK [1][-]{section.8}{A gWidgetsDensity demo}{}
+\BOOKMARK [1][-]{section.9}{Composing email}{}
+\BOOKMARK [1][-]{section.10}{Drag and drop}{}
+\BOOKMARK [2][-]{subsection.10.1}{DND with plots}{section.10}
+\BOOKMARK [2][-]{subsection.10.2}{DND from the data frame editor}{section.10}
+\BOOKMARK [1][-]{section.11}{Notebooks}{}
+\BOOKMARK [1][-]{section.12}{The tree widget}{}
+\BOOKMARK [1][-]{section.13}{Popup menus}{}
+\BOOKMARK [1][-]{section.14}{Making widgets from an R function}{}
+\BOOKMARK [2][-]{subsection.14.1}{Using ggenericwidget\(\)}{section.14}
+\BOOKMARK [2][-]{subsection.14.2}{An alternative to ggenericwidget\(\)}{section.14}

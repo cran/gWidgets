@@ -30,7 +30,10 @@ helphandler = help.cb, cli = NULL, container = NULL, ..., toolkit = guiToolkit()
   \item{lst}{Either a list defining the widget or a function name as a
     string. In the latter case, the defining list may be retrieved by
     the \code{svalue} method.}
-%%  \item{variableType}{Type of variable. One of \code{c("univariate", "bivariate", "model", "lattice")}}
+%%  \item{variableType}{Type of variable. One of
+%%  \code{c("univariate","univariatetable", "bivariate", "model",
+%%    "lattice")}}
+  \code{x=} for initial variable name.
   \item{okhandler}{What happens when OK button is clicked}
   \item{cancelhandler}{What happens when Cancel button is clicked}
   \item{helphandler}{What happens when Help button is clicked}
@@ -63,13 +66,17 @@ helphandler = help.cb, cli = NULL, container = NULL, ..., toolkit = guiToolkit()
   \item{help}{What help page is called}
   \item{type}{Either "text" or "graphic." Currently ignored.}
   \item{variableType}{Describes the type of variable. Either
-    "univariate", "bivariate", "model", "lattice", "lmer"
-    or \code{NULL}. 
-    This value is passed directly to \code{hvariables}.
+    "univariate", "univariatetable","fileurl","bivariate", "model",
+    "lattice", "lmer" or \code{NULL}. 
+    This value is passed directly to \code{gvariables}.
     For non-NULL values, the widget shows an
     appropriate area for collecting the main variable. For the
     model and lattice interfaces buttons allow editing of fields
     by subsequent dialogs. }
+  \item{variableTypeExtras}{An optional list with components \code{name}
+    and \code{value} containing a name and value passed along to the
+    constructor for the variable type. Useful to override default
+  }
   \item{assignto}{If TRUE, creates box for collecting name for
     assigning output}
   \item{action}{a list with named components \code{beginning}
@@ -96,7 +103,6 @@ helphandler = help.cb, cli = NULL, container = NULL, ..., toolkit = guiToolkit()
   The \code{svalue} method returns the value of the list. This can be
   used to retrieve the list that is created when the constructor is
   called with a function name.
-
   
 }
 \value{}

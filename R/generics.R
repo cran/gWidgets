@@ -11,32 +11,39 @@
 ##################################################
 ## Toolkit
 ## define a classes for toolkit, base class
+
+
 setClass("guiWidgetsToolkit",
          representation(toolkit="character"),
          prototype(toolkit="")
          )
 
+## RGtk2
 setClass("guiWidgetsToolkitRGtk2",
          contains="guiWidgetsToolkit",
          prototype=prototype(new("guiWidgetsToolkit"))
          )
+
+## rJava
+setClass("guiWidgetsToolkitrJava",
+         contains="guiWidgetsToolkit",
+         prototype=prototype(new("guiWidgetsToolkit"))
+         )
+
+## SJava
+setClass("guiWidgetsToolkitSJava",
+         contains="guiWidgetsToolkit",
+         prototype=prototype(new("guiWidgetsToolkit"))
+         )
+## tcltk
+setClass("guiWidgetsToolkittcltk",
+         contains="guiWidgetsToolkit",
+         prototype=prototype(new("guiWidgetsToolkit"))
+         )
+
 
 ##
 ##################################################
-
-
-## register classes here for toolkits
-setClass("guiWidgetsToolkitRGtk2",
-         contains="guiWidgetsToolkit",
-         prototype=prototype(new("guiWidgetsToolkit"))
-         )
-
-### register classes here for toolkits
-#setClass("guiWidgetsToolkitTest",
-#         contains="guiWidgetsToolkit",
-#         prototype=prototype(new("guiWidgetsToolkit"))
-#         )
-
 
 
 
@@ -45,9 +52,21 @@ guiToolkit = function(name=NULL) {
   ## with choices coming from all installed packages named gWidgetsXXXX
   ## when a name is selected, we require the package gWidgets+name
 
-  if(is.null(name))
-    name = getOption("guiToolkit")
+  if(is.null(name)) {
+    ## try to get from inheritance, then get from option
 
+    x = try(get("toolkit", inherits=TRUE), silent=TRUE)
+    if(!inherits(x,"try-error")) {
+      ## check that toolkit is of guiWidgets type
+      x = try("x@toolkit", silent=TRUE)
+      if(!inherits(x,"try-error"))
+        name = x
+      else
+        name = getOption("guiToolkit")
+    } else {
+      name = getOption("guiToolkit")
+    }
+  }
   if(!is.null(name) && is.na(name)) return(NULL)          # use NA to override choice
   ## no if it is null, we have to find the possible choices
   if(is.null(name)) {
@@ -212,7 +231,7 @@ gdroplist =function(
   items, selected = 1, editable = FALSE, coerce.with=NULL, handler = NULL,      action = NULL, container = NULL, ... ,
   toolkit=guiToolkit()){
   widget =  .gdroplist (toolkit,
-    items=items, selected=selected, editable=editable, coerce.with=coerce.with, handler=handler, action=action, container=container 
+    items=items, selected=selected, editable=editable, coerce.with=coerce.with, handler=handler, action=action, container=container, ...
     )
   obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
   return(obj)
@@ -748,11 +767,7 @@ setGeneric( '.ggenericwidget' ,
 
 ## the constructor
 gvarbrowser =function(
-  handler = function(h, ...) {
-    values = h$obj[]
-    value = paste(values, collapse = "$")
-    if (!is.null(action))
-      print(do.call(h$action, list(svalue(value)))) },
+  handler = NULL,
   action = "summary",
   container = NULL ,...,
   toolkit=guiToolkit()){
@@ -767,12 +782,7 @@ gvarbrowser =function(
 ## generic for toolkit dispatch
 setGeneric( '.gvarbrowser' ,
            function(toolkit,
-                    handler = function(h, ...) {
-                      values = h$obj[]
-                      value = paste(values, collapse = "$")
-                      if (!is.null(action))
-                        print(do.call(h$action, list(svalue(value))))
-                    },
+                    handler = NULL,
                     action = "summary", container = NULL,... )
            standardGeneric( '.gvarbrowser' ))
 
@@ -941,6 +951,25 @@ getStockIcons = function( ..., toolkit = guiToolkit()) {
 setGeneric( '.getStockIcons' ,
            function(toolkit,...)
            standardGeneric( '.getStockIcons' ))
+
+
+stockIconFromClass = function(theClass, ..., toolkit = guiToolkit()) {
+  out =  .stockIconFromClass (toolkit, theClass, ...)
+  return(out)
+}
+## generic for dispath
+setGeneric( '.stockIconFromClass' ,
+           function(toolkit, theClass,... )
+           standardGeneric( '.stockIconFromClass' ))
+
+stockIconFromObject = function(obj, ..., toolkit = guiToolkit()) {
+  out =  .stockIconFromClass (toolkit, obj, ...)
+  return(out)
+}
+## generic for dispath
+setGeneric( '.stockIconFromObject' ,
+           function(toolkit, obj,... )
+           standardGeneric( '.stockIconFromObject' ))
 
 ##################################################
 ##
@@ -1401,16 +1430,16 @@ setGeneric(".adddroptarget",function(obj, toolkit,targetType="text", handler=NUL
 ## gmessage
 gmessage = function(
   message,
+  title = "message",
   icon = c("info", "warning", "error", "question"), 
-  button = c("close", "ok", "cancel"),
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
-  .gmessage(toolkit,message,icon, button, handler, action,
+  .gmessage(toolkit,message, title, icon, button, handler, action,
             ...)
 }
 setGeneric(".gmessage",
            function(toolkit,
-                    message=message, icon=icon, button=button,
+                    message=message, title=title, icon=icon, 
                     handler=handler, action=action, ...)
            standardGeneric(".gmessage"))
 
@@ -1418,17 +1447,18 @@ setGeneric(".gmessage",
 
 ## ginput
 ginput = function(
-  message,
+  message,text="",
+  title = "Input",
   icon = c("info", "warning", "error", "question"), 
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
   .ginput(toolkit,
-          message, icon, handler, action, 
+          message, text=text, title=title, icon, handler, action, 
           ...)
 }
 setGeneric(".ginput",
            function(toolkit,
-                    message=message, icon=icon, 
+                    message=message, text=text, title=title, icon=icon, 
                     handler=handler, action=action, ...)
            standardGeneric(".ginput"))
 
@@ -1436,6 +1466,7 @@ setGeneric(".ginput",
 ## gconfirm
 gconfirm = function(
   message,
+  title = "Confirm",
   icon = c("info", "warning", "error", "question"), 
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
@@ -1444,7 +1475,7 @@ gconfirm = function(
 }
 setGeneric(".gconfirm",
            function(toolkit,
-                    message=message, icon=icon, 
+                    message=message, title=title, icon=icon, 
                     handler=handler, action=action, ...)
            standardGeneric(".gconfirm"))
 
@@ -1452,19 +1483,16 @@ setGeneric(".gconfirm",
 gbasicdialog = function(
   message,
   title = "Dialog", widget,
-  icon = c("info", "warning", "error", "question"), 
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
   .gbasicdialog(toolkit,
                 title=title, widget=widget,
-                icon=icon,
                 handler=handler, action=action,
                 ...)
 }
 setGeneric(".gbasicdialog",
            function(toolkit,
                     title = "Dialog", widget,
-                    icon = c("info", "warning", "error", "question"),
                     handler = NULL, action = NULL,
                     ...)
            standardGeneric(".gbasicdialog"))

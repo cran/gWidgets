@@ -2,6 +2,9 @@
 \alias{guiToolkit}
 \alias{guiWidgetsToolkit-class}
 \alias{guiWidgetsToolkitRGtk2-class}
+\alias{guiWidgetsToolkitrJava-class}
+\alias{guiWidgetsToolkitSJava-class}
+\alias{guiWidgetsToolkittcltk-class}
 \title{Function to select the GUI toolkit used by gWidgets}
 \description{
 	A GUI toolkit is a separate package that implements the

@@ -69,55 +69,48 @@
 Examples for using the \RPackage{gWidgets} package are presented.  The
 \RPackage{gWidgets} API is intended to be a cross platform means
 within an R session to interact with a graphics toolkit.  Currently,
-the only available toolkit is the GTK toolkit via the
-\RPackage{gWidgetsRGtk2} package which in turn uses the
-\RPackage{RGtk2} package.  Hopefully, the API simplifies the task of
-writing basic GUIs, as it simplifies many of the steps involved to
-setting up widgets and packing them into containers. Although not
-nearly as powerful as any individual toolkit, the \RPackage{gWidgets}
-API is suitable for many tasks or as a rapid prototyping tool for more
-complicated applications. The examples contained herein illustrate
-that quite a few things can be done fairly easily, and complicated
-things pieced together in a straightforward manner.  To see an
-application built using \RPackage{gWidgets}, install the
-\RPackage{pmg} GUI (\url{http://www.math.csi.cuny.edu/pmg}).
+there are two available toolkits. The GTK toolkit is implemented via
+the \RPackage{gWidgetsRGtk2} package which in turn uses the
+\RPackage{RGtk2} package.  JAVA can be used via the
+\RPackage{gWidgetsrJava} package, which in turn calls
+\RPackage{rJava}. The \RPackage{gWidgetsRGtk2} implementation is much
+more complete, as the \RPackage{gWidgetsrJava} package is lacking many
+features and must run from within a JGR (\url{http://www.rosuda.org})
+session.
+
+
+The API is inteneded to faciliatate the task of writing basic GUIs, as
+it simplifies many of the steps involved in setting up widgets and
+packing them into containers. Although not nearly as powerful as any
+individual toolkit, the \RPackage{gWidgets} API is suitable for many
+tasks or as a rapid prototyping tool for more complicated
+applications. The examples contained herein illustrate that quite a
+few things can be done fairly easily with more complicated
+applications being pieced together in a straightforward manner.  To
+see a fairly complicated application built using \RPackage{gWidgets},
+install the \RPackage{pmg} GUI
+(\url{http://www.math.csi.cuny.edu/pmg}), which is on CRAN.
 
 
 \setcounter{tocdepth}{3}
 \tableofcontents
 
 \section{Background}
-The \RPackage{gWidgetsRGtk2} package implements the \RCode{gWidgets} API for the
-GTK toolkit. The GTK toolkit is interfaced using the \RPackage{RGtk2}
-package of Michael Lawrence, in turn derived from Duncan Temple Lang's
-\RPackage{RGtk} package. The excellent \RPackage{RGtk2} package opens up
-the full power of the GTK2 toolkit, only a fraction of which is
-available though \RPackage{gWidgetsRGtk2}.  The \RCode{gWidgets} API is intended
-to be a cross-toolkit API for working with GUI objects. It is based on
-the iwidgets API of Simon Urbanek, with improvement by Philippe
-Grosjean, Michael Lawrence, Simon Urbanek and John Verzani.
+The \RCode{gWidgets} API is intended to be a cross-toolkit API for
+working with GUI objects. It is based on the iwidgets API of Simon
+Urbanek, with improvement by Philippe Grosjean, Michael Lawrence,
+Simon Urbanek and John Verzani.  This document focuses on the more
+complete toolkit implementation provided by the
+\RPackage{gWidgetsRGtk2} package. [Occasional differences with
+\RPackage{gWidgetsrJava} are pointed out in braces.] The GTK toolkit
+is interfaced via the \RPackage{RGtk2} package of Michael Lawrence,
+which in turn is derived from Duncan Temple Lang's \RPackage{RGtk}
+package. The excellent \RPackage{RGtk2} package opens up the full
+power of the GTK2 toolkit, only a fraction of which is available
+though \RPackage{gWidgetsRGtk2}.
 
 The \RCode{gWidgets} API is still in the formative stages and likely will
 change as more people use it and offer suggestions for improvement.
-
-We  load the \RCode{gWidgets} package, using the \RCode{gWidgetsRGtk2}
-toolkit, below. When \RCode{gWidgets} is started, it will ask you to choose
-between toolkit implementations, if more than one is available. If the
-option \RCode{guiToolkit} is set to a package name, less the
-``gWidgets'' then that package will be used. 
-following 
-\begin{Scode}
-  options("guiToolkit"="RGtk2")
-  require(gWidgets)
-\end{Scode}
-
-%\begin{Scode}{echo=FALSE}
-%  require(gWidgetsRGtk2)
-%\end{Scode}
-
-Both the \RPackage{gWidgets} and \RPackage{gWidgetsRGtk2} package use
-S4 methods and classes and load much faster under the newer
-\RPackage{methods} package accompanying R version 2.4.0 or greater.
 
 This document supplements the man pages by providing more detailed
 examples. The man pages contain more specific information. See the 
@@ -127,12 +120,10 @@ This document is a vignette. As such, the code displayed is available
 within an R session through the command
 \RCode{edit(vignette("gWidgets"))}. 
 
-
 \section{Installation}
 In case you are reading this vignette without having installed
-gWidgets, here are some instructions. As only the
-\RCode{gWidgetsRGtk2} package is available to interface with a
-toolkit, I'll describe how this is installed.
+gWidgets, here are some instructions. This focuses on installing
+\RPackage{gWidgetsRGtk2}. 
 
 Installing \RCode{gWidgets} with the \RCode{gWidgetsRGtk2} pakcage
 requires two steps: installing the GTK libraries and installing the R
@@ -161,12 +152,12 @@ you through the installation of the Gtk2 libraries.
 In Linux, you may or may not need to upgrade the GTK libraries
 depending on your distribution.
 
-For Mac OS X, I've installed the GTK libraries from source on my older
-10.3.9 machine using Apples X11 server. You may be able to use FINK
-now, but this is not tested.
+For Mac OS X, this author has installed GTK libraries from source on an older
+10.3.9 machine using Apple's X11 server. It may be possible in 10.4 to
+install using fink or Darwin ports, or it may be possible to run the
+native GTK libraries. None of these has been tested.
 
-
-For more details on RGtk2 refer to
+There are more details on RGtk2 at 
 \href{http://www.ggobi.org/rgtk2}{RGtk2's home page}.
 
 
@@ -178,29 +169,66 @@ The following R packages are needed: \texttt{RGtk2},
 others to be installed first. All can be downloaded from CRAN.
 
 These can all be installed by following the dependencies for
-\RCode{gWidgetsRGtk2}. The following command may work for you:
+\RCode{gWidgetsRGtk2}. The following command will install them all if
+you have the proper write permissions:
 
 \begin{verbatim}
    install.packages("gWidgetsRGtk2", dep = TRUE)
 \end{verbatim}
 
-You may need to adjust the location where the libraries will be
+It may be necessary  to adjust the location where the libraries will be
 installed if you do not have the proper permissions.
 
-For MAC OS X, the packages are source, not the default ``mac.binary.'' Try
+For MAC OS X, the packages are provided as source, not the default
+``mac.binary.'' Use the \RCode{type=} argument, as follows:
 \begin{verbatim}
-   install.packages("gWidgetsRGtk2", dep = TRUE,type = "source" )
+> install.packages("gWidgetsRGtk2", dep = TRUE,type = "source" )
 \end{verbatim}
 
-The newest versions will be on
-\href{http://www.math.csi.cuny.edu/pmg}{gWidgets's website}. To install
-from here add the \texttt{repos=} argument, as follows:
+On occasion, newer versions are available from
+\href{http://www.math.csi.cuny.edu/pmg}{gWidgets's website}. To
+install from here add the \texttt{repos=} argument, as follows:
 
 \begin{verbatim}
 > install.packages("gWidgetsRGtk2",dep = TRUE, repos = "http://www.math.csi.cuny.edu/pmg")
 \end{verbatim}
 
 
+[The \RPackage{gWidgetsrJava} package is installed similarly. However,
+it requires \RPackage{rJava} and \RPackage{JGR} and friends to work
+properly. These should install through the dependencies, so
+\begin{verbatim}
+> install.packages("gWidgetsrJava", dep = TRUE)
+\end{verbatim}
+should do it.]
+
+
+\section{Loading gWidgets}
+We  load the \RCode{gWidgets} package, using the \RCode{gWidgetsRGtk2}
+toolkit, below:
+following 
+\begin{Scode}
+  options("guiToolkit"="RGtk2")
+  require(gWidgets)
+\end{Scode}
+When \RCode{gWidgets} is started, it tries to figure out what its
+default toolkit will be. In this examples, we've set it to be
+``gWidgetsRGtk2.'' If the option was not set and there is more than
+one toolkit available, then a menu asks the user to choose between
+toolkit implementations. [For \RPackage{gWidgetsrJava} use ``rJava''
+in the \RFunc{options} call.]
+%\begin{Scode}{echo=FALSE}
+%  require(gWidgetsRGtk2)
+%\end{Scode}
+
+Both the \RPackage{gWidgets} and \RPackage{gWidgetsRGtk2} package use
+S4 methods and classes and load much faster under the newer
+\RPackage{methods} package accompanying R version 2.4.0 or greater.
+
+
+[For \RPackage{gWidgetsrJava} the interactive features only work if
+run from within a \RCode{JGR} session. For this, one starts
+\RFunc{JGR}, then uses its console to load \RPackage{gWidgets}.]
 
 \section{Hello world}
 
@@ -228,8 +256,8 @@ allowing us to comment code within Sweave.
 
 
 Now to illustrate (Figure~\ref{fig:basic-widgets} shows a few) some of
-the basic widgets.
-These first widgets display text: a label, a button and a text area.
+the basic widgets.  These first widgets display text: a label, a
+button and a text area.
 
 
 First a button:
@@ -255,24 +283,31 @@ Finally, a text buffer for multiple lines of text:
 The following widgets are used for selection of a value or values from
 a vector of possible values.
 
-First a radio group for selecting just one:
+First a radio group for selecting just one of several:
 \begin{Scode}
   obj = gradio(c("hello","world"), container=gwindow())
 \end{Scode}
 
-Next, a drop list, or combo box, again for selecting just one,
-although in this case an optin can be give for the user to edit the value.
+Next, a drop list, or combo box, again for selecting just one of several,
+although in this case an option can be give for the user to edit the value.
 \begin{Scode}
   obj = gdroplist(c("hello","world"), container=gwindow())
 \end{Scode}
+
+A drop list can be edited,
+\begin{Scode}
+  obj = gdroplist(c("hello","world"), editable=TRUE, container=gwindow())
+\end{Scode}
+
 
 For longer lists, a table of values can be used.
 \begin{Scode}
   obj = gtable(c("hello","world"), container=gwindow())
 \end{Scode}
 This widget is also used for displaying tabular data with multiple
-columns and rows.  This widget an argument allowing for multiple
-selections. Such selection can also be achieved with a checkbox group:
+columns and rows (data frames).  For this widget there is an argument
+allowing for multiple selections. Multiple selections can also be achieved
+with a checkbox group:
 
 \begin{Scode}
   obj = gcheckboxgroup(c("hello","world"), container=gwindow())
@@ -280,19 +315,18 @@ selections. Such selection can also be achieved with a checkbox group:
 
 
 
-For selecting a numeric value, sliders and spinbuttons are commonly used:
+For selecting a numeric value from a sequence of values, sliders and
+spinbuttons are commonly used:
 \begin{Scode}
   obj = gslider(from=0, to = 7734, by =100, value=0,container=gwindow())
   obj = gspinbutton(from=0, to = 7734, by =100, value=0, container=gwindow())
 \end{Scode}
-Both these widgets are used to select a value from a prespecified
-sequence of numbers.
-
 
 Common to all of the above is a specification of the ``value'' of the
 widget, and the container to attach the widget to. In each case a
 top-level window constructed by \RFunc{gwindow}.
 
+\subsection{Using containers}
 
 In this next example, we show how to  combine widgets together using
 containers. (Figure~\ref{fig:hello-world}.)
@@ -313,7 +347,7 @@ As before, the constructors \RFunc{gbutton}, \RFunc{glabel},
 \RFunc{gedit} and \RFunc{gtext} create widgets of different types.
 The button looks like a button. A label is used to show text which may
 perhaps be edited. A droplist allows a user to select one of several
-items, or if desired to be able to add a value. The \RFunc{gedit} and
+items, or as illustrated can take user input. The \RFunc{gedit} and
 \RFunc{gtext} constructors both create widgets for inputting text, in
 the first case for single lines, and in the second for multiple lines
 using a text buffer.
@@ -327,12 +361,13 @@ using a text buffer.
 
 These widgets are packed into containers (see \RCode{?ggroup} or
 \RCode{?gwindow}). The base container is a window, created with the
-\RFunc{gwindow} function. A window can only contain one widget, so
-we pack in a group container created with \RFunc{ggroup}. The
-\RFunc{ggroup} container packs in widgets from left to right or top to
-bottom. Imagine each widget as a block which is added to the
-container.  In this case, we want the subsequent widgets packed in top
-to bottom so we used the argument \RCode{horizontal=FALSE}.
+\RFunc{gwindow} function. A top-level window only contains one widget,
+ke a group, so we pack in a group container created with
+\RFunc{ggroup}. The \RFunc{ggroup} container packs in widgets from
+left to right or top to bottom. Imagine each widget as a block which
+is added to the container.  In this case, we want the subsequent
+widgets packed in top to bottom so we used the argument
+\RCode{horizontal=FALSE}.
 
 For the button and label widgets, a  handler is set so that when the widget is
 clicked a message dialog appears showing ``world.'' Handlers are used
@@ -357,8 +392,8 @@ widget. In \RPackage{gWidgetsRGtk} there are several stock images, which can be
 listed with \RFunc{getStockIcons}. We will use ``info'' below.
 
 First we define a function for making a dialog. This one uses
-nested group containers to organize the layout. Alternately the
-\RFunc{glayout} constructor could have been used in some manner.
+nested group containers to organize the layout. (Alternately the
+\RFunc{glayout} constructor could have been used in some manner.)
 
 \begin{Scode}
   confirmDialog = function(message, handler=NULL)  {
@@ -382,15 +417,16 @@ nested group containers to organize the layout. Alternately the
 }
 \end{Scode}
 
-The key to making a useful confirmation dialog is attaching an action
-to the ``ok'' button. This is done with the argument
-\RArg{handler}. Below, this function prints a message and then
-closes the dialog. To do this, the \RFunc{dispose} method is called on
-the ``ok'' button  widget, which is referenced inside the handler by
-\RCode{h\$obj} below. In \RCode{gWidgets}, handlers are passed
-information via the first argument, which is a list with named
-elements. The \RListel{obj} component refers to the widget the handler
-is assigned to. 
+The key to making a useful confirmation dialog is attaching a response
+to a click of the ``ok'' button. This is carried out by a handler,
+which are added using the argument \RArg{handler} for the constructor,
+with one of the \RCode{addhandler} functions. the handler below prints
+a message and then closes the dialog. To close the dialog, the
+\RFunc{dispose} method is called on the ``ok'' button widget, which is
+referenced inside the handler by \RCode{h\$obj} below. In
+\RCode{gWidgets}, handlers are passed information via the first
+argument, which is a list with named elements. The \RListel{obj}
+component refers to the widget the handler is assigned to.
 
 Trying it out produces a widget like that shown in Figure~\ref{fig:confirmDialog}
 
@@ -433,10 +469,13 @@ back into the label. As text labels are of class ``character,'' the
 value is coerced to be numeric.
 
 There are other methods (see \RCode{?gWidgetsRGtk-methods}) that try
-to make interacting with a widget as natural as possible. For
+to make interacting with a widget as natural (to an R user) as possible. For
 instance, a radio button has a selected value returned by
 \RFunc{svalue}, but also a vector of possible values. These may be
-referenced using vector, \RCode{[}, notation.
+referenced using vector, \RCode{[}, notation. Whereas, a notebook
+container has a \RFunc{names} method which refers to the tab labels,
+a \RCode{[} method for referring to the widgets comprising the notebook
+pages, and a \RFunc{length} method to return the number of notebook pages.
 
 \section{Adding a GUI to some common  tasks}
 
@@ -451,15 +490,19 @@ choice of a file from the file system. A typical usage might be
 \end{Soutput}
 to allow a user to source a file with a little help from a
 GUI. However, in many UNIX environments, there is no GUI for
-\RFunc{file.choose}, only a more convenient curses interface. With the
-\RFunc{gfile} dialog, we can offer some improvement.
+\RFunc{file.choose}, only a more convenient curses interface.  With
+the \RFunc{gfile} dialog, we can offer some improvement. 
 
-We have to reverse our thinking though. The command
-\RCode{source(file.choose())} acts like function composition -- the
-output of \RFunc{file.choose} is sent to \RFunc{source}. We
-instead give a handler to \RFunc{gfile} to process the selected
-file. Below is a function written to give some flexibility to the
-process.
+This dialog returns the name of the file selected, so that
+\begin{Soutput}
+  source(gfile())
+\end{Soutput}
+can replace the above.
+
+
+More in keeping with the \RCode{gWidgets} style, though, would be to
+give a handler when constructing the file chooser.  The function
+below is written to give some flexibility to the process:
 
 \begin{Scode}
   fileChoose = function(action="print", text = "Select a file...",
@@ -471,21 +514,23 @@ process.
     }
 \end{Scode}
 
-Now various tasks can be done quite simply. To \RFunc{source} a file
-we have
+The \RArg{action} argument parameterizes the action. The default above
+calls \RFunc{print} on the selected file name. However, other tasks
+can now be done quite simply. For example, to \RFunc{source} a file we
+have:
 \begin{Sinput}
 > fileChoose(action="source")
 \end{Sinput}
 
-Or to set the   current working directory we have
+Or to set the  current working directory we have:
 \begin{Sinput}
->  fileChoose(action="setwd", type="selectdir", text="Select a directory...")
+> fileChoose(action="setwd", type="selectdir", text="Select a directory...")
 \end{Sinput}
 
 \subsection{\RFunc{browseEnv}}
 \label{sec:browseEnv}
 
-The \RFunc{browseEnv} function craetes a table in a web browser
+The \RFunc{browseEnv} function creates a table in a web browser
 listing the current objects in the global environement (by default)
 and details some properties of them. This is an easy to use function,
 but suffers from the fact that it may have to open up a browser for
@@ -508,8 +553,8 @@ of \RFunc{browseEnv} to see how to produce more details.
   }
 \end{Scode}
 
-Now to make a table to display the results. We leave some flexibility
-with the arguments, although we won't illustrate this.
+Now to make a table to display the results. We have some flexibility
+with the arguments, which is shown in subsequent examples:
 
 
 \begin{Scode}
@@ -560,7 +605,7 @@ list-like objects.
 \section{A gWidgetsDensity demo}
 \label{sec:repeating-plot}
 
-We illustrate how to make a widget to dynamically update a density
+We illustrate how to make a widget dynamically update a density
 plot. The idea comes from the \RCode{tkdensity} demo that accompanies
 the \RPackage{tcltk} package.
 
@@ -568,7 +613,12 @@ We use the  \RFunc{ggraphics} constructor to create a new plot device. For
 RGtk2, this uses the \RPackage{cairoDevice} package also developed
 by Michael Lawrence.
 
-The demo consists of a widget to control a random sample, in this case
+[In \RPackage{gWidgetsrJava} the \RPackage{JavaGD} package is used for
+a JAVA device. This implementation does not currently allow the device
+to be embedded in a widget, so the \RFunc{gimage} constructor below
+would make a widget in a separate window.]
+
+This demo consists of a widget to control a random sample, in this case
 from the standard normal distribution or the exponential distribution
 with rate 1; a widget to select the sample size; a widget to select the
 kernel; and a widget to adjust the default bandwidth. We use radio
@@ -628,7 +678,8 @@ Now to add a graphics device.
 \begin{Soutput}
 > add(BigGroup, ggraphics())
 \end{Soutput}
-
+[Again, if using \RFunc{gWidgetsrJava} this wouldn't place the device
+inside the \RCode{BigGroup} container.]
 
 A realization of this widget was captured in Figure~\ref{fig:gtkdensity}.
 
@@ -643,11 +694,11 @@ A realization of this widget was captured in Figure~\ref{fig:gtkdensity}.
 
 \section{Composing email}
 
-We next give an example of how to write a widget for composing an
-email message. Not that this is what R is intended for, but rather to
-show how a familiar widget is produced by combining various pieces
-from \RCode{gWidgets}. This example is a little lengthy (especially
-with Sweave's formatting), but hopefully straightforward due to the
+This example shows how to write a widget for composing an email
+message. Not that this is what R is intended for, but rather to show
+how a familiar widget is produced by combining various pieces from
+\RCode{gWidgets}. This example is a little lengthy (especially with
+Sweave's formatting), but hopefully straightforward due to the
 familiarity with the result of the task.
 
 For our stripped-down compose window we want the following: a menubar
@@ -658,7 +709,7 @@ it isn't edited; a ``Subject:'' field which also updates the title of
 the window; and a text buffer for typing the message.
 
 The following code will create a function called \RFunc{Rmail}
-(apologies to old-time emacs users) which on many UNIX machines can
+(apologies to any old-time emacs users) which on many UNIX machines can
 send out e-mails using the \RCode{sendmail} command.
 
 First we define some variables:
@@ -817,19 +868,30 @@ handling of a draft:
    svalue(widgets[[i]]) <- draft[[i]])
 \end{Soutput}
 
+(Another work-horse method is \RFunc{addhandlerchanged} which can be
+used to add a handler to any widget, where ``changed'' is loosely
+interpreted: i.e., for buttons, its aliased to
+\RFunc{addhandlerclicked}.
+
 As for the \RFunc{sendIt} function, this is just one way to send an
 e-mail message on a UNIX machine. There are likely more than 100
-different ways people could think of doing this task, most better than
+different ways clever people could think of doing this task, most better than
 this one.
 
 \section{Drag and drop}
-GTK supports drag and drop features, and \RCode{gWidgets} provides a
+GTK supports drag and drop features, and the \RCode{gWidgets} API provides a
 simple mechanism to add drag and drop to widgets. (Some widgets, such
-as text boxes, support drag and drop without these.) The basic
+as text boxes, support drag and drop without these in GTK.) The basic
 approach is to add a drop source to the widget you wish to drag from,
 and add a drop target to the widget you want to drag to. You can also
 provide a handler to deal with motions over the drop target. See the
 man page \RCode{?gWidgetsRGtk-dnd} for more information.
+
+[In \RPackage{gWidgetsrJava} drag and drop is not fully
+implemented. One can drag from widget to widget, but there is no way
+to configure what happens when a drop is made, or what is dragged when
+a drag is initiated.]
+
 
 We give two examples of drag and drop. One where variables from the
 variable browser are dropped onto a graph widget. Another illustrating
@@ -891,12 +953,16 @@ variable browser over to the area below the plot window. The
 
 
 \subsection{DND from the data frame editor}
+
+[This example applies only to \RPackage{gWidgetsRGtk}, not \RPackage{gWidgetsrJava}]]
+
+
 The \RFunc{gdf} constructor makes a widget for editing data
-frames. The columns of which can be dropped onto a widget. This is
+frames. The columns of which can be dropped onto a widget. This is 
 done by dragging the column header. The code below also adds a handler
 so that changes to the column propogate to changes in the widget where
-the column is dropped. This has some issues, as the handler needs to
-be removed if the widget is closed.
+the column is dropped. (Careful, this has some issues: the handler needs to
+be removed if the widget is closed.)
 
 \begin{Scode}
   Comment("Drag a column onto plot to have a boxplot drawn.")
@@ -947,6 +1013,7 @@ be removed if the widget is closed.
 
 }
 \end{Scode}
+%%$
 
 Next, we make the function that produces or updates the graphic. The
 data is stored in the tag-key "data". The use of \RFunc{id} and
@@ -974,15 +1041,20 @@ frame editor widget.
 
 The notebook is a common metaphor with computer applications, as they
 can give access to lots of information compactly on the screen. The
-\RFunc{gnotebook} constructor produces a notebook
-widget. New pages are added via the \RFunc{add} method, the current
-page is deleted through an icon, or via the \RFunc{dispose} method,
-and vector methods are defined, such as \RFunc{names}, to make
-interacting with notebooks natural.
+\RFunc{gnotebook} constructor produces a notebook widget. New pages
+are added via the \RFunc{add} method, the current page is deleted
+through an icon [not implemented in \RPackage{gWidgetsrJava}], or via
+the \RFunc{dispose} method, and vector methods are defined, such as
+\RFunc{names}, to make interacting with notebooks natural.
 
 The following example shows how a notebook can be used to organize
-different graphics devices. (See the \RFunc{ggraphicsnotebook} function
-for a similar widget.)
+different graphics devices. 
+
+[In \RPackage{gWidgetsRGtk2} the
+\RFunc{ggraphicsnotebook} function produces a  similar
+widget. However, this is not possible if using
+\RPackage{gWidgetsrJava}, as the graphic devices can't currently be
+embedded in a notebook page.]
 
 Our widget consists of a toolbar to add or delete plots and a notebook
 to hold the different graphics devices. The basic widgets are defined
@@ -1036,6 +1108,8 @@ happens though if you click in the plot area. To remedy this, you can
 think about the \RFunc{addhandlerchanged} method for the notebook, or
 just use \RFunc{ggraphicsnotebook}.
 
+
+
 \section{The tree widget}
 
 The \RFunc{gtree} constructor is used to present tree-like data. A
@@ -1059,6 +1133,9 @@ determining the path. This is typically the first column, but can be
 set with \RArg{chosencol}.
 \\
 
+[The \RFunc{tree} widget is not implemented in
+\RPackage{gWidgetsrJava}. The default JAVA tree only holds a single
+item, so a new table-tree class needs to be written.]
 
 To illustrate, we create a file system browser using
 \RFunc{gtree}.
@@ -1166,15 +1243,11 @@ the label.
 
 \section{Making  widgets from an R function}
 
-A common task envisioned for \RPackage{gWidgetsRGtk} is to create GUIs
+A common task envisioned for \RPackage{gWidgets} is to create GUIs
 that make collecting the arguments to a function easier. Presented
 below are two ways to do so without having to do any programming,
 provided you are content with the layout and features provided.
 
-One can make an ok GUI for a function without too much work using
-\RPackage{gWidgetsRGtk}. We illustrate two ways. First with the
-\RFunc{ggenericfunction} constructor and then with a do-it yourself
-approach. 
 
 
 \subsection{Using \RFunc{ggenericwidget}}
@@ -1183,7 +1256,10 @@ approach.
 
 The \RFunc{ggenericwidget} constructor maps a list into a widget. The
 list contains two types of information: meta information about the
-widget, such as the name of the function, a help page and information about the widgets. This is specified using a list whose first component is the constructor, and subsequent components are fed to the constructor.
+widget, such as the name of the function, a name for a help page and
+information about the widgets. This is specified using a list whose
+first component is the constructor, and subsequent components are fed
+to the constructor.
 
 To illustrate, a GUI for a one sample t-test  is given. The
 list used by \RFunc{ggenericwidget}  is defined below.
@@ -1207,7 +1283,24 @@ This list is then given to the constructor.
 
 Although this looks intimidating, due to the creation of the list,
 there is a function \RFunc{autogenerategeneric} that reduces the work involved.
+In particular, if the argument to \RFunc{ggenericwidget} is a
+character, then it is assumed to be the name of a function. From the
+arguments of this function, a layout is guessed.
 
+For example, we could have done:
+\begin{Scode}
+  our.t.test = stats:::t.test.default
+  ggenericwidget("our.t.test", container=gwindow("t-test"))
+\end{Scode}
+As the arguments of this function are 
+
+\begin{Scode}
+args(our.t.test)
+\end{Scode}
+
+This widget has fields for selecting the alternative, the null,
+whether the data is paired, has equal variance assumption and a field
+to adjust the confidence level.
 
 \subsection{An alternative to \RFunc{ggenericwidget}}
 \label{sec:an-altern-ggenericwidget}
@@ -1218,7 +1311,7 @@ is to illustrate the power of having common method names for the
 different widgets. Of course, the following can be improved. Two obvious
 places are the layout of the automagically generated widget, and and
 the handling of the initial variable when a formula is expected.
-
+ 
 \begin{Scode}
   Comment("A constructor to automagically make a GUI for a function")
   gfunction = function(f, window = gwindow(title=fName), ...) {

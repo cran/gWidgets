@@ -13,17 +13,17 @@
   before R can be interacted with again.
 }
 \usage{
-gmessage(message, icon = c("info", "warning", "error", "question"), 
-    button = c("close", "ok", "cancel"), handler = NULL, 
+gmessage(message, title="message",
+icon = c("info", "warning", "error", "question"), 
+     handler = NULL, 
     action = NULL, ..., toolkit=guiToolkit()) 
 
-ginput(message, icon = c("info", "warning", "error", "question"),  handler = NULL, action = NULL,..., toolkit=guiToolkit())
+ginput(message, text="", title="Input", icon = c("info", "warning", "error", "question"),  handler = NULL, action = NULL,..., toolkit=guiToolkit())
 
-gconfirm(message, icon = c("info", "warning", "error", "question"),
+gconfirm(message, title="Confirm", icon = c("info", "warning", "error", "question"),
  handler = NULL, action = NULL, ..., toolkit=guiToolkit())
 
-gbasicdialog(message, title = "Dialog", widget, icon = c("info", "warning",
-                 "error", "question"), handler = NULL, action=NULL, ..., toolkit=guiToolkit())
+gbasicdialog(message, title = "Dialog", widget, handler = NULL, action=NULL, ..., toolkit=guiToolkit())
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -31,7 +31,7 @@ gbasicdialog(message, title = "Dialog", widget, icon = c("info", "warning",
   \item{message}{Message shown for widget}
   \item{title}{Title of window}
   \item{icon}{Which icon to show}
-  \item{button}{Which button to show}
+  \item{text}{default value for ginput text}
   \item{widget}{Widget to place in basic dialog}
   \item{handler}{Handler called on OK selection.}
   \item{action}{Value passed to handler}
@@ -51,14 +51,13 @@ gbasicdialog(message, title = "Dialog", widget, icon = c("info", "warning",
   appropriate. 
 
   The \code{ginput} dialog adds an edit box for gathering user
-  information. This is then passed to the handler via the component
-  \code{input} of the first argument of the handler. This dialog
-  returns \code{FALSE} or the effect of calling \code{svalue} on the
-  input value.
+  information. The \code{text} argument sets the default value. This is
+  then passed to the handler via the component \code{input} of the first
+  argument of the handler. This dialog returns the value of the string.
 
   The \code{gbasicdialog} dialog wraps a widget around an OK and dismiss
   button. The handler is called when the OK button is clicked. This
-  dialog returns the widget when OK is clicked, otherwise \code{FALSE}.
+  dialog returns the \code{TRUE} when OK is clicked, otherwise \code{FALSE}.
 
   These dialogs are modal. This means that the R session freezes until
   the dialog is dismissed. This may be confusing to users if the window

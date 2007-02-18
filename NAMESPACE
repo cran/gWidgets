@@ -14,12 +14,16 @@ export("glabel", "gbutton", "gcheckbox", "gradio", "gdroplist",
 "gframe", "gexpandgroup", "gnotebook", "glayout", "gpanedgroup",
 "gmessage",
 "ginput", "gconfirm", "gbasicdialog",
-"addStockIcons","getStockIcons"
+"addStockIcons","getStockIcons",
+       "stockIconFromClass","stockIconFromObject"
 )
 
 exportClasses("guiWidgetsToolkit",
               "guiWidgetsToolkitRGtk2",
-      	"guiWidget","guiComponent","guiContainer","guiDialog")
+              "guiWidgetsToolkitrJava",
+              "guiWidgetsToolkitSJava",
+              "guiWidgetsToolkittcltk",                            
+              "guiWidget","guiComponent","guiContainer","guiDialog")
 
 exportMethods(
 "show",
@@ -53,6 +57,7 @@ exportMethods(
 ".adddropsource", ".adddropmotion", ".adddroptarget", ".gmessage",
 ".ginput", ".gconfirm", ".gbasicdialog",
 ".addStockIcons",".getStockIcons",
+              ".stockIconFromClass",".stockIconFromObject",
 "update",".update",
 "length",".length",
 "dim",".dim",
