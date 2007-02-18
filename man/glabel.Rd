@@ -23,7 +23,7 @@ action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
 %%rotatelabel(obj, angle, ...) 
 
-gbutton(text = "", handler = NULL, action = NULL, container = NULL, 
+gbutton(text = "", border=TRUE, handler = NULL, action = NULL, container = NULL, 
     ..., toolkit = guiToolkit()) 
 
 gimage(filename = "", dirname = "",  size = "", 
@@ -32,7 +32,9 @@ gimage(filename = "", dirname = "",  size = "",
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{text}{Text to show in the label or button. For buttons, if
-  this text matches a stock icon name, an icon is shown as well}
+    this text matches a stock icon name, an icon is shown as well}
+  \item{border}{If \code{TRUE} a border is drawn to make a button look like a
+  button. If \code{FALSE}, the no border so the button looks like a label.}
   \item{markup}{ Logical indicating if text for a label uses markup }
   \item{editable}{Logical. If TRUE, then the label's text can be set
   by clicking on the label and filling in the edit box. }
@@ -51,9 +53,12 @@ gimage(filename = "", dirname = "",  size = "",
 
 }
 \details{
+  
 	The \code{svalue()} method returns the value of the widget. For
 	a label, this is the text. For a button, the same. For an image,
-	it is the filename of the figure.
+	it is the filename of the figure or the stock icon name, if the
+	icon was set from a stock icon.
+	
 	
 	The \code{svalue<-()} method can be used to set the value of
 	the widget. For an image, the value is a filename containing the
@@ -67,6 +72,8 @@ gimage(filename = "", dirname = "",  size = "",
 	overriding the click handler in the process. However, the
 	\code{addhandlerchanged} handler can be given to respond to the
 	text after it has been chnaged.
+
+
 }
 \value{}
 \references{}

@@ -138,7 +138,7 @@ the GTK libraries through the \RCode{RGTk2} package.  \texttt{RGtk2}
 requires relatively modern versions of the GTK libraries (2.8.0 or
 higher). These may need to be installed or upgraded on your system.
 
-In case of \textbf{Windows} do this:
+In case of \textbf{Windows} you can do this:
 
 \begin{enumerate}
 \item 
@@ -148,6 +148,13 @@ In case of \textbf{Windows} do this:
 \item run the resulting file.  This is an automated installer which will walk
 you through the installation of the Gtk2 libraries.
 \end{enumerate}
+
+For Windows users, the following command, will do this and install
+\RCode{pmg}
+\begin{Sinput}
+> source("http://www.math.csi.cuny.edu/pmg/installPMG.R")
+\end{Sinput}
+
 
 In Linux, you may or may not need to upgrade the GTK libraries
 depending on your distribution.
@@ -294,7 +301,7 @@ although in this case an option can be give for the user to edit the value.
   obj = gdroplist(c("hello","world"), container=gwindow())
 \end{Scode}
 
-A drop list can be edited,
+A drop list can also allow its value to be entered,
 \begin{Scode}
   obj = gdroplist(c("hello","world"), editable=TRUE, container=gwindow())
 \end{Scode}
@@ -354,7 +361,7 @@ using a text buffer.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=.35\textwidth]{helloWorld}
+  \includegraphics[width=.35\textwidth]{hello-world}
   \caption{Hello world example}
   \label{fig:hello-world}
 \end{figure}
@@ -362,7 +369,7 @@ using a text buffer.
 These widgets are packed into containers (see \RCode{?ggroup} or
 \RCode{?gwindow}). The base container is a window, created with the
 \RFunc{gwindow} function. A top-level window only contains one widget,
-ke a group, so we pack in a group container created with
+like a group, so we pack in a group container created with
 \RFunc{ggroup}. The \RFunc{ggroup} container packs in widgets from
 left to right or top to bottom. Imagine each widget as a block which
 is added to the container.  In this case, we want the subsequent
@@ -560,9 +567,7 @@ with the arguments, which is shown in subsequent examples:
 \begin{Scode}
   browseEnv1 = function(envir = .GlobalEnv, pattern) {
     listOfObjects = lstObjects(envir=envir, pattern)
-    gtable(listOfObjects, 
-    container = gwindow("browseEnv1"),
-    )
+    gtable(listOfObjects, container = gwindow("browseEnv1"))
   }
 \end{Scode}
 
@@ -1244,9 +1249,10 @@ the label.
 \section{Making  widgets from an R function}
 
 A common task envisioned for \RPackage{gWidgets} is to create GUIs
-that make collecting the arguments to a function easier. Presented
-below are two ways to do so without having to do any programming,
-provided you are content with the layout and features provided.
+that make collecting the arguments to a function easier to remember or
+enter. Presented below are two ways to do so without having to do any
+programming, provided you are content with the layout and features
+provided.
 
 
 
@@ -1256,10 +1262,9 @@ provided you are content with the layout and features provided.
 
 The \RFunc{ggenericwidget} constructor maps a list into a widget. The
 list contains two types of information: meta information about the
-widget, such as the name of the function, a name for a help page and
-information about the widgets. This is specified using a list whose
-first component is the constructor, and subsequent components are fed
-to the constructor.
+widget, such as the name of the function, and information about the
+widgets. This is specified using a list whose first component is the
+constructor, and subsequent components are fed to the constructor.
 
 To illustrate, a GUI for a one sample t-test  is given. The
 list used by \RFunc{ggenericwidget}  is defined below.

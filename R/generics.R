@@ -179,16 +179,16 @@ setGeneric(".glabel",function(toolkit,
 
 ## gbutton
 gbutton =function(
-  text = "", handler = NULL, action = NULL, container = NULL,      ...,
+  text = "", border=TRUE, handler = NULL, action = NULL, container = NULL,      ...,
   toolkit=guiToolkit()){
   widget =  .gbutton (toolkit,
-    text, handler, action, container,...)  
+    text, border, handler, action, container,...)  
   obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
   return(obj)
 }
  
 setGeneric( '.gbutton' , function(toolkit,
-                                  text = "", handler = NULL, action = NULL, container = NULL,...)
+                                  text = "", border=TRUE, handler = NULL, action = NULL, container = NULL,...)
            standardGeneric( '.gbutton' ))
  
 ## gcheckbox
@@ -808,10 +808,12 @@ setGeneric(".gwindow",function(toolkit, title, visible, ...) standardGeneric(".g
  
 ## the constructor
 ggroup =function(
-  horizontal = TRUE, spacing = 5, container = NULL, ... ,
+  horizontal = TRUE, spacing = 5, use.scrollwindow = FALSE, container = NULL, ... ,
   toolkit=guiToolkit()){
   widget =  .ggroup (toolkit,
-    horizontal=horizontal, spacing=spacing, container=container ,...
+    horizontal=horizontal, spacing=spacing,
+    use.scrollwindow = use.scrollwindow, 
+    container=container,...
     )
   obj = new( 'guiContainer',widget=widget,toolkit=toolkit) 
   return(obj)
@@ -821,17 +823,19 @@ ggroup =function(
 ## generic for toolkit dispatch
 setGeneric( '.ggroup' ,
            function(toolkit,
-                    horizontal = TRUE, spacing = 5, container = NULL, ... )
+                    horizontal = TRUE, spacing = 5,  use.scrollwindow = FALSE, container = NULL,  ... )
            standardGeneric( '.ggroup' ))
 
 
 ## gframe
 ## the constructor
 gframe =function(
-  text = "", markup = FALSE, pos = 0, container = NULL,      ... ,
+  text = "", markup = FALSE, pos = 0, container = NULL,
+   ... ,
   toolkit=guiToolkit()){
   widget =  .gframe (toolkit,
-    text=text, markup=markup, pos=pos, container=container ,...
+    text=text, markup=markup, pos=pos, container=container ,
+    ...
     )
   obj = new( 'guiContainer',widget=widget,toolkit=toolkit) 
   return(obj)
@@ -1434,7 +1438,7 @@ gmessage = function(
   icon = c("info", "warning", "error", "question"), 
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
-  .gmessage(toolkit,message, title, icon, button, handler, action,
+  .gmessage(toolkit,message, title, icon, handler, action,
             ...)
 }
 setGeneric(".gmessage",

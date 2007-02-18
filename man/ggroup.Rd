@@ -14,7 +14,7 @@
 	hiding/showing the group.
 }
 \usage{
-ggroup(horizontal = TRUE, spacing = 5, container = NULL, ..., toolkit = guiToolkit())
+ggroup(horizontal = TRUE, spacing = 5,  use.scrollwindow = FALSE, container = NULL, ..., toolkit = guiToolkit())
 
 gframe(text = "", markup = FALSE, pos = 0, container = NULL, 
     ..., toolkit = guiToolkit()) 
@@ -32,6 +32,8 @@ gexpandgroup(text = "", markup = FALSE, handler = NULL, action = NULL,
   interpolates.}
   \item{handler}{Called when expand arrow is clicked}
   \item{action}{Passed to handler}
+  \item{use.scrollwindow}{If \code{TRUE} then group is placed in a
+  scrollwindow allowing panning with mouse.}
   \item{container}{Optional container to attach widget to}
   \item{\dots}{For \code{gframe}, \code{gexpandgroup} these are passed
     along to \code{ggroup}}
@@ -66,6 +68,11 @@ gexpandgroup(text = "", markup = FALSE, handler = NULL, action = NULL,
 	The \code{addSpring(obj,...)} method will push the just packed
 	widget and the next-to-be packed widget as far apart as possible.
 
+	In \code{gWidgetsRGtk2} a few arguments add to the container.
+	The argument \code{raise.on.dragmotion = TRUE} will cause the
+	group to jump to the foreground when a drag action crosses it.
+	The argument \code{use.scrollwindow = TRUE} will put the group
+	
 }
 \value{}
 \references{}
