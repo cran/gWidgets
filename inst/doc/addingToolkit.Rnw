@@ -16,13 +16,13 @@
 \usepackage{color}
 \usepackage{fancyvrb}
 \usepackage{fancyhdr}
-\usepackage{jvfloatstyle}       % redefine float.sty for my style. Hack
+%%\usepackage{jvfloatstyle}       % redefine float.sty for my style. Hack
 
 
 %% squeeze in stuff
-\floatstyle{jvstyle}
-\restylefloat{table}
-\restylefloat{figure}
+%%\floatstyle{jvstyle}
+%%\restylefloat{table}
+%%\restylefloat{figure}
 \renewcommand\floatpagefraction{.9}
 \renewcommand\topfraction{.9}
 \renewcommand\bottomfraction{.9}
@@ -351,9 +351,9 @@ As for the constructor we have:
   })
 \end{Scode}
 In dealing with the handler, we used the private method defined below,
-rather than \RFunc{addhandlerclicked} as that method is for objects of
+rather than \RFunc{addHandlerClicked} as that method is for objects of
 class \RCode{guiWidget}, and not \RCode{gWidgetTcltk}. This awkwardness
-can be avoided by defining a method \RCode{addhandlerclicked} for
+can be avoided by defining a method \RCode{addHandlerClicked} for
 objects of class \RCode{gWidgetTcltk} within the
 toolkit.~\footnote{This is a result of the way dispatch was
   designed. The toolkit information is stored in a slot separate from
@@ -362,12 +362,13 @@ toolkit.~\footnote{This is a result of the way dispatch was
   signatures is the ``dot'' one implemented in the toolkit package.} For instance,
 
 \begin{Scode}
-setMethod("addhandlerclicked",signature(obj="gWidgetTcltk"),
+setMethod("addHandlerClicked",signature(obj="gWidgetTcltk"),
           function(obj, handler=NULL, action=NULL, ...) {
             .addhandlerclicked(obj, obj@toolkit,handler, action, ...)
           })
 \end{Scode}
-
+(The internal function, \RCode{.addhandlerclicked}, uses lower case
+letters for now.)
 
 Again, \RFunc{svalue} should retrieve the text, it shouldn't be hard,
 but I don't know how. Below is how to set the button text.

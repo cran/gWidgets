@@ -24,7 +24,6 @@
      '("RCode" 1)
      "VERSION")
     (TeX-run-style-hooks
-     "jvfloatstyle"
      "fancyhdr"
      "fancyvrb"
      "color"

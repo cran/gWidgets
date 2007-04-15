@@ -1,5 +1,6 @@
 \name{gWidgets-methods}
 \alias{gWidgets-methods}
+
 \alias{.add,guiWidget,guiWidgetsToolkitRGtk2,ANY-method}
 \alias{.add,guiWidget,guiWidgetsToolkitRGtk2,guiWidgetORgWidgetRGtkORRGtkObject-method}
 \alias{.add,gContainerRGtk,guiWidgetsToolkitRGtk2,guiWidget-method}
@@ -31,6 +32,20 @@
 \alias{addhandlerrightclick,guiWidget-method}
 \alias{addhandlerunrealize,guiWidget-method}
 \alias{addpopupmenu,guiWidget-method}
+\alias{add3rdMousePopupmenu,guiWidget-method}
+\alias{addDropMotion,guiWidget-method}
+\alias{addDropSource,guiWidget-method}
+\alias{addDropTarget,guiWidget-method}
+\alias{addHandlerChanged,guiWidget-method}
+\alias{addHandlerClicked,guiWidget-method}
+\alias{addHandlerDoubleclick,guiWidget-method}
+\alias{addHandlerExpose,guiWidget-method}
+\alias{addHandlerIdle,guiWidget-method}
+\alias{addHandlerKeystroke,guiWidget-method}
+\alias{addHandlerRightclick,guiWidget-method}
+\alias{addHandlerUnrealize,guiWidget-method}
+\alias{addPopupmenu,guiWidget-method}
+\alias{removeHandler,guiWidget-method}
 \alias{delete,guiWidget-method}
 \alias{dim,guiWidget-method}
 \alias{dimnames,guiWidget-method}
@@ -78,6 +93,8 @@
 \alias{dispose}
 \alias{addSpace}
 \alias{addSpring}
+\alias{getToolkitWidget}
+\alias{getToolkitWidget,guiWidget-method}
 
 \title{Methods for gWidgets instances}
 \description{

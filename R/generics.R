@@ -906,15 +906,12 @@ glayout =function(
   obj = new( 'guiContainer',widget=widget,toolkit=toolkit) 
   return(obj)
 }
-
-
- ## generic for toolkit dispatch
+## generic for toolkit dispatch
 setGeneric( '.glayout' ,
            function(toolkit,
                     homogeneous = FALSE, spacing = 10, container = NULL,
                     ... )
            standardGeneric( '.glayout' ))
-
 
 
 ## gpanedgroup
@@ -1273,7 +1270,14 @@ setMethod("removehandler", signature("guiWidget"),
           })
 setGeneric(".removehandler",function(obj, toolkit, ID=NULL, ...)
            standardGeneric(".removehandler"))
-           
+## caps
+setGeneric("removeHandler",function(obj, ID=NULL, ...)
+           standardGeneric("removeHandler"))
+setMethod("removeHandler", signature("guiWidget"),
+          function(obj, ID=NULL, ...) {
+            .removehandler(obj@widget, obj@toolkit, ID, ...)
+          })
+
            
 
 ## addhandlerchanged
@@ -1285,6 +1289,15 @@ setMethod("addhandlerchanged",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addhandlerchanged",function(obj, toolkit,...) standardGeneric(".addhandlerchanged"))
+## caps
+setGeneric("addHandlerChanged",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerChanged"))
+setMethod("addHandlerChanged",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerchanged(obj@widget, toolkit, handler, action, ...)
+          })
+
+
 
 ## addhandlerkeystroke
 setGeneric("addhandlerkeystroke",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerkeystroke"))
@@ -1295,6 +1308,15 @@ setMethod("addhandlerkeystroke",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addhandlerkeystroke",function(obj, toolkit,...) standardGeneric(".addhandlerkeystroke"))
+#caps
+setGeneric("addHandlerKeystroke",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerKeystroke"))
+setMethod("addHandlerKeystroke",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerkeystroke(obj@widget, toolkit,handler, action, ...)
+          })
+
+
 
 ## addhandlerclicked
 setGeneric("addhandlerclicked",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerclicked"))
@@ -1305,6 +1327,15 @@ setMethod("addhandlerclicked",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addhandlerclicked",function(obj, toolkit,...) standardGeneric(".addhandlerclicked"))
+## caps
+setGeneric("addHandlerClicked",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerClicked"))
+setMethod("addHandlerClicked",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerclicked(obj@widget, toolkit,handler, action, ...)
+          })
+
+
 
 ## addhandlerdoubleclick
 setGeneric("addhandlerdoubleclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerdoubleclick"))
@@ -1315,6 +1346,14 @@ setMethod("addhandlerdoubleclick",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addhandlerdoubleclick",function(obj, toolkit,...) standardGeneric(".addhandlerdoubleclick"))
+## caps
+setGeneric("addHandlerDoubleclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerDoubleclick"))
+setMethod("addHandlerDoubleclick",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerdoubleclick(obj@widget,toolkit,handler, action, ...)
+          })
+
 
 ## addhandlerrightclick
 setGeneric("addhandlerrightclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerrightclick"))
@@ -1325,6 +1364,15 @@ setMethod("addhandlerrightclick",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addhandlerrightclick",function(obj,toolkit,...) standardGeneric(".addhandlerrightclick"))
+## caps
+setGeneric("addHandlerRightclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerRightclick"))
+setMethod("addHandlerRightclick",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerrightclick(obj@widget,toolkit,handler, action, ...)
+          })
+
+
 
 ## addhandlerdestroy
 setGeneric("addhandlerdestroy",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerdestroy"))
@@ -1335,6 +1383,14 @@ setMethod("addhandlerdestroy",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addhandlerdestroy",function(obj,toolkit,...) standardGeneric(".addhandlerdestroy"))
+##caps
+setGeneric("addHandlerDestroy",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerDestroy"))
+setMethod("addhandlerdestroy",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerdestroy(obj@widget, toolkit,handler, action, ...)
+          })
+
 
 # addhandlerexpose
 setGeneric("addhandlerexpose",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerexpose"))
@@ -1345,6 +1401,13 @@ setMethod("addhandlerexpose",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addhandlerexpose",function(obj, toolkit,...) standardGeneric(".addhandlerexpose"))
+## caps
+setGeneric("addHandlerExpose",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerExpose"))
+setMethod("addHandlerExpose",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerexpose(obj@widget,toolkit,handler, action, ...)
+          })
 
 # addhandlerunrealize
 setGeneric("addhandlerunrealize",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerunrealize"))
@@ -1355,6 +1418,13 @@ setMethod("addhandlerunrealize",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addhandlerunrealize",function(obj, toolkit,...) standardGeneric(".addhandlerunrealize"))
+## caps
+setGeneric("addHandlerUnrealize",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerUnrealize"))
+setMethod("addHandlerUnrealize",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerunrealize(obj@widget,toolkit,handler, action, ...)
+          })
 
 # addhandleridle
 setGeneric("addhandleridle",function(obj, handler=NULL, action=NULL, interval=1000, ...) standardGeneric("addhandleridle"))
@@ -1366,6 +1436,13 @@ setMethod("addhandleridle",signature(obj="guiWidget"),
 ## dispatch with toolkit
 setGeneric(".addhandleridle",function(obj, toolkit,handler=NULL,action=NULL,
                                       interval=1000,...) standardGeneric(".addhandleridle"))
+## caps
+setGeneric("addHandlerIdle",function(obj, handler=NULL, action=NULL, interval=1000, ...) standardGeneric("addHandlerIdle"))
+setMethod("addHandlerIdle",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, interval=1000, ...) {
+            toolkit = obj@toolkit
+            .addhandleridle(obj@widget, toolkit, handler=handler, action=action, interval=interval, ...)
+          })
 
 ## addpopupmenu
 setGeneric("addpopupmenu",function(obj, menulist, action=NULL, ...) standardGeneric("addpopupmenu"))
@@ -1376,6 +1453,13 @@ setMethod("addpopupmenu",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".addpopupmenu",function(obj, toolkit, menulist, action=NULL, ...) standardGeneric(".addpopupmenu"))
+## caps
+setGeneric("addPopupmenu",function(obj, menulist, action=NULL, ...) standardGeneric("addPopupmenu"))
+setMethod("addPopupmenu",signature(obj="guiWidget"),
+          function(obj, menulist, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addpopupmenu(obj@widget, toolkit,menulist, action, ...)
+          })
 
 ## add3rdmousepopupmenu
 setGeneric("add3rdmousepopupmenu",function(obj, menulist, action=NULL,  ...) standardGeneric("add3rdmousepopupmenu"))
@@ -1386,6 +1470,13 @@ setMethod("add3rdmousepopupmenu",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".add3rdmousepopupmenu",function(obj, toolkit,menulist, action=NULL, ...) standardGeneric(".add3rdmousepopupmenu"))
+## caps
+setGeneric("add3rdMousePopupmenu",function(obj, menulist, action=NULL,  ...) standardGeneric("add3rdMousePopupmenu"))
+setMethod("add3rdMousePopupmenu",signature(obj="guiWidget"),
+          function(obj, menulist, action=NULL,  ...) {
+            .add3rdmousepopupmenu(obj@widget, obj@toolkit, menulist,
+                                  action=action,  ...)
+          })
 
 ## adddropsource
 setGeneric("adddropsource",function(obj, targetType="text",
@@ -1398,6 +1489,15 @@ setMethod("adddropsource",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".adddropsource",function(obj, toolkit,targetType="text", handler=NULL, action=NULL, ...) standardGeneric(".adddropsource"))
+## caps
+setGeneric("addDropSource",function(obj, targetType="text",
+                                    handler=NULL, action=NULL, ...) standardGeneric("addDropSource"))
+setMethod("addDropSource",signature(obj="guiWidget"),
+          function(obj, targetType="text", handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .adddropsource(obj@widget, toolkit,targetType=targetType,
+                           handler=handler, action=action, ...)
+          })
 
 
 ## adddropmotion
@@ -1411,6 +1511,15 @@ setMethod("adddropmotion",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".adddropmotion",function(obj, toolkit, handler=NULL, action=NULL, ...) standardGeneric(".adddropmotion"))
+## caps
+setGeneric("addDropMotion",function(obj, handler=NULL, action=NULL, ...)
+           standardGeneric("addDropMotion"))
+setMethod("addDropMotion",signature(obj="guiWidget"),
+          function(obj,  handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .adddropmotion(obj@widget, toolkit,
+                           handler=handler, action=action, ...)
+          })
 
 ## adddroptarget
 setGeneric("adddroptarget",function(obj, targetType="text",
@@ -1423,6 +1532,15 @@ setMethod("adddroptarget",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".adddroptarget",function(obj, toolkit,targetType="text", handler=NULL, action=NULL, ...) standardGeneric(".adddroptarget"))
+## caps
+setGeneric("addDropTarget",function(obj, targetType="text",
+                                    handler=NULL, action=NULL, ...) standardGeneric("addDropTarget"))
+setMethod("addDropTarget",signature(obj="guiWidget"),
+          function(obj, targetType="text", handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .adddroptarget(obj@widget, toolkit,targetType=targetType,
+                           handler=handler, action=action, ...)
+          })
 
 ##################################################
 
@@ -1551,7 +1669,14 @@ setGeneric(".dimnames<-",function(x, toolkit, value) {
   standardGeneric(".dimnames<-")
 })
 ## names
-setGeneric("names")
+## as of 2.5.0 this became primiive
+if(as.numeric(R.Version()$major) <= 2 &
+   as.numeric(R.Version()$minor) <= 4.1) {
+  setGeneric("names")
+  setGeneric("names<-")
+}
+
+
 setMethod("names",signature(x="guiWidget"),
           function(x) {
             .names(x@widget, x@toolkit)
@@ -1559,7 +1684,6 @@ setMethod("names",signature(x="guiWidget"),
 setGeneric(".names",function(x, toolkit)
            standardGeneric(".names"))
 ## names<-
-setGeneric("names<-")
 setReplaceMethod("names",signature(x="guiWidget"),
                  function(x,value) {
                    .names(x@widget, x@toolkit) <- value
@@ -1568,3 +1692,13 @@ setReplaceMethod("names",signature(x="guiWidget"),
 setGeneric(".names<-",function(x, toolkit, value) {
   standardGeneric(".names<-")
 })
+
+## getWidget to return toolkit widget
+setGeneric("getToolkitWidget",function(obj) standardGeneric("getToolkitWidget"))
+setMethod("getToolkitWidget",signature(obj="guiWidget"),
+          function(obj) {
+            .getToolkitWidget(obj@widget, obj@toolkit)
+          })
+## dispatch with toolkit
+setGeneric(".getToolkitWidget",function(obj, toolkit)
+           standardGeneric(".getToolkitWidget"))

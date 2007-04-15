@@ -3,6 +3,9 @@
 \alias{adddroptarget}
 \alias{adddropmotion}
 \alias{adddropsource}
+\alias{addDropTarget}
+\alias{addDropMotion}
+\alias{addDropSource}
 
 
 \title{Functions to add drag and drop ability to widgets}

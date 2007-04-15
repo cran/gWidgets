@@ -18,13 +18,13 @@
 \usepackage{color}
 \usepackage{fancyvrb}
 \usepackage{fancyhdr}
-\usepackage{jvfloatstyle}       % redefine float.sty for my style. Hack
+%%\usepackage{jvfloatstyle}       % redefine float.sty for my style. Hack
 
 
 %% squeeze in stuff
-\floatstyle{jvstyle}
-\restylefloat{table}
-\restylefloat{figure}
+%%\floatstyle{jvstyle}
+%%\restylefloat{table}
+%%\restylefloat{figure}
 \renewcommand\floatpagefraction{.9}
 \renewcommand\topfraction{.9}
 \renewcommand\bottomfraction{.9}
@@ -159,10 +159,14 @@ For Windows users, the following command, will do this and install
 In Linux, you may or may not need to upgrade the GTK libraries
 depending on your distribution.
 
-For Mac OS X, this author has installed GTK libraries from source on an older
-10.3.9 machine using Apple's X11 server. It may be possible in 10.4 to
-install using fink or Darwin ports, or it may be possible to run the
-native GTK libraries. None of these has been tested.
+For Mac OS X the macports (\url{http://www.macports.org}) project
+maintains a \texttt{gtk28} package to install the 2.8 version of
+GTK. Once macports is installed, the command
+\begin{verbatim}
+sudo port install gtk28
+\end{verbatim}
+will install the libraries (although it may take quite a while).
+
 
 There are more details on RGtk2 at 
 \href{http://www.ggobi.org/rgtk2}{RGtk2's home page}.
@@ -427,7 +431,7 @@ nested group containers to organize the layout. (Alternately the
 The key to making a useful confirmation dialog is attaching a response
 to a click of the ``ok'' button. This is carried out by a handler,
 which are added using the argument \RArg{handler} for the constructor,
-with one of the \RCode{addhandler} functions. the handler below prints
+with one of the \RCode{addHandler} functions. the handler below prints
 a message and then closes the dialog. To close the dialog, the
 \RFunc{dispose} method is called on the ``ok'' button widget, which is
 referenced inside the handler by \RCode{h\$obj} below. In
@@ -822,7 +826,7 @@ Rmail = function(draft = NULL, ...) {
   Comment("Subject: field. Handler updates window title")
   tbl[3,1] = glabel("Subject:")
   tbl[3,2] = widgets$subject
-  addhandlerkeystroke(widgets$subject, handler = function(h,...)
+  addHandlerKeystroke(widgets$subject, handler = function(h,...)
                       svalue(window) = paste("Compose mail:",svalue(h$obj),collapse=""))
 
   Comment("Layout needs to be finalized")
@@ -873,10 +877,10 @@ handling of a draft:
    svalue(widgets[[i]]) <- draft[[i]])
 \end{Soutput}
 
-(Another work-horse method is \RFunc{addhandlerchanged} which can be
+(Another work-horse method is \RFunc{addHandlerChanged} which can be
 used to add a handler to any widget, where ``changed'' is loosely
 interpreted: i.e., for buttons, its aliased to
-\RFunc{addhandlerclicked}.
+\RFunc{addHandlerClicked}.
 
 As for the \RFunc{sendIt} function, this is just one way to send an
 e-mail message on a UNIX machine. There are likely more than 100
@@ -993,7 +997,7 @@ be removed if the widget is closed.)
         view.col = h$dropdata
 
         Comment("Put change handler on column to update plotting widget")
-        id = addhandlerchanged(view.col, handler=function(h,...) plotWidget(gd))
+        id = addHandlerChanged(view.col, handler=function(h,...) plotWidget(gd))
         Comment("Save drop handler id so that it can be removed when")
         Comment("  widget  is closed")
         dropHandlers = tag(gd,"dropHandlers")
@@ -1006,7 +1010,7 @@ be removed if the widget is closed.)
   })
 
   Comment("Remove drop handlers if widget is unrealized.")
-  addhandlerunrealize(gd, handler = function(h,...) {
+  addHandlerUnrealize(gd, handler = function(h,...) {
     dropHandlers = tag(gd,"dropHandlers")
     if(length(dropHandlers) > 0) {
       for(i in 1:length(dropHandlers)) {
@@ -1110,7 +1114,7 @@ Finally we add the notebook.
 That's it (Figure~\ref{fig:notebook}). There is one thing that should
 be added. If you switch tabs, the active device does not switch. This
 happens though if you click in the plot area. To remedy this, you can
-think about the \RFunc{addhandlerchanged} method for the notebook, or
+think about the \RFunc{addHandlerChanged} method for the notebook, or
 just use \RFunc{ggraphicsnotebook}.
 
 
@@ -1211,7 +1215,7 @@ desired file browser:
 \end{Scode}
 
 Finally, the  \RArg{handler} argument (or
-\RCode{addhandlerdoubleclick}) could have been used to give an action to double
+\RCode{addHandlerDoubleclick}) could have been used to give an action to double
 clicking of an item in the tree. 
 
 
@@ -1351,7 +1355,7 @@ the handling of the initial variable when a formula is expected.
 
     Comment("Add update handler to each widget when changed")
     sapply(widgets, function(obj) {
-      try(addhandlerchanged(obj, function(h,...) update()), silent=TRUE)
+      try(addHandlerChanged(obj, function(h,...) update()), silent=TRUE)
     })
 
     Comment("Add drop target to each widget")
@@ -1454,7 +1458,7 @@ the list of widgets stored is consulted by the following \RFunc{svalue} method.
 \end{Scode}
 
 The methods below (\RFunc{svalue}, \RFunc{svalue<-} and
-\RFunc{addhandlerchanged})  map the same method to each component
+\RFunc{addHandlerChanged})  map the same method to each component
 of the list using \RFunc{sapply}.
 
 \begin{Scode}
@@ -1474,10 +1478,10 @@ of the list using \RFunc{sapply}.
   return(obj)
 }
 
-addhandlerchanged.gListOfWidgets = function(obj, handler=NULL, action=NULL, ...) {
+addHandlerChanged.gListOfWidgets = function(obj, handler=NULL, action=NULL, ...) {
   widgetList = getdata(obj, "widgetList")
   sapply(widgetList, function(x)
-         try(addhandlerchanged(x, handler, action),silent=TRUE))
+         try(addHandlerChanged(x, handler, action),silent=TRUE))
 }
 \end{Scode}
 

@@ -1,5 +1,6 @@
 \name{gWidgets-handlers}
 \alias{gWidgets-handlers}
+\alias{removehandler}
 \alias{addhandlerchanged}
 \alias{addhandlerkeystroke}
 \alias{addhandlerclicked}
@@ -12,7 +13,19 @@
 \alias{addpopupmenu}
 \alias{add3rdmousepopupmenu}
 %%\alias{addhandler}
-\alias{removehandler}
+\alias{removeHandler}
+\alias{addHandlerChanged}
+\alias{addHandlerKeystroke}
+\alias{addHandlerClicked}
+\alias{addHandlerDoubleclick}
+\alias{addHandlerRightclick}
+\alias{addHandlerExpose}
+\alias{addHandlerUnrealize}
+\alias{addHandlerDestroy}
+\alias{addHandlerIdle}
+\alias{addPopupmenu}
+\alias{add3rdMousePopupmenu}
+\alias{removeHandler}
 
 \title{Methods to add  event handlers to objects}
 \description{
@@ -20,7 +33,7 @@
 	In the gWidgets API handlers are called in reponse to certain
 	events such as keystrokes or clicks. This set of methods makes
 	a consistent interface to some typical events. Not all
-	handlers are defined for each widget.
+	handlers are defined for each widget. 
 
 }
 \usage{
@@ -79,7 +92,8 @@ removehandler(obj, ID, ...)
   \item{...}{}
 }
 \details{
-
+  At first these handlers were all lowercase. These functions are still
+  availabe, although the mixed case usage is encouraged
 	
 	In GTK, and other toolkits, an event causes a signal to
 	be triggered and these handlers are called in response to that
