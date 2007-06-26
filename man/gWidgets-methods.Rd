@@ -191,9 +191,14 @@
   \code{font<-(obj,...,value)}:}{
     Can be used to check or set font attributes in
     a widget. In gWidgetsRGtk, the font attributes
-    are given as a named vector. The set of possible
-    attributes and their possible values is defined by
-    \code{gtext}.
+    are given as a named vector. The available names are \code{family}
+    with a value of "normal","sans","serif",or "monospace";
+    \code{weight} with a value of "normal","oblique", or "italic";
+    \code{style} with a value of
+    "ultra-light","light","normal","bold","ultra-bold", or "heavy";
+    and
+    \code{color} which for gWidgetsRGtk is limited to
+    "black","blue","red","green","brown","yellow", or "pink".
   }
   
   \item{  \code{tag(obj,i, drop=TRUE, ...)} or

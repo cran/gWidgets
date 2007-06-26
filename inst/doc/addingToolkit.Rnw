@@ -64,12 +64,15 @@
 \maketitle
 
 \section*{Abstract:}
+[\textbf{This package is now out of date. The \RPackage{gWidgetstcltk} package
+has been written. This is here in case someone wants to port a
+different toolkit (RwxWidgets say).}]
+\\
+
 This little vignette illustrates what is required to write a toolkit
 for the \RPackage{gWidgets} package. Since the \RPackage{gWidgetsRGtk}
 package is written this sketches out what a toolkit would possibly
-look like using the \RPackage{tcltk} package. Unfortunately, this
-author does not know enough about the \RPackage{tcltk} package to
-actually do this.
+look like using the \RPackage{tcltk} package.
 
 \setcounter{tocdepth}{3}
 \tableofcontents
@@ -100,16 +103,14 @@ to avoid.}
 
 \section{An example}
 
-As \RPackage{gWidgets} is supposed to be cross-toolkit, it would be
-nice were there a toolkit implementation for the \RPackage{tcltk}
-package. I know only as much about \RPackage{tcltk} as was learned
-by browsing P. Dalgaard's RNews article and a quick glance at the examples
-provided by James Wettenhall.
+
+This shows some of what is necessary to write an implementation of
+gWidgets for the \RPackage{tcltk} package.  It only assumes as much
+about \RPackage{tcltk} as was learned by browsing Peter Dalgaard's
+informative RNews article and a quick glance at the examples provided
+by James Wettenhall.
 
 
-The following is a start, although we quickly run into issues that
-hopefully someone more knowledgeable about \RPackage{tcltk} could
-resolve.
 
 
 First we load the package.
@@ -122,7 +123,8 @@ First we load the package.
 
 The options setting ensures no toolkit for gWidgets gets loaded.
 
-Recall the subclass of \RCode{guiWidgetsToolkit}, \RCode{guiWidgetsToolkittcltk} is already defined in \RCode{gWidgets}.
+We note the subclass of \RCode{guiWidgetsToolkit},
+\RCode{guiWidgetsToolkittcltk} is already defined in \RCode{gWidgets}.
 
 Now we make a base class for the tcltk widgets created here.
 \begin{Scode}
@@ -149,7 +151,8 @@ to our virtual class. This would be done for all possible classes of
 
 The \RCode{gWidgetTcltk} class is a virtual class, here are two
 subclasses. We create slots for the widget and the toolkit here, but
-perhaps should add others.
+perhaps should add others such as an ID slot for storing a unique ID
+per widget.
 
 \begin{Scode}
 ### Make some base classes
@@ -235,7 +238,15 @@ function(obj, toolkit, value, ...) {
 })
 \end{Scode}
 
-The dispose method closes the window
+[To avoid this, the \RPackage{gWidgetstcltk} package requires a
+container be specified when a widget is constructed. This container
+stores the top-level container so that a \RPackage{tcltk} widget can
+be constructed. The \RCode{add} method is then rarely used publicly,
+but is useful when writing the constructor. It's
+arguments for placement of the widget are specified during the
+construction of the widget.]
+
+The \RCode{dispose} method closes the window
 \begin{Scode}
 setMethod(".dispose",
           signature(toolkit="guiWidgetsToolkittcltk",obj="gWindowTcltk"),
@@ -291,15 +302,14 @@ Next the constructor
   })
 \end{Scode}
 
-The \RFunc{svalue} method returns the label text, to be honest I don't
-know enough about the \RPackage{tcltk} package to write this, although
-to set the text is easy.
+The \RFunc{svalue} method returns the label text, it requires a little
+tcltk voodoo.
 
 \begin{Scode}
   setMethod(".svalue",
   signature(toolkit="guiWidgetsToolkittcltk",obj="gLabelTcltk"),
   function(obj, toolkit, index=NULL, drop=NULL, ..) {
-    cat("How to retrieve label text\n")
+    as.character(tkcget(obj@widget,"-text"))
   })
   
   ## svalue<-
@@ -370,23 +380,40 @@ setMethod("addHandlerClicked",signature(obj="gWidgetTcltk"),
 (The internal function, \RCode{.addhandlerclicked}, uses lower case
 letters for now.)
 
-Again, \RFunc{svalue} should retrieve the text, it shouldn't be hard,
-but I don't know how. Below is how to set the button text.
+The handler could be written as follows
 \begin{Scode}
+setMethod(".addhandlerclicked",
+          signature(toolkit="guiWidgetsToolkittcltk",obj="gWidgettcltk"),
+          function(obj, toolkit,
+                   handler, action=NULL, ...) {
+                     tkbind(getWidget(obj),<Button-1>,
+                     function(...) {
+                       h = list(ref=obj, obj=obj, action=action)
+                       handler(h,...)
+                     })
+})
+\end{Scode}
+
+
+
+Again, \RFunc{svalue} should retrieve the text and \RFunc{svalue<-}
+should set the text. Again, a little tcltk voodoo is used.
+
+\begin{Scode}
+  setMethod(".svalue",
+  signature(toolkit="guiWidgetsToolkittcltk",obj="gButtonTcltk"),
+  function(obj, toolkit, index=NULL, drop=NULL, ...) {
+    val = paste(as.character(tkcget(obj@widget,"-text")))
+    return(val)
+  })
+  
   setReplaceMethod(".svalue",
   signature(toolkit="guiWidgetsToolkittcltk",obj="gButtonTcltk"),
   function(obj, toolkit, index=NULL, ..., value) {
-    
     tkconfigure(obj@widget, text=value)
     return(obj)
   })
 \end{Scode}
-
-
-This sets up a click handler for a button. The handler should have a
-first argument which is a list with the object and the action value
-passed in. This isn't done below, as it isn't clear to me how to do so
-with just the \RFunc{tkconfigure} function.
 
 
 \begin{figure}[htbp]
@@ -398,15 +425,6 @@ with just the \RFunc{tkconfigure} function.
 
 
 
-\begin{Scode}
-## add handler for click event. This is good just for button, label
-setMethod(".addhandlerclicked",
-signature(toolkit="guiWidgetsToolkittcltk",obj="gButtonTcltk"),
-function(obj, toolkit, handler, action=NULL, ...) {
-  ## can't handle arguments to handler
-  tkconfigure(obj@widget, command=handler)
-})
-\end{Scode}
 
 Well, that will let us make the following simple dialog
 (Figure~\ref{fig:hello-world}).
@@ -421,11 +439,6 @@ Well, that will let us make the following simple dialog
 \end{Scode}
 
 
-
-For each widget we need to sepearte the container, This style makes it
-difficult to cleanly separate the widgets, their layout and their
-handlers.  As well, in this example, we also specify the toolkit. This
-latter part can be avoide, if we put the code in a package.
 
 
 \end{document}

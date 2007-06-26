@@ -59,6 +59,7 @@ glayout(homogeneous = FALSE, spacing = 10, container = NULL, ..., toolkit = guiT
     for (j in 1:4) obj[i,j] <- glabel(mtcars[i,j])
   }
   visible(obj) <- TRUE
+
 }
 }
 \keyword{interface}% at least one, from doc/KEYWORDS

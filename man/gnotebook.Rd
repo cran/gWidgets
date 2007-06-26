@@ -40,8 +40,8 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
   \code{override.closebutton} can be used to add or not add a close
   button in the tab label.
 
-  The \code{dispose} method will return the current page if is not
-  overridden by \code{dontCloseThese}.
+  The \code{dispose} method will remove the currently selected page
+  unless it is overridden by the value of \code{dontCloseThese}.
 
   The \code{delete(obj, widget,...)} method will delete the widget on a
   given page. This can then be replaced with the \code{[<-} method.

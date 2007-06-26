@@ -18,12 +18,18 @@ export("glabel", "gbutton", "gcheckbox", "gradio", "gdroplist",
        "stockIconFromClass","stockIconFromObject"
 )
 
+## export toolkits and the basic gui-classes
 exportClasses("guiWidgetsToolkit",
               "guiWidgetsToolkitRGtk2",
               "guiWidgetsToolkitrJava",
               "guiWidgetsToolkitSJava",
-              "guiWidgetsToolkittcltk",                            
-              "guiWidget","guiComponent","guiContainer","guiDialog")
+              "guiWidgetsToolkittcltk",
+              "guiWidgetsToolkitRwxWidgets",                            
+              "guiWidget","guiComponent","guiContainer","guiDialog",
+              "guiWidgetOrNULL")
+
+## these are used by others but defined here.
+export("editSubsetDialog","editSelectDialog")
 
 exportMethods(
 "show",
@@ -32,21 +38,21 @@ exportMethods(
 "dispose", "visible", "visible<-", "enabled", "enabled<-", "size",
 "size<-", "focus", "focus<-", "font", "font<-", "tag", "tag<-", "id",
 "id<-",
-              "addhandlerchanged","addHandlerChanged",
+              "addhandlerchanged",  "addHandlerChanged",
               "addhandlerkeystroke","addHandlerKeystroke",
-              "addhandlerclicked",              "addHandlerClicked",
+              "addhandlerclicked",  "addHandlerClicked",
               "addhandlerdoubleclick","addHandlerDoubleclick",
-              "addhandlerrightclick",              "addHandlerRightclick",
-              "addhandlerdestroy","addHandlerDestroy",
-              "addhandlerexpose","addHandlerExpose",
-              "addhandlerunrealize","addHandlerUnrealize",
-              "addhandleridle","addHandlerIdle",
-              "addpopupmenu","addPopupmenu",
+              "addhandlerrightclick","addHandlerRightclick",
+              "addhandlerdestroy",   "addHandlerDestroy",
+              "addhandlerexpose",    "addHandlerExpose",
+              "addhandlerunrealize", "addHandlerUnrealize",
+              "addhandleridle",      "addHandlerIdle",
+              "addpopupmenu",        "addPopupmenu",
               "add3rdmousepopupmenu","add3rdMousePopupmenu",
-              "adddropsource","addDropSource",
-              "adddropmotion","addDropMotion",
-              "adddroptarget","addDropTarget",
-              "removehandler","removeHandler",
+              "adddropsource",       "addDropSource",
+              "adddropmotion",       "addDropMotion",
+              "adddroptarget",       "addDropTarget",
+              "removehandler",       "removeHandler",
 ".glabel", ".gbutton", ".gcheckbox", ".gradio", ".gdroplist",
 ".gcheckboxgroup", ".gspinbutton", ".gslider", ".gedit", ".gtext",
 ".gmenu", ".gtoolbar", ".gtable", ".gdf", ".gdfnotebook", ".gtree",
@@ -68,7 +74,7 @@ exportMethods(
 ".adddropsource", ".adddropmotion", ".adddroptarget", ".gmessage",
 ".ginput", ".gconfirm", ".gbasicdialog",
 ".addStockIcons",".getStockIcons",
-              ".stockIconFromClass",".stockIconFromObject",
+".stockIconFromClass",".stockIconFromObject",
 "update",".update",
 "length",".length",
 "dim",".dim",
@@ -76,5 +82,5 @@ exportMethods(
 "dimnames<-",".dimnames<-",
 "names",".names",
 "names<-",".names<-",
-              "getToolkitWidget",".getToolkitWidget"
+"getToolkitWidget",".getToolkitWidget"
  )

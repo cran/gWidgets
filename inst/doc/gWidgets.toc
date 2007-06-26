@@ -1,0 +1,24 @@
+\contentsline {section}{\numberline {1}Background}{3}{section.1}
+\contentsline {section}{\numberline {2}Installation}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Installing the GTK libraries}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Install the R packages}{4}{subsection.2.2}
+\contentsline {section}{\numberline {3}Loading gWidgets}{5}{section.3}
+\contentsline {section}{\numberline {4}Hello world}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Using containers}{7}{subsection.4.1}
+\contentsline {section}{\numberline {5}Making a confirmation dialog}{8}{section.5}
+\contentsline {section}{\numberline {6}Methods}{10}{section.6}
+\contentsline {section}{\numberline {7}Adding a GUI to some common tasks}{11}{section.7}
+\contentsline {subsection}{\numberline {7.1}\texttt {file.choose()}}{11}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}\texttt {browseEnv()}}{12}{subsection.7.2}
+\contentsline {section}{\numberline {8}A gWidgetsDensity demo}{13}{section.8}
+\contentsline {section}{\numberline {9}Composing email}{17}{section.9}
+\contentsline {section}{\numberline {10}A expand group}{22}{section.10}
+\contentsline {section}{\numberline {11}Drag and drop}{23}{section.11}
+\contentsline {subsection}{\numberline {11.1}DND with plots}{23}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}DND from the data frame editor}{25}{subsection.11.2}
+\contentsline {section}{\numberline {12}Notebooks}{26}{section.12}
+\contentsline {section}{\numberline {13}The tree widget}{28}{section.13}
+\contentsline {section}{\numberline {14}Popup menus}{30}{section.14}
+\contentsline {section}{\numberline {15}Making widgets from an R function}{31}{section.15}
+\contentsline {subsection}{\numberline {15.1}Using \texttt {ggenericwidget()}}{31}{subsection.15.1}
+\contentsline {subsection}{\numberline {15.2}An alternative to \texttt {ggenericwidget()}}{32}{subsection.15.2}

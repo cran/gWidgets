@@ -57,7 +57,8 @@ gcalendar(text = "", format = "\%Y-\%m-\%d", handler=NULL, action=NULL, containe
 	The \code{svalue<-()} method may be used to set the value for
 	both \code{gcalendar} and \code{gfilebrowse} .
 
-	The return value is the filename selected.
+	The return value is the filename selected. A \code{NA} value is
+	returned if no file is selected.
 
 }
 \value{}

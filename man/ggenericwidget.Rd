@@ -13,8 +13,7 @@
   is, or modified as desired.
 }
 \usage{
-ggenericwidget(lst, okhandler = ok.cb, cancelhandler = cancel.cb,
-helphandler = help.cb, cli = NULL, container = NULL, ..., toolkit = guiToolkit())
+ggenericwidget(lst,  cli = NULL, container = NULL, ..., toolkit = guiToolkit())
 }
 
 %% also could do:
@@ -34,9 +33,6 @@ helphandler = help.cb, cli = NULL, container = NULL, ..., toolkit = guiToolkit()
 %%  \code{c("univariate","univariatetable", "bivariate", "model",
 %%    "lattice")}}
   \code{x=} for initial variable name.
-  \item{okhandler}{What happens when OK button is clicked}
-  \item{cancelhandler}{What happens when Cancel button is clicked}
-  \item{helphandler}{What happens when Help button is clicked}
   \item{cli}{An instance of \code{gcommandline} or NULL. If NULL, then a
   new command line pops up in its own window}
   \item{container}{Optional container to attach widget to}

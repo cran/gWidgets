@@ -741,13 +741,11 @@ setGeneric( '.ghelpbrowser' ,
 
 ## the constructor
 ggenericwidget =function(
-  lst, okhandler = ok.cb, cancelhandler = cancel.cb,
-  helphandler = help.cb, cli = NULL, container = NULL,
+  lst,  cli = NULL, container = NULL,
   ... ,
   toolkit=guiToolkit()){
   widget =  .ggenericwidget (toolkit,
-    lst=lst, okhandler=okhandler, cancelhandler=cancelhandler,
-    helphandler=helphandler, cli=cli, container=container ,...
+    lst=lst,  cli=cli, container=container ,...
     )
   obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
   return(obj)
@@ -757,8 +755,7 @@ ggenericwidget =function(
 ## generic for toolkit dispatch
 setGeneric( '.ggenericwidget' ,
            function(toolkit,
-                    lst, okhandler = ok.cb, cancelhandler = cancel.cb,
-                    helphandler = help.cb, cli = NULL,
+                    lst, cli = NULL,
                     container = NULL, ... )
            standardGeneric( '.ggenericwidget' ))
 

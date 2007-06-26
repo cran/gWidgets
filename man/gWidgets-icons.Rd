@@ -2,6 +2,13 @@
 \alias{gWidgets-icons}
 \alias{addStockIcons}
 \alias{getStockIcons}
+\alias{stockIconFromClass}
+\alias{stockIconFromObject}
+\alias{.addStockIcons,ANY-method}
+\alias{.getStockIcons,ANY-method}
+\alias{.stockIconFromClass,ANY-method}
+\alias{.stockIconFromObject,ANY-method}
+
 \title{Functions for adding icons}
 \description{
   Two functions for listing "stock" icons, and adding "stock" icons. A

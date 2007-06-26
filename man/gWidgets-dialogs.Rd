@@ -53,7 +53,8 @@ gbasicdialog(message, title = "Dialog", widget, handler = NULL, action=NULL, ...
   The \code{ginput} dialog adds an edit box for gathering user
   information. The \code{text} argument sets the default value. This is
   then passed to the handler via the component \code{input} of the first
-  argument of the handler. This dialog returns the value of the string.
+  argument of the handler. This dialog returns the value of the string
+  if OK is clicked, otherwise \code{NA}.
 
   The \code{gbasicdialog} dialog wraps a widget around an OK and dismiss
   button. The handler is called when the OK button is clicked. This

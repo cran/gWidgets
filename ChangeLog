@@ -1,0 +1,21 @@
+2007-06-26  John Verzani  <jverzani@gmail.com>
+
+	* R/icons.R: Moved icons into gWidgets from tcltk
+
+2007-06-25  John Verzani  <jverzani@gmail.com>
+
+	* R/bbbGenericsANY.R: Added this to handle ANY widgets. Might need
+		  some more work.
+
+	* R/ggenericwidget.R: moved from tcltk into this using gWidgetANY
+		  classes. 
+
+2007-04-27  John Verzani  <jverzani@gmail.com>
+
+	* R/generics.R: names, as of 2.5.0 does not need set generic
+
+2007-04-23  John Verzani  <jverzani@gmail.com>
+
+	* DESCRIPTION (Package): Changed SaveImage: TRUE to LazyLoad: yes
+		  as per suggestion by B. Ripley.
+

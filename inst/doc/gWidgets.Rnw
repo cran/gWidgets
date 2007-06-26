@@ -69,14 +69,15 @@
 Examples for using the \RPackage{gWidgets} package are presented.  The
 \RPackage{gWidgets} API is intended to be a cross platform means
 within an R session to interact with a graphics toolkit.  Currently,
-there are two available toolkits. The GTK toolkit is implemented via
-the \RPackage{gWidgetsRGtk2} package which in turn uses the
-\RPackage{RGtk2} package.  JAVA can be used via the
-\RPackage{gWidgetsrJava} package, which in turn calls
-\RPackage{rJava}. The \RPackage{gWidgetsRGtk2} implementation is much
-more complete, as the \RPackage{gWidgetsrJava} package is lacking many
-features and must run from within a JGR (\url{http://www.rosuda.org})
-session.
+there are three available toolkits.
+\begin{itemize}
+\item \RPackage{gGWidgetsRGtk2} for \RPackage{RGtk2} package which is the most complete implementation,
+\item \RPackage{gWidgetstcltk} for the \RPackage{tcltk} package which
+  is the easiest to install, and
+
+\item \RPackage{gWidgetsrJava} for the \RPackage{rJava} package which is
+  to be run within the \RPackage{JGR} environment, \url{http://www.rosuda.org}.
+\end{itemize}
 
 
 The API is inteneded to faciliatate the task of writing basic GUIs, as
@@ -214,6 +215,14 @@ properly. These should install through the dependencies, so
 should do it.]
 
 
+
+The \RPackage{gWidgetstcltk} package is easier to install, as a
+typical R installation has the \RPackage{tcltk} package and libraries
+already installed. The \RPackage{gWidgetstcltk} package was designed
+not to require other tcl libraries so works out of the box, although
+some features of the gWidgets API could not be implemented due to this
+restriction.
+
 \section{Loading gWidgets}
 We  load the \RCode{gWidgets} package, using the \RCode{gWidgetsRGtk2}
 toolkit, below:
@@ -227,7 +236,8 @@ default toolkit will be. In this examples, we've set it to be
 ``gWidgetsRGtk2.'' If the option was not set and there is more than
 one toolkit available, then a menu asks the user to choose between
 toolkit implementations. [For \RPackage{gWidgetsrJava} use ``rJava''
-in the \RFunc{options} call.]
+in the \RFunc{options} call or ``tcltk'' for the
+\RPackage{gWidgetstcltk} package.]
 %\begin{Scode}{echo=FALSE}
 %  require(gWidgetsRGtk2)
 %\end{Scode}
@@ -410,18 +420,18 @@ nested group containers to organize the layout. (Alternately the
   confirmDialog = function(message, handler=NULL)  {
   window = gwindow("Confirm")
   group = ggroup(container = window)
-  add(group,gimage("info", dirname="stock", size="dialog"))
+  gimage("info", dirname="stock", size="dialog", container=group)
 
   Comment("A group for the message and buttons")
   innner.group = ggroup(horizontal=FALSE, container = group)
-  add(innner.group, glabel(message), expand=TRUE)
+  glabel(message, container=inner.group, expand=TRUE)
 
   Comment("A group to organize the buttons") 
   button.group = ggroup(container = innner.group)
   Comment("Push buttons to right")
   addSpring(button.group)
-  obj=gbutton("ok", handler=handler, container=button.group)
-  obj=gbutton("cancel", handler = function(h,...) dispose(window),
+  gbutton("ok", handler=handler, container=button.group)
+  gbutton("cancel", handler = function(h,...) dispose(window),
           container=button.group)
   
   return()
@@ -605,6 +615,7 @@ based on the class of the object.
     })
   }
 \end{Scode}
+[The \RCode{filter} argument is only available with \RPackage{gWidgetsRGtk2}]
 
 The \RFunc{gvarbrowser} function constructs a widget very similar to
 this, only it uses \RFunc{gtree} to allow further display of
@@ -627,12 +638,26 @@ a JAVA device. This implementation does not currently allow the device
 to be embedded in a widget, so the \RFunc{gimage} constructor below
 would make a widget in a separate window.]
 
+[In \RPackage{gWidgetstcltk} there is no embeddable graphics
+device. (The \RPackage{tkrplot} is different). The \RCode{ggraphics}
+call would just put in a stub.]
+
 This demo consists of a widget to control a random sample, in this case
 from the standard normal distribution or the exponential distribution
 with rate 1; a widget to select the sample size; a widget to select the
 kernel; and a widget to adjust the default bandwidth. We use radio
 buttons for the first two, a drop list for the third and a slider for
 the latter.
+
+
+The \RPackage{gWidgetstcltk} pacakge is a little different from the
+other two, as it requires that a container be non-null. This is
+because the underlying \RPackage{tcltk} widgets need to have a parent
+container to be initialized. As such, the following won't work. A
+working example will be given next for comparison. This one is left
+here, as the separation  of GUI building into: widget definition;
+widget layout; and assignment of handlers, or call backs, seems to
+lead to easier to understand code.
 
 Proceeding, first we define the two distributions and the possible kernels.
 \begin{Scode}
@@ -700,6 +725,58 @@ A realization of this widget was captured in Figure~\ref{fig:gtkdensity}.
 \end{figure}
 
 
+Now as promised, we present a function that would work under any of
+the toolkits. The \RCode{ggraphics} call is not included, as this
+doesn't work with \RPackage{gWidgetstcltk}. The key difference though
+is the containers are included in the creation of the widgets. The
+arguments that would be passed to \RCode{add} are included in the
+construction of the widget.
+
+\begin{Scode}
+gwtkdensity = function() {
+
+  ## set up
+  availDists = c(Normal = "rnorm", Exponential="rexp")
+  availKernels = c("gaussian", "epanechnikov", "rectangular",
+  "triangular", "biweight", "cosine", "optcosine")
+  
+  
+  updatePlot = function(h,...) {
+    x = do.call(availDists[svalue(distribution)],list(svalue(sampleSize)))
+    plot(density(x, adjust = svalue(bandwidthAdjust), kernel = svalue(kernel)))
+    rug(x)
+  }
+  
+  ##The widgets
+  
+  ## now layout
+  win = gwindow("gwtkdensity")
+  gp <- ggroup(horizontal=FALSE, cont=win)
+  
+  tmp = gframe("Distribution", container=gp, expand=TRUE)
+  distribution = gradio(names(availDists), horizontal=FALSE,
+  cont=tmp, 
+  handler=updatePlot)
+  
+  
+  tmp  = gframe("Sample  size", container=gp, expand=TRUE)
+  sampleSize = gradio(c(50,100,200, 300), cont=tmp,
+  handler = updatePlot)
+  
+  
+  tmp =gframe("Kernel", container=gp, expand=TRUE)
+  kernel = gdroplist(availKernels, cont=tmp,
+  handler=updatePlot)
+  
+  tmp = gframe("Bandwidth adjust", container=gp, expand=TRUE)
+  bandwidthAdjust = gslider(from=0,to=2,by=.01, value=1,
+  cont=tmp, expand=TRUE,
+  handler=updatePlot)
+  
+}
+\end{Scode}
+
+
 
 \section{Composing email}
 
@@ -720,6 +797,9 @@ the window; and a text buffer for typing the message.
 The following code will create a function called \RFunc{Rmail}
 (apologies to any old-time emacs users) which on many UNIX machines can
 send out e-mails using the \RCode{sendmail} command.
+
+This is not written to work with \RCode{gWidgetstcltk}.
+
 
 First we define some variables:
 \begin{Scode}
@@ -887,6 +967,73 @@ e-mail message on a UNIX machine. There are likely more than 100
 different ways clever people could think of doing this task, most better than
 this one.
 
+The changes needed to have this run under \RPackage{gWidgetstcltk} are
+a few. First, each widget needs to have a container specified when
+defined. The \RCode{glayout} container used in the line
+\begin{Soutput}
+  tbl[1,1] = glabel("To:")  
+\end{Soutput}
+ Would be written using \RCode{tbl} as the container:
+ \begin{Soutput}
+   tbl[1,1] = glabel("To:", container=tbl)  
+ \end{Soutput}
+(Well, actually, this could be done with \RCode{tbl[1,1] = "To:"}, but
+  that is a special case.)
+
+The line that creates the layout container,
+\begin{Soutput}
+  visible(tbl) <- TRUE  
+\end{Soutput}
+is not necessary, but doesn't hurt. Only the \RPackage{gWidgetsRGtk2}
+requires this.
+
+
+\section{A expand group}
+A useful, but not well used container involves an icon to click on to
+show a container and a similar icon to hide the container. In some
+toolkits this is implemented, in others it can be implement using
+\RCode{gWidgets}. This involves using \RCode{delete} to remove what is added.
+\begin{Scode}
+  ## expand group
+  rightArrow = system.file("images/1rightarrow.gif",package="gWidgetstcltk")
+  downArrow = system.file("images/1downarrow.gif",package="gWidgetstcltk")
+
+
+  g = ggroup(horizontal=FALSE,cont=T)
+  
+  g1 = ggroup(horizontal=TRUE, cont=g)
+  icon = gimage(downArrow,cont=g1)
+  label = glabel("Expand group example", cont=g1)
+  
+  g2 = ggroup(cont=g, expand=TRUE)
+  
+  expandGroup = function() add(g,g2, expand=TRUE)
+  hideGroup = function() delete(g,g2)
+  
+  state = TRUE                            # a global
+  
+  changeState = function(h,...) {
+    if(state) {
+      hideGroup()
+      svalue(icon) <- rightArrow
+    }  else {
+      expandGroup()
+      svalue(icon) <- downArrow
+    }
+    state <<- !state
+  }
+  
+  addHandlerClicked(icon, handler=changeState)
+  addHandlerClicked(label, handler=changeState)
+  
+  gWidgets/inst/doc/
+  gbutton("Hide by clicking arrow", cont=g2)
+  
+\end{Scode}
+%%>>
+
+
+
 \section{Drag and drop}
 GTK supports drag and drop features, and the \RCode{gWidgets} API provides a
 simple mechanism to add drag and drop to widgets. (Some widgets, such
@@ -899,7 +1046,11 @@ man page \RCode{?gWidgetsRGtk-dnd} for more information.
 [In \RPackage{gWidgetsrJava} drag and drop is not fully
 implemented. One can drag from widget to widget, but there is no way
 to configure what happens when a drop is made, or what is dragged when
-a drag is initiated.]
+a drag is initiated.
+
+In \RPackage{gWidgetstcltk} drag and drop works but not from other
+applications. 
+]
 
 
 We give two examples of drag and drop. One where variables from the
@@ -949,7 +1100,9 @@ doPlot = function() {
 The basic structure of using \RCode{gWidgets} is present in this
 example. The key widgets are the variable browser
 (\RFunc{gvarbrowser}), the plot device (\RFunc{ggraphics}), and the
-text-entry widget (\RFunc{gedit}). These are put into differing
+text-entry widget (\RFunc{gedit}). (One can see an \RPackage{RGtk2}
+bias here, as the other two implementations do not have a graphics
+device.)These are put into differing
 containers.  Finally, there is an handler given to the result of the
 drag and drop. The \RFunc{do.call} line uses the \RFunc{svalue} and
 \RFunc{id} methods on a character, which in this instance return the
@@ -961,9 +1114,22 @@ variable browser over to the area below the plot window. The
 \RFunc{plot} method is called on the values in the dropped variable.
 
 
+The \RCode{gvarbrowser} produces a widget from which a drop
+\textit{source} has been added. To drop from a different source the
+\RCode{addDropSource} method is used. The return value of the handler
+will be passed to the \RCode{dropdata} valeu of the handler for
+\RCode{addDropTarget}. 
+
+[The latter varies from toolkit to toolkit, in
+\RPackage{gWidgetsrJava} both are ignored, in RGtk2 some widget have
+built-in drag and drop which can be overridden, and in tcltk
+everything must be done using the gWidgets interface, as drag and drop
+is not naturally implemented by the toolkit.]
+
 \subsection{DND from the data frame editor}
 
-[This example applies only to \RPackage{gWidgetsRGtk}, not \RPackage{gWidgetsrJava}]]
+[This example applies only to \RPackage{gWidgetsRGtk}, not
+\RPackage{gWidgetsrJava} or \RPackage{gWidgetstcltk}]
 
 
 The \RFunc{gdf} constructor makes a widget for editing data
@@ -1054,10 +1220,13 @@ can give access to lots of information compactly on the screen. The
 are added via the \RFunc{add} method, the current page is deleted
 through an icon [not implemented in \RPackage{gWidgetsrJava}], or via
 the \RFunc{dispose} method, and vector methods are defined, such as
-\RFunc{names}, to make interacting with notebooks natural.
+\RFunc{names}, to make interacting with notebooks natural (the names
+refer to the tab labels.) One can also add pages when constructing a
+widget using the notebook as the container and passing in an extra
+argument \RCode{label}.
 
 The following example shows how a notebook can be used to organize
-different graphics devices. 
+different graphics devices. It is not written for tcltk or rJava.
 
 [In \RPackage{gWidgetsRGtk2} the
 \RFunc{ggraphicsnotebook} function produces a  similar
@@ -1198,7 +1367,7 @@ Figure~\ref{fig:filebrowser} for an example.
   \caption{Illustration of a file browser using \RFunc{gtree} constructor.}
   \label{fig:filebrowser}
 \end{figure}
-\end{Scode}
+
 
 The presence of the \RCode{isdir} column may bug some. It was
 convenient when defining \RFunc{hasOffspring} and \RFunc{icon.FUN},
@@ -1245,7 +1414,7 @@ A simple example would be something like:
   lst$continent$handler = function(h,...) svalue(world) <- "continent"
   lst$country$handler = function(h,...) svalue(world) <- "country"
   lst$state$handler = function(h,...) svalue(world) <- "state"
-  addpopupmenu(world, lst)
+  addPopupmenu(world, lst)
 \end{Scode}
 Clicking on ``world'' with the mouse allows one to change the value in
 the label.
@@ -1350,8 +1519,30 @@ the handling of the initial variable when a formula is expected.
       type = NULL
     }
 
+
+    Comment(" Layout")
+
+    Comment("Main group")
+    win = gwindow("create dialog")
+    gp = ggroup(horizontal = TRUE, container=win)
+    Comment("Arrange widgets with an output area")
+    Comment("Put widgets into a layout container")
+    tbl = glayout(container=gp)
+    gseparator(horizontal=FALSE, container=gp)
+    outputArea = gtext(container=gp, expand=TRUE)
+
+
     Comment("Make widgets for arguments from formals")
-    widgets = sapply(lst, getWidget)
+    widgets = sapply(lst, getWidget, cont=tbl)
+
+    Comment("Layout widgets")
+    for( i in 1:length(widgets)) {
+      tbl[i,1] = names(lst)[i]
+      tbl[i,2] = widgets[[i]]
+    }
+    Comment("Finalize the layout container")
+    visible(tbl) <- TRUE
+
 
     Comment("Add update handler to each widget when changed")
     sapply(widgets, function(obj) {
@@ -1367,23 +1558,7 @@ the handling of the initial variable when a formula is expected.
     }),
     silent=TRUE))
 
-    Comment("Put widgets into a layout container")
-    tbl = glayout()
-    for( i in 1:length(widgets)) {
-      tbl[i,1] = glabel(names(lst)[i])
-      tbl[i,2] = widgets[[i]]
-    }
 
-    Comment("Finalize the layout container")
-    visible(tbl) <- TRUE
-
-    Comment("Main group")
-    gp = ggroup(horizontal = TRUE, container=window)
-    Comment("Arrange widgets with an output area")
-    add(gp, tbl)
-    gseparator(horizontal=FALSE, container=gp)
-    outputArea = gtext()
-    add(gp, outputArea, expand=TRUE)
 
     Comment("In case this doesn't get exported")
     svalue.default = function(obj, ...) obj
@@ -1418,16 +1593,16 @@ and maps it to an appropriate widget. For arguments of type
 \RCode{call} the function recurses.
 
 \begin{Scode}
-  getWidget = function(x) {
+  getWidget = function(x, cont=cont) {
     switch(class(x),
-    "numeric" = gedit(x, coerce.with=as.numeric),
-    "character" = gdroplist(x, active=1),
-    "logical" = gdroplist(c(TRUE,FALSE), active = 1 + (x == FALSE)),
-    "name" = gedit(""),
-    "NULL" = gedit("NULL"),
-    "list" = gListOfWidgets(x,name=""), 
-    "call" = getWidget(eval(x)), # recurse
-    gedit()                     # default
+    "numeric" = gedit(x, coerce.with=as.numeric, cont=cont),
+    "character" = gdroplist(x, active=1, cont=cont),
+    "logical" = gdroplist(c(TRUE,FALSE), active = 1 + (x == FALSE), cont=cont),
+    "name" = gedit("", cont=cont),
+    "NULL" = gedit("NULL", cont=cont),
+    "list" = gListOfWidgets(x,name="", cont=cont), 
+    "call" = getWidget(eval(x), cont=cont), # recurse
+    gedit("", cont=cont)                     # default
     )
   }
 \end{Scode}
@@ -1443,13 +1618,14 @@ the list of widgets stored is consulted by the following \RFunc{svalue} method.
     gp = gframe(text = name, container=container, horizontal=FALSE, ...)
     obj = list(ref=gp)
     class(obj) = c("gListOfWidgets", "gComponent", "gWidget")
-  widgetList = lapply(lst, getWidget)
+
+  tbl = glayout(container = gp)
+  widgetList = lapply(lst, getWidget, cont=tbl)
   tag(obj, "widgetList") <-  widgetList
 
   ## pack into layout
-  tbl = glayout(container = gp)
   for(i in 1:length(widgetList)) {
-    tbl[i,1] = glabel(names(widgetList)[i])
+    tbl[i,1] = names(widgetList)[i]
     tbl[i,2] = widgetList[[i]]
   }
   visible(tbl) <- TRUE

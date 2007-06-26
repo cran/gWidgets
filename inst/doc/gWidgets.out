@@ -12,12 +12,13 @@
 \BOOKMARK [2][-]{subsection.7.2}{browseEnv\(\)}{section.7}
 \BOOKMARK [1][-]{section.8}{A gWidgetsDensity demo}{}
 \BOOKMARK [1][-]{section.9}{Composing email}{}
-\BOOKMARK [1][-]{section.10}{Drag and drop}{}
-\BOOKMARK [2][-]{subsection.10.1}{DND with plots}{section.10}
-\BOOKMARK [2][-]{subsection.10.2}{DND from the data frame editor}{section.10}
-\BOOKMARK [1][-]{section.11}{Notebooks}{}
-\BOOKMARK [1][-]{section.12}{The tree widget}{}
-\BOOKMARK [1][-]{section.13}{Popup menus}{}
-\BOOKMARK [1][-]{section.14}{Making widgets from an R function}{}
-\BOOKMARK [2][-]{subsection.14.1}{Using ggenericwidget\(\)}{section.14}
-\BOOKMARK [2][-]{subsection.14.2}{An alternative to ggenericwidget\(\)}{section.14}
+\BOOKMARK [1][-]{section.10}{A expand group}{}
+\BOOKMARK [1][-]{section.11}{Drag and drop}{}
+\BOOKMARK [2][-]{subsection.11.1}{DND with plots}{section.11}
+\BOOKMARK [2][-]{subsection.11.2}{DND from the data frame editor}{section.11}
+\BOOKMARK [1][-]{section.12}{Notebooks}{}
+\BOOKMARK [1][-]{section.13}{The tree widget}{}
+\BOOKMARK [1][-]{section.14}{Popup menus}{}
+\BOOKMARK [1][-]{section.15}{Making widgets from an R function}{}
+\BOOKMARK [2][-]{subsection.15.1}{Using ggenericwidget\(\)}{section.15}
+\BOOKMARK [2][-]{subsection.15.2}{An alternative to ggenericwidget\(\)}{section.15}
