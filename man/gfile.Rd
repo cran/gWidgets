@@ -29,7 +29,8 @@ gcalendar(text = "", format = "\%Y-\%m-\%d", handler=NULL, action=NULL, containe
   \item{filter}{Filter for files shown during selection }
   \item{quote}{Is result quoted}
   \item{format}{Format of date}
-  \item{handler}{Handler for when file is changed}
+  \item{handler}{Handler for when file is changed. The component
+    \code{file} of the first argument contains the file name}
   \item{action}{ Passed to handler }
   \item{container}{Optional container to attach widget to}
   \item{\dots}{Passed to \code{gedit} instance}
@@ -70,7 +71,7 @@ gcalendar(text = "", format = "\%Y-\%m-\%d", handler=NULL, action=NULL, containe
 \dontrun{
 ## source a file using a handler
 sourceFile = function() gfile("Select a file",type="open", handler =
-function(h,...) source(svalue(h$obj)))
+function(h,...) source(h$file))
 
 ## source a file using fact that dialog is modal
 source(gfile())
@@ -78,7 +79,7 @@ source(gfile())
 ## apply a generic action to the file
 countLines = function(filename) print(length(readLines(filename)))
 chooseFile = function() gfile("Select a file",type="open",
-action="countLines", handler = function(h,...) do.call(h$action,list(svalue(h$obj))))
+action="countLines", handler = function(h,...) do.call(h$action,list(h$file)))
 }
 }
 \keyword{interface}

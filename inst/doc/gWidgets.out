@@ -1,24 +1,25 @@
 \BOOKMARK [1][-]{section.1}{Background}{}
-\BOOKMARK [1][-]{section.2}{Installation}{}
-\BOOKMARK [2][-]{subsection.2.1}{Installing the GTK libraries}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Install the R packages}{section.2}
-\BOOKMARK [1][-]{section.3}{Loading gWidgets}{}
-\BOOKMARK [1][-]{section.4}{Hello world}{}
-\BOOKMARK [2][-]{subsection.4.1}{Using containers}{section.4}
-\BOOKMARK [1][-]{section.5}{Making a confirmation dialog}{}
-\BOOKMARK [1][-]{section.6}{Methods}{}
-\BOOKMARK [1][-]{section.7}{Adding a GUI to some common tasks}{}
-\BOOKMARK [2][-]{subsection.7.1}{file.choose\(\)}{section.7}
-\BOOKMARK [2][-]{subsection.7.2}{browseEnv\(\)}{section.7}
-\BOOKMARK [1][-]{section.8}{A gWidgetsDensity demo}{}
-\BOOKMARK [1][-]{section.9}{Composing email}{}
-\BOOKMARK [1][-]{section.10}{A expand group}{}
-\BOOKMARK [1][-]{section.11}{Drag and drop}{}
-\BOOKMARK [2][-]{subsection.11.1}{DND with plots}{section.11}
-\BOOKMARK [2][-]{subsection.11.2}{DND from the data frame editor}{section.11}
-\BOOKMARK [1][-]{section.12}{Notebooks}{}
-\BOOKMARK [1][-]{section.13}{The tree widget}{}
-\BOOKMARK [1][-]{section.14}{Popup menus}{}
-\BOOKMARK [1][-]{section.15}{Making widgets from an R function}{}
-\BOOKMARK [2][-]{subsection.15.1}{Using ggenericwidget\(\)}{section.15}
-\BOOKMARK [2][-]{subsection.15.2}{An alternative to ggenericwidget\(\)}{section.15}
+\BOOKMARK [1][-]{section.2}{Overview}{}
+\BOOKMARK [1][-]{section.3}{Installation}{}
+\BOOKMARK [2][-]{subsection.3.1}{Installing the GTK libraries}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Install the R packages}{section.3}
+\BOOKMARK [1][-]{section.4}{Loading gWidgets}{}
+\BOOKMARK [1][-]{section.5}{Hello world}{}
+\BOOKMARK [2][-]{subsection.5.1}{Using containers}{section.5}
+\BOOKMARK [1][-]{section.6}{Making a confirmation dialog}{}
+\BOOKMARK [1][-]{section.7}{Methods}{}
+\BOOKMARK [1][-]{section.8}{Adding a GUI to some common tasks}{}
+\BOOKMARK [2][-]{subsection.8.1}{file.choose\(\)}{section.8}
+\BOOKMARK [2][-]{subsection.8.2}{browseEnv\(\)}{section.8}
+\BOOKMARK [1][-]{section.9}{A gWidgetsDensity demo}{}
+\BOOKMARK [1][-]{section.10}{Composing email}{}
+\BOOKMARK [1][-]{section.11}{A expand group}{}
+\BOOKMARK [1][-]{section.12}{Drag and drop}{}
+\BOOKMARK [2][-]{subsection.12.1}{DND with plots}{section.12}
+\BOOKMARK [2][-]{subsection.12.2}{DND from the data frame editor}{section.12}
+\BOOKMARK [1][-]{section.13}{Notebooks}{}
+\BOOKMARK [1][-]{section.14}{The tree widget}{}
+\BOOKMARK [1][-]{section.15}{Popup menus}{}
+\BOOKMARK [1][-]{section.16}{Making widgets from an R function}{}
+\BOOKMARK [2][-]{subsection.16.1}{Using ggenericwidget\(\)}{section.16}
+\BOOKMARK [2][-]{subsection.16.2}{An alternative to ggenericwidget\(\)}{section.16}

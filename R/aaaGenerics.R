@@ -801,16 +801,19 @@ setGeneric( '.gvarbrowser' ,
 
 ## define a gWidget constructor
 ## not a generice          
-gwindow = function(title="Window" ,visible=TRUE, name=title, ...,
+gwindow = function(title="Window" ,visible=TRUE, name=title,
+  width = NULL, height = NULL,
+  handler = NULL, action = NULL,
+  ...,
   toolkit=guiToolkit()
   ) {
-  win = .gwindow(toolkit,title, visible,...)
+  win = .gwindow(toolkit,title, visible,width, height, handler, action, ...)
   obj = new("guiContainer",widget=win,toolkit=toolkit)
   return(obj)
 }
 
 ## define a toolkit constructor, dispatch on toolkit
-setGeneric(".gwindow",function(toolkit, title, visible, ...) standardGeneric(".gwindow"))
+setGeneric(".gwindow",function(toolkit, title, visible, width, height, handler, action, ...) standardGeneric(".gwindow"))
 
 ## ggroup
  
@@ -1373,6 +1376,25 @@ setMethod("addHandlerDoubleclick",signature(obj="guiWidget"),
             toolkit = obj@toolkit
             .addhandlerdoubleclick(obj@widget,toolkit,handler, action, ...)
           })
+
+
+## Selections
+setGeneric("addhandlerselect",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerselect"))
+setMethod("addhandlerselect",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerselect(obj@widget,toolkit,handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandlerselect",function(obj,toolkit,...) standardGeneric(".addhandlerselect"))
+## caps
+setGeneric("addHandlerSelect",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerSelect"))
+setMethod("addHandlerSelect",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerselect(obj@widget, toolkit, handler, action, ...)
+          })
+
 
 
 ## addhandlerrightclick

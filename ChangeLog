@@ -1,3 +1,9 @@
+2007-07-31  John Verzani  <jverzani@gmail.com>
+
+	* R/aaaGenerics.R: gwindow -- added args width height to set
+		  default size at window creation. Different from size<-
+			  which sets the minimum size.
+
 2007-06-26  John Verzani  <jverzani@gmail.com>
 
 	* R/icons.R: Moved icons into gWidgets from tcltk

@@ -26,6 +26,7 @@ exportClasses("guiWidgetsToolkit",
               "guiWidgetsToolkittcltk",
               "guiWidgetsToolkitRwxWidgets",                            
               "guiWidget","guiComponent","guiContainer","guiDialog",
+              "gWidgetANY","gComponentANY","gContainerANY","guiDialog",
               "guiWidgetOrNULL")
 
 ## these are used by others but defined here.

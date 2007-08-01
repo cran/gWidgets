@@ -8,14 +8,21 @@
   one container may be packed inside a window.
 }
 \usage{
-gwindow(title = "Window", visible = TRUE, name=title,  ..., toolkit = guiToolkit())
+gwindow(title = "Window", visible = TRUE, name=title,
+  width = NULL, height= NULL,
+handler = NULL, action = NULL,
+ ..., toolkit = guiToolkit())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{title}{Title of window}
   \item{visible}{If \code{TRUE} window is drawn when
   constructed. Otherwise, window can be drawn latter using \code{visible<-}.}
-  \item{name}{Name for registry of windows}
+\item{name}{Name for registry of windows}
+\item{width}{Default width for window at creation}
+\item{height}{Default height for window at creation}
+\item{handler}{Handler for destroy event}
+\item{action}{Passed to handler}
   \item{\dots}{Not used}
   \item{toolkit}{Which GUI toolkit to use}  
 }
@@ -31,6 +38,10 @@ gwindow(title = "Window", visible = TRUE, name=title,  ..., toolkit = guiToolkit
    container.
 
    The \code{dispose} method destroys the window.
+
+   The \code{size} method sets the minimum size. Use the \code{width}
+   and \code{height} arguments to set the default size when the window
+   is constructed.
 }
 \value{}
 \references{}

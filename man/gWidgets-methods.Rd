@@ -4,6 +4,7 @@
 \alias{.add,guiWidget,guiWidgetsToolkitRGtk2,ANY-method}
 \alias{.add,guiWidget,guiWidgetsToolkitRGtk2,guiWidgetORgWidgetRGtkORRGtkObject-method}
 \alias{.add,gContainerRGtk,guiWidgetsToolkitRGtk2,guiWidget-method}
+\alias{.add,gHelpANY,ANY,ANY-method}
 \alias{.add,gMenuRGtk,guiWidgetsToolkitRGtk2,guiWidget-method}
 \alias{.add,gNotebookRGtk,guiWidgetsToolkitRGtk2,guiWidget-method}
 \alias{.add,gTextRGtk,guiWidgetsToolkitRGtk2,guiWidget-method}

@@ -65,6 +65,9 @@
 \author{John Verzani, \url{gWidgetsRGtk@gmail.com}}
 \maketitle
 
+%% Sweave stuff
+\SweaveOpts{keep.source=TRUE}
+
 \section*{Abstract:}
 Examples for using the \RPackage{gWidgets} package are presented.  The
 \RPackage{gWidgets} API is intended to be a cross platform means
@@ -80,7 +83,7 @@ there are three available toolkits.
 \end{itemize}
 
 
-The API is inteneded to faciliatate the task of writing basic GUIs, as
+The API is intended to facilitate the task of writing basic GUIs, as
 it simplifies many of the steps involved in setting up widgets and
 packing them into containers. Although not nearly as powerful as any
 individual toolkit, the \RPackage{gWidgets} API is suitable for many
@@ -103,25 +106,50 @@ Urbanek, with improvement by Philippe Grosjean, Michael Lawrence,
 Simon Urbanek and John Verzani.  This document focuses on the more
 complete toolkit implementation provided by the
 \RPackage{gWidgetsRGtk2} package. [Occasional differences with
-\RPackage{gWidgetsrJava} are pointed out in braces.] The GTK toolkit
-is interfaced via the \RPackage{RGtk2} package of Michael Lawrence,
-which in turn is derived from Duncan Temple Lang's \RPackage{RGtk}
-package. The excellent \RPackage{RGtk2} package opens up the full
-power of the GTK2 toolkit, only a fraction of which is available
-though \RPackage{gWidgetsRGtk2}.
+\RPackage{gWidgetsrJava} or \RPackage{gWidgetstcltk} are pointed out
+in braces.] The GTK toolkit is interfaced via the \RPackage{RGtk2}
+package of Michael Lawrence, which in turn is derived from Duncan
+Temple Lang's \RPackage{RGtk} package. The excellent \RPackage{RGtk2}
+package opens up the full power of the GTK2 toolkit, only a fraction
+of which is available though \RPackage{gWidgetsRGtk2}.
 
 The \RCode{gWidgets} API is still in the formative stages and likely will
 change as more people use it and offer suggestions for improvement.
 
-This document supplements the man pages by providing more detailed
-examples. The man pages contain more specific information. See the 
-page \RCode{gWidgets-package} for a listing of the available man pages.
+\section{Overview}
+
+The basic tasks in setting up a GUI involve: constructing the desired
+widgets, laying these widgets out into containers, and assigning
+handlers to respond to user-driven events involving the widgets. The
+\RPackage{gWidgets} package is geared around these, and providing a
+familiar means to interact with the widgets once constructed. Each
+widget constructor include arguments \RCode{container} to specify a
+parent container to place it in; \RCode{handler}, to specify a handler
+to respond to the main event that the widget has; and \RCode{action},
+which is used to pass extra information along to any handler. Each
+widget when constructed returns an object of S4 class which can be
+manipulated using generic functions, some new and some familiar.
+
+The basic widgets are likely familiar: buttons, labels, text-edit areas,
+etc. In addition, there are some R-specific compound widgets such as a
+variable browser, data frame viewer, and help viewer. In contrast to
+these are a few basic dialogs, which draw their own window and are
+modal, hence do not return objects which can be manipulated.
+
+The examples below introduce the primary widgets, containers, and
+dialogs in a not-so systematic manner, focusing instead on some
+examples which show how to use \RPackage{gWidgets}. The man pages are
+also a source information about the widgets, see \RCode{?gWidgets} for
+more detail. For differences between the toolkit implementation, see
+the man page for the package name, for example,
+\RCode{?gWidgetstcltk}.
 
 This document is a vignette. As such, the code displayed is available
 within an R session through the command
 \RCode{edit(vignette("gWidgets"))}. 
 
 \section{Installation}
+
 In case you are reading this vignette without having installed
 gWidgets, here are some instructions. This focuses on installing
 \RPackage{gWidgetsRGtk2}. 
@@ -197,13 +225,13 @@ For MAC OS X, the packages are provided as source, not the default
 > install.packages("gWidgetsRGtk2", dep = TRUE,type = "source" )
 \end{verbatim}
 
-On occasion, newer versions are available from
-\href{http://www.math.csi.cuny.edu/pmg}{gWidgets's website}. To
-install from here add the \texttt{repos=} argument, as follows:
+% On occasion, newer versions are available from
+% \href{http://www.math.csi.cuny.edu/pmg}{gWidgets's website}. To
+% install from here add the \texttt{repos=} argument, as follows:
 
-\begin{verbatim}
-> install.packages("gWidgetsRGtk2",dep = TRUE, repos = "http://www.math.csi.cuny.edu/pmg")
-\end{verbatim}
+% \begin{verbatim}
+% > install.packages("gWidgetsRGtk2",dep = TRUE, repos = "http://www.math.csi.cuny.edu/pmg")
+% \end{verbatim}
 
 
 [The \RPackage{gWidgetsrJava} package is installed similarly. However,
@@ -222,6 +250,7 @@ already installed. The \RPackage{gWidgetstcltk} package was designed
 not to require other tcl libraries so works out of the box, although
 some features of the gWidgets API could not be implemented due to this
 restriction.
+
 
 \section{Loading gWidgets}
 We  load the \RCode{gWidgets} package, using the \RCode{gWidgetsRGtk2}
@@ -242,10 +271,6 @@ in the \RFunc{options} call or ``tcltk'' for the
 %  require(gWidgetsRGtk2)
 %\end{Scode}
 
-Both the \RPackage{gWidgets} and \RPackage{gWidgetsRGtk2} package use
-S4 methods and classes and load much faster under the newer
-\RPackage{methods} package accompanying R version 2.4.0 or greater.
-
 
 [For \RPackage{gWidgetsrJava} the interactive features only work if
 run from within a \RCode{JGR} session. For this, one starts
@@ -254,12 +279,7 @@ run from within a \RCode{JGR} session. For this, one starts
 \section{Hello world}
 
 We begin by showing how to make various widgets which display the
-ubiquitous ``Hello world'' message. First though we define a function
-allowing us to comment code within Sweave.
-\begin{Scode}
-  Comment = function(...) invisible(...)  
-\end{Scode}
-
+ubiquitous ``Hello world'' message. 
 
 
 
@@ -291,7 +311,7 @@ Next a label:
   obj=glabel("Hello world", container = gwindow())  
 \end{Scode}
 
-Now for single line of ediable text:
+Now for single line of editable text:
 \begin{Scode}
   obj=gedit("Hello world", container = gwindow())
 \end{Scode}
@@ -339,8 +359,10 @@ with a checkbox group:
 For selecting a numeric value from a sequence of values, sliders and
 spinbuttons are commonly used:
 \begin{Scode}
-  obj = gslider(from=0, to = 7734, by =100, value=0,container=gwindow())
-  obj = gspinbutton(from=0, to = 7734, by =100, value=0, container=gwindow())
+  obj = gslider(from=0, to = 7734, by =100, value=0,
+    container=gwindow())
+  obj = gspinbutton(from=0, to = 7734, by =100, value=0, 
+   container=gwindow())
 \end{Scode}
 
 Common to all of the above is a specification of the ``value'' of the
@@ -356,8 +378,10 @@ containers. (Figure~\ref{fig:hello-world}.)
 \begin{Scode}
   win = gwindow("Hello World, ad nauseum", visible=TRUE)
   group = ggroup(horizontal = FALSE, container=win)
-  obj=gbutton("Hello...",container=group, handler = function(h,...) gmessage("world"))
-  obj=glabel("Hello...", container =group, handler = function(h,...) gmessage("world"))
+  obj=gbutton("Hello...",container=group, 
+    handler = function(h,...) gmessage("world"))
+  obj=glabel("Hello...", container =group, 
+    handler = function(h,...) gmessage("world"))
   obj=gdroplist(c("Hello","world"), container=group)
   obj=gedit("Hello world", container=group)
   obj=gtext("Hello world", container=group, font.attr=list(style="bold"))
@@ -396,17 +420,20 @@ to respond to mouse-driven events. In this case the event of a widget
 being clicked. See \RCode{?gWidgetsRGtk-handlers} for details on
 handlers. 
 
-The message is an instance of a dialog. in the \RPackage{gWidgets} API
-dialogs are usually modal, meaning nothing can be done until they are
-dismissed. (This can be annoying if a dialog appears under another
-window and can't be seen!)
+The message is an instance of a ``basic dialog'' (see
+\RCode{?gWidgets-dialogs}). The dialogs in \RCode{gWidgets} are
+modal, meaning R's event loop is stopped until the dialog is answered.
+(This can be annoying if a dialog appears under another
+window and can't be seen!) As such, they don't return an object which
+has methods defined for it, as by the time they can be accessed they
+have been dismissed. Instead, they return a value like a logical or a string.
 
 
 \section{Making a confirmation dialog}
 
 Let's see how we might use widgets to create our own confirmation
-dialog. We want to have an icon, a label for the message, and  buttons
-to confirm or dismiss the dialog.
+dialog, one which is not modal. We want to have an icon, a label for
+the message, and buttons to confirm or dismiss the dialog.
 
 The \RFunc{gimage} constructor allows images to be shown in a
 widget. In \RPackage{gWidgetsRGtk} there are several stock images, which can be
@@ -422,13 +449,13 @@ nested group containers to organize the layout. (Alternately the
   group = ggroup(container = window)
   gimage("info", dirname="stock", size="dialog", container=group)
 
-  Comment("A group for the message and buttons")
-  innner.group = ggroup(horizontal=FALSE, container = group)
+  ## A group for the message and buttons
+  inner.group = ggroup(horizontal=FALSE, container = group)
   glabel(message, container=inner.group, expand=TRUE)
 
-  Comment("A group to organize the buttons") 
+  ## A group to organize the buttons
   button.group = ggroup(container = innner.group)
-  Comment("Push buttons to right")
+  ## Push buttons to right
   addSpring(button.group)
   gbutton("ok", handler=handler, container=button.group)
   gbutton("cancel", handler = function(h,...) dispose(window),
@@ -449,7 +476,8 @@ referenced inside the handler by \RCode{h\$obj} below. In
 argument, which is a list with named elements. The \RListel{obj}
 component refers to the widget the handler is assigned to.
 
-Trying it out produces a widget like that shown in Figure~\ref{fig:confirmDialog}
+Trying it out produces a widget like that shown in
+Figure~\ref{fig:confirmDialog}
 
 \begin{figure}[htbp]
   \centering
@@ -461,7 +489,7 @@ Trying it out produces a widget like that shown in Figure~\ref{fig:confirmDialog
 \begin{Scode}
   confirmDialog("This space for rent", handler = function(h,...) {
     print("what to do... [Change accordingly]")
-    Comment("In this instance dispose finds its parent window and closes it")
+    ## In this instance dispose finds its parent window and closes it
     dispose(h$obj)
   })
 \end{Scode}
@@ -490,13 +518,14 @@ back into the label. As text labels are of class ``character,'' the
 value is coerced to be numeric.
 
 There are other methods (see \RCode{?gWidgetsRGtk-methods}) that try
-to make interacting with a widget as natural (to an R user) as possible. For
-instance, a radio button has a selected value returned by
-\RFunc{svalue}, but also a vector of possible values. These may be
+to make interacting with a widget as natural (to an R user) as
+possible. For instance, a radio button has a selected value returned
+by \RFunc{svalue}, but also a vector of possible values. These may be
 referenced using vector, \RCode{[}, notation. Whereas, a notebook
-container has a \RFunc{names} method which refers to the tab labels,
-a \RCode{[} method for referring to the widgets comprising the notebook
-pages, and a \RFunc{length} method to return the number of notebook pages.
+container has a \RFunc{names} method which refers to the tab labels, a
+\RCode{[} method for referring to the widgets comprising the notebook
+pages, and a \RFunc{length} method to return the number of notebook
+pages.
 
 \section{Adding a GUI to some common  tasks}
 
@@ -512,7 +541,7 @@ choice of a file from the file system. A typical usage might be
 to allow a user to source a file with a little help from a
 GUI. However, in many UNIX environments, there is no GUI for
 \RFunc{file.choose}, only a more convenient curses interface.  With
-the \RFunc{gfile} dialog, we can offer some improvement. 
+the \RFunc{gfile} dialog, we can offer some improvement.
 
 This dialog returns the name of the file selected, so that
 \begin{Soutput}
@@ -522,23 +551,27 @@ can replace the above.
 
 
 More in keeping with the \RCode{gWidgets} style, though, would be to
-give a handler when constructing the file chooser.  The function
-below is written to give some flexibility to the process:
+give a handler when constructing the file chooser. The \RCode{file}
+component of the handler argument gives the files name (not
+\RCode{svalue(h\$obj)}, as \RCode{gfile} does not return an object to
+call \RCode{svalue} on). For example, the function below is written to
+give some flexibility to the process:
+%%$
 
 \begin{Scode}
   fileChoose = function(action="print", text = "Select a file...",
   type="open", ...) {
     gfile(text=text, type=type, ..., action = action, handler =
     function(h,...) {
-      do.call(h$action, list(svalue(h$obj)))
+      do.call(h$action, list(h$file))
     })
     }
 \end{Scode}
 
 The \RArg{action} argument parameterizes the action. The default above
-calls \RFunc{print} on the selected file name. However, other tasks
-can now be done quite simply. For example, to \RFunc{source} a file we
-have:
+calls \RFunc{print} on the selected file name, hence printing the
+name. However, other tasks can now be done quite simply. For example,
+to \RFunc{source} a file we have:
 \begin{Sinput}
 > fileChoose(action="source")
 \end{Sinput}
@@ -588,14 +621,15 @@ with the arguments, which is shown in subsequent examples:
 Tables can have a double click handler (a single click is used for
 selection). To illustrate, we  add a handler which 
 calls \RFunc{summary} (or some other function) on a double-clicked item.
-
+(The first \RCode{svalue()} returns a character string, it is promoted
+to an object using \RCode{get})
 \begin{Scode}
   browseEnv2 = function(envir = .GlobalEnv, pattern, action="summary") {
     listOfObjects = lstObjects(envir=envir, pattern)
     gtable(listOfObjects, container = gwindow("browseEnv2"),
     action = action, 
     handler = function(h,...) {
-      print(do.call(h$action, list(svalue(h$obj))))
+      print(do.call(h$action, list(get(svalue(h$obj)))))
     })
   }
 \end{Scode}
@@ -611,11 +645,11 @@ based on the class of the object.
     filter.column = 2,
     action = action, 
     handler = function(h,...) {
-      print(do.call(h$action, list(svalue(h$obj))))
+      print(do.call(h$action, list(get(svalue(h$obj)))))
     })
   }
 \end{Scode}
-[The \RCode{filter} argument is only available with \RPackage{gWidgetsRGtk2}]
+[The \RCode{filter} argument is not available with \RPackage{gWidgetsrJava}]
 
 The \RFunc{gvarbrowser} function constructs a widget very similar to
 this, only it uses \RFunc{gtree} to allow further display of
@@ -627,7 +661,7 @@ list-like objects.
 
 We illustrate how to make a widget dynamically update a density
 plot. The idea comes from the \RCode{tkdensity} demo that accompanies
-the \RPackage{tcltk} package.
+the \RPackage{tcltk} package due to, I believe, Martin Maechler.
 
 We use the  \RFunc{ggraphics} constructor to create a new plot device. For
 RGtk2, this uses the \RPackage{cairoDevice} package also developed
@@ -639,7 +673,7 @@ to be embedded in a widget, so the \RFunc{gimage} constructor below
 would make a widget in a separate window.]
 
 [In \RPackage{gWidgetstcltk} there is no embeddable graphics
-device. (The \RPackage{tkrplot} is different). The \RCode{ggraphics}
+device. (The \RPackage{tkrplot} is different.) The \RCode{ggraphics}
 call would just put in a stub.]
 
 This demo consists of a widget to control a random sample, in this case
@@ -673,7 +707,8 @@ to widgets yet to be defined.
 \begin{Scode}
 updatePlot = function(h,...) {
   x = do.call(availDists[svalue(distribution)],list(svalue(sampleSize)))
-  plot(density(x, adjust = svalue(bandwidthAdjust), kernel = svalue(kernel)),main="Density plot")
+  plot(density(x, adjust = svalue(bandwidthAdjust), 
+    kernel = svalue(kernel)),main="Density plot")
   rug(x)
 }
 \end{Scode}
@@ -725,7 +760,7 @@ A realization of this widget was captured in Figure~\ref{fig:gtkdensity}.
 \end{figure}
 
 
-Now as promised, we present a function that would work under any of
+Now, as promised, we present a function that would work under any of
 the toolkits. The \RCode{ggraphics} call is not included, as this
 doesn't work with \RPackage{gWidgetstcltk}. The key difference though
 is the containers are included in the creation of the widgets. The
@@ -783,13 +818,12 @@ gwtkdensity = function() {
 This example shows how to write a widget for composing an email
 message. Not that this is what R is intended for, but rather to show
 how a familiar widget is produced by combining various pieces from
-\RCode{gWidgets}. This example is a little lengthy (especially with
-Sweave's formatting), but hopefully straightforward due to the
-familiarity with the result of the task.
+\RCode{gWidgets}. This example is a little lengthy, but hopefully
+straightforward due to the familiarity with the result of the task.
 
 For our stripped-down compose window we want the following: a menubar
 to organize functions; a toolbar for a few common functions; a ``To:''
-field which should have some means to store previously used e-mails; a
+field which should have some means to store previously used e-mail addresses; a
 ``From:'' field that should be editable, but not obviously so as often
 it isn't edited; a ``Subject:'' field which also updates the title of
 the window; and a text buffer for typing the message.
@@ -811,27 +845,29 @@ Now for the main function. We define some helper functions inside the
 body, so as not to worry about scoping issues.
 \begin{Scode}
 Rmail = function(draft = NULL, ...) {
-  Comment("Define main widgets, store in a list for ease of use")
+  ## Define main widgets, store in a list for ease of use
   widgets = list()
   widgets$to = gdroplist(c(), editable=TRUE)
   widgets$from = glabel(FROM, editable=TRUE)
   widgets$subject = gedit()
   widgets$text = gtext()
-
-  Comment("Handle drafts. Either a list or a filename to source")
-  Comment("The generic svalue() method makes setting values easy")
+  
+  ## Handle drafts. Either a list or a filename to source")
+  ## The generic svalue() method makes setting values easy")
   if(!is.null(draft)) {
     if(is.character(draft))
-      source(draft)
-    if(is.list(draft))
+    sys.source(draft,envir=environment()) # source into right enviro
+    if(is.list(draft)) {
       sapply(c("to","from","subject","text"), function(i)
-             svalue(widgets[[i]]) <- draft[[i]])
+      cat("assign",i,"value of",draft[[i]],"\n")
+      svalue(widgets[[i]]) <- draft[[i]])
+    }
   }
   
-  Comment("Helper functions")
+  ## Helper functions
   sendIt = function(...) {
     tmp = tempfile()
-
+    
     cat("To:", svalue(widgets$to),"\n",file = tmp, append=TRUE)
     cat("From:", svalue(widgets$from),"\n", file=tmp, append=TRUE)
     cat("Subject:", svalue(widgets$subject),"\n", file=tmp, append=TRUE)
@@ -840,39 +876,39 @@ Rmail = function(draft = NULL, ...) {
     cat("\n\n", file=tmp, append=TRUE)
     cat(svalue(widgets$text), file=tmp, append=TRUE)
     cat("\n", file=tmp, append=TRUE)
-
-    Comment("Use UNIX sendmail to send message")
+    
+    ## Use UNIX sendmail to send message
     system(paste("sendmail -t  <", tmp))
-    Comment("Add To: to buddyList")
+    ## Add To: to buddyList
     if(exists("buddyList"))
-      assign("buddyList", unique(c(buddyList,svalue(widgets$to))), inherits=TRUE)
-
-    Comment("Close window, delete file")
+    assign("buddyList", unique(c(buddyList,svalue(widgets$to))), inherits=TRUE)
+    
+    ## Close window, delete file
     unlink(tmp)
     dispose(window)
   }
 
-  Comment("Function to save a draft to the file draft.R")
+  ## Function to save a draft to the file draft.R
   saveDraft = function(...) {
     draft = list()
-    sapply(c("to","from","subject","text"), function(i)
-           draft[[i]]) <- svalue(widgets[[i]])
+    sapply(c("to","from","subject","text"), function(i) 
+    draft[[i]] <<- svalue(widgets[[i]])
+    )
     dump("draft","draft.R")
     cat("Draft dumped to draft.R\n")
   }
-
   
-  Comment("A simple dialog")
+  ## A simple dialog
   aboutMail = function(...) gmessage("Sends a message")
-
-  Comment("Make main window from top down")
-
+  
+  ## Make main window from top down
+  
   window = gwindow("Compose mail")
   group = ggroup(horizontal=FALSE, spacing=0, container = window)
-  Comment("Remove border")
+  ## Remove border
   svalue(group) <- 0
-
-  Comment("Menubar is defined by a list")
+  
+  ## Menubar is defined by a list
   menubarlist = list()
   menubarlist$File$Save$handler = saveDraft
   menubarlist$File$Send$handler = sendIt
@@ -880,43 +916,42 @@ Rmail = function(draft = NULL, ...) {
   menubarlist$File$Quit$icon = "quit"
   menubarlist$Help$About$handler = aboutMail
   add(group, gmenu(menubarlist))
-
-  Comment("Toolbar is also defined by a list")
+  
+  ## Toolbar is also defined by a list
   toolbarlist = list()
   toolbarlist$Send$handler = sendIt
   toolbarlist$Send$icon = "connect"
   toolbarlist$Save$handler = saveDraft
   toolbarlist$Save$icon = "save"
   add(group, gtoolbar(toolbarlist))
-
-
-  Comment("Put headers in a glayout() container")
+  
+  
+  ## Put headers in a glayout() container
   tbl = glayout(container = group)
-
-  Comment("To: field. Looks for buddyList")
+  
+  ## To: field. Looks for buddyList
   tbl[1,1] = glabel("To:")
   tbl[1,2] = widgets$to
-  if(exists("buddyList"))
-    widgets$to[] <- buddyList
-
-  Comment("From: field. Click to edit value")
+  if(exists("buddyList")) widgets$to[] <- buddyList
+  
+  ## From: field. Click to edit value
   tbl[2,1] = glabel("From:")
   tbl[2,2] = widgets$from
-
-  Comment("Subject: field. Handler updates window title")
+  
+  ## Subject: field. Handler updates window title
   tbl[3,1] = glabel("Subject:")
   tbl[3,2] = widgets$subject
   addHandlerKeystroke(widgets$subject, handler = function(h,...)
-                      svalue(window) = paste("Compose mail:",svalue(h$obj),collapse=""))
-
-  Comment("Layout needs to be finalized")
+  svalue(window) = paste("Compose mail:",svalue(h$obj),collapse=""))
+  
+  ## Layout needs to be finalized
   visible(tbl) <- TRUE
-
-  Comment("Add text box for message, but first some space")
+  
+  ## Add text box for message, but first some space
   addSpace(group, 5)
   add(group, widgets$text, expand=TRUE)
-
-  Comment("That's it.")
+  
+  ## That's it.
 }
 \end{Scode}
 %%$
@@ -985,14 +1020,16 @@ The line that creates the layout container,
   visible(tbl) <- TRUE  
 \end{Soutput}
 is not necessary, but doesn't hurt. Only the \RPackage{gWidgetsRGtk2}
-requires this.
+package requires this.
 
 
 \section{A expand group}
-A useful, but not well used container involves an icon to click on to
-show a container and a similar icon to hide the container. In some
-toolkits this is implemented, in others it can be implement using
-\RCode{gWidgets}. This involves using \RCode{delete} to remove what is added.
+As an example of the \RCode{add} and \RCode{delete} methods of a
+container, we show how one could create the \RCode{gexpandgroup}
+widget, were it not implemented by the underlying toolkit
+(eg. \RPackage{gWidgetstcltk}). This container involves an icon to
+click on to show the container and a similar icon to hide the
+container. A label indicates to the user what is going on.
 \begin{Scode}
   ## expand group
   rightArrow = system.file("images/1rightarrow.gif",package="gWidgetstcltk")
@@ -1025,13 +1062,30 @@ toolkits this is implemented, in others it can be implement using
   
   addHandlerClicked(icon, handler=changeState)
   addHandlerClicked(label, handler=changeState)
-  
-  gWidgets/inst/doc/
+
   gbutton("Hide by clicking arrow", cont=g2)
   
 \end{Scode}
 %%>>
 
+As an alternative to using the global \RCode{state}  variable, the
+\RFunc{tag} function could be used. This is like \RFunc{attr} only it
+stores the value with the widget -- not a copy -- so can be used
+within a handler. For instance, the \RCode{changeState} function could
+have been written as
+\begin{Scode}
+  tag(g,"state") = TRUE                            # a global
+  changeState = function(h,...) {
+    if(tag(g,"state") {
+      hideGroup()
+      svalue(icon) <- rightArrow
+    }  else {
+      expandGroup()
+      svalue(icon) <- downArrow
+    }
+    tag(g,"state") <- !tag(g,"state")
+  }
+\end{Scode}
 
 
 \section{Drag and drop}
@@ -1043,10 +1097,10 @@ and add a drop target to the widget you want to drag to. You can also
 provide a handler to deal with motions over the drop target. See the
 man page \RCode{?gWidgetsRGtk-dnd} for more information.
 
-[In \RPackage{gWidgetsrJava} drag and drop is not fully
-implemented. One can drag from widget to widget, but there is no way
-to configure what happens when a drop is made, or what is dragged when
-a drag is initiated.
+[In \RPackage{gWidgetsrJava} drag and drop is provided through Java
+and not \RPackage{gWidgets}. One can drag from widget to widget, but
+there is no way to configure what happens when a drop is made, or what
+is dragged when a drag is initiated.
 
 In \RPackage{gWidgetstcltk} drag and drop works but not from other
 applications. 
@@ -1068,15 +1122,15 @@ drop features of gWidgets (Figure~\ref{fig:doPlot}).
 
 \begin{Scode}
 doPlot = function() {
-  Comment("Set up main group")
+  ## Set up main group
   mainGroup = ggroup(container=gwindow("doPlot example"))
     
-  Comment("The variable browser widget")
+  ## The variable browser widget
   gvarbrowser(container = mainGroup)
 
   rightGroup = ggroup(horizontal=FALSE, container=mainGroup)
     
-  Comment("The graphics device")
+  ## The graphics device
   ggraphics(container=rightGroup)
   entry = gedit("drop item here to be plotted", container=rightGroup)
   adddroptarget(entry,handler = function(h,...) {
@@ -1092,7 +1146,7 @@ doPlot = function() {
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=.6\textwidth]{doPlot}
+  \includegraphics[width=.6\textwidth]{doPlot.png}
   \caption{Dialog produced by \RFunc{doPlot} example}
   \label{fig:doPlot}
 \end{figure}
@@ -1102,10 +1156,10 @@ example. The key widgets are the variable browser
 (\RFunc{gvarbrowser}), the plot device (\RFunc{ggraphics}), and the
 text-entry widget (\RFunc{gedit}). (One can see an \RPackage{RGtk2}
 bias here, as the other two implementations do not have a graphics
-device.)These are put into differing
+device.) These are put into differing
 containers.  Finally, there is an handler given to the result of the
 drag and drop. The \RFunc{do.call} line uses the \RFunc{svalue} and
-\RFunc{id} methods on a character, which in this instance return the
+\RFunc{id} methods on a character, which in this instance returns the
 variable with that name and the name.
 
 
@@ -1117,7 +1171,7 @@ variable browser over to the area below the plot window. The
 The \RCode{gvarbrowser} produces a widget from which a drop
 \textit{source} has been added. To drop from a different source the
 \RCode{addDropSource} method is used. The return value of the handler
-will be passed to the \RCode{dropdata} valeu of the handler for
+will be passed to the \RCode{dropdata} value of the handler for
 \RCode{addDropTarget}. 
 
 [The latter varies from toolkit to toolkit, in
@@ -1140,8 +1194,8 @@ the column is dropped. (Careful, this has some issues: the handler needs to
 be removed if the widget is closed.)
 
 \begin{Scode}
-  Comment("Drag a column onto plot to have a boxplot drawn.")
-  Comment("Changing the column values will redraw the graph.")
+  ## Drag a column onto plot to have a boxplot drawn.
+  ## Changing the column values will redraw the graph.
 
   makeDynamicWidget = function() {
 
@@ -1152,20 +1206,21 @@ be removed if the widget is closed.)
       tag(gd,"data") <- h$dropdata
       plotWidget(gd)
 
-      Comment("this makes the dynamic part:")
-      Comment("- we put a change handler of the column that we get the data from")
-      Comment("- we store the handler id, so that we can clean up the handler when this")
-      Comment("  window is closed")
+      ## this makes the dynamic part:
+      ## - we put a change handler of the column that we get the data from
+      ## - we store the handler id, so that we can clean up the handler when this
+      ##   window is closed
 
-      Comment("The is.gdataframecolumn function checks if the drop value")
-      Comment("  comes from the data frame editor (gdf)")
-      if(is.gdataframecolumn(h$dropdata)) {
+      ## The is.gdataframecolumn function checks if the drop value
+      ##   comes from the data frame editor (gdf)
+      if(gWidgetsRGtk2:::is.gdataframecolumn(h$dropdata)) {
         view.col = h$dropdata
 
-        Comment("Put change handler on column to update plotting widget")
-        id = addHandlerChanged(view.col, handler=function(h,...) plotWidget(gd))
-        Comment("Save drop handler id so that it can be removed when")
-        Comment("  widget  is closed")
+        ## Put change handler on column to update plotting widget
+        ## (use lower case, to fix oversight)
+        id = addhandlerchanged(view.col, handler=function(h,...) plotWidget(gd))
+        ## Save drop handler id so that it can be removed when
+        ##   widget  is closed
         dropHandlers = tag(gd,"dropHandlers")
         dropHandlers[[length(dropHandlers)+1]] = list(
                     view.col = view.col,
@@ -1175,7 +1230,7 @@ be removed if the widget is closed.)
      }
   })
 
-  Comment("Remove drop handlers if widget is unrealized.")
+  ## Remove drop handlers if widget is unrealized.
   addHandlerUnrealize(gd, handler = function(h,...) {
     dropHandlers = tag(gd,"dropHandlers")
     if(length(dropHandlers) > 0) {
@@ -1184,8 +1239,6 @@ be removed if the widget is closed.)
       }
     }
   })
-
-
 }
 \end{Scode}
 %%$
@@ -1252,6 +1305,14 @@ Next, we begin with an initial plot device.
 The \RFunc{add} method is used to add new widgets, in this case a
 graphics device. The label goes on the tab.
 
+Alternatively, the notebook could be given as the container when the
+widget is constructed, as in
+\begin{Sinput}
+  ggraphics(container = nb, label="plot")
+\end{Sinput}
+This is required to use notebooks in \RPackage{gWidgetstcltk}.
+
+
 Now we define and add a toolbar.
 \begin{Scode}
   tblist = list()
@@ -1290,33 +1351,34 @@ just use \RFunc{ggraphicsnotebook}.
 
 \section{The tree widget}
 
-The \RFunc{gtree} constructor is used to present tree-like data. A
+The \RFunc{gtree} constructor [this widget is only implemented in
+\RPackage{gWidgetsRGtk2}.] is used to present tree-like data. A
 familiar example of such data is the directory structure of your
-computer. To describe a tree, \RFunc{gtree} has the idea of a node
-which consists of a path back to a root node. This node can have
-offspring which will be determined by a function (\RFunc{offspring})
-which takes the current path, and a passed in parameter as
+computer.  To display a tree, \RFunc{gtree} needs to know what to
+display (the offspring) and which offspring have further offspring.
+idea of a node which consists of a path back to a root node. The
+offspring are determined by a function (\RFunc{offspring}) which takes
+the current path (ancestor information), and a passed in parameter as
 arguments. These offspring can either have subsequent offspring or
-not. This information must be known at the time of displaying the current
-offspring, and is answered by a function (\RFunc{hasOffspring}) which
-takes as an argument the offspring. In our file-system  analogy, \RFunc{offspring}
-would list the files and directories in a given directory, and
-\RFunc{hasOffspring} would be \RCode{TRUE} for a directory in this
-listing, and \RCode{FALSE} for a file. For decorations, a function
-\RFunc{icon.FUN} can be given to decide what icon to draw for which
-listing.
+not. This information must be known at the time of displaying the
+current offspring, and is answered by a function
+(\RFunc{hasOffspring}) which takes as an argument the offspring. In
+our file-system analogy, \RFunc{offspring} would list the files and
+directories in a given directory, and \RFunc{hasOffspring} would be
+\RCode{TRUE} for a directory in this listing, and \RCode{FALSE} for a
+file. For decorations, a function \RFunc{icon.FUN} can be given to
+decide what icon to draw for which listing. This should give a stock
+icon name.
 
 The data presented for the offspring is a data frame, with one column
 determining the path. This is typically the first column, but can be
 set with \RArg{chosencol}.
 \\
 
-[The \RFunc{tree} widget is not implemented in
-\RPackage{gWidgetsrJava}. The default JAVA tree only holds a single
-item, so a new table-tree class needs to be written.]
 
 To illustrate, we create a file system browser using
-\RFunc{gtree}.
+\RFunc{gtree}. (This is for UNIX systems. change the file separator
+for windows.)
 
 First to define the \RFunc{offspring} function we use the
 \RFunc{file.info} function. The current working directory is used as
@@ -1392,7 +1454,7 @@ clicking of an item in the tree.
 \section{Popup menus}
 
 A popup menu ``pops'' up a menu after a mouse click, typically a right
-mouse click. Implemented here are the functions
+mouse click. Implemented in \RPackage{gWidgets} are the functions
 
 \begin{description}
 \item[\RFunc{add3rdmousepopupmenu}] for adding a popup on a right click
@@ -1491,10 +1553,10 @@ places are the layout of the automagically generated widget, and and
 the handling of the initial variable when a formula is expected.
  
 \begin{Scode}
-  Comment("A constructor to automagically make a GUI for a function")
+  ## A constructor to automagically make a GUI for a function
   gfunction = function(f, window = gwindow(title=fName), ...) {
 
-    Comment("Get the function and its name")
+    ## Get the function and its name
     if(is.character(f)) {
       fName = f
       f = get(f)
@@ -1502,12 +1564,12 @@ the handling of the initial variable when a formula is expected.
       fName = deparse(substitute(f))
     }
     
-    Comment("Use formals() to define the widget")
+    ## Use formals() to define the widget
     lst = formals(f)
 
 
 
-    Comment("Hack to figure out variable type")
+    ## Hack to figure out variable type
     type = NULL
     if(names(lst)[1] == "x" && names(lst)[2] == "y") {
       type = "bivariate"
@@ -1520,36 +1582,36 @@ the handling of the initial variable when a formula is expected.
     }
 
 
-    Comment(" Layout")
+    ##  Layout
 
-    Comment("Main group")
+    ## Main group
     win = gwindow("create dialog")
     gp = ggroup(horizontal = TRUE, container=win)
-    Comment("Arrange widgets with an output area")
-    Comment("Put widgets into a layout container")
+    ## Arrange widgets with an output area
+    ## Put widgets into a layout container
     tbl = glayout(container=gp)
     gseparator(horizontal=FALSE, container=gp)
     outputArea = gtext(container=gp, expand=TRUE)
 
 
-    Comment("Make widgets for arguments from formals")
+    ## Make widgets for arguments from formals()
     widgets = sapply(lst, getWidget, cont=tbl)
 
-    Comment("Layout widgets")
+    ## Layout widgets
     for( i in 1:length(widgets)) {
       tbl[i,1] = names(lst)[i]
       tbl[i,2] = widgets[[i]]
     }
-    Comment("Finalize the layout container")
+    ## Finalize the layout container in RGtk2
     visible(tbl) <- TRUE
 
 
-    Comment("Add update handler to each widget when changed")
+    ## Add update handler to each widget when changed
     sapply(widgets, function(obj) {
       try(addHandlerChanged(obj, function(h,...) update()), silent=TRUE)
     })
 
-    Comment("Add drop target to each widget")
+    ## Add drop target to each widget
     sapply(widgets, function(obj)
     try(adddroptarget(obj,
     handler=function(h,...) {
@@ -1560,17 +1622,18 @@ the handling of the initial variable when a formula is expected.
 
 
 
-    Comment("In case this doesn't get exported")
+    ## In case this doesn't get exported
     svalue.default = function(obj, ...) obj
 
-    Comment("Function used to weed out 'NULL' values to widgets")
+    ## Function used to weed out 'NULL' values to widgets
     isNULL = function(x) 
       ifelse(class(x) == "character" && length(x) ==1 && x == "NULL",
         TRUE, FALSE)
 
-    Comment("Function called when a widget is changed")
-    Comment("2nd and 3rd lines trim out non-entries")
+        ## Function called when a widget is changed
+        ## 2nd and 3rd lines trim out non-entries
     update = function(...) {
+      is.empty = function(x) return(is.na(x) || is.null(x) || x == "" )
       outList = lapply(widgets,svalue)
       outList = outList[!sapply(outList,is.empty)]
       outList = outList[!sapply(outList,isNULL)]
@@ -1600,66 +1663,66 @@ and maps it to an appropriate widget. For arguments of type
     "logical" = gdroplist(c(TRUE,FALSE), active = 1 + (x == FALSE), cont=cont),
     "name" = gedit("", cont=cont),
     "NULL" = gedit("NULL", cont=cont),
-    "list" = gListOfWidgets(x,name="", cont=cont), 
     "call" = getWidget(eval(x), cont=cont), # recurse
     gedit("", cont=cont)                     # default
     )
   }
 \end{Scode}
+%%  not there    "list" = gListOfWidgets(x,name="", cont=cont), 
 
-This function defines a separate widget to handle the case where an
-argument expects a list. It is written in the \RCode{gWidgetsRGtk} style
-including an \RFunc{svalue} method below. The \RFunc{tag} method stores
-a value in the widget, similar to setting an attribute. In this case,
-the list of widgets stored is consulted by the following \RFunc{svalue} method.
+% This function defines a separate widget to handle the case where an
+% argument expects a list. It is written in the \RCode{gWidgetsRGtk} style
+% including an \RFunc{svalue} method below. The \RFunc{tag} method stores
+% a value in the widget, similar to setting an attribute. In this case,
+% the list of widgets stored is consulted by the following \RFunc{svalue} method.
 
-\begin{Scode}
-  gListOfWidgets = function(lst, name = "",  container=NULL, ...) {
-    gp = gframe(text = name, container=container, horizontal=FALSE, ...)
-    obj = list(ref=gp)
-    class(obj) = c("gListOfWidgets", "gComponent", "gWidget")
+% \begin{Scode}
+%   gListOfWidgets = function(lst, name = "",  container=NULL, ...) {
+%     gp = gframe(text = name, container=container, horizontal=FALSE, ...)
+%     obj = list(ref=gp)
+%     class(obj) = c("gListOfWidgets")
 
-  tbl = glayout(container = gp)
-  widgetList = lapply(lst, getWidget, cont=tbl)
-  tag(obj, "widgetList") <-  widgetList
+%   tbl = glayout(container = gp)
+%   widgetList = lapply(lst, getWidget, cont=tbl)
+%   tag(obj, "widgetList") <-  widgetList
 
-  ## pack into layout
-  for(i in 1:length(widgetList)) {
-    tbl[i,1] = names(widgetList)[i]
-    tbl[i,2] = widgetList[[i]]
-  }
-  visible(tbl) <- TRUE
-  return(obj)
-}
-\end{Scode}
+%   ## pack into layout
+%   for(i in 1:length(widgetList)) {
+%     tbl[i,1] = names(widgetList)[i]
+%     tbl[i,2] = widgetList[[i]]
+%   }
+%   visible(tbl) <- TRUE
+%   return(obj)
+% }
+% \end{Scode}
 
-The methods below (\RFunc{svalue}, \RFunc{svalue<-} and
-\RFunc{addHandlerChanged})  map the same method to each component
-of the list using \RFunc{sapply}.
+% The methods below (\RFunc{svalue}, \RFunc{svalue<-} and
+% \RFunc{addHandlerChanged})  map the same method to each component
+% of the list using \RFunc{sapply}.
 
-\begin{Scode}
-  svalue.gListOfWidgets = function(obj,  ...) {
-  lst = lapply(tag(obj, "widgetList"), svalue)
-  return(lst)
-}
+% \begin{Scode}
+%   svalue.gListOfWidgets = function(obj,  ...) {
+%   lst = lapply(tag(obj, "widgetList"), svalue)
+%   return(lst)
+% }
 
 
-"svalue<-.gListOfWidgets" = function(obj, ..., value) {
-  if(!is.list(value))
-  return(obj)
+% "svalue<-.gListOfWidgets" = function(obj, ..., value) {
+%   if(!is.list(value))
+%   return(obj)
 
-  widgetList = getdata(obj, "widgetList")
-  sapply(names(value), function(x) svalue(widgetList[[x]]) <- value[[x]])
+%   widgetList = getdata(obj, "widgetList")
+%   sapply(names(value), function(x) svalue(widgetList[[x]]) <- value[[x]])
 
-  return(obj)
-}
+%   return(obj)
+% }
 
-addHandlerChanged.gListOfWidgets = function(obj, handler=NULL, action=NULL, ...) {
-  widgetList = getdata(obj, "widgetList")
-  sapply(widgetList, function(x)
-         try(addHandlerChanged(x, handler, action),silent=TRUE))
-}
-\end{Scode}
+% addHandlerChanged.gListOfWidgets = function(obj, handler=NULL, action=NULL, ...) {
+%   widgetList = getdata(obj, "widgetList")
+%   sapply(widgetList, function(x)
+%          try(addHandlerChanged(x, handler, action),silent=TRUE))
+% }
+% \end{Scode}
 
 We can try this out on the default \RFunc{t.test} function. First we
 grab a local copy from the namespace, then call our function. The

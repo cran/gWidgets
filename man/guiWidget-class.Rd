@@ -5,6 +5,9 @@
 \alias{guiContainer-class}
 \alias{guiDialog-class}
 \alias{guiWidgetOrNULL-class}
+\alias{gWidgetANY-class}
+\alias{gComponentANY-class}
+\alias{gContainerANY-class}
 
 \title{Class "guiWidget" ~~~ }
 \description{Base class for gWidget objects}

@@ -1,2 +1,0 @@
-\contentsline {section}{\numberline {1}Basics of gWidgets}{1}
-\contentsline {section}{\numberline {2}An example}{2}
