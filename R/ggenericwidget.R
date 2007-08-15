@@ -61,6 +61,9 @@ setMethod(".ggenericwidget",
               } else if(lst$variableType == "univariatetable") {
                 vals$Data = gunivariatetable(...,
                   container=mainGroup, anchor=c(-1,0), expand=TRUE) 
+              } else if(lst$variableType == "fileurl") {
+                vals$Data = gfileurl(...,
+                  container=mainGroup, anchor=c(-1,0), expand=TRUE) 
               } else if(lst$variableType == "bivariate") {
                 vals$Data = gbivariate(...,
                   container=mainGroup, anchor=c(-1,0), expand=TRUE) 
@@ -71,7 +74,7 @@ setMethod(".ggenericwidget",
                 vals$Data = glattice(...,
                   container=mainGroup, anchor=c(-1,0), expand=TRUE) 
               } else {
-                cat(Paste("Need to implent variableType",lst$variableType,"\n"))
+                cat(Paste("Need to implement variableType ",lst$variableType,"\n"))
                 vals$Data = NULL
               }
             }
@@ -257,6 +260,9 @@ autogenerategeneric = function(f,
       lst[['formula']] <- NULL
       lst[['data']] <- NULL
       lst[['subset']] <- NULL
+    } else if(firstArg == "file") {
+      variableType = "fileurl"
+      lst[['file']] <- NULL
     } else if(firstArg == "x" & length(names(lst)) > 1) {
       secondArg = names(lst)[2]
       if(secondArg == "y") {

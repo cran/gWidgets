@@ -1,3 +1,11 @@
+2007-08-14  John Verzani  <jverzani@gmail.com>
+
+	* R/ggenericwidget.R: fixed missing fileurl.
+
+2007-08-13  John Verzani  <jverzani@gmail.com>
+
+	* R/generics.R: trimmed arguments in ggenericwidget
+
 2007-07-31  John Verzani  <jverzani@gmail.com>
 
 	* R/aaaGenerics.R: gwindow -- added args width height to set

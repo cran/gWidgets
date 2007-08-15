@@ -44,7 +44,8 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
 
 	The \code{svalue} method returns the selected values by
 	name. If the extra argument \code{index=TRUE} is specified,
-	the indices of the selected values is given.
+	the indices of the selected values is given. 
+
 
 	The \code{svalue<-} method can be used to set the selected
 	value.
@@ -52,8 +53,10 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
 	The \code{"["} method refers to the vector defining the items.
 
 	The \code{"[<-"} method can be used to change the vector
-	defining the items.
+	defining the items. The length will most likely need to be the same.
 
+	The \code{"length"} method returns the number of items.
+	
 	For \code{gdroplist} the argument \code{editable=TRUE} adds a
 	text-edit box where the user can type in a selection. By
 	default this value is returned as a character by

@@ -194,6 +194,7 @@
     a widget. In gWidgetsRGtk, the font attributes
     are given as a named vector. The available names are \code{family}
     with a value of "normal","sans","serif",or "monospace";
+    [Yes, this is messed up. weight and style are confused.]
     \code{weight} with a value of "normal","oblique", or "italic";
     \code{style} with a value of
     "ultra-light","light","normal","bold","ultra-bold", or "heavy";

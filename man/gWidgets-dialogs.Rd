@@ -23,7 +23,7 @@ ginput(message, text="", title="Input", icon = c("info", "warning", "error", "qu
 gconfirm(message, title="Confirm", icon = c("info", "warning", "error", "question"),
  handler = NULL, action = NULL, ..., toolkit=guiToolkit())
 
-gbasicdialog(message, title = "Dialog", widget, handler = NULL, action=NULL, ..., toolkit=guiToolkit())
+gbasicdialog(title = "Dialog", widget, handler = NULL, action=NULL, ..., toolkit=guiToolkit())
 
 }
 %- maybe also 'usage' for other objects documented here.

@@ -1,5 +1,6 @@
 importFrom("stats","update")
 importFrom("methods","show")
+importFrom("utils", "installed.packages")
 
 ## functions to export
 export("guiToolkit")

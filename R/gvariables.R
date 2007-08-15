@@ -166,7 +166,7 @@ setClass("gFileURLANY",
          contains="gComponentANY"
          )
 
-gfileurl = function(xlabel="x",container=NULL, ..., toolkit=guiToolkit()) {
+gfileurl = function(xlabel="file",container=NULL, ..., toolkit=guiToolkit()) {
 
   frame = gframe(text = "file", horizontal=TRUE, container=container,
     expand=TRUE)

@@ -16,6 +16,14 @@ PasteWithComma = function(...) {
   paste(args, sep="", collapse=", ")
 }
 
+quoteIfNeeded = function(str) {
+  if(length(grep('^\\".*\\"$', str, perl=TRUE)) > 0 ||
+     length(grep("^\\'.*\\'$", str, perl=TRUE)) > 0 )
+    return(str)
+  else
+    return(paste('"',str,'"',sep="",collapse=""))
+}
+
 ## ReadParseEvaL -- saves typing
 rpel = function(string, envir=.GlobalEnv) {
   eval(parse(text=string), envir=envir)

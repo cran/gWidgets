@@ -660,6 +660,26 @@ setGeneric( '.gstatusbar' ,
                     text = "", container = NULL, ... )
            standardGeneric( '.gstatusbar' ))
 
+## ghtml function
+ghtml = function(
+  url, handler = NULL, 
+    action = NULL, container = NULL, 
+  ..., toolkit=guiToolkit()) {
+  widget = .ghtml(toolkit,
+    url,
+    handler = handler, 
+    action = action, container = container, 
+    ...)
+  obj = new("guiComponent",widget=widget,toolkit=toolkit)
+  return(obj)
+}
+setGeneric(".ghtml",function(toolkit,
+                             url, handler = NULL, 
+                             action = NULL, container = NULL, 
+                             ...) standardGeneric(".ghtml"))
+
+
+
 
 ## gseparator
 ## the constructor
@@ -928,10 +948,10 @@ setGeneric( '.glayout' ,
 ## gpanedgroup
 ## the constructor
 gpanedgroup =function(
-  widget1, widget2, horizontal = TRUE, container = NULL , ...,
+  widget1=NULL, widget2=NULL, horizontal = TRUE, container = NULL , ...,
   toolkit=guiToolkit()){
-  widget =  .gpanedgroup (toolkit,
-    widget1=widget1, widget2=widget2, horizontal=horizontal,
+  widget = .gpanedgroup (toolkit,
+    widget1, widget2, horizontal=horizontal,
     container=container, ...
     )
   obj = new( 'guiContainer',widget=widget,toolkit=toolkit) 
@@ -1646,7 +1666,6 @@ setGeneric(".gconfirm",
 
 ## gbasicdialog
 gbasicdialog = function(
-  message,
   title = "Dialog", widget,
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {

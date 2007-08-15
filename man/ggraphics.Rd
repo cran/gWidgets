@@ -40,9 +40,9 @@ pdf files within cairo.)
 
 The \code{addhandlerclicked(obj, handler, action, ...)} method where handler has
 first argument \code{h} has the additional values \code{h\$x} and
-\code{h\$y} where these are values between 0 and 1 with (0,0) being
-the lower left corner and (1,1) the upper right. (NDC coordinates?)
-
+\code{h\$y} where these are values
+are returned using "usr" coordinates (see \code{help("par")}). (This was
+in NDC coordinates)
 }
 \value{}
 \author{}

@@ -7,7 +7,7 @@ adjust the amount of space allocated to each}
   A constructor for a paned group.
 }
 \usage{
-gpanedgroup(widget1, widget2, horizontal = TRUE, container = NULL, ..., toolkit = guiToolkit())
+gpanedgroup(widget1=NULL, widget2=NULL, horizontal = TRUE, container = NULL, ..., toolkit = guiToolkit())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
