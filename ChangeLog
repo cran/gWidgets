@@ -1,3 +1,11 @@
+2007-09-18  John Verzani  <jverzani@gmail.com>
+
+	* R/common.R (str2): moved this here to export (was in each
+		  toolkit implementation)
+
+	* R/gvariables.R: added width,height to tbl's in model so that
+		  gWidgetsRwxWidgets is happy.
+
 2007-08-14  John Verzani  <jverzani@gmail.com>
 
 	* R/ggenericwidget.R: fixed missing fileurl.

@@ -861,11 +861,11 @@ setGeneric( '.ggroup' ,
 ## gframe
 ## the constructor
 gframe =function(
-  text = "", markup = FALSE, pos = 0, container = NULL,
+  text = "", markup = FALSE, pos = 0, horizontal=TRUE, container = NULL,
    ... ,
   toolkit=guiToolkit()){
   widget =  .gframe (toolkit,
-    text=text, markup=markup, pos=pos, container=container ,
+    text=text, markup=markup, pos=pos, horizontal=horizontal, container=container ,
     ...
     )
   obj = new( 'guiContainer',widget=widget,toolkit=toolkit) 
@@ -876,17 +876,17 @@ gframe =function(
 ## generic for toolkit dispatch
 setGeneric( '.gframe' ,
            function(toolkit,
-                    text = "", markup = FALSE, pos = 0,
+                    text = "", markup = FALSE, pos = 0, horizontal=TRUE,
                     container = NULL,      ... )
            standardGeneric( '.gframe' ))
 
 ## gexpandgroup
 ## the constructor
 gexpandgroup =function(
-  text = "", markup = FALSE, handler = NULL, action = NULL,      container = NULL, ... ,
+  text = "", markup = FALSE, horizontal=TRUE, handler = NULL, action = NULL,      container = NULL, ... ,
   toolkit=guiToolkit()){
   widget =  .gexpandgroup (toolkit,
-    text=text, markup=markup, handler=handler, action=action, container=container ,...
+    text=text, markup=markup, horizontal=horizontal, handler=handler, action=action, container=container ,...
     )
   obj = new( 'guiContainer',widget=widget,toolkit=toolkit) 
   return(obj)
@@ -896,7 +896,7 @@ gexpandgroup =function(
 ## generic for toolkit dispatch
 setGeneric( '.gexpandgroup' ,
            function(toolkit,
-                    text = "", markup = FALSE,
+                    text = "", markup = FALSE,horizontal=TRUE,
                     handler = NULL, action = NULL,
                     container = NULL, ... )
 standardGeneric( '.gexpandgroup' ))
@@ -1244,7 +1244,7 @@ setGeneric("font<-",function(obj, ..., value) standardGeneric("font<-"))
 setMethod("font<-",signature(obj="guiWidget"),
           function(obj, ..., value) {
             toolkit = obj@toolkit
-            .font(obj@widget, toolkit,...) <- value
+            .font(obj@widget, toolkit,...) <- .fixFontMessUp(value)
             return(obj)
           })
 ## dispatch with toolkit

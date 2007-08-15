@@ -193,3 +193,34 @@ is.empty = function(obj) {
   }
 }
 
+
+## fix font mess up
+.fixFontMessUp = function(val) {
+  if(is.vector(val)) {
+    tmp = val
+    val = list()
+    for(i in names(tmp)) val[[i]] = tmp[i]
+  }
+
+  weights = c("normal","oblique", "italic")
+  styles = c("ultra-light","light","normal","bold","ultra-bold", "heavy")
+
+  a = val$weight; b = val$style
+  if((!is.null(a) && a %in% styles) || (!is.null(b) &&b %in% weights)) {
+    tmp = a
+    val$weight <- b
+    val$style <- a
+  }
+  return(val)
+}
+
+## what type of object is thixs and a size
+str2 <- function(obj) {
+  md <- mode(obj)
+  if (is.matrix(obj))  md <- "matrix"
+  obj.class <- oldClass(obj)
+  if (!is.null(obj.class)) {
+    md <- obj.class[1]
+  }
+  return(md)
+}

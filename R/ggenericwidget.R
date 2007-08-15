@@ -73,6 +73,9 @@ setMethod(".ggenericwidget",
               } else if(lst$variableType == "lattice") {
                 vals$Data = glattice(...,
                   container=mainGroup, anchor=c(-1,0), expand=TRUE) 
+              } else if(lst$variableType == "lmer") {
+                vals$Data = glmer(...,
+                  container=mainGroup, anchor=c(-1,0), expand=TRUE) 
               } else {
                 cat(Paste("Need to implement variableType ",lst$variableType,"\n"))
                 vals$Data = NULL

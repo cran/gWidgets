@@ -3,6 +3,8 @@
 \alias{show,guiWidget-method}
 \alias{editSelectDialog}
 \alias{editSubsetDialog}
+\alias{.fixFontMessUp} %% screwed this up.
+\alias{str2}
 
 %% These from the ANY class for compound widgets
 \alias{.add,ANY,ANY,gWidgetANY-method}

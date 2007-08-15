@@ -10,7 +10,7 @@ export("glabel", "gbutton", "gcheckbox", "gradio", "gdroplist",
 "gcheckboxgroup", "gspinbutton", "gslider", "gedit", "gtext", "gmenu",
 "gtoolbar", "gtable", "gdf", "gdfnotebook", "gtree", "gfile",
 "gfilebrowse", "gcalendar", "ggraphics", "ggraphicsnotebook",
-"gimage", "gstatusbar", "gseparator", "gcommandline", "ghelp",
+"ghtml","gimage", "gstatusbar", "gseparator", "gcommandline", "ghelp",
 "ghelpbrowser", "ggenericwidget", "gvarbrowser", "gwindow", "ggroup",
 "gframe", "gexpandgroup", "gnotebook", "glayout", "gpanedgroup",
 "gmessage",
@@ -31,7 +31,7 @@ exportClasses("guiWidgetsToolkit",
               "guiWidgetOrNULL")
 
 ## these are used by others but defined here.
-export("editSubsetDialog","editSelectDialog")
+export("editSubsetDialog","editSelectDialog", ".fixFontMessUp", "str2")
 
 exportMethods(
 "show",
@@ -59,7 +59,7 @@ exportMethods(
 ".gcheckboxgroup", ".gspinbutton", ".gslider", ".gedit", ".gtext",
 ".gmenu", ".gtoolbar", ".gtable", ".gdf", ".gdfnotebook", ".gtree",
 ".gfile", ".gfilebrowse", ".gcalendar", ".ggraphics",
-".ggraphicsnotebook", ".gimage", ".gstatusbar", ".gseparator",
+".ggraphicsnotebook", ".ghtml",".gimage", ".gstatusbar", ".gseparator",
 ".gcommandline", ".ghelp", ".ghelpbrowser", ".ggenericwidget",
 ".gvarbrowser", ".gwindow", ".ggroup", ".gframe", ".gexpandgroup",
 ".gnotebook", ".glayout", ".gpanedgroup", ".svalue", ".svalue<-",

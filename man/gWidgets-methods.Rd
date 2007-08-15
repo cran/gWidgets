@@ -194,13 +194,14 @@
     a widget. In gWidgetsRGtk, the font attributes
     are given as a named vector. The available names are \code{family}
     with a value of "normal","sans","serif",or "monospace";
-    [Yes, this is messed up. weight and style are confused.]
-    \code{weight} with a value of "normal","oblique", or "italic";
-    \code{style} with a value of
+    \code{style} with a value of "normal","oblique", or "italic";
+    \code{weight} with a value of
     "ultra-light","light","normal","bold","ultra-bold", or "heavy";
     and
     \code{color} which for gWidgetsRGtk is limited to
     "black","blue","red","green","brown","yellow", or "pink".
+    [Prior to version 0.0-22 the weight and style were switched. Old
+    code should run as before.]
   }
   
   \item{  \code{tag(obj,i, drop=TRUE, ...)} or
@@ -288,10 +289,13 @@
   }
   
   \item{\code{dispose(obj,...)}:}{
-    This method is used to remove an object. For containers, it
-    destroys the parent window. 
-    
+    This method is used to remove an object.
+
+    For top-level windows it destroys the window.
+
     For notebooks, it removes the current page.
+
+    In RGtk2, for other objects it will destroy the top-level window.
   }
   
   \item{\code{ addSpace(obj, value, horizontal=TRUE,...)}:}{

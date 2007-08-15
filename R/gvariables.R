@@ -302,7 +302,7 @@ gmodel = function(lattice=FALSE, container=NULL,...,toolkit=guiToolkit()) {
   variableNames = c("",getNamesofObject())
   
   
-  tbl = glayout(container=frame, anchor=c(-1,1))
+  tbl = glayout(container=frame, anchor=c(-1,1), width=500,height=100)
   tbl[1,1] <- (responseEntry = gdroplist(variableNames,width=40,editable=TRUE, cont=tbl))
   tbl[2,1] <- "response"
 
@@ -339,7 +339,7 @@ gmodel = function(lattice=FALSE, container=NULL,...,toolkit=guiToolkit()) {
   gseparator(container=frame)
   
   ## Now for data frame
-  tbl = glayout(container=frame, anchor = c(-1,1))
+  tbl = glayout(container=frame, anchor = c(-1,1), width=500,height=100)
   tbl[1,1, anchor=c(1,0)] = "data="
   tbl[1,2, anchor=c(-1,0)] = (dataEntry <-  gedit("", container=tbl))
 

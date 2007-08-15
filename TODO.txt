@@ -1,17 +1,16 @@
-gframe, gexpandgroup should get a horizontal= argument
-FIX FONTS!! weight <-> style
+DONE * gframe, gexpandgroup should get a horizontal= argument
+DONE * FIX FONTS!! weight <-> style
+* visible API (not visible<-) with set is wanky
+* Handle drag out events in ggrphics (select a rectangle.). Return a
+  rectangle: c(x0,x1, y0, y1) as in 
+DID getToolkitWidget * export .getWidget, .getBlock, .getParent (Michaels request)
+* ghtml widget (for RwxWidgets)
 
 
 DONE * pmg -- close buttons in linux -- read e-mail
 DONE? * ggroup == on.dragmotion -- not working under windows, linux OK
   (my guess is that is liew in getWindow()$Raise()
 
-***** gdf -- error with editing see 20 vs 22
+DONE ***** gdf -- error with editing see 20 vs 22
 
-* Handle drag out events in ggrphics (select a rectangle.). Return a
-  rectangle: c(x0,x1, y0, y1) as in 
 
-* export .getWidget, .getBlock, .getParent (Michaels request)
-
-* ghtml widget (for RwxWidgets)
-* Debian package on CRAN for R
