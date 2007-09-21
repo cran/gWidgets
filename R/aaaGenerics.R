@@ -1302,6 +1302,18 @@ setGeneric(".id<-",function(obj, toolkit,...,value)
            standardGeneric(".id<-"))
 
 
+## isExtant -- is gwindow extant?
+setGeneric("isExtant",function(obj, ...) standardGeneric("isExtant"))
+## add generic for Containers and sometimes widgets
+setMethod("isExtant",signature(obj="guiWidget"),
+          function(obj, ...) {
+            toolkit = obj@toolkit
+            .isExtant(obj@widget,toolkit, ...)
+          })
+## dispatch with toolkit
+setGeneric(".isExtant",function(obj, toolkit, ...) standardGeneric(".isExtant"))
+
+
 
 
 ## handlers
@@ -1447,7 +1459,7 @@ setMethod("addhandlerdestroy",signature(obj="guiWidget"),
 setGeneric(".addhandlerdestroy",function(obj,toolkit,...) standardGeneric(".addhandlerdestroy"))
 ##caps
 setGeneric("addHandlerDestroy",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerDestroy"))
-setMethod("addhandlerdestroy",signature(obj="guiWidget"),
+setMethod("addHandlerDestroy",signature(obj="guiWidget"),
           function(obj, handler=NULL, action=NULL, ...) {
             toolkit = obj@toolkit
             .addhandlerdestroy(obj@widget, toolkit,handler, action, ...)

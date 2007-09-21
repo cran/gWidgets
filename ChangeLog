@@ -1,3 +1,7 @@
+2007-10-23  John Verzani  <jverzani@gmail.com>
+
+	* R/aaaGenerics.R: fixed type with addHandlerChanged
+
 2007-09-18  John Verzani  <jverzani@gmail.com>
 
 	* R/common.R (str2): moved this here to export (was in each

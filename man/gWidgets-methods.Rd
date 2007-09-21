@@ -39,6 +39,7 @@
 \alias{addDropTarget,guiWidget-method}
 \alias{addHandlerChanged,guiWidget-method}
 \alias{addHandlerClicked,guiWidget-method}
+\alias{addHandlerDestroy,guiWidget-method}
 \alias{addHandlerDoubleclick,guiWidget-method}
 \alias{addHandlerExpose,guiWidget-method}
 \alias{addHandlerIdle,guiWidget-method}
@@ -73,12 +74,14 @@
 \alias{update,guiWidget-method}
 \alias{visible,guiWidget-method}
 \alias{visible<-,guiWidget-method}
+\alias{isExtant,guiWidget-method}
 \alias{svalue}
 \alias{svalue<-}
 \alias{size}
 \alias{size<-}
 \alias{visible}
 \alias{visible<-}
+\alias{isExtant}
 \alias{enabled}
 \alias{enabled<-}
 \alias{focus}
@@ -173,6 +176,13 @@
     dataframe-like widgets \code{gdf} and \code{gtable}
     visibility refers to which rows are shown.
   }
+\item{
+  \code{visible(obj ...)}
+}{
+  Used to check if a gwindow object is extant (not been destroyed). An R
+  object can point to a window that can no longer be shown, as it may
+  have been closed by the window manager.
+}
   
   \item{
   \code{enabled(obj,...)} or

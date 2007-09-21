@@ -1,4 +1,4 @@
-This is pdfeTeXk, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.6.27)  21 SEP 2007 11:45
+This is pdfeTeXk, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.6.27)  25 OCT 2007 13:21
 entering extended mode
  file:line:error style messages enabled.
 **\nonstopmode \input /verzani/export/Statistics/R/pmg/pmg3/projects/build/gWid
@@ -280,10 +280,10 @@ No file fancyvrb.cfg.
 \f@ncyO@olf=\skip53
 \f@ncyO@orf=\skip54
 )
-(/home/verzani/R//lib/R/share/texmf/Sweave.sty
+(/home/verzani/R/lib/R/share/texmf/Sweave.sty
 
-LaTeX Warning: You have requested package `/home/verzani/R//lib/R/share/texmf/S
-weave',
+LaTeX Warning: You have requested package `/home/verzani/R/lib/R/share/texmf/Sw
+eave',
                but the package provides `Sweave'.
 
 Package: Sweave 
@@ -681,9 +681,9 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 5364 strings out of 94500
- 72773 string characters out of 1175788
- 123879 words of memory out of 1000000
+ 5363 strings out of 94500
+ 72733 string characters out of 1175788
+ 123878 words of memory out of 1000000
  8285 multiletter control sequences out of 10000+50000
  48990 words of font info for 115 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 8191
@@ -699,4 +699,4 @@ ppen/tc/tcrm1200.600pk></usr/share/texmf-tetex/fonts/type1/bluesky/cm/cmbx12.pf
 b></usr/share/texmf-tetex/fonts/type1/bluesky/cm/cmtt12.pfb></usr/share/texmf-t
 etex/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf-tetex/fonts/type1/blues
 ky/cm/cmr17.pfb>
-Output written on gWidgets.pdf (37 pages, 352074 bytes).
+Output written on gWidgets.pdf (37 pages, 352068 bytes).

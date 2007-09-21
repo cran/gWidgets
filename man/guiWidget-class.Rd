@@ -86,6 +86,7 @@ Objects can be created by calls of the form \code{new("guiWidget", ...)}.
     \item{update}{\code{signature(object = "guiWidget")}: ... }
     \item{visible}{\code{signature(obj = "guiWidget")}: ... }
     \item{visible<-}{\code{signature(obj = "guiWidget")}: ... }
+    \item{isExtant}{\code{signature(obj = "guiWidget")}: ... }
 	 }
 }
 \author{John Verzani}

@@ -31,7 +31,7 @@ exportClasses("guiWidgetsToolkit",
               "guiWidgetOrNULL")
 
 ## these are used by others but defined here.
-export("editSubsetDialog","editSelectDialog", ".fixFontMessUp", "str2")
+export("editSubsetDialog","editSelectDialog", "editFormulaDialog",".fixFontMessUp", "str2")
 
 exportMethods(
 "show",
@@ -39,7 +39,7 @@ exportMethods(
 "svalue", "svalue<-", "add", "addSpace", "addSpring", "delete",
 "dispose", "visible", "visible<-", "enabled", "enabled<-", "size",
 "size<-", "focus", "focus<-", "font", "font<-", "tag", "tag<-", "id",
-"id<-",
+"id<-", "isExtant",
               "addhandlerchanged",  "addHandlerChanged",
               "addhandlerkeystroke","addHandlerKeystroke",
               "addhandlerclicked",  "addHandlerClicked",
@@ -66,7 +66,7 @@ exportMethods(
 ".leftBracket", ".leftBracket<-", ".add", ".addSpace", ".addSpring",
 ".delete", ".dispose", ".visible", ".visible<-", ".enabled",
 ".enabled<-", ".size", ".size<-", ".focus", ".focus<-", ".font",
-".font<-", ".tag", ".tag<-", ".id", ".id<-", 
+".font<-", ".tag", ".tag<-", ".id", ".id<-", ".isExtant",
 ".removehandler",
 ".addhandlerchanged",
 ".addhandlerkeystroke", ".addhandlerclicked",

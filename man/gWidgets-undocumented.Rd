@@ -1,6 +1,7 @@
 \name{gWidgets-undocumented}
 \alias{gWidgets-undocumented.Rd}
 \alias{show,guiWidget-method}
+\alias{editFormulaDialog}
 \alias{editSelectDialog}
 \alias{editSubsetDialog}
 \alias{.fixFontMessUp} %% screwed this up.
@@ -58,10 +59,10 @@
 \alias{update,gWidgetANY-method}
 \alias{visible<-,gWidgetANY-method}
 \alias{visible,gWidgetANY-method}
+\alias{isExtant,gWidgetANY-method}
 
 
 %% these from ANY methods
 \title{Undocumented, but exported, functions}
-\description{
-}
+\description{Undocumented, but exported functions from gWidgets.}
 \keyword{interface}% at least one, from doc/KEYWORDS

@@ -108,7 +108,7 @@ handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
       directory = paste(getwd(),"/",paste(path,sep="/", collapse=""),sep="",collapse="")
     else
       directory = getwd()
-    files = file.info(dir(path=directory))[,1:3]
+    files = file.info(dir(path=directory))[,c(2,1,3)]
      
     files = cbind(rownames(files), files)
     names(files)[1] = "filename"
@@ -126,5 +126,5 @@ handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
   gtree(offspring, hasOffspring, icon.FUN = icon.FUN, container=TRUE)
 }
 }
-}
+
 \keyword{interface}% at least one, from doc/KEYWORDS

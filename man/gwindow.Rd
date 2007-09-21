@@ -21,7 +21,8 @@ handler = NULL, action = NULL,
 \item{name}{Name for registry of windows}
 \item{width}{Default width for window at creation}
 \item{height}{Default height for window at creation}
-\item{handler}{Handler for destroy event}
+\item{handler}{Handler for unrealize event (when window manager closes
+window). Use addHandlerDestroy to get destroy event.}
 \item{action}{Passed to handler}
   \item{\dots}{Not used}
   \item{toolkit}{Which GUI toolkit to use}  

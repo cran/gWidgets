@@ -1,4 +1,4 @@
-This is pdfeTeXk, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.6.27)  21 SEP 2007 11:45
+This is pdfeTeXk, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.6.27)  25 OCT 2007 13:21
 entering extended mode
  file:line:error style messages enabled.
 **\nonstopmode \input /verzani/export/Statistics/R/pmg/pmg3/projects/build/gWid
@@ -227,10 +227,10 @@ No file fancyvrb.cfg.
 \f@ncyO@olf=\skip53
 \f@ncyO@orf=\skip54
 )
-(/home/verzani/R//lib/R/share/texmf/Sweave.sty
+(/home/verzani/R/lib/R/share/texmf/Sweave.sty
 
-LaTeX Warning: You have requested package `/home/verzani/R//lib/R/share/texmf/S
-weave',
+LaTeX Warning: You have requested package `/home/verzani/R/lib/R/share/texmf/Sw
+eave',
                but the package provides `Sweave'.
 
 Package: Sweave 
@@ -531,9 +531,9 @@ File: helloWorld.png Graphic file (type png)
  <use helloWorld.png> [8]
 [9 <./helloWorld.png>] (./addingToolkit.aux) ) 
 Here is how much of TeX's memory you used:
- 3671 strings out of 94500
- 48579 string characters out of 1175788
- 95981 words of memory out of 1000000
+ 3670 strings out of 94500
+ 48539 string characters out of 1175788
+ 95980 words of memory out of 1000000
  6703 multiletter control sequences out of 10000+50000
  59827 words of font info for 141 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 8191
@@ -550,4 +550,4 @@ ts/type1/bluesky/cm/cmr9.pfb></usr/share/texmf-tetex/fonts/type1/bluesky/cm/cmb
 x12.pfb></usr/share/texmf-tetex/fonts/type1/bluesky/cm/cmtt12.pfb></usr/share/t
 exmf-tetex/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf-tetex/fonts/type1
 /bluesky/cm/cmr17.pfb>
-Output written on addingToolkit.pdf (9 pages, 82685 bytes).
+Output written on addingToolkit.pdf (9 pages, 82799 bytes).
