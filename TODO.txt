@@ -1,6 +1,9 @@
 * gwindow -- place near a parent window, place in some place
   (setLocatino in rJava), see that TODO
-* add icons to droplist in others
+* gWindow -- add ggroup to gwindow by default, in RGtk2, add in areas
+  for packing in menubar, toolbar and statusbar. methods add and
+  delete should work with gwindow as container
+* add icons to droplist in others DONE in RGTK2
 DONE * gframe, gexpandgroup should get a horizontal= argument
 DONE * FIX FONTS!! weight <-> style
 * visible API (not visible<-) with set is wanky

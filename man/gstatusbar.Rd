@@ -20,6 +20,8 @@ gstatusbar(text = "", container = NULL, ..., toolkit = guiToolkit())
  The statusbar keeps a message stack. The \code{svalue} method pops the
  last message from the stack. The \code{svalue<-} method pushes a new
  message onto the stack.
+
+ Statusbars should be added to the top-level gwindow instance.
 }
 % \value{}
 % \references{}

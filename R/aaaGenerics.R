@@ -253,7 +253,8 @@ gdroplist =function(
 setGeneric( '.gdroplist' , function(toolkit,
                                     items, selected = 1, editable = FALSE, coerce.with = NULL, handler = NULL,      action = NULL, container = NULL, ... ) standardGeneric( '.gdroplist' ))
 
-
+## give alias for gdroplist
+gcombobox <- gdroplist
 
 ## gcheckboxgroup
 ## the constructor
@@ -833,7 +834,7 @@ gwindow = function(title="Window" ,visible=TRUE, name=title,
 }
 
 ## define a toolkit constructor, dispatch on toolkit
-setGeneric(".gwindow",function(toolkit, title, visible, width, height, location, handler, action, ...) standardGeneric(".gwindow"))
+setGeneric(".gwindow",function(toolkit, title, visible, width, height, location, handler, action,...) standardGeneric(".gwindow"))
 
 ## ggroup
  

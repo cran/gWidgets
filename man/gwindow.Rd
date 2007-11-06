@@ -29,8 +29,8 @@ placing dialogs near the parent window.}
 \item{handler}{Handler for unrealize event (when window manager closes
 window). Use addHandlerDestroy to get destroy event.}
 \item{action}{Passed to handler}
-  \item{\dots}{Not used}
-  \item{toolkit}{Which GUI toolkit to use}  
+\item{\dots}{Not used}
+\item{toolkit}{Which GUI toolkit to use}  
 }
 \details{
    A base window can also be created using the argument
@@ -40,8 +40,17 @@ window). Use addHandlerDestroy to get destroy event.}
    \code{svalue<-} to change the title.
 
    The \code{add} method is used to add a widget or container to the
-   base window. Only one may be added, so usually it would be another
-   container.
+   base window. For top-level windows, some toolkits only support adding
+   one widter, so in gWidgets only one widget should be added to a
+   window, so usually it would be another container.
+
+   Additionally the menubar, toolbar and statusbar widgets should now be
+   added and deleted from the top-level window. Outside of RGtk2, the
+   other toolkits expect these items to be properties of a top-level
+   window. Unfortunately, gWidgetstcltk hacks in the toolbar and status
+   bar, so these should be added in the right manner: toolbar, a
+   container with \code{expand=TRUE} and then finally the statusbar.
+   
 
    The \code{dispose} method destroys the window.
 

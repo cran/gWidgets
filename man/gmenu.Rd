@@ -66,6 +66,9 @@ gtoolbar (toolbarlist, style = c("both", "icons", "text",
 	\code{value} argument can be either a character vector with
 	the top-level names to delete, or a named list, or an instance
 	of either gmenu or gtoolbar.
+
+	Except in RGtk2, menubars and toolbars should be added to the
+	top level window. For 
 }
 % \value{}
 % \references{}

@@ -1,6 +1,7 @@
 \name{gradio}
 \alias{gradio}
 \alias{gdroplist}
+\alias{gcombobox}
 \alias{gcheckboxgroup}
 \title{Widgets to allow selection from a vector of items}
 \description{
@@ -8,12 +9,15 @@
    items. These are a radio group where all values are shown at once,
    but only one may be selected; a checkbox group where more than one
    may be selected; and a
-   droplist where initially only a single value is shown, and the others
+   combo box (or droplist) where initially only a single value is shown, and the others
    are a mouse click away,
 }
 \usage{
 gradio(items, selected = 1, horizontal = FALSE, handler
 = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+
+gcombobox(items, selected = 1, editable = FALSE, coerce.with=NULL, handler = NULL, 
+    action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
 gdroplist(items, selected = 1, editable = FALSE, coerce.with=NULL, handler = NULL, 
     action = NULL, container = NULL, ..., toolkit = guiToolkit()) 
