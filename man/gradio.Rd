@@ -63,11 +63,11 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
 	\code{svalue}. Use \code{coerce.with} to coerce this prior to returning.
 
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   flavors = c("vanilla", "chocolate", "strawberry")

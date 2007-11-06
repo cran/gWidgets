@@ -21,11 +21,11 @@ gstatusbar(text = "", container = NULL, ..., toolkit = guiToolkit())
  last message from the stack. The \code{svalue<-} method pushes a new
  message onto the stack.
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   group = ggroup(horizontal=FALSE, container=TRUE)

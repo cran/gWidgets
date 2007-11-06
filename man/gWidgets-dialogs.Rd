@@ -64,11 +64,11 @@ gbasicdialog(title = "Dialog", widget, handler = NULL, action=NULL, ..., toolkit
   the dialog is dismissed. This may be confusing to users if the window
   should appear below a currently drawn window.
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
    gmessage("Hi there")

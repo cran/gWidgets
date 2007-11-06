@@ -97,6 +97,6 @@ Objects can be created by calls of the form \code{new("guiWidget", ...)}.
 
 
 }
-\seealso{}
-\examples{}
+% \seealso{}
+% \examples{}
 \keyword{classes}

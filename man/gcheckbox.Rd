@@ -37,10 +37,10 @@ container = NULL, ..., toolkit = guiToolkit())
 	Any \code{addhandlerchanged} handler is called when the button is
 	toggled.
 }
-\value{}
-\references{}
+%%\value{}
+%%\references{}
 \author{John Verzani}
-\note{}
+%%\note{}
 \seealso{
 
 Methods for gComponent objects are detailed in \code{\link{gWidgets-methods}}.

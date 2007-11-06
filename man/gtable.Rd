@@ -83,9 +83,9 @@ gtable(items, multiple = FALSE, chosencol = 1, icon.FUN = NULL, filter.column = 
 
 
 }
-\value{}
-\references{}
-\author{}
+% \value{}
+% \references{}
+% \author{}
 \seealso{See also \code{\link{gtree}} for displaying tree-like data and
 \code{\link{gdf}} for tabular data meant to be edited }
 \examples{

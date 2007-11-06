@@ -9,7 +9,7 @@
 }
 \usage{
 gwindow(title = "Window", visible = TRUE, name=title,
-  width = NULL, height= NULL,
+  width = NULL, height= NULL, location=NULL,
 handler = NULL, action = NULL,
  ..., toolkit = guiToolkit())
 }
@@ -21,6 +21,11 @@ handler = NULL, action = NULL,
 \item{name}{Name for registry of windows}
 \item{width}{Default width for window at creation}
 \item{height}{Default height for window at creation}
+\item{location}{If non-NULL, can be used to suggest default location of
+window. This can be a coordinate pair (x,y) with (0,0) the upper left
+corner, or a gwindow instance. In the latter case the location is
+suggested by the location of the current window. This is useful for
+placing dialogs near the parent window.}
 \item{handler}{Handler for unrealize event (when window manager closes
 window). Use addHandlerDestroy to get destroy event.}
 \item{action}{Passed to handler}
@@ -44,11 +49,11 @@ window). Use addHandlerDestroy to get destroy event.}
    and \code{height} arguments to set the default size when the window
    is constructed.
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   win = gwindow("Window example", handler=function(h,...) print("See

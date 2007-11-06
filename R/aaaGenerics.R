@@ -822,18 +822,18 @@ setGeneric( '.gvarbrowser' ,
 ## define a gWidget constructor
 ## not a generice          
 gwindow = function(title="Window" ,visible=TRUE, name=title,
-  width = NULL, height = NULL,
+  width = NULL, height = NULL, location = NULL,
   handler = NULL, action = NULL,
   ...,
   toolkit=guiToolkit()
   ) {
-  win = .gwindow(toolkit,title, visible,width, height, handler, action, ...)
+  win = .gwindow(toolkit,title, visible,width, height, location, handler, action, ...)
   obj = new("guiContainer",widget=win,toolkit=toolkit)
   return(obj)
 }
 
 ## define a toolkit constructor, dispatch on toolkit
-setGeneric(".gwindow",function(toolkit, title, visible, width, height, handler, action, ...) standardGeneric(".gwindow"))
+setGeneric(".gwindow",function(toolkit, title, visible, width, height, location, handler, action, ...) standardGeneric(".gwindow"))
 
 ## ggroup
  

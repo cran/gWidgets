@@ -101,11 +101,11 @@ ggenericwidget(lst,  cli = NULL, container = NULL, ..., toolkit = guiToolkit())
   called with a function name.
   
 }
-\value{}
-\references{}
-\author{}
+% \value{}
+% \references{}
+% \author{}
 \note{This function may be improved and the list defining it changed.}
-\seealso{}
+%\seealso{}
 \examples{
 \dontrun{
 	## a sample list definition

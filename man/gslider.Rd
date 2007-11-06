@@ -39,11 +39,11 @@ gspinbutton (from = 0, to = 10, by = 1, value = from, digits = 0,
 	The \code{addhandlerchanged} handler is called when the
 	widgets' value is changed.
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   x = rnorm(100)

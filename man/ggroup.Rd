@@ -74,11 +74,11 @@ gexpandgroup(text = "", markup = FALSE, horizontal=TRUE, handler = NULL, action 
 	The argument \code{use.scrollwindow = TRUE} will put the group
 	
 }
-\value{}
-\references{}
-\author{}
-\note{ }
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{ }
+% \seealso{}
 \examples{
 \dontrun{
   ## basic group

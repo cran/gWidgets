@@ -68,8 +68,6 @@ Verzani
 
 Maintainer: John Verzani <gwidgetsrgtk@gmail.com>
 }
-\references{
-
-}
+%\references{}
 
 \keyword{ package }

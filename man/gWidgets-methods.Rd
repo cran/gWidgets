@@ -326,7 +326,7 @@
       
 
 	
-\author{}
+% \author{}
 \note{See package vignette for more examples}
 \seealso{\code{\link{gWidgets-handlers}} for methods related to handlers.}
 \examples{

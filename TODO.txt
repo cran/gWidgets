@@ -1,3 +1,6 @@
+* gwindow -- place near a parent window, place in some place
+  (setLocatino in rJava), see that TODO
+* add icons to droplist in others
 DONE * gframe, gexpandgroup should get a horizontal= argument
 DONE * FIX FONTS!! weight <-> style
 * visible API (not visible<-) with set is wanky

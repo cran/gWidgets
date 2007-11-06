@@ -80,11 +80,11 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
 	The \code{dispose} method clears the text in the buffer.
 
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
 	gedit("type here", container=TRUE)

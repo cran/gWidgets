@@ -29,11 +29,11 @@ ghtml(url, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiTo
   The \code{svalue<-} method loads the current url in the widget.
 
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   ghtml(system.file("html","gedit.html",package="gWidgets"),

@@ -30,11 +30,11 @@ gvarbrowser(handler = NULL,
 
   svalue returns a character string containing the selected variable.
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
 gvarbrowser(container=TRUE)

@@ -44,9 +44,9 @@ first argument \code{h} has the additional values \code{h\$x} and
 are returned using "usr" coordinates (see \code{help("par")}). (This was
 in NDC coordinates)
 }
-\value{}
-\author{}
-\note{}
+% \value{}
+% \author{}
+% \note{}
 \examples{
 \dontrun{
 win = gwindow("Graphics example")

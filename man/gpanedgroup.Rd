@@ -19,12 +19,12 @@ gpanedgroup(widget1=NULL, widget2=NULL, horizontal = TRUE, container = NULL, ...
     \item{toolkit}{Which GUI toolkit to use}
 
 }
-\details{}
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \details{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
  gpanedgroup(glabel("left widget"), glabel("right widget"),

@@ -30,10 +30,10 @@ getStockIcons(..., toolkit=guiToolkit())
 \details{
   The file type must be supported by the toolkit.
 }
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
  iconNames = c("larrow","rarrow")

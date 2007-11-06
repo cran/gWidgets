@@ -75,12 +75,11 @@ gimage(filename = "", dirname = "",  size = "",
 
 
 }
-\value{}
-\references{}
-\author{}
-\note{ 
-}
-\seealso{ }
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
    glabel("a label", container=TRUE)

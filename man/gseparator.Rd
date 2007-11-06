@@ -15,11 +15,11 @@ gseparator(horizontal = TRUE, container = NULL, ..., toolkit = guiToolkit())
     \item{toolkit}{Which GUI toolkit to use}
 
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   group = ggroup(container=TRUE)

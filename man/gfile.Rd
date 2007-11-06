@@ -62,11 +62,11 @@ gcalendar(text = "", format = "\%Y-\%m-\%d", handler=NULL, action=NULL, containe
 	returned if no file is selected.
 
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
 ## source a file using a handler

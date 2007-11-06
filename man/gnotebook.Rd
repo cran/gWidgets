@@ -58,11 +58,11 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
   The \code{"[<-"} method can be used to replace a widget on a notebook page.
   
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   nb = gnotebook(container=TRUE)

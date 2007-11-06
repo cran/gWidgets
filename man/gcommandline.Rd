@@ -33,11 +33,11 @@ gcommandline(command = "", assignto = NULL, useGUI = TRUE, useConsole = FALSE, p
 
   The \code{"["} method can be used to retrieve the command history as well.
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   obj = gcommandline(container=TRUE)

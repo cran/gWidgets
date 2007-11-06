@@ -32,11 +32,11 @@ ghelpbrowser(title = "Help browser", maxTerms=100, width=550, height=600, toolki
   string of the form \code{topic}.
   
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   obj = ghelp(container=TRUE)

@@ -95,11 +95,11 @@ handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
   The \code{addhandlerdoubleclick} handler can be set to respond to
   a double click event.
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   ## function to find offspring

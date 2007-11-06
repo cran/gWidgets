@@ -170,10 +170,9 @@ removehandler(obj, ID, ...)
 	A refinement of this is the \code{add3rdmousepopupmenu} method
 	which puts the popupmenu on the right mouse click.
 }
-\value{}
-
-\author{}
-\note{}
+% \value{}
+% \author{}
+% \note{}
 
 \seealso{\code{\link{gWidgets-methods}}}
 \examples{

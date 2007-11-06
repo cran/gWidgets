@@ -72,12 +72,10 @@ gdfnotebook(items = NULL, container = NULL, ..., toolkit=guiToolkit())
 	The \code{addhandlerchanged} handler responds to changes in
 	the values of the data frame.
 }
-\value{
-}
-\references{}
-\author{}
-\note{
-}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
 \seealso{\code{\link{gtable}}}
 \examples{
 \dontrun{

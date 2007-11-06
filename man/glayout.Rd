@@ -46,11 +46,11 @@ glayout(homogeneous = FALSE, spacing = 10, container = NULL, ..., toolkit = guiT
   force the widget to expand to fill the entire space if \code{TRUE}.
 }
 	
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
   ## show part of mtcars dataframe in a layout

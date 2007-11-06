@@ -67,11 +67,11 @@ gtoolbar (toolbarlist, style = c("both", "icons", "text",
 	the top-level names to delete, or a named list, or an instance
 	of either gmenu or gtoolbar.
 }
-\value{}
-\references{}
-\author{}
-\note{}
-\seealso{}
+% \value{}
+% \references{}
+% \author{}
+% \note{}
+% \seealso{}
 \examples{
 \dontrun{
  lst = list()
