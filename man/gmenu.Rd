@@ -23,9 +23,9 @@ gtoolbar (toolbarlist, style = c("both", "icons", "text",
   \item{toolbarlist}{A list defining a toolbar}
   \item{style}{What style to use}
   \item{action}{Passed to menubar handlers}
-  \item{container}{Optional container to attach widget to}
-  \item{\dots}{ingored}
-    \item{toolkit}{Which GUI toolkit to use}
+  \item{container}{Container to attach widget to. Should be a gwindow instance.}
+  \item{\dots}{Passed to the \code{add} method of the container}
+  \item{toolkit}{Which GUI toolkit to use}
 
 }
 \details{
@@ -67,9 +67,10 @@ gtoolbar (toolbarlist, style = c("both", "icons", "text",
 	the top-level names to delete, or a named list, or an instance
 	of either gmenu or gtoolbar.
 
-	Except in RGtk2, menubars and toolbars should be added to the
-	top level window. For 
-}
+	Popular usage reserves toolbars and menubars for top-level
+	windows -- not sub windows -- as such, the container, specified
+	at construction, should be a top-level gwindow instance
+      }
 % \value{}
 % \references{}
 % \author{}
@@ -77,21 +78,21 @@ gtoolbar (toolbarlist, style = c("both", "icons", "text",
 % \seealso{}
 \examples{
 \dontrun{
- lst = list()
- lst$File$Open$handler = function(h,...) print("open")
- lst$File$Quit$handler = function(h,...) print("quit")
- lst$File$Quit$icon = "quit"
- lst$Edit$Find$handler = function(h,...) print("Find")
- lst$Edit$Replace$handler = function(h,...) print("Replace")
+ mbl <- list()
+ mbl$File$Open$handler = function(h,...) print("open")
+ mbl$File$Quit$handler = function(h,...) print("quit")
+ mbl$File$Quit$icon = "quit"
+ mbl$Edit$Find$handler = function(h,...) print("Find")
+ mbl$Edit$Replace$handler = function(h,...) print("Replace")
 
- obj = gmenu(lst, container=TRUE)
+ w <- gwindow("gmenu test")
+ mb <- gmenu(mbl, container=w)
 
- lst1 = list()
- lst1$Help$Help$handler = function(h,...) print("help")
+ tbl <- list()
+ tbl$New <- list(icon="new",handler = function(...) print("new"))
+ tbl$Print <- list(icon="print",handler = function(...) print("print"))
 
- add(obj, lst1)
-
- 
+ tb <- gtoolbar(tbl, container=w)
 }
 }
 \keyword{interface }% at least one, from doc/KEYWORDS

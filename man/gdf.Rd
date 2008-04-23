@@ -79,10 +79,12 @@ gdfnotebook(items = NULL, container = NULL, ..., toolkit=guiToolkit())
 \seealso{\code{\link{gtable}}}
 \examples{
 \dontrun{
-	obj = gdf(mtcars, container=gwindow("mtcars"), do.subset=TRUE)
+	obj <- gdf(mtcars, container=gwindow("mtcars"), do.subset=TRUE)
 	obj[1,1]
 	obj[1,]
 	obj[,1]
+        obj[1,1] <- 21
+        obj[,] <- head(mtcars) ## replace df
 }
 }
 \keyword{interface }

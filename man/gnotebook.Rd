@@ -34,9 +34,9 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
 
   New pages are added with the \code{add} method. The extra argument
   \code{label} is used to specify the tab label. This may be a string,
-  or a \code{glabel}. The extra argument \code{index}
+  or in gWidgetsRGtk2 a \code{glabel}. The extra argument \code{index}
   can be used to specify which page to add to. By default, a new page is
-  created at the end of the notebook. The extra argument
+  created at the end of the notebook. In gWidgetsRGtk2, the extra argument
   \code{override.closebutton} can be used to add or not add a close
   button in the tab label.
 
@@ -44,7 +44,7 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
   unless it is overridden by the value of \code{dontCloseThese}.
 
   The \code{delete(obj, widget,...)} method will delete the widget on a
-  given page. This can then be replaced with the \code{[<-} method.
+  given page. This can then be replaced with the add method.
 
   The \code{length} method returns the number of pages.
 
@@ -65,17 +65,18 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
 % \seealso{}
 \examples{
 \dontrun{
-  nb = gnotebook(container=TRUE)
-  add(nb, glabel("Widget 1"), label="page 1")
-  add(nb, glabel("Widget 2"), label=glabel("page 2"))
+  w <- gwindow("gnotebook example")
+  nb <- gnotebook(container=w)
+  glabel("Widget 1", cont=nb, label="page 1")
+  glabel("Widget 2", cont=nb, label="page 2")
 
   length(nb)
   names(nb)
   names(nb)[1] <- "Page 1"
 
-  svalue(nb) <- 3
-  dispose(nb)
-  length(nb)
+  svalue(nb) <- 2
+  dispose(nb) ## dispose current tab
+  length(nb) 
 }
 }
 \keyword{interface}% at least one, from doc/KEYWORDS

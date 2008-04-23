@@ -17,7 +17,7 @@ ghtml(url, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiTo
      a list \code{h}, has component \code{h\$url} containing the url.}
   \item{action}{ Passed along to the  handler as \code{h\$action}}
   \item{container}{Optional container to attach widget to}
-  \item{\dots}{ ignored}
+  \item{\dots}{Passed to \code{add} method of container}
   \item{toolkit}{Which GUI toolkit to use}
 }
 \details{

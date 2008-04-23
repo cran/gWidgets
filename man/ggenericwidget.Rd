@@ -110,13 +110,13 @@ ggenericwidget(lst,  cli = NULL, container = NULL, ..., toolkit = guiToolkit())
 \dontrun{
 	## a sample list definition
 ## Save some typing by defining a list to be used more than once later
-TRUE.list = list(
+TRUE.list <- list(
   type = "gradio",
   items = c("TRUE","FALSE")
   )
 
 ## define a list for producing a histogram widget	  
-hist.list = list(
+hist.list <- list(
   title = "hist()",
   help = "hist",
   action = list(

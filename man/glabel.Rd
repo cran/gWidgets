@@ -48,7 +48,7 @@ gimage(filename = "", dirname = "",  size = "",
   \item{container}{Optional container to attach widget to.}
 %  \item{obj}{a \code{glabel} instance}
 %  \item{angle}{Angle to rotate label, in degrees}
-  \item{\dots}{ ignored }
+  \item{\dots}{Passed to \code{add} method of container}
     \item{toolkit}{Which GUI toolkit to use}
 
 }
@@ -67,11 +67,13 @@ gimage(filename = "", dirname = "",  size = "",
 	The \code{addhandlerclicked} method is called on click
 	events.
 
-	For labels, if \code{editable=TRUE} is specified,
-	clicking on the text allows one to edit the label's value
-	overriding the click handler in the process. However, the
-	\code{addhandlerchanged} handler can be given to respond to the
-	text after it has been chnaged.
+	Although in some toolkits, labels are meant to hold static text
+	gWidgets treats widgets like other widgets allowing the user to
+	bind handlers to mouse clicks.  For labels, if
+	\code{editable=TRUE} is specified, clicking on the text allows
+	one to edit the label's value overriding the click handler in
+	the process. However, the \code{addhandlerchanged} handler can
+	be given to respond to the text after it has been chnaged.
 
 
 }

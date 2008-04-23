@@ -140,7 +140,7 @@ gunivariatetable = function(xlabel="x",container=NULL, ..., toolkit=guiToolkit()
   
   xentry = gedit(text="",width=30, container=frame)
   xarg = addArg(argument=xlabel, xentry, container=frame)
-  glabel(" Tabulate data?",container=frame)
+  glabel("Tabulate data?",container=frame)
   doTable=gdroplist(c(TRUE,FALSE),container=frame)
   obj = new("gUnivariateTableANY",block=frame, widget=frame, toolkit=toolkit, widgets=list(x=xarg, doTable=doTable))
   return(obj)

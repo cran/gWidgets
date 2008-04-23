@@ -3,10 +3,10 @@ importFrom("methods","show")
 importFrom("utils", "installed.packages")
 
 ## functions to export
-export("guiToolkit")
+export("guiToolkit","gwCat")
 
 ## constructors
-export("glabel", "gbutton", "gcheckbox", "gradio", "gdroplist",
+export("glabel", "gbutton", "gcheckbox", "gradio", "gdroplist","gcombobox",
 "gcheckboxgroup", "gspinbutton", "gslider", "gedit", "gtext", "gmenu",
 "gtoolbar", "gtable", "gdf", "gdfnotebook", "gtree", "gfile",
 "gfilebrowse", "gcalendar", "ggraphics", "ggraphicsnotebook",
@@ -38,8 +38,9 @@ exportMethods(
 "[", 
 "svalue", "svalue<-", "add", "addSpace", "addSpring", "delete",
 "dispose", "visible", "visible<-", "enabled", "enabled<-", "size",
-"size<-", "focus", "focus<-", "font", "font<-", "tag", "tag<-", "id",
+"size<-", "focus", "focus<-", "defaultWidget","defaultWidget<-", "font", "font<-", "tag", "tag<-", "id",
 "id<-", "isExtant",
+              "addhandler", "addHandler",
               "addhandlerchanged",  "addHandlerChanged",
               "addhandlerkeystroke","addHandlerKeystroke",
               "addhandlerclicked",  "addHandlerClicked",
@@ -48,6 +49,7 @@ exportMethods(
               "addhandlerdestroy",   "addHandlerDestroy",
               "addhandlerexpose",    "addHandlerExpose",
               "addhandlerunrealize", "addHandlerUnrealize",
+              "addhandlermousemotion","addHandlerMouseMotion",              
               "addhandleridle",      "addHandlerIdle",
               "addpopupmenu",        "addPopupmenu",
               "add3rdmousepopupmenu","add3rdMousePopupmenu",
@@ -55,6 +57,8 @@ exportMethods(
               "adddropmotion",       "addDropMotion",
               "adddroptarget",       "addDropTarget",
               "removehandler",       "removeHandler",
+              "blockhandler",       "blockHandler",
+              "unblockhandler",       "unblockHandler",
 ".glabel", ".gbutton", ".gcheckbox", ".gradio", ".gdroplist",
 ".gcheckboxgroup", ".gspinbutton", ".gslider", ".gedit", ".gtext",
 ".gmenu", ".gtoolbar", ".gtable", ".gdf", ".gdfnotebook", ".gtree",
@@ -65,13 +69,18 @@ exportMethods(
 ".gnotebook", ".glayout", ".gpanedgroup", ".svalue", ".svalue<-",
 ".leftBracket", ".leftBracket<-", ".add", ".addSpace", ".addSpring",
 ".delete", ".dispose", ".visible", ".visible<-", ".enabled",
-".enabled<-", ".size", ".size<-", ".focus", ".focus<-", ".font",
+".enabled<-", ".size", ".size<-", ".focus", ".focus<-",".defaultWidget",".defaultWidget<-",
+              ".font",
 ".font<-", ".tag", ".tag<-", ".id", ".id<-", ".isExtant",
 ".removehandler",
+              ".blockhandler",
+              ".unblockhandler",
+              ".addhandler",
 ".addhandlerchanged",
 ".addhandlerkeystroke", ".addhandlerclicked",
 ".addhandlerdoubleclick", ".addhandlerrightclick",
 ".addhandlerdestroy", ".addhandlerexpose", ".addhandlerunrealize",
+              ".addhandlermousemotion",
 ".addhandleridle", ".addpopupmenu", ".add3rdmousepopupmenu",
 ".adddropsource", ".adddropmotion", ".adddroptarget", ".gmessage",
 ".ginput", ".gconfirm", ".gbasicdialog",
@@ -86,3 +95,7 @@ exportMethods(
 "names<-",".names<-",
 "getToolkitWidget",".getToolkitWidget"
  )
+
+## put into toolkit only (RGtk2)
+##export("as.gWidget")
+##S3method("as.gWidget","default")

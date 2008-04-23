@@ -1,8 +1,10 @@
-* gwindow -- place near a parent window, place in some place
+DONE * add addHandlerMouseOver -- for mouseover effects -- different from
+  dropmotion, but similar
+DONE * gwindow -- place near a parent window, place in some place
   (setLocatino in rJava), see that TODO
-* gWindow -- add ggroup to gwindow by default, in RGtk2, add in areas
-  for packing in menubar, toolbar and statusbar. methods add and
-  delete should work with gwindow as container
+DONE * gwindow -- add in menu, toolbar, contentPane, statusbar
+  area. contentPane a "bin"-like container. Done in RGtk2, rJava okay,
+  others need implementing
 * add icons to droplist in others DONE in RGTK2
 DONE * gframe, gexpandgroup should get a horizontal= argument
 DONE * FIX FONTS!! weight <-> style

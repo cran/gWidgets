@@ -7,18 +7,23 @@
 \alias{addhandlerdoubleclick}
 \alias{addhandlerrightclick}
 \alias{addhandlerexpose}
+\alias{addhandlermousemotion}
 \alias{addhandlerunrealize}
 \alias{addhandlerdestroy}
 \alias{addhandleridle}
 \alias{addpopupmenu}
 \alias{add3rdmousepopupmenu}
-%%\alias{addhandler}
+\alias{addhandler}
+\alias{addHandler}
 \alias{removeHandler}
+\alias{blockHandler}
+\alias{unblockHandler}
 \alias{addHandlerChanged}
 \alias{addHandlerKeystroke}
 \alias{addHandlerClicked}
 \alias{addHandlerDoubleclick}
 \alias{addHandlerRightclick}
+\alias{addHandlerMouseMotion}
 \alias{addHandlerExpose}
 \alias{addHandlerUnrealize}
 \alias{addHandlerDestroy}
@@ -46,6 +51,8 @@ addhandlerclicked(obj, handler = NULL, action = NULL, ...)
 addhandlerdoubleclick(obj, handler = NULL, action = NULL, ...) 
 
 addhandlerrightclick(obj, handler = NULL, action = NULL, ...) 
+
+addhandlermousemotion(obj, handler = NULL, action = NULL, ...)
 
 addhandlerexpose(obj, handler = NULL, action = NULL, ...) 
 
@@ -127,47 +134,56 @@ removehandler(obj, ID, ...)
 	state is used.
 
 	\description{
-	\item{\code{addhandlerchanged}:}{ This handler is called when a widget
+	\item{\code{addHandlerChanged}:}{ This handler is called when a widget
 	is "changed."  This is interpreted differently by the various
 	widgets. For \code{gedit} change refers to a changed value,
 	not a keystroke change (when ENTER is pressed). For notebooks,
 	this is called when a page is changed.
 	}
 
-	\item{\code{addhandlerkeystroke}:}{ This handler is called when keys are
+	\item{\code{addHandlerKeystroke}:}{ This handler is called when keys are
 	pressed in the text widgets.
 	}	
 
-	\item{\code{addhandlerclicked}:}{This handler is called when a widget,
+	\item{\code{addHandlerClicked}:}{This handler is called when a widget,
 	such as a button or label, is clicked.
 	}	
 
-	\item{\code{addhandlerdoubleclick}:}{This handler is called when a
+	\item{\code{addHandlerDoubleclick}:}{This handler is called when a
 	widget is doubleclicked, like in the tree widget. Not all
 	widgets receive a double click signal. Only when a single
 	mouse click is needed for selection is this implemented.}
 
-	\item{ \code{addhandlerexpose}:}{ handler is called when a widget is
+      	\item{\code{addHandlerMouseMotion}:}{This handler is called when a
+	  the mouse moves over a widget. In some toolkits it is called
+	  just once per visit to the widget, for others maybe multiple
+	  times. This is like a mouseover for web pages. The drag motion
+	  handler is similar, only it is called when a drag event is
+	  dragged over a widget.}
+
+	\item{ \code{addHandlerExpose}:}{ handler is called when a widget is
 	exposed. For instance when a page in a notebook is exposed.}
 
-	\item{ \code{addhandlerunrealize}:}{ handler is called when a widget
+	\item{ \code{addHandlerUnrealize}:}{ handler is called when a widget
 	is being unrealized.}
 
-	\item{ \code{addhandlerdestroy}:}{ handler is called when a widget
-	is being destroyed. A slight difference between the previous. }
+	\item{ \code{addHandlerDestroy}:}{ handler is called when a widget
+	is being destroyed. For top level windows, this usually allows
+	one to intercept the window destroy event for purposes of saving
+	work etc.}
 
-	\item{ \code{addhandleridle}:}{ handler is called every so often,
+	\item{ \code{addHandlerIdle}:}{ handler is called every so often,
 	and can be used to update a widget's content. This method has
 	an extra argument 
 	\code{interval} specifying the interval in milliseconds with a
 	default of 1000 or 1 second. }
 	}
 
-	Although not handlers, the \code{addpopupmenu} method adds a
+	Although not handlers, the \code{addPopupMenu} method adds a
 	popup menu to a mouse click. The popup menu is specified using
 	a list that is passed to \code{gmenu}.
 
-	A refinement of this is the \code{add3rdmousepopupmenu} method
+	A refinement of this is the \code{add3rdMousePopupmenu} method
 	which puts the popupmenu on the right mouse click.
 }
 % \value{}

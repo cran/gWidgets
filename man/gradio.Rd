@@ -40,7 +40,7 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
   \item{handler}{Called when selection is changed}
   \item{action}{Passed to handler when called.}
   \item{container}{Optional container to attach widget to}
-  \item{\dots}{ Ignored}
+  \item{\dots}{Passed to \code{add} method of container}
   \item{toolkit}{Which GUI toolkit to use}
 }
 \details{
@@ -74,23 +74,31 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
 % \seealso{}
 \examples{
 \dontrun{
-  flavors = c("vanilla", "chocolate", "strawberry")
+  flavors <- c("vanilla", "chocolate", "strawberry")
 
-  group = ggroup(container=TRUE)
-  add(group,glabel("Favorite flavor:"))
-  add(group, gradio(flavors))
+  f <- function(h,...) print(
+      paste("Yum",
+      paste(svalue(h$obj),collapse=" and "),
+      sep = " "))
 
-  group = ggroup(container=TRUE)
-  add(group,glabel("Favorite flavor:"))
-  add(group, gdroplist(flavors, editable =TRUE))
+  w <- gwindow("Radio example")
+  gp <- ggroup(container=w)
+  glabel("Favorite flavor:",cont=gp)
+  rb <- gradio(flavors, cont=gp, handler = f)
 
-  group = ggroup(container=TRUE)
-  add(group,glabel("Favorite flavors:"))
-  add(group, obj <- gcheckboxgroup(flavors))
+  w <- gwindow("combobox example")
+  gp <- ggroup(container=w)
+  glabel("Favorite flavor:", cont=gp)
+  gcombobox(flavors, editable=TRUE, cont=gp, handler=f)
 
-  svalue(obj) <- c(TRUE, FALSE, TRUE)
-  svalue(obj)
-  obj[3] <- "raspberry"
+  w <- gwindow("checkbox example")
+  gp <- ggroup(container=w)
+  glabel("Favorite flavors:",cont=gp)
+  cb <- gcheckboxgroup(flavors, cont=gp, handler=f)
+
+  svalue(cbg) <- c(TRUE, FALSE, TRUE)
+  svalue(cbg)
+  cbg[3] <- "raspberry"
 
 }
 

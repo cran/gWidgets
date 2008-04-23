@@ -60,6 +60,8 @@ Objects can be created by calls of the form \code{new("guiWidget", ...)}.
     \item{addhandlerrightclick}{\code{signature(obj = "guiWidget")}: ... }
     \item{addhandlerunrealize}{\code{signature(obj = "guiWidget")}: ... }
     \item{addpopupmenu}{\code{signature(obj = "guiWidget")}: ... }
+    \item{defaultWidget}{\code{signature(obj = "guiWidget")}: ... }
+    \item{defaultWidget<-}{\code{signature(obj = "guiWidget")}: ... }
     \item{delete}{\code{signature(obj = "guiWidget")}: ... }
     \item{dim}{\code{signature(x = "guiWidget")}: ... }
     \item{dimnames}{\code{signature(x = "guiWidget")}: ... }

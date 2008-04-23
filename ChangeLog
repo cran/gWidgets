@@ -1,3 +1,36 @@
+2008-04-23  jverzani  <verzani@csilaptop.Belkin>
+
+	* R/aaaGenerics.R: changed location argument to parent in gwindow.
+	Added parent argument to gdialogs.
+
+	* R/common.R (gwCat): added function to quiet messages. Set option
+	gWidgetsDebug to non null to hear warning messages
+
+2008-04-12  jverzani  <verzani@csilaptop.Belkin>
+
+	* R/aaaGenerics.R: added blockHandler, unblockHandler
+
+2008-04-04  jverzani  <verzani@csilaptop.Belkin>
+
+	* man/ggroup.Rd: names should refer to label for gframe, gexpandgroup
+
+2008-04-02  jverzani  <verzani@csilaptop.Belkin>
+
+	* R/aaaGenerics.R (as.gWidget): added new S3 generic for coercion,
+	mostly with RGtk2 implementation.
+
+2008-03-31  jverzani  <verzani@csilaptop.Belkin>
+
+	* NAMESPACE: added addHandlerMouseMotion
+
+2008-02-14  jverzani  <verzani@csilaptop.Belkin>
+
+	* R/aaaGenerics.R: Added defaultWidget method. Implemented in RGtk2.
+
+2008-01-23  jverzani  <verzani@csilaptop.Belkin>
+
+	* man/gWidgets-methods.Rd: fixed entry for font
+
 2008-01-22  jverzani  <verzani@csilaptop.Belkin>
 
 	* R/aaaGenerics.R: added gcombobox alias for gdroplist

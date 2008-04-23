@@ -90,15 +90,59 @@ gtable(items, multiple = FALSE, chosencol = 1, icon.FUN = NULL, filter.column = 
 \code{\link{gdf}} for tabular data meant to be edited }
 \examples{
 \dontrun{
-  icon.FUN = function(df) {
-    x = rep("file", length = length(df$isdir))
-    x[df$isdir] = "directory"
-    x
+  ## example to select CRAN mirror
+  m <- getCRANmirrors()[,c(1,4)]
+  setCRAN <- function(URL) { ## see chooseCRANmirror
+    repos = getOption("repos")
+    repos["CRAN"] <- gsub("/$", "", URL)
+    options(repos=repos)
   }
-  files = file.info(dir())
-  files = cbind(rownames(files), files[,c("size","isdir")])
-  names(files)[1] = "Filename"
-  gtable(files, icon.FUN=icon.FUN, container=TRUE)
+  w <- gwindow("gtable example",width=400)
+  gp = ggroup(horizontal=FALSE, cont=w)
+  tab <- gtable(m, chosencol = 2, cont=gp, expand=TRUE,
+       handler = function(h,...) setCRAN(svalue(h$obj)))
+  bg <- ggroup(cont=gp)
+  addSpring(bg)
+  gbutton("dismiss", cont=bg, handler = function(h,...) dispose(w))
+
+
+  ## an example with icons.
+  ## Select variables from a data frame
+
+  ## find icons by class
+  icon.FUN <- function(items) {
+    dfName <- svalue(cb)
+    df <- try(get(dfName, envir=.GlobalEnv), silent=TRUE)
+    if(inherits(df,"try-error"))
+      return(rep(NULL,dim(items)[1]))
+
+    sapply(items[,1, drop=TRUE], function(i) {
+      class(df[,i])[1]
+    })
+  }
+  ## list data frames in an environment
+  lsDF <- function(envir=.GlobalEnv) {
+    varNames <- ls(envir=envir)
+    dfs <- sapply(varNames, function(i) inherits(get(i,envir=envir),"data.frame"))
+    varNames[dfs]
+  }
+  ## set up GUI
+  w <- gwindow("Select variables",width=250)
+  g <- ggroup(horizontal=FALSE, cont=w)
+  l <- glabel("Data frame", cont=g)
+  cb <- gcombobox(lsDF(), cont=g)
+  tbl <- gtable(data.frame(variables=character(0)), icon.FUN=icon.FUN, cont=g,
+    expand=TRUE)
+  ## add handlers
+  addHandlerChanged(cb, handler <- function(h,...) {
+    dfName <- svalue(h$obj)
+    dfNames <- names(get(dfName,envir=.GlobalEnv))
+    tbl[,] <- data.frame(variables=dfNames, stringsAsFactors=FALSE)
+  })
+  addHandlerClicked(tbl, handler = function(h,...) {
+    cat("Do something with",svalue(cb),"::", svalue(h$obj),"\n")
+  })
+
 }
 }
 \keyword{interface}% at least one, from doc/KEYWORDS

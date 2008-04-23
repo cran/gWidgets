@@ -6,6 +6,7 @@
 \alias{editSubsetDialog}
 \alias{.fixFontMessUp} %% screwed this up.
 \alias{str2}
+\alias{gwCat}			% for error messages
 
 %% These from the ANY class for compound widgets
 \alias{.add,ANY,ANY,gWidgetANY-method}

@@ -15,35 +15,34 @@ glayout(homogeneous = FALSE, spacing = 10, container = NULL, ..., toolkit = guiT
   \item{homogeneous}{A logical indicating if the  cells are all the same size}
   \item{spacing}{Spacing in pixels between cells}
   \item{container}{Optional container to attach widget to.}
-  \item{\dots}{ignored}
-    \item{toolkit}{Which GUI toolkit to use}
+  \item{\dots}{Passed to \code{add} method of container}
+  \item{toolkit}{Which GUI toolkit to use}
 
 }
 \details{
-  Widgets are added using matrix notation. A widget can span
-  several cells, for instance \code{obj[1:2,2:3] <- widget}
-  would place the widget in the first and second rows and second
-  and third columns. 
 
+  Widgets are added using matrix notation. A widget can span several
+  cells, for instance \code{obj[1:2,2:3] <- widget} would place the
+  widget in the first and second rows and second and third columns.  The
+  matrix notation is to specify the space allocated to the widget. There
+  is no corresponding extraction method via \code{[}.
+
+  For \code{gWidgetstcltk}, it is necessary for a child widget to have the
+  layout object as its parent container and to call the \code{[<-}
+  method to add the widget. (See the example.)
+  
   As a convenience, if the value to be assigned is a character it will
   be turned into a \code{glabel} object before being added.
 
+  Like \code{ggroup}, the extra argument \code{expand} can be used to
+  force the widget to expand to fill all the space allocated to it.
   
-  For gWidgetsRGtk2, the widget may only be realized once, and once realized can
-  not be  modified. As such the process to add a new table is: use
-  \code{glayout} contstructor to make object. Add widgets with matrix
-  notation. Call \code{visible<-} method on object to make widget
-  visible.
+  Like \code{ggroup}, the extra argument \code{anchor} can by used to
+  anchor the child within the space allocated when this space islarger
+  than needed by the widget. This is specified as a pair of values from
+  -1,0,1 to indicating the x and y positioning of the widget within the
+  cell.
 
-
-  For gWidgetsrJava the extra argument \code{anchor} is a pair of values
-  from -1,0,1 to indicate the x and y positioning of the widget within
-  the cell. In gWidgetsRGtk2 such positioning is done by attaching the
-  widget to a ggroup container with the desired postion and then adding
-  the ggroup container to the glayout container.
-
-  For gWidgetsrJava the extra argument \code{expand}, a logical, will
-  force the widget to expand to fill the entire space if \code{TRUE}.
 }
 	
 % \value{}
@@ -54,12 +53,13 @@ glayout(homogeneous = FALSE, spacing = 10, container = NULL, ..., toolkit = guiT
 \examples{
 \dontrun{
   ## show part of mtcars dataframe in a layout
-  obj = glayout(container=TRUE)
-  for(i in 1:6) {
-    for (j in 1:4) obj[i,j] <- glabel(mtcars[i,j])
-  }
-  visible(obj) <- TRUE
-
+  w <- gwindow("glayout example")
+  tbl <- glayout(container = w)
+  tbl[1,1] <- "a label"
+  ## need container argument in gWidgetstcltk, gWidgetsRwxwidgets
+  ## so we always use it.
+  tbl[1,2, expand = TRUE] <- gedit("edit here", container=tbl)
+  tbl[2,1, anchor = c(-1,-1)] <- glabel("ll", container = tbl)
 }
 }
 \keyword{interface}% at least one, from doc/KEYWORDS

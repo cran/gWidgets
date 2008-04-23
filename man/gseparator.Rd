@@ -22,10 +22,11 @@ gseparator(horizontal = TRUE, container = NULL, ..., toolkit = guiToolkit())
 % \seealso{}
 \examples{
 \dontrun{
-  group = ggroup(container=TRUE)
-  add(group, glabel("left widget"))
-  add(group, gseparator(horizontal=FALSE))
-  add(group, glabel("right widget"))
+  w <- gwindow("separator example")
+  gp <- ggroup(container=w)
+  glabel("left widget", cont=gp)
+  gseparator(horizontal=FALSE, cont=gp, expand=TRUE)
+  glabel("right widget", cont=gp)
 }
 }
 \keyword{interface}% at least one, from doc/KEYWORDS

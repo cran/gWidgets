@@ -14,16 +14,20 @@
 }
 \usage{
 gmessage(message, title="message",
-icon = c("info", "warning", "error", "question"), 
+icon = c("info", "warning", "error", "question"),
+        parent = NULL,
      handler = NULL, 
     action = NULL, ..., toolkit=guiToolkit()) 
 
-ginput(message, text="", title="Input", icon = c("info", "warning", "error", "question"),  handler = NULL, action = NULL,..., toolkit=guiToolkit())
+ginput(message, text="", title="Input", icon = c("info", "warning",
+ "error", "question"), parent=NULL, 
+ handler = NULL, action = NULL,..., toolkit=guiToolkit())
 
-gconfirm(message, title="Confirm", icon = c("info", "warning", "error", "question"),
+gconfirm(message, title="Confirm", icon = c("info", "warning", "error",
+ "question"), parent=NULL,
  handler = NULL, action = NULL, ..., toolkit=guiToolkit())
 
-gbasicdialog(title = "Dialog", widget, handler = NULL, action=NULL, ..., toolkit=guiToolkit())
+gbasicdialog(title = "Dialog", widget, parent=NULL, handler = NULL, action=NULL, ..., toolkit=guiToolkit())
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -33,6 +37,8 @@ gbasicdialog(title = "Dialog", widget, handler = NULL, action=NULL, ..., toolkit
   \item{icon}{Which icon to show}
   \item{text}{default value for ginput text}
   \item{widget}{Widget to place in basic dialog}
+  \item{parent}{A gwindow() instance. If specified, dialog will be
+    located in relation to this}
   \item{handler}{Handler called on OK selection.}
   \item{action}{Value passed to handler}
   \item{\dots}{Ignored}

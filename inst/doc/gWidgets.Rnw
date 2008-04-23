@@ -96,6 +96,12 @@ install the \RPackage{pmg} GUI
 (\url{http://www.math.csi.cuny.edu/pmg}), which is on CRAN.
 
 
+\begin{quotation}
+  \textbf{NOTE:} This document does not (yet) reflect changes as of
+  version 0.0-27 of gWidgets. The examples may or may not run without modification.
+\end{quotation}
+
+
 \setcounter{tocdepth}{3}
 \tableofcontents
 

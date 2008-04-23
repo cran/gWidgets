@@ -104,18 +104,20 @@ setMethod(".stockIconFromClass",
             if(theClass %in% .ts)
               return(getstockiconname("ts"))
             if(theClass %in% .functions)
-              return(getstockiconname("function"))
+              return(getstockiconname("function1"))
             
             ret = switch(theClass,
-              "numeric"= "numeric",
-              "integer"= "numeric",
-              "logical" = "logical",
-              "character"="select-font",
-              "matrix" = "matrix",
-              "data.frame" = "dataframe",
-              "list" = "dataframe",
               "complex"="numeric",
+              "character"="character",
+              "date" = "date",              
+              "data.frame" = "dataframe",
+              "integer"= "numeric",
               "factor"="factor",
+              "function"="function1",
+              "list" = "dataframe",
+              "logical" = "logical",
+              "matrix" = "matrix",
+              "numeric"= "numeric",
               "recordedplot" = "plot",
               NA)
             

@@ -52,7 +52,7 @@ Event Handlers are detailed in \code{\link{gWidgets-handlers}}.
 \examples{
 \dontrun{
  gcheckbox("checked", container=TRUE, handler=function(h,...) {
-cat("The widget is checked",svalue(h$obj), "\n")
+   cat("The widget is checked?",svalue(h$obj), "\n")
 })
 }
 }

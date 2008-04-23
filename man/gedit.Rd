@@ -28,7 +28,7 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
     means the enter key is pressed.}
   \item{action}{ Passed to handler}
   \item{container}{Optional container to attach widget to}
-  \item{\dots}{ ignored}
+  \item{\dots}{Passed to add method of container}
   \item{toolkit}{Which GUI toolkit to use}
 }
 \details{
@@ -79,7 +79,12 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
 
 	The \code{dispose} method clears the text in the buffer.
 
-}
+	The \code{addHandlerKeystroke} method for \code{gedit}and
+	\code{gtext} is called for 
+	each keystroke. In \code{gtext} or \code{RGtk2} the component
+	\code{key} of the \code{h} argument contains the keystroke.
+
+      }
 % \value{}
 % \references{}
 % \author{}
@@ -87,19 +92,19 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
 % \seealso{}
 \examples{
 \dontrun{
-	gedit("type here", container=TRUE)
+	gedit("type here", container=gwindow())
 	
 	## change handler
-	obj = gedit(container=TRUE)
+	obj <- gedit(container=gwindow())
 	addhandlerchanged(obj, handler=function(h,...) 
 	  cat("You typed", svalue(h$obj),"\n"))
 
 	 ## coerce to numeric
-	 obj = gedit("7", container=TRUE, coerce.with=as.numeric)
+	 obj <- gedit("7", container=gwindow(), coerce.with=as.numeric)
 	 svalue(obj)
 
         ## gtext example
-        obj = gtext("First line", container=TRUE)
+        obj <- gtext("First line", container=gwindow())
         add(obj,"second line", font.attr=c(family="monospace"))
         add(obj,"third line", font.attr=c(foreground.colors="red"))
 }

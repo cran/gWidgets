@@ -61,7 +61,7 @@ handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
   \item{handler}{ Handler for double click events}
   \item{action}{ Passed to handler }
   \item{container}{Optional container to attach widget to.}
-  \item{...}{Ignored}
+  \item{...}{Passed to \code{add} method of container}
   \item{toolkit}{Which GUI toolkit to use}  
 }
 \details{
@@ -103,27 +103,31 @@ handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 \examples{
 \dontrun{
   ## function to find offspring
-  offspring = function(path, user.data=NULL) {
+  offspring <- function(path, user.data=NULL) {
     if(length(path) > 0) 
-      directory = paste(getwd(),"/",paste(path,sep="/", collapse=""),sep="",collapse="")
+      directory <- paste(getwd(),"/",paste(path,sep="/", collapse=""),sep="",collapse="")
     else
-      directory = getwd()
-    files = file.info(dir(path=directory))[,c(2,1,3)]
+      directory <- getwd()
+    files <- file.info(dir(path=directory))[,c(2,1,3)]
      
-    files = cbind(rownames(files), files)
-    names(files)[1] = "filename"
+    files <- cbind(rownames(files), files)
+    names(files)[1] <- "filename"
     return(files)
  }
- hasOffspring = function(children,user.data=NULL, ...) {
+ hasOffspring <- function(children,user.data=NULL, ...) {
    return(children$isdir)
  }
- icon.FUN = function(children,user.data=NULL, ...) {
-   x = rep("file",length= nrow(children))
-   x[children$isdir] = "directory"
+ icon.FUN <- function(children,user.data=NULL, ...) {
+   x <- rep("file", length=nrow(children))
+   x[children$isdir] <- "directory"
    return(x)
   }
-
+  ## shows isdir directory, as hasOffspring is specified
   gtree(offspring, hasOffspring, icon.FUN = icon.FUN, container=TRUE)
+
+  ## does not show isdir directory, as hasOffspring=NULL and
+  ## second column is a logical
+  gtree(offspring, hasOffspring=NULL, icon.FUN = icon.FUN, container=TRUE)
 }
 }
 

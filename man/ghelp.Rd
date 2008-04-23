@@ -20,7 +20,7 @@ ghelpbrowser(title = "Help browser", maxTerms=100, width=550, height=600, toolki
   \item{maxTerms}{Maximum number of search responses}
   \item{width}{Width of browser window in pixels}
   \item{height}{Height  of browser window in pixels}
-  \item{\dots}{Ignored}
+  \item{\dots}{Passed to \code{add} method of container}
   \item{toolkit}{Which GUI toolkit to use}
 }
 \details{
@@ -39,7 +39,7 @@ ghelpbrowser(title = "Help browser", maxTerms=100, width=550, height=600, toolki
 % \seealso{}
 \examples{
 \dontrun{
-  obj = ghelp(container=TRUE)
+  obj <- ghelp(container=TRUE)
   add(obj,"base:::mean")
 
 }

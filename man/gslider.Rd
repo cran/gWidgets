@@ -9,6 +9,8 @@
 	change the value. For a spin button a text box with arrows
 	beside allow the user to scroll through the values by clicking
 	the arrows.
+
+	Some toolkits only allow integer values for these.
 }
 \usage{
 gslider(from = 0, to = 100, by = 1, value = from, horizontal = TRUE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
@@ -27,7 +29,7 @@ gspinbutton (from = 0, to = 10, by = 1, value = from, digits = 0,
   \item{handler}{Called on a change event.}
   \item{action}{Passed to handler }
   \item{container}{ Optional container to attach widget to}
-  \item{\dots}{ignored}
+  \item{\dots}{Passed to \code{add} method of container}
     \item{toolkit}{Which GUI toolkit to use}
 
 }
@@ -46,13 +48,22 @@ gspinbutton (from = 0, to = 10, by = 1, value = from, digits = 0,
 % \seealso{}
 \examples{
 \dontrun{
-  x = rnorm(100)
-  plotHist = function(shade = .5) hist(x, col=gray(shade))
+  x <- rnorm(100)
 
-  group = ggroup(horizontal =FALSE, container=TRUE)
-  glabel("Slide value to adjust shade", container=group)
-  gslider(from=0,to=1,by=0.05,value=.5, container=group,
-  handler=function(h,...)  plotHist(svalue(h$obj)))
+  ## our handler
+  plotHist <- function(...)
+    hist(x, col=gray(svalue(sb)), breaks = svalue(sl))
+
+   
+
+  w <- gwindow("Slider and spinbox example")
+  tbl = glayout(cont=w)
+  tbl[1,1] <- "Slide value to adjust shade"
+  tbl[1,2] <- (sb <- gspinbutton(from=0,to=1,by=0.05,value=.5, container=tbl,
+    handler=plotHist))
+  tbl[2,1] <- "No. breaks"
+  tbl[2,2, expand=TRUE] <- (sl <- gslider(from = 1, to= 100, by=1, value = 10,
+    cont = tbl, handler = plotHist))
 }
 }
 \keyword{interface}% at least one, from doc/KEYWORDS

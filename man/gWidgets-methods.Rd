@@ -23,6 +23,8 @@
 \alias{adddropmotion,guiWidget-method}
 \alias{adddropsource,guiWidget-method}
 \alias{adddroptarget,guiWidget-method}
+\alias{addhandler,guiWidget-method}
+\alias{addHandler,guiWidget-method}
 \alias{addhandlerchanged,guiWidget-method}
 \alias{addhandlerclicked,guiWidget-method}
 \alias{addhandlerdestroy,guiWidget-method}
@@ -32,6 +34,8 @@
 \alias{addhandlerkeystroke,guiWidget-method}
 \alias{addhandlerrightclick,guiWidget-method}
 \alias{addhandlerunrealize,guiWidget-method}
+\alias{addhandlermousemotion,guiWidget-method}
+\alias{addHandlerMouseMotion,guiWidget-method}
 \alias{addpopupmenu,guiWidget-method}
 \alias{add3rdMousePopupmenu,guiWidget-method}
 \alias{addDropMotion,guiWidget-method}
@@ -47,7 +51,13 @@
 \alias{addHandlerRightclick,guiWidget-method}
 \alias{addHandlerUnrealize,guiWidget-method}
 \alias{addPopupmenu,guiWidget-method}
+\alias{blockhandler,guiWidget-method}
+\alias{blockHandler,guiWidget-method}
+\alias{unblockhandler,guiWidget-method}
+\alias{unblockHandler,guiWidget-method}
 \alias{removeHandler,guiWidget-method}
+\alias{defaultWidget,guiWidget-method}
+\alias{defaultWidget<-,guiWidget-method}
 \alias{delete,guiWidget-method}
 \alias{dim,guiWidget-method}
 \alias{dimnames,guiWidget-method}
@@ -75,6 +85,10 @@
 \alias{visible,guiWidget-method}
 \alias{visible<-,guiWidget-method}
 \alias{isExtant,guiWidget-method}
+\alias{defaultWidget}
+\alias{defaultWidget<-}
+\alias{blockhandler}
+\alias{unblockhandler}
 \alias{svalue}
 \alias{svalue<-}
 \alias{size}
@@ -197,22 +211,28 @@
   \item{ \code{focus(obj,...)} or \code{focus<-(obj,...,value)}: }{
   method to check if a widget has focus, or to force focus on a widget.
  }
+
+ \item{\code{defaultWidget(obj,...)} or \code{defaultWidget<-(obj,..., value)}}{
+   Sets the widget to be activated when the parent window has focus and
+   the enter key is pressed. 
+ }
   
+
   \item{\code{font(obj, ...)} or
   \code{font<-(obj,...,value)}:}{
-    Can be used to check or set font attributes in
-    a widget. In gWidgetsRGtk, the font attributes
-    are given as a named vector. The available names are \code{family}
-    with a value of "normal","sans","serif",or "monospace";
-    \code{style} with a value of "normal","oblique", or "italic";
-    \code{weight} with a value of
-    "ultra-light","light","normal","bold","ultra-bold", or "heavy";
-    and
-    \code{color} which for gWidgetsRGtk is limited to
-    "black","blue","red","green","brown","yellow", or "pink".
-    [Prior to version 0.0-22 the weight and style were switched. Old
-    code should run as before.]
-  }
+  Can be used to check or set font attributes in
+  a widget. In gWidgetsRGtk, the font attributes
+  are given as a named vector. The available names are \code{family}
+  with a value of "normal","sans","serif",or "monospace";
+  \code{style} with a value of "normal","oblique", or "italic";
+  \code{weight} with a value of
+  "ultra-light","light","normal","bold","ultra-bold", or "heavy";
+  and
+  \code{color} which for gWidgetsRGtk is any of the values returned by
+  \code{colors}. 
+  [Prior to version 0.0-22 the weight and style were switched. Old
+  code can be run as before.]
+}
   
   \item{  \code{tag(obj,i, drop=TRUE, ...)} or
   \code{tag<-(obj,i, replace=TRUE, ...,value)}:}{
@@ -329,7 +349,4 @@
 % \author{}
 \note{See package vignette for more examples}
 \seealso{\code{\link{gWidgets-handlers}} for methods related to handlers.}
-\examples{
-
-}
 \keyword{interface}% at least one, from doc/KEYWORDS

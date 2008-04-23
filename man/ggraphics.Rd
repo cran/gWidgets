@@ -21,7 +21,8 @@ ggraphicsnotebook(width=dpi*6, height=dpi*6,dpi=75, container = NULL,..., toolki
   \item{dpi}{scale factor for default width and height}
   \item{ps}{pointsize}
   \item{container}{Optional container to attach widget to}
-  \item{\dots}{for notebook, passed onto \code{gnotebook} call.}
+  \item{\dots}{
+    Passed to add method of container. }
   \item{toolkit}{Which GUI toolkit to use}
 }
 \details{
@@ -49,7 +50,7 @@ in NDC coordinates)
 % \note{}
 \examples{
 \dontrun{
-win = gwindow("Graphics example")
+win <- gwindow("Graphics example")
 ggraphics(ps=6, container=win)
 hist(rnorm(100))
 }

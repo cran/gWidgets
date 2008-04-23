@@ -2,6 +2,11 @@
 ## hence repeated in gWidgetsR****. This should likely be changed, but
 ## for now it isn't
 
+gwCat <- function(...) {
+  doCat <- getOption("gWidgetsDebug")
+  if(!is.null(doCat)) cat(...)
+}
+
 Paste = function(..., sep="", collapse="") {
   x = unlist(list(...))
   x = x[!is.na(x)]

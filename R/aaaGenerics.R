@@ -823,18 +823,24 @@ setGeneric( '.gvarbrowser' ,
 ## define a gWidget constructor
 ## not a generice          
 gwindow = function(title="Window" ,visible=TRUE, name=title,
-  width = NULL, height = NULL, location = NULL,
+  width = NULL, height = NULL, parent = NULL,
   handler = NULL, action = NULL,
   ...,
   toolkit=guiToolkit()
   ) {
-  win = .gwindow(toolkit,title, visible,width, height, location, handler, action, ...)
+  theArgs <- list(...)
+  if(!is.null(theArgs$location)) {
+    parent <- theArgs$location
+    cat(gettext("location argument is renamed to 'parent'\n"))
+  }
+      
+  win = .gwindow(toolkit,title, visible,width, height, parent, handler, action, ...)
   obj = new("guiContainer",widget=win,toolkit=toolkit)
   return(obj)
 }
 
 ## define a toolkit constructor, dispatch on toolkit
-setGeneric(".gwindow",function(toolkit, title, visible, width, height, location, handler, action,...) standardGeneric(".gwindow"))
+setGeneric(".gwindow",function(toolkit, title, visible, width, height, parent, handler, action,...) standardGeneric(".gwindow"))
 
 ## ggroup
  
@@ -1228,6 +1234,32 @@ setMethod("focus<-",signature(obj="guiWidget"),
 setGeneric(".focus<-",function(obj, toolkit,...,value)
            standardGeneric(".focus<-"))
 
+
+## defaultWidget
+setGeneric("defaultWidget",function(obj, ...) standardGeneric("defaultWidget"))
+## add generic for Containers and sometimes widgets
+setMethod("defaultWidget",signature(obj="guiWidget"),
+          function(obj, ...) {
+            toolkit = obj@toolkit
+            .defaultWidget(obj@widget, toolkit,...)
+          })
+## dispatch with toolkit
+setGeneric(".defaultWidget",function(obj, toolkit,...) standardGeneric(".defaultWidget"))
+
+## defaultWidget<-
+setGeneric("defaultWidget<-",function(obj, ..., value) standardGeneric("defaultWidget<-"))
+## add generic for Containers and sometimes widgets
+setMethod("defaultWidget<-",signature(obj="guiWidget"),
+          function(obj, ..., value) {
+            toolkit = obj@toolkit
+            .defaultWidget(obj@widget, toolkit,...) <- value
+            return(obj)
+          })
+## dispatch with toolkit
+setGeneric(".defaultWidget<-",function(obj, toolkit,...,value)
+           standardGeneric(".defaultWidget<-"))
+
+
 ## font
 setGeneric("font",function(obj, ...) standardGeneric("font"))
 ## add generic for Containers and sometimes widgets
@@ -1332,6 +1364,58 @@ setGeneric("removeHandler",function(obj, ID=NULL, ...)
 setMethod("removeHandler", signature("guiWidget"),
           function(obj, ID=NULL, ...) {
             .removehandler(obj@widget, obj@toolkit, ID, ...)
+          })
+
+## block -- use unblock to remove block
+setGeneric("blockhandler",function(obj, ID=NULL, ...)
+           standardGeneric("blockhandler"))
+setMethod("blockhandler", signature("guiWidget"),
+          function(obj, ID=NULL, ...) {
+            .blockhandler(obj@widget, obj@toolkit, ID, ...)
+          })
+setGeneric(".blockhandler",function(obj, toolkit, ID=NULL, ...)
+           standardGeneric(".blockhandler"))
+## caps
+setGeneric("blockHandler",function(obj, ID=NULL, ...)
+           standardGeneric("blockHandler"))
+setMethod("blockHandler", signature("guiWidget"),
+          function(obj, ID=NULL, ...) {
+            .blockhandler(obj@widget, obj@toolkit, ID, ...)
+          })
+
+## unblock
+setGeneric("unblockhandler",function(obj, ID=NULL, ...)
+           standardGeneric("unblockhandler"))
+setMethod("unblockhandler", signature("guiWidget"),
+          function(obj, ID=NULL, ...) {
+            .unblockhandler(obj@widget, obj@toolkit, ID, ...)
+          })
+setGeneric(".unblockhandler",function(obj, toolkit, ID=NULL, ...)
+           standardGeneric(".unblockhandler"))
+## caps
+setGeneric("unblockHandler",function(obj, ID=NULL, ...)
+           standardGeneric("unblockHandler"))
+setMethod("unblockHandler", signature("guiWidget"),
+          function(obj, ID=NULL, ...) {
+            .unblockhandler(obj@widget, obj@toolkit, ID, ...)
+          })
+
+
+## addhandler is now exported
+setGeneric("addhandler",function(obj, signal, handler, action=NULL, ...) standardGeneric("addhandler"))
+setMethod("addhandler",signature(obj="guiWidget"),
+          function(obj, signal, handler, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandler(obj@widget, toolkit, handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandler",function(obj,  toolkit, signal, handler, action=NULL,...) standardGeneric(".addhandler"))
+## caps
+setGeneric("addHandler",function(obj, signal, handler, action=NULL, ...) standardGeneric("addHandler"))
+setMethod("addHandler",signature(obj="guiWidget"),
+          function(obj, signal, handler, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandler(obj@widget, toolkit, signal, handler, action, ...)
           })
 
            
@@ -1501,6 +1585,26 @@ setMethod("addHandlerUnrealize",signature(obj="guiWidget"),
             .addhandlerunrealize(obj@widget,toolkit,handler, action, ...)
           })
 
+## mousemotion
+setGeneric("addhandlermousemotion",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlermousemotion"))
+setMethod("addhandlermousemotion",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlermousemotion(obj@widget,toolkit,handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandlermousemotion",function(obj, toolkit,...) standardGeneric(".addhandlermousemotion"))
+## caps
+setGeneric("addHandlerMouseMotion",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerMouseMotion"))
+setMethod("addHandlerMouseMotion",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlermousemotion(obj@widget,toolkit,handler, action, ...)
+          })
+
+
+
+
 # addhandleridle
 setGeneric("addhandleridle",function(obj, handler=NULL, action=NULL, interval=1000, ...) standardGeneric("addhandleridle"))
 setMethod("addhandleridle",signature(obj="guiWidget"),
@@ -1629,15 +1733,17 @@ setMethod("addDropTarget",signature(obj="guiWidget"),
 gmessage = function(
   message,
   title = "message",
-  icon = c("info", "warning", "error", "question"), 
+  icon = c("info", "warning", "error", "question"),
+  parent=NULL,
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
-  .gmessage(toolkit,message, title, icon, handler, action,
+  .gmessage(toolkit,message, title, icon, parent, handler, action,
             ...)
 }
 setGeneric(".gmessage",
            function(toolkit,
-                    message=message, title=title, icon=icon, 
+                    message=message, title=title, icon=icon,
+                    parent = parent,
                     handler=handler, action=action, ...)
            standardGeneric(".gmessage"))
 
@@ -1647,16 +1753,18 @@ setGeneric(".gmessage",
 ginput = function(
   message,text="",
   title = "Input",
-  icon = c("info", "warning", "error", "question"), 
+  icon = c("info", "warning", "error", "question"),
+  parent = NULL,
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
   .ginput(toolkit,
-          message, text=text, title=title, icon, handler, action, 
+          message, text=text, title=title, icon, parent, handler, action, 
           ...)
 }
 setGeneric(".ginput",
            function(toolkit,
-                    message=message, text=text, title=title, icon=icon, 
+                    message=message, text=text, title=title, icon=icon,
+                    parent = parent,
                     handler=handler, action=action, ...)
            standardGeneric(".ginput"))
 
@@ -1665,31 +1773,34 @@ setGeneric(".ginput",
 gconfirm = function(
   message,
   title = "Confirm",
-  icon = c("info", "warning", "error", "question"), 
+  icon = c("info", "warning", "error", "question"),
+  parent=NULL,
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
-  .gconfirm(toolkit,message=message, icon=icon, handler=handler, action=action,
+  .gconfirm(toolkit,message=message, icon=icon, parent=parent, handler=handler, action=action,
             ...)
 }
 setGeneric(".gconfirm",
            function(toolkit,
-                    message=message, title=title, icon=icon, 
+                    message=message, title=title, icon=icon,
+                    parent = parent,
                     handler=handler, action=action, ...)
            standardGeneric(".gconfirm"))
 
 ## gbasicdialog
 gbasicdialog = function(
   title = "Dialog", widget,
+  parent = NULL,
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
   .gbasicdialog(toolkit,
-                title=title, widget=widget,
+                title=title, widget=widget,parent=parent,
                 handler=handler, action=action,
                 ...)
 }
 setGeneric(".gbasicdialog",
            function(toolkit,
-                    title = "Dialog", widget,
+                    title = "Dialog", widget, parent,
                     handler = NULL, action = NULL,
                     ...)
            standardGeneric(".gbasicdialog"))
@@ -1777,3 +1888,13 @@ setMethod("getToolkitWidget",signature(obj="guiWidget"),
 ## dispatch with toolkit
 setGeneric(".getToolkitWidget",function(obj, toolkit)
            standardGeneric(".getToolkitWidget"))
+
+
+## ####
+## put into RGtk2 only
+## ## S3 class for coercing to gWidget
+## as.gWidget <- function(obj,...) UseMethod("as.gWidget")
+## as.gWidget.default <- function(obj,...) {
+##   print(sprintf("No coercion to gWidget available for object of class %s",class(obj)))
+##   return(obj)
+## }

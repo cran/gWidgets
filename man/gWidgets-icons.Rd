@@ -12,7 +12,7 @@
 \title{Functions for adding icons}
 \description{
   Two functions for listing "stock" icons, and adding "stock" icons. A
-  stock icon can be referenced within gWidgets by it simple name, such
+  stock icon can be referenced within gWidgets by its simple name, such
   as "ok" or "close". 
 }
 \usage{
@@ -28,7 +28,8 @@ getStockIcons(..., toolkit=guiToolkit())
   \item{toolkit}{Which toolkit to use}
 }
 \details{
-  The file type must be supported by the toolkit.
+  The file type must be supported by the toolkit. The \code{tcltk}
+  supports few filetypes without additional libraries.
 }
 % \references{}
 % \author{}
@@ -36,9 +37,9 @@ getStockIcons(..., toolkit=guiToolkit())
 % \seealso{}
 \examples{
 \dontrun{
- iconNames = c("larrow","rarrow")
- iconFiles = c("/usr/share/icons/larrow.png",
- "/usr/share/icons/rarrow.png")
+ iconNames <- c("larrow","rarrow")
+ iconFiles <= c("/usr/share/icons/larrow.png",
+    "/usr/share/icons/rarrow.png")
  addStockIcons(iconNames, iconFiles)
 }
 }

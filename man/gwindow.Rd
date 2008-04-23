@@ -9,9 +9,9 @@
 }
 \usage{
 gwindow(title = "Window", visible = TRUE, name=title,
-  width = NULL, height= NULL, location=NULL,
-handler = NULL, action = NULL,
- ..., toolkit = guiToolkit())
+  width = NULL, height= NULL, parent=NULL,
+  handler = NULL, action = NULL,
+  ..., toolkit = guiToolkit())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,13 +21,12 @@ handler = NULL, action = NULL,
 \item{name}{Name for registry of windows}
 \item{width}{Default width for window at creation}
 \item{height}{Default height for window at creation}
-\item{location}{If non-NULL, can be used to suggest default location of
-window. This can be a coordinate pair (x,y) with (0,0) the upper left
+\item{parent}{If non-NULL, can be used to suggest default location of
+window. The argument name was changed from location to parent. This can be a coordinate pair (x,y) with (0,0) the upper left
 corner, or a gwindow instance. In the latter case the location is
 suggested by the location of the current window. This is useful for
 placing dialogs near the parent window.}
-\item{handler}{Handler for unrealize event (when window manager closes
-window). Use addHandlerDestroy to get destroy event.}
+\item{handler}{Handler for destroy event.}
 \item{action}{Passed to handler}
 \item{\dots}{Not used}
 \item{toolkit}{Which GUI toolkit to use}  
@@ -45,18 +44,22 @@ window). Use addHandlerDestroy to get destroy event.}
    window, so usually it would be another container.
 
    Additionally the menubar, toolbar and statusbar widgets should now be
-   added and deleted from the top-level window. Outside of RGtk2, the
-   other toolkits expect these items to be properties of a top-level
-   window. Unfortunately, gWidgetstcltk hacks in the toolbar and status
-   bar, so these should be added in the right manner: toolbar, a
-   container with \code{expand=TRUE} and then finally the statusbar.
+   added and deleted from the top-level window (Not yet implemented in
+   gWidgetsrJava). Outside of RGtk2, the other toolkits expect these
+   items to be properties of a top-level window.
    
-
    The \code{dispose} method destroys the window.
 
    The \code{size} method sets the minimum size. Use the \code{width}
    and \code{height} arguments to set the default size when the window
    is constructed.
+
+   A window is destroyed  in response to a destroy event. However, when
+   the window managager tries to close a window first a "delete-event"
+   is issued. If this has the right value then the "destroy" event is
+   fired. The \code{addHandlerUnrealize} handler can be called to
+   intercept the closing of the window. Its handler should return a
+   logical: \code{TRUE} to prevent the closing, \code{FALSE} to proceed.
 }
 % \value{}
 % \references{}
@@ -65,9 +68,32 @@ window). Use addHandlerDestroy to get destroy event.}
 % \seealso{}
 \examples{
 \dontrun{
-  win = gwindow("Window example", handler=function(h,...) print("See
-  ya"))
-  add(win,gbutton("Cancel", handler = function(h,...) dispose(win)))
+  ## window with handler
+  win <- gwindow("Window example",
+    handler=function(h,...) {
+     print("See ya")
+  })
+  gbutton("cancel", cont=win,
+    handler = function(h,...) dispose(win))
+
+  ## block closing of window
+  win <- gwindow("Window example")
+  addHandlerUnrealize(win, handler = function(h,...) {
+    val <- gconfirm("Really close window", parent=h$obj)
+    if(as.logical(val))
+      return(FALSE)		# destroy
+    else
+      return(TRUE)		# don't destroy
+  })
+
+  
+
+  ## transient dialog (gWidgetsRGtk2)
+  pwin <- gwindow("Parent window")
+  cwin <- gwindow("Child window", parent = pwin)
+  ## clicking button close parent causing child to close too
+  gbutton("close both", cont=cwin,
+    handler = function(h,...) dispose(pwin))
 }
 }
 \keyword{interface}% at least one, from doc/KEYWORDS
