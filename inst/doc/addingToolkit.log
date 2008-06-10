@@ -1,12 +1,12 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2007.12.11)  23 APR 2008 21:22
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2007.12.11)  10 JUN 2008 14:56
 entering extended mode
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**addingToolkit.tex
-(./addingToolkit.tex
-LaTeX2e <2005/12/01>
-Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+**\nonstopmode \input /home/verzani/export/Statistics/R/pmg/pmg3/projects/build
+/gWidgets/inst/doc/addingToolkit.tex
+
+(/home/verzani/export/Statistics/R/pmg/pmg3/projects/build/gWidgets/inst/doc/ad
+dingToolkit.tex (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size12.clo
 File: size12.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
@@ -497,13 +497,13 @@ File: helloWorld.png Graphic file (type png)
  <use helloWorld.png> [8]
 [9 <./helloWorld.png (PNG copy)>] (./addingToolkit.aux) ) 
 Here is how much of TeX's memory you used:
- 3357 strings out of 95086
- 44435 string characters out of 1183254
+ 3358 strings out of 95086
+ 44661 string characters out of 1183254
  94650 words of memory out of 1500000
  6401 multiletter control sequences out of 10000+50000
  59827 words of font info for 141 fonts, out of 1200000 for 2000
  28 hyphenation exceptions out of 8191
- 35i,12n,43p,255b,385s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 35i,12n,43p,351b,385s stack positions out of 5000i,500n,6000p,200000b,5000s
  </home/verzani/.texmf
 -var/fonts/pk/ljfour/jknappen/ec/tcst1200.600pk></usr/share/texmf-texlive/fonts
 /type1/bluesky/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/c
@@ -512,7 +512,7 @@ mr10.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr12.pfb></usr/share
 /type1/bluesky/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr
 9.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsltt10.pfb></usr/share
 /texmf-texlive/fonts/type1/bluesky/cm/cmtt12.pfb>
-Output written on addingToolkit.pdf (9 pages, 81483 bytes).
+Output written on addingToolkit.pdf (9 pages, 81485 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

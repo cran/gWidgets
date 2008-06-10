@@ -663,11 +663,11 @@ setGeneric( '.gstatusbar' ,
 
 ## ghtml function
 ghtml = function(
-  url, handler = NULL, 
+  x, handler = NULL, 
     action = NULL, container = NULL, 
   ..., toolkit=guiToolkit()) {
   widget = .ghtml(toolkit,
-    url,
+    x,
     handler = handler, 
     action = action, container = container, 
     ...)
@@ -675,7 +675,7 @@ ghtml = function(
   return(obj)
 }
 setGeneric(".ghtml",function(toolkit,
-                             url, handler = NULL, 
+                             x, handler = NULL, 
                              action = NULL, container = NULL, 
                              ...) standardGeneric(".ghtml"))
 
@@ -1034,7 +1034,7 @@ setMethod("svalue",signature(obj="character"),
               return(obj)
           })
 ## package generic has toolkit, object to dispatch on
-setGeneric(".svalue",function(obj,  index=NULL, drop=NULL, toolkit, ...)
+setGeneric(".svalue",function(obj, toolkit, index=NULL, drop=NULL,  ...)
            standardGeneric(".svalue"))
 
 ## svalue<-

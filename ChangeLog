@@ -1,3 +1,16 @@
+2008-05-27  jverzani  <verzani@csilaptop.Belkin>
+
+	* R/ghelp.R: try to fix ghelp to work under windows by putting in
+	chmhelp=FALSE, htmlhelp=FALSE ala Rpad.
+
+2008-05-19  jverzani  <verzani@csilaptop.Belkin>
+
+	* R/aaaGenerics.R: changed .svalue  generic 
+
+2008-04-25  jverzani  <verzani@csilaptop.Belkin>
+
+	* inst/tests/test-window.R (f): Added tests to tests director
+
 2008-04-23  jverzani  <verzani@csilaptop.Belkin>
 
 	* R/aaaGenerics.R: changed location argument to parent in gwindow.

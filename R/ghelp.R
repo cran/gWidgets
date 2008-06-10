@@ -126,9 +126,14 @@ setMethod(".dispose",
 
 ## Return gtext widget with help page
 makeHelpPage = function(topic, pkg, helpPage) {
-  helpFile = help(topic, package=force(pkg), verbose=TRUE)[1]
-#  helpFile = system.file("help",topic,package=pkg)
-  if(helpFile != "") {
+  helpFile = try(
+    help(topic, package=force(pkg), verbose=TRUE,
+         chmhelp=FALSE, htmlhelp=FALSE
+         )[1],
+    silent=TRUE)
+
+  ## if as.character(helpFile) == character(0) then no good
+  if(length(as.character(helpFile) != 0)) {
     dispose(helpPage)                   # clean out old one!
     text = readLines(helpFile)
     text = sapply(text, function(i) gsub("\\_\\\b","",i))

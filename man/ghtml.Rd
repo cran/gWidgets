@@ -2,16 +2,15 @@
 \alias{ghtml}
 \title{Constructors for widgets to handle text input}
 \description{
-	The ghtml widget is used to enter single lines of text. The
-	gtext widget creates a text buffer for handling multiple lines
-	of text. 
+  The ghtml widget is intended to show HTML text either from a url or
+  from a character string. Currently no toolkits support this widget. 
 }
 \usage{
-ghtml(url, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+ghtml(x, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
 }
 \arguments{
-  \item{url}{url to load.}
+  \item{x}{url or HTML-marked up character string to load into widget.}
   \item{handler}{Handles a click on a URL. The default is to open the
      clicked url in the widget. To override, the first argument,
      a list \code{h}, has component \code{h\$url} containing the url.}
@@ -24,9 +23,10 @@ ghtml(url, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiTo
   This widget loads the given url into a widget. Currently no toolkits
   support this.
 
-  The \code{svalue} method returns the current url.
+  The \code{svalue} method returns the current url or character string.
 
-  The \code{svalue<-} method loads the current url in the widget.
+  The \code{svalue<-} method loads the current url or character string
+  in the widget.
 
 }
 % \value{}
