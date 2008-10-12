@@ -128,7 +128,7 @@
   widget in the toolkit. For instance, the method svalue is defined
   like
   
-  \code{svalue(obj,...) = .svalue(obj@widget, obj@toolkit, ...)} where
+  \code{svalue(obj,...) <- .svalue(obj@widget, obj@toolkit, ...)} where
   \code{.svalue()} and  \code{obj@widget} are in toolkit, and
   \code{obj@toolkit} is used for dispatching in the appropriate toolkit.
 

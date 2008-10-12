@@ -62,6 +62,17 @@
 \alias{visible,gWidgetANY-method}
 \alias{isExtant,gWidgetANY-method}
 
+\alias{.gformlayout,ANY-method}
+\alias{.leftBracket,gFormLayoutANY-method}
+\alias{.names,gFormLayoutANY-method}
+\alias{.svalue,gFormLayoutANY-method}
+\alias{[,gFormLayoutANY-method}
+
+\alias{addHandlerBlur,guiWidget-method}
+\alias{addHandlerFocus,guiWidget-method}
+\alias{addhandlerblur,guiWidget-method}
+\alias{addhandlerfocus,guiWidget-method}
+
 
 %% these from ANY methods
 \title{Undocumented, but exported, functions}

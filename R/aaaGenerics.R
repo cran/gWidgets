@@ -791,6 +791,27 @@ setGeneric( '.ggenericwidget' ,
                     container = NULL, ... )
            standardGeneric( '.ggenericwidget' ))
 
+## gformlayout
+
+## the constructor
+gformlayout =function(
+  lst, container = NULL,
+  ... ,
+  toolkit=guiToolkit()){
+  widget =  .gformlayout(toolkit,
+    lst=lst, container=container ,...
+    )
+  obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
+  return(obj)
+}
+
+
+## generic for toolkit dispatch
+setGeneric( '.gformlayout' ,
+           function(toolkit,
+                    lst, 
+                    container = NULL, ... )
+           standardGeneric( '.gformlayout' ))
 
 ## gvarbrowser
 
@@ -1533,6 +1554,45 @@ setMethod("addHandlerRightclick",signature(obj="guiWidget"),
 
 
 
+## addhandlerFocus
+setGeneric("addhandlerfocus",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerfocus"))
+setMethod("addhandlerfocus",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerfocus(obj@widget,toolkit,handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandlerfocus",function(obj,toolkit,...) standardGeneric(".addhandlerfocus"))
+## caps
+setGeneric("addHandlerFocus",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerFocus"))
+setMethod("addHandlerFocus",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerfocus(obj@widget,toolkit,handler, action, ...)
+          })
+
+
+
+## addhandlerblur
+setGeneric("addhandlerblur",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerblur"))
+setMethod("addhandlerblur",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerblur(obj@widget,toolkit,handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandlerblur",function(obj,toolkit,...) standardGeneric(".addhandlerblur"))
+## caps
+setGeneric("addHandlerBlur",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerBlur"))
+setMethod("addHandlerBlur",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerblur(obj@widget,toolkit,handler, action, ...)
+          })
+
+
+
+
 ## addhandlerdestroy
 setGeneric("addhandlerdestroy",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerdestroy"))
 setMethod("addhandlerdestroy",signature(obj="guiWidget"),
@@ -1727,6 +1787,20 @@ setMethod("addDropTarget",signature(obj="guiWidget"),
 
 ## dialogs
 
+## galert
+## like gmessage, only for transient messages -- not modal
+galert = function(
+  message,
+  title = message,
+  delay = 3,
+  ..., toolkit=guiToolkit()) {
+  .galert(toolkit,message, title, 
+            ...)
+}
+setGeneric(".galert",
+           function(toolkit,
+                    message, title=message, delay=3, ...)
+           standardGeneric(".galert"))
 
 
 ## gmessage

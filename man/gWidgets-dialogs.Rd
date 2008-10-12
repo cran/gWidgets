@@ -1,6 +1,7 @@
 \name{gWidgets-dialogs}
 \alias{gWidgets-dialogs}
 \alias{gmessage}
+\alias{galert}
 \alias{gconfirm}
 \alias{ginput}
 \alias{gbasicdialog}
@@ -29,6 +30,7 @@ gconfirm(message, title="Confirm", icon = c("info", "warning", "error",
 
 gbasicdialog(title = "Dialog", widget, parent=NULL, handler = NULL, action=NULL, ..., toolkit=guiToolkit())
 
+galert(message, title = message, delay=3, ..., toolkit=guiToolkit())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -41,6 +43,7 @@ gbasicdialog(title = "Dialog", widget, parent=NULL, handler = NULL, action=NULL,
     located in relation to this}
   \item{handler}{Handler called on OK selection.}
   \item{action}{Value passed to handler}
+  \item{delay}{For galert, how long the transient message will appear}
   \item{\dots}{Ignored}
   \item{toolkit}{Toolkit to use for GUI}
 }
@@ -69,6 +72,10 @@ gbasicdialog(title = "Dialog", widget, parent=NULL, handler = NULL, action=NULL,
   These dialogs are modal. This means that the R session freezes until
   the dialog is dismissed. This may be confusing to users if the window
   should appear below a currently drawn window.
+
+  The \code{galert} dialog is non-modal. Like \code{gmessage} it shows
+  a message but unlike it, only for a short period of time.
+
 }
 % \value{}
 % \references{}

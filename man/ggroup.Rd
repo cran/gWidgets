@@ -4,14 +4,11 @@
 \alias{gexpandgroup}
 \title{Containers for packing in subsequent widgets}
 \description{
-	A \code{ggroup} is the primary container for packing in
-	subsequent widgets, either from left to right or top to
-	bottom. Widgets are packed in using the \code{add} method and
-	can be removed with the \code{delete} method.
 
-	The \code{gframe} and \code{gexpandgroup} widgets add a label
-	to the group and in the latter case an arrow for
-	hiding/showing the group.
+	Various box containers useful for laying out GUI controls. These
+	containers pack in child widgets from left to right or top to
+	bottom. A few arguments can be used to adjust the sizing and positioning.
+
 }
 \usage{
 ggroup(horizontal = TRUE, spacing = 5,  use.scrollwindow = FALSE, container = NULL, ..., toolkit = guiToolkit())
@@ -41,11 +38,27 @@ gexpandgroup(text = "", markup = FALSE, horizontal=TRUE, handler = NULL, action 
 }
 \details{
 
-  
-	The groups pack in widgets from either left to right (when
-	\code{horizontal=TRUE}) or from top to bottom (when
-	\code{horizontal=FALSE}). 
 
+	A \code{ggroup} is the primary container for packing in
+	subsequent widgets, either from left to right or top to
+	bottom. Widgets are packed in using the \code{add} method and
+	can be removed with the \code{delete} method.
+	
+	The \code{gframe} container adds a decorative border and
+	optional label to the box container.
+
+	The \code{gexpandgroup} containers has an optional label and a
+	trigger to click  on which toggles the display of the the child widgets.
+
+  
+	The containers pack in child widgets from either left to right
+	(when \code{horizontal=TRUE}) or from top to bottom (when
+	\code{horizontal=FALSE}).
+	
+	Child widgets are added to box containers through their \code{add}
+	method or through the containers use as the parent container
+	when a widget is constructed. This is done by using the
+	\code{container} argument of the widget.	
 	The \code{container} argument is optional for
 	\code{gWidgetsRGtk2} and \code{gWidgetsrJava}, but not the other
 	toolkits. It is suggested that it always be included for
@@ -54,11 +67,6 @@ gexpandgroup(text = "", markup = FALSE, horizontal=TRUE, handler = NULL, action 
 	widget is created, the group is specified as the container and
 	the add method is then called.
 	
-	The \code{add} method is used to place a child widget into a
-	parent container. This method may be called directly in some
-	cases, but often is called behind the scenes when a widget is
-	constructed. 
-
 	When the parent allocates space to a child widget is may be more
 	than the space needed by the child widget. Different types of
 	behavior are desirable for drawing the child. To have the widget
@@ -72,10 +80,9 @@ gexpandgroup(text = "", markup = FALSE, horizontal=TRUE, handler = NULL, action 
 	The \code{svalue<-} method can be used to adjust the border
 	width. By default it is 2 pixels.
 	
-	
 	The \code{spacing} value determines the number of pixels of
 	padding between each widget when packed in. This can be set when
-	the group is constructed, or later using \code{svalue}.
+	the group is constructed, or later using \code{svalue<-}.
 
 	To put  space between just two widgets, the
 	\code{addSpace(obj, value, ...)}
@@ -86,14 +93,19 @@ gexpandgroup(text = "", markup = FALSE, horizontal=TRUE, handler = NULL, action 
 
 	The \code{addSpring(obj,...)} method will push the just packed
 	widget and the next-to-be packed widget as far apart as possible.
+	
 
-	In \code{gWidgetsRGtk2} a few arguments add to the container.
-	The argument \code{raise.on.dragmotion = TRUE} will cause the
-	group to jump to the foreground when a drag action crosses it.
-	The argument \code{use.scrollwindow = TRUE} will put the group
+	For \code{ggroup}, in \code{gWidgetsRGtk2} a few arguments add
+	to the container.  The argument \code{raise.on.dragmotion =
+	TRUE} will cause the group to jump to the foreground when a drag
+	action crosses it.  The argument \code{use.scrollwindow = TRUE}
+	will put the group
 	
 	For \code{gframe} and \code{gexpandgroup} the label name can be
 	retrieved or adjusted with the \code{names} method.
+
+	For \code{gexpandgroup} the \code{visible} method can be used
+	to toggle the display programmatically.
 
 	
       }
@@ -101,7 +113,9 @@ gexpandgroup(text = "", markup = FALSE, horizontal=TRUE, handler = NULL, action 
 % \references{}
 % \author{}
 % \note{ }
-% \seealso{}
+\seealso{For top-level containers \code{\link{gwindow}}, for containers
+  to display more than one child widget see \code{\link{gpanedgroup}},
+  \code{\link{gnotebook}}, \code{\link{glayout}}}
 \examples{
 \dontrun{
   ## basic group 

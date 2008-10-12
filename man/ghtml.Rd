@@ -3,7 +3,7 @@
 \title{Constructors for widgets to handle text input}
 \description{
   The ghtml widget is intended to show HTML text either from a url or
-  from a character string. Currently no toolkits support this widget. 
+  from a character string. Currently no toolkits support this widget, although it is in gWidgetsWWW.
 }
 \usage{
 ghtml(x, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())

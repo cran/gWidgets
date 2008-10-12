@@ -94,7 +94,7 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
   w <- gwindow("checkbox example")
   gp <- ggroup(container=w)
   glabel("Favorite flavors:",cont=gp)
-  cb <- gcheckboxgroup(flavors, cont=gp, handler=f)
+  cbg <- gcheckboxgroup(flavors, cont=gp, handler=f)
 
   svalue(cbg) <- c(TRUE, FALSE, TRUE)
   svalue(cbg)

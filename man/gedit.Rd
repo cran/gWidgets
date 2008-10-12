@@ -1,26 +1,16 @@
 \name{gedit}
 \alias{gedit}
-\alias{gtext}
-\title{Constructors for widgets to handle text input}
+\title{Constructor for widget to handle single-line text input}
 \description{
-	The gedit widget is used to enter single lines of text. The
-	gtext widget creates a text buffer for handling multiple lines
-	of text. 
-}
+	The \code{gedit} widget is used to enter single lines of text. 
+	}
 \usage{
 gedit(text = "", width = 25, coerce.with = NULL, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
-
-gtext (text = NULL, width = NULL, height = 300, font.attr = NULL, 
-    wrap = TRUE, handler = NULL, action = NULL, container = NULL, 
-    ..., toolkit = guiToolkit()) 
 }
 \arguments{
   \item{text}{Initial text in widget}
   \item{width}{Width of widget. For gedit, this means the number of
-    characters. For gtext the pixel widget}
-  \item{height}{Height of gtext widget in pixels}
-  \item{font.attr}{Optional specification of font attributes}
-  \item{wrap}{For gtext, are long lines wrapped?}
+    characters.}
   \item{coerce.with}{For gedit, when the value is retrieved this
     function is applied to the result. (The stored value is always a
     character, this can be used to make it numerc, to quote it, ...}
@@ -48,42 +38,6 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
 	could possibly complete the typed url.
 
 
-	The \code{gtext} widget has the following methods.
-
-	The \code{svalue} method returns the text held in the
-	buffer. If \code{drop=TRUE}, then only the text in the buffer
-	selected by the mouse is returned.
-
-	The \code{svalue<-} method replaces the text in the buffer
-	with the new text.
-
-	New text is added with the \code{add} method. The basic usage
-	is \code{add(obj,text)} where "text" could be a single line or
-	a vector of text, or a gwidget (although some, like gedit,  are kind of
-	flaky). Extra arguments include \code{do.newline} a
-	logical indicating if a new line after the last line should be
-	added (default is \code{TRUE}); \code{font.attr} to specify
-	any font attributes; \code{where} indicating where to add the
-	text (either \code{end}  or \code{beginning}).
-
-	The font can be changed. The \code{font.attr} argument to the
-	constructon and to \code{add} specifies fonts using a
-	namedcharacter vector. For instance
-	\code{c(style="normal", weights="bold",sizes="medium")}.
-	The command \code{obj[['tags']]} will produce a list
-	containing all the available attributes. 
-
-	The \code{font<-} method is used to change the font of the
-	currently selected text. It too takes a named character vector
-	specifying the font attributes.
-
-	The \code{dispose} method clears the text in the buffer.
-
-	The \code{addHandlerKeystroke} method for \code{gedit}and
-	\code{gtext} is called for 
-	each keystroke. In \code{gtext} or \code{RGtk2} the component
-	\code{key} of the \code{h} argument contains the keystroke.
-
       }
 % \value{}
 % \references{}
@@ -103,10 +57,6 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
 	 obj <- gedit("7", container=gwindow(), coerce.with=as.numeric)
 	 svalue(obj)
 
-        ## gtext example
-        obj <- gtext("First line", container=gwindow())
-        add(obj,"second line", font.attr=c(family="monospace"))
-        add(obj,"third line", font.attr=c(foreground.colors="red"))
 }
 }
 \keyword{interface }

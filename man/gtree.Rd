@@ -123,11 +123,13 @@ handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
    return(x)
   }
   ## shows isdir directory, as hasOffspring is specified
-  gtree(offspring, hasOffspring, icon.FUN = icon.FUN, container=TRUE)
+  w <- gwindow("test with isdir showing")
+  gtree(offspring, hasOffspring, icon.FUN = icon.FUN, container=w)
 
-  ## does not show isdir directory, as hasOffspring=NULL and
+  		   ## does not show isdir directory, as hasOffspring=NULL and
   ## second column is a logical
-  gtree(offspring, hasOffspring=NULL, icon.FUN = icon.FUN, container=TRUE)
+  w <- gwindow("tree test no dir column")
+  gtree(offspring, hasOffspring=NULL, icon.FUN = icon.FUN, container=w)
 }
 }
 

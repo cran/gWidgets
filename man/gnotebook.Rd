@@ -17,9 +17,9 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
   \item{closebuttons}{Is there a close button in the tab?}
   \item{dontCloseThese}{If \code{closebuttons=TRUE} this will make it
   impossible to remove these tabs. Specified by tab number}
-  \item{container}{Optional container to attach notebook widget to }
-  \item{\dots}{Not utilized}
-    \item{toolkit}{Which GUI toolkit to use}
+  \item{container}{Optional parent container to attach notebook widget to }
+  \item{\dots}{passed to \code{add} method of parent container}
+  \item{toolkit}{Which GUI toolkit to use}  
 
 }
 \details{
@@ -28,13 +28,9 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
 
   Notebooks have the following methods:
 
-  The \code{svalue} method returns the current page number. The
-  \code{svalue<-} method is used to set the page number.
-
-
   New pages are added with the \code{add} method. The extra argument
   \code{label} is used to specify the tab label. This may be a string,
-  or in gWidgetsRGtk2 a \code{glabel}. The extra argument \code{index}
+  or in gWidgetsRGtk2 a \code{glabel} instance. The extra argument \code{index}
   can be used to specify which page to add to. By default, a new page is
   created at the end of the notebook. In gWidgetsRGtk2, the extra argument
   \code{override.closebutton} can be used to add or not add a close
@@ -42,6 +38,10 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
 
   The \code{dispose} method will remove the currently selected page
   unless it is overridden by the value of \code{dontCloseThese}.
+
+  The \code{svalue} method returns the current page number. The
+  \code{svalue<-} method is used to set the page number.
+
 
   The \code{delete(obj, widget,...)} method will delete the widget on a
   given page. This can then be replaced with the add method.
@@ -53,16 +53,18 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
   The \code{names<-} method may be used to replace the tab
   labels. Something like \code{names(obj)[1]<-"new label"} should work.
 
-  The \code{"["} method refers to the widgets in the notebook.
+%  The \code{"["} method refers to the widgets in the notebook.
 
-  The \code{"[<-"} method can be used to replace a widget on a notebook page.
+%  The \code{"[<-"} method can be used to replace a widget on a notebook page.
   
 }
 % \value{}
 % \references{}
 % \author{}
 % \note{}
-% \seealso{}
+\seealso{See \code{\link{gwindow}} for top-level containers, 
+  \code{\link{ggroup}}, \code{\link{gframe}} and \code{\link{gexpandgroup}} for box containers}
+
 \examples{
 \dontrun{
   w <- gwindow("gnotebook example")

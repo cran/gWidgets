@@ -1,3 +1,8 @@
+* gaction
+* galert -- like gmessage only appears differently (gWidgetsWWW has implementation)
+* tooltip
+* methods in docs -- work on API
+* Thomas Petzoldt: doc changes to vignetter: Sweave, others. Search email
 * fix ghelp to work with windows -- RPAD?
 * tests directory with run tests in each of the toolkits
 DONE * add addHandlerMouseOver -- for mouseover effects -- different from

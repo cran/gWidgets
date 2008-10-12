@@ -34,8 +34,11 @@ container = NULL, ..., toolkit = guiToolkit())
 	The \code{"[<-"} method can be used to change the label on the
 	box.
 
-	Any \code{addhandlerchanged} handler is called when the button is
-	toggled.
+	The default handler is set by the \code{addHandlerClicked}
+	method. This is called when the button is 
+	toggled. If one wishes to have the handler called only when
+	checked to indicate \code{TRUE}, say, one should check the state
+	of the widget in the handler.
 }
 %%\value{}
 %%\references{}

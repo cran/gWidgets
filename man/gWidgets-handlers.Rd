@@ -6,6 +6,8 @@
 \alias{addhandlerclicked}
 \alias{addhandlerdoubleclick}
 \alias{addhandlerrightclick}
+\alias{addhandlerfocus}
+\alias{addhandlerblur}
 \alias{addhandlerexpose}
 \alias{addhandlermousemotion}
 \alias{addhandlerunrealize}
@@ -23,6 +25,8 @@
 \alias{addHandlerClicked}
 \alias{addHandlerDoubleclick}
 \alias{addHandlerRightclick}
+\alias{addHandlerFocus}
+\alias{addHandlerBlur}
 \alias{addHandlerMouseMotion}
 \alias{addHandlerExpose}
 \alias{addHandlerUnrealize}
@@ -51,6 +55,10 @@ addhandlerclicked(obj, handler = NULL, action = NULL, ...)
 addhandlerdoubleclick(obj, handler = NULL, action = NULL, ...) 
 
 addhandlerrightclick(obj, handler = NULL, action = NULL, ...) 
+
+addhandlerfocus(obj, handler = NULL, action = NULL, ...) 
+
+addhandlerblur(obj, handler = NULL, action = NULL, ...) 
 
 addhandlermousemotion(obj, handler = NULL, action = NULL, ...)
 
@@ -154,6 +162,14 @@ removehandler(obj, ID, ...)
 	widget is doubleclicked, like in the tree widget. Not all
 	widgets receive a double click signal. Only when a single
 	mouse click is needed for selection is this implemented.}
+
+	\item{\code{addHandlerRightclick}:}{This handler is called
+	when a widget is clicked with the right mouse button}
+
+	\item{\code{addHandlerFocus}:}{This handler is called when a widget gains focus}
+
+	\item{\code{addHandlerBlur}:}{This handler is called when a widget loses focus}
+
 
       	\item{\code{addHandlerMouseMotion}:}{This handler is called when a
 	  the mouse moves over a widget. In some toolkits it is called
