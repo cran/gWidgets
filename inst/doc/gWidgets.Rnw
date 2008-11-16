@@ -2,7 +2,7 @@
 \newcommand{\VERSION}{0.0-7}
 %\VignetteIndexEntry{gWidgets}
 %\VignettePackage{gWidgets}
-%\VignetteDepends{methods}
+%\VignetteDepends{methods,gWidgetsRGtk2}
 
 \usepackage{times}              % for fonts
 \usepackage[]{geometry}
@@ -75,7 +75,7 @@ Examples for using the \pkg{gWidgets} package are presented.  The
 within an R session to interact with a graphics toolkit.  Currently,
 there are four available toolkits.
 \begin{itemize}
-\item \pkg{gGWidgetsRGtk2} for \pkg{RGtk2} package which is the most
+\item \pkg{gWidgetsRGtk2} for \pkg{RGtk2} package which is the most
   complete implementation.
 \item \pkg{gWidgetstcltk} for the \pkg{tcltk} package which is the
   easiest to install (for windows users) but not as fully implemented
@@ -290,9 +290,12 @@ following
 
 
 <<>>=
-options("guiToolkit"="RGtk2")
 require(gWidgets)
+options("guiToolkit"="RGtk2")
 @
+<<echo=FALSE>>=
+require(gWidgetsRGtk2)
+@ 
 
 When \code{gWidgets} is started, it tries to figure out what its
 default toolkit will be. In this examples, we've set it to be

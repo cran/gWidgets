@@ -71,6 +71,7 @@ Objects can be created by calls of the form \code{new("guiWidget", ...)}.
     \item{enabled<-}{\code{signature(obj = "guiWidget")}: ... }
     \item{focus}{\code{signature(obj = "guiWidget")}: ... }
     \item{focus<-}{\code{signature(obj = "guiWidget")}: ... }
+    \item{tooltip<-}{\code{signature(obj = "guiWidget")}: ... }
     \item{font}{\code{signature(obj = "guiWidget")}: ... }
     \item{font<-}{\code{signature(obj = "guiWidget")}: ... }
     \item{id}{\code{signature(obj = "guiWidget")}: ... }

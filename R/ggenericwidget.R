@@ -166,9 +166,9 @@ setMethod(".ggenericwidget",
                 assignto = svalue(h$action$assignto)
               
     
-              head = lst$action$beginning
-              tail = lst$action$end
-              args = c()  
+              head <- lst$action$beginning
+              tail <- lst$action$end
+              args <- c()  
               for(i in names(vals)) {
                 val = svalue(vals[[i]])
 
@@ -188,13 +188,13 @@ setMethod(".ggenericwidget",
                 assignto = NULL
               ## send to fcommandline instance
               if(is.null(h$action$cli)) {
-                cli = gcommandline(command=str, assignto=assignto,
+                cli <- gcommandline(command=str, assignto=assignto,
                   useGUI = FALSE, useConsole = TRUE,
                   container=NULL)
               } else {
                 cli = h$action$cli
               }
-              command = str; names(command) <- assignto
+              command <- str; names(command) <- assignto
               svalue(cli) <- command
             }
             

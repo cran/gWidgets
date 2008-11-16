@@ -19,7 +19,12 @@ gbutton(text = "", border=TRUE, handler = NULL, action = NULL, container = NULL,
   \item{border}{If \code{TRUE} a border is drawn to make a button look like a
   button. If \code{FALSE}, the no border so the button looks like a label.}
   \item{handler}{Handler called on a click event}
-  \item{action}{ Passed to handler }
+
+  \item{action}{Either a \code{gaction} instance in which case, the
+  \code{text} and \code{handler} arguments are not used, or is an R
+  object to be passed to the specified handler.
+
+}
   \item{container}{Optional container to attach widget to.}
 %  \item{obj}{a \code{glabel} instance}
 %  \item{angle}{Angle to rotate label, in degrees}
@@ -40,7 +45,7 @@ gbutton(text = "", border=TRUE, handler = NULL, action = NULL, container = NULL,
   the toolkit). 
 	
 	
-  The \code{svalue<-()} method can be used to set the text of
+  The \code{svalue<-} method can be used to set the text of
   the widget. For buttons, values with length greater
   than one are pasted together collapsed with "\\n".
   
@@ -48,7 +53,12 @@ gbutton(text = "", border=TRUE, handler = NULL, action = NULL, container = NULL,
   \code{addHandlerClicked} method which can be used to set a
   handler to respond to click events.
   
-  
+  When the \code{action} argument is a \code{gaction} instance, then
+  the button label and handler will be derived from the \code{gaction}
+  instance. The \code{enabled<-} method of the \code{gaction} instance
+  should be used to set the sensitivity to user input, not the
+  \code{enabled<-} method of the \code{gbutton} instance.
+
 }
 % \value{}
 % \references{}

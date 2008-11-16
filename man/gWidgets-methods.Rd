@@ -81,6 +81,7 @@
 \alias{svalue<-,guiWidget-method}
 \alias{tag,guiWidget-method}
 \alias{tag<-,guiWidget-method}
+\alias{tooltip<-,guiWidget-method}
 \alias{update,guiWidget-method}
 \alias{visible,guiWidget-method}
 \alias{visible<-,guiWidget-method}
@@ -100,6 +101,7 @@
 \alias{enabled<-}
 \alias{focus}
 \alias{focus<-}
+\alias{tooltip<-}
 \alias{font}
 \alias{font<-}
 \alias{tag}
@@ -211,6 +213,9 @@
   \item{ \code{focus(obj,...)} or \code{focus<-(obj,...,value)}: }{
   method to check if a widget has focus, or to force focus on a widget.
  }
+
+ \item{\code{tooltip<-(obj,value)}}{ Add a tooltip to the widget. Tooltips are toolkit and eventloop dependent, so may be unrealiable.
+}
 
  \item{\code{defaultWidget(obj,...)} or \code{defaultWidget<-(obj,..., value)}}{
    Sets the widget to be activated when the parent window has focus and

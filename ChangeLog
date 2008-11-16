@@ -1,3 +1,7 @@
+2008-10-21  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* man/gtable.Rd: fix to man page for svalue with sorted data frames
+
 2008-10-01  john verzani  <verzani@john-verzanis-macbook-pro.local>
 
 	* R/gformlayout.R: New constructor for laying out forms

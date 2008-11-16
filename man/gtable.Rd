@@ -44,10 +44,10 @@ gtable(items, multiple = FALSE, chosencol = 1, icon.FUN = NULL, filter.column = 
 	not just the visible portion when filtering is being used.
 
 	The \code{"["} notion treats the object like a data frame. When
-	filtering or sorting, this notation refers to the entire data frame, not
-	the visible or rearranged data frame. The comment about the
+	filtering, this notation refers to the entire data frame, not
+	the visible data frame. The comment about the
 	returned index by \code{svalue} can be described by the fact that
-	\code{obj[svalue(obj,index=TRUE)]} should be the same value as
+	\code{obj[svalue(obj,index=TRUE), ]} should be the same value as
 	\code{svalue(obj)}. 
 
 	Assignment via \code{"[<-"} is possible with limitations imposed
@@ -118,7 +118,7 @@ gtable(items, multiple = FALSE, chosencol = 1, icon.FUN = NULL, filter.column = 
     options(repos=repos)
   }
   w <- gwindow("gtable example",width=400)
-  gp = ggroup(horizontal=FALSE, cont=w)
+  gp <- ggroup(horizontal=FALSE, cont=w)
   tab <- gtable(m, chosencol = 2, cont=gp, expand=TRUE,
        handler = function(h,...) setCRAN(svalue(h$obj)))
   bg <- ggroup(cont=gp)

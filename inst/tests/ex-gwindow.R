@@ -8,20 +8,27 @@
 ## toolbar style
 style="both"
 
+
 f <- function(...) print("hi")
-mbl <- list(File=list(save=list(icon="save",handler=f)))
+
+a <- gaction(label="action", icon = "quit", handler = f)
+
+mbl <- list(File=list(
+              save=list(icon="save",handler=f),
+              test=a))
 tbl <- list(file=list(icon="save",handler=f),
+            test = a,
             quit = list(icon="stop",handler=function(...) dispose(w)),
             quit1 = list(icon="quit",handler=f),
             quit2 = list(icon="quit",handler=f)
             )
 
-w <- gwindow("test window")
-## do upside down
-sb <- gstatusbar("status", cont=w)
-txt <- gtext(cont=w)
-tb <- gtoolbar(tbl, cont=w, style=style)
+w <- gwindow("test window", visible=FALSE)
 mb <- gmenu(mbl, cont=w)
+tb <- gtoolbar(tbl, cont=w, style=style)
+## main content
+txt <- gtext(cont=w)
+sb <- gstatusbar("status", cont=w)
 
 
 ## test statusbar
@@ -29,3 +36,6 @@ svalue(sb) <- "This was added to status bar"
 
 ## test window
 svalue(w) <- "title added via svalue"
+
+
+visible(w) <- TRUE

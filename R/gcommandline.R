@@ -91,7 +91,7 @@ setMethod(".gcommandline",
                   handler = function(h,...) {
                     wh = gwindow("Command history")
                     gh = ggroup(horizontal=FALSE, cont=wh)
-                    .history = tag(obj,"history")
+                    .history = tag(h$obj,"history")
                     ##                    df = data.frame(history=.history, stringsAsFactors=FALSE)
                     tbl = gtable(.history, handler=function(h,...) {
                       svalue(editArea) <- as.character(svalue(tbl,drop=TRUE))
@@ -288,7 +288,7 @@ setMethod("[",
 setMethod(".leftBracket",
           signature(toolkit="ANY",x="gCommandlineANY"),
           function(x, toolkit, i, j, ..., drop=TRUE) {
-            history = tag(obj, "history")
+            history = tag(x, "history")
 
             if(missing(i))
               return(history)

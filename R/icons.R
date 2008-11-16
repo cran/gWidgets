@@ -42,10 +42,10 @@ setMethod(".addStockIcons",
             addedStockIcons = getFromNamespace("addedStockIcons", ns="gWidgets")
             
             if(length(iconNames) == length(iconFiles)) {
-              for(i in 1:length(iconsNames)) {
-                if(!is.na(match(iconsNames[i],names(stockIcons))))
+              for(i in 1:length(iconNames)) {
+                if(!is.na(match(iconNames[i],names(stockIcons))))
                   cat("Overriding stock icon",iconNames[i],"\n")
-                addedStockIcons[[iconsNames[i]]] <- iconFiles[[i]]
+                addedStockIcons[[iconNames[i]]] <- iconFiles[[i]]
               }
               assignInNamespace("addedStockIcons", addedStockIcons, ns="gWidgets")
             } else {

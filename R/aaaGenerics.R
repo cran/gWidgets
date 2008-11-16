@@ -367,6 +367,29 @@ setGeneric( '.gtext' ,
            standardGeneric( '.gtext' ))
 
 
+## gaction
+gaction =function(
+  label, tooltip=NULL, icon = NULL, key.accel = NULL,
+  handler = NULL, action = NULL, ...,
+  toolkit=guiToolkit()) {
+  widget =  .gaction (toolkit,
+    label, tooltip, icon, key.accel, handler, action, ...
+    )
+  obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
+  return(obj)
+}
+
+
+## generic for toolkit dispatch
+setGeneric( '.gaction' ,
+           function(toolkit,
+                    label, tooltip = NULL, icon = NULL, key.accel=NULL,
+                    handler = NULL, action = NULL,
+                    ... )
+           standardGeneric( '.gaction' ))
+
+
+
 ## gmenu
 ## the constructor
 gmenu =function(
@@ -1254,6 +1277,20 @@ setMethod("focus<-",signature(obj="guiWidget"),
 ## dispatch with toolkit
 setGeneric(".focus<-",function(obj, toolkit,...,value)
            standardGeneric(".focus<-"))
+
+
+## tooltip
+setGeneric("tooltip<-",function(obj, ..., value) standardGeneric("tooltip<-"))
+## add generic for Containers and sometimes widgets
+setMethod("tooltip<-",signature(obj="guiWidget"),
+          function(obj, ..., value) {
+            toolkit = obj@toolkit
+            .tooltip(obj@widget, toolkit,...) <- value
+            return(obj)
+          })
+## dispatch with toolkit
+setGeneric(".tooltip<-",function(obj, toolkit,...,value)
+           standardGeneric(".tooltip<-"))
 
 
 ## defaultWidget
