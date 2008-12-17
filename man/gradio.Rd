@@ -1,29 +1,16 @@
 \name{gradio}
 \alias{gradio}
-\alias{gdroplist}
-\alias{gcombobox}
-\alias{gcheckboxgroup}
-\title{Widgets to allow selection from a vector of items}
+\title{Radio button group widget}
 \description{
-   Widgets to select one (or several) from a given vector of
-   items. These are a radio group where all values are shown at once,
-   but only one may be selected; a checkbox group where more than one
-   may be selected; and a
-   combo box (or droplist) where initially only a single value is shown, and the others
-   are a mouse click away,
+
+	A radio group allows the user to select one value from a set
+	of items. The items may be displayed horizontally or
+	vertically.
+
 }
 \usage{
 gradio(items, selected = 1, horizontal = FALSE, handler
 = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
-
-gcombobox(items, selected = 1, editable = FALSE, coerce.with=NULL, handler = NULL, 
-    action = NULL, container = NULL, ..., toolkit = guiToolkit())
-
-gdroplist(items, selected = 1, editable = FALSE, coerce.with=NULL, handler = NULL, 
-    action = NULL, container = NULL, ..., toolkit = guiToolkit()) 
-
-gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE, 
-    handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit()) 
 }
 
 
@@ -32,10 +19,6 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
   \item{selected}{ For gradio the initial selected value (as an index)
   		   For a drop list, the first selected value. Use 0 to
 		     leave blank}
-  \item{checked}{For gcheckboxgroup a logical vector of initial values.}
-  \item{editable}{For gdroplist, a logical indicating if the user can
-  add an entry to the list of available answers}
-  \item{coerce.with}{Apply this function to selected value before returning}
   \item{horizontal}{A logical specifying the  layout for gradio and gcheckboxgroup}
   \item{handler}{Called when selection is changed}
   \item{action}{Passed to handler when called.}
@@ -44,15 +27,14 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
   \item{toolkit}{Which GUI toolkit to use}
 }
 \details{
-	The basic methods all work similarly for these three widgets.
-
-	The \code{svalue} method returns the selected values by
+	The \code{svalue} method returns the selected value by
 	name. If the extra argument \code{index=TRUE} is specified,
-	the indices of the selected values is given. 
+	the indices of the selected value is given. 
 
 
 	The \code{svalue<-} method can be used to set the selected
-	value.
+	value. One can specify the value by name or by index if
+	\code{index=TRUE} is specified.
 
 	The \code{"["} method refers to the vector defining the items.
 
@@ -61,17 +43,23 @@ gcheckboxgroup(items, checked = FALSE,  horizontal = FALSE,
 
 	The \code{"length"} method returns the number of items.
 	
-	For \code{gdroplist} the argument \code{editable=TRUE} adds a
-	text-edit box where the user can type in a selection. By
-	default this value is returned as a character by
-	\code{svalue}. Use \code{coerce.with} to coerce this prior to returning.
-
 }
 % \value{}
 % \references{}
 % \author{}
 % \note{}
-% \seealso{}
+\seealso{
+
+The radio group is one of several widgets useful to selecting a value
+or values from a set of items. See also \code{\link{gcheckbox}},
+\code{\link{gcheckboxgroup}}, \code{\link{gcombobox}}, and
+\code{\link{gtable}}
+
+Methods for gComponent objects are detailed in \code{\link{gWidgets-methods}}.
+
+Event Handlers are detailed in \code{\link{gWidgets-handlers}}.
+
+}
 \examples{
 \dontrun{
   flavors <- c("vanilla", "chocolate", "strawberry")

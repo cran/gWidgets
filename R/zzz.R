@@ -20,6 +20,7 @@
         msg <- paste(msg, "Try installing gWidgetstcltk.", sep="\n")
       }
 
+      installing_gWidgets_toolkits()
       doRequire("tcltk")
       w <- tktoplevel()
       tkdialog(w, title,msg,"",0,"close")
@@ -30,7 +31,10 @@
                    "then a toolkit package.",
                    sep="\n")
       cat(msg, "\n")
+
+      installing_gWidgets_toolkits()
     }
+
   }
   
   

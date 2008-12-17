@@ -1,7 +1,10 @@
 \name{gcheckbox}
 \alias{gcheckbox}
-\title{Constructor of widget to indicate whether a value is desired or
-not}
+\title{
+
+Constructor of widget to indicate whether a value is desired or not
+
+}
 \description{
 	A checkbox shows a value and a box to  check indicating if the
 	value is desired or not.

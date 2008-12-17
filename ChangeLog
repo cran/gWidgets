@@ -1,3 +1,17 @@
+2008-12-15  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/aaaGenerics.R: put in code for gbasicdialog to be able to use
+	arbitrary modal dialogs with tcltk and others. 
+
+2008-12-09  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/ghelp.R: fixes to ghelp for gWidgetstcltk
+
+2008-12-04  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/aaaGenerics.R (ladd): fixed "add"  to weed out extra
+	arguments based on being container component. 
+
 2008-10-21  john verzani  <verzani@john-verzanis-macbook-pro.local>
 
 	* man/gtable.Rd: fix to man page for svalue with sorted data frames

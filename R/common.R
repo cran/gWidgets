@@ -229,3 +229,14 @@ str2 <- function(obj) {
   }
   return(md)
 }
+
+## blurb about installation -- put in so can be updated easily
+## look to file to update
+installing_gWidgets_toolkits <- function() {
+  file <- system.file("install/Installing_gWidgets_Toolkits.txt", package="gWidgets")
+  tmp <- readLines(file)
+  for(i in tmp) cat(i,"\n")
+
+}
+
+

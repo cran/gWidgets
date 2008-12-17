@@ -24,7 +24,6 @@ setMethod(".gformlayout",
             mainGroup <- ggroup(cont=container, ...)
             .makeForm(lst, mainGroup, e)
             
-            
             ## return the container now that it has all the stuff in in.
             obj = new("gFormLayoutANY",
               block=mainGroup, widget=mainGroup,
@@ -66,7 +65,7 @@ setMethod(".names",
             return(names(x[]))
           })
           
-
+## changes here should be copied into gWidgetsWWW
 ## helper functions
 .makeForm <- function(lst, parent, e, ...) {
   g <- ggroup(cont = parent, expand=TRUE,...)
@@ -77,29 +76,37 @@ setMethod(".names",
   tmp$depends.on <- tmp$depends.FUN <- tmp$depends.signal <- NULL
   tmp$container <- g; tmp$expand <- TRUE
 
-  ## make object
-  newObject <- do.call(lst$type, tmp)
-  ## store if a name is given
-  if(!is.null(lst$name))
-    e[[lst$name]] <- newObject
-  ## do we enable new object
-  if(!is.null(lst$depends.on)) {
-    widget <- e[[lst$depends.on]]
-    if(is.null(lst$depends.signal))
-      lst$depends.signal <- "addHandlerChanged"
-    do.call(lst$depends.signal,list(obj=widget,handler =  function(h,...) {
-      value <- svalue(h$obj)
-      enabled(newObject) <- lst$depends.FUN(value)
-    }))
-    enabled(newObject) <- lst$depends.FUN(svalue(widget))
+  ## treat fieldset differently
+  if(lst$type == "fieldset") {
+    .makeFieldset(lst, g, e, label = lst$label)
+    return()
+  } else {  
+    ## make object
+    newObject <- do.call(lst$type, tmp)
+    ## store if a name is given
+    if(!is.null(lst$name))
+      e[[lst$name]] <- newObject
+    ## do we enable new object
+    if(!is.null(lst$depends.on)) {
+      widget <- e[[lst$depends.on]]
+      if(is.null(lst$depends.signal))
+        lst$depends.signal <- "addHandlerChanged"
+      do.call(lst$depends.signal,list(obj=widget,handler =  function(h,...) {
+        value <- svalue(h$obj)
+        enabled(newObject) <- lst$depends.FUN(value)
+      }))
+      enabled(newObject) <- lst$depends.FUN(svalue(widget))
+    }
   }
+   
 
 
   
   ## show children if there
   ## this recurses except on "fieldset"
   if(!is.null(lst$children)) {
-    for(l in lst$children) {
+    for(i in 1:length(lst$children)) {
+      l <- lst$children[[i]]
       if(l$type == "fieldset") {
         if(lst$type == "gnotebook")
           .makeFieldset(l, newObject, e, label = l$label)
@@ -135,8 +142,8 @@ setMethod(".names",
       lst$depends.signal <- "addHandlerChanged"
     do.call(lst$depends.signal, list(obj = widget,handler = function(h,...) {
       value <- svalue(h$obj)
-      enabled(g) <- lst$depends.FUN(value)
-    }))
+      enabled(g) <- lst$depends.FUN(value) 
+  }))
     enabled(g) <- lst$depends.FUN(svalue(widget))
   }
   

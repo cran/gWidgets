@@ -42,18 +42,18 @@ gaction(label, tooltip = NULL, icon = NULL, key.accel = NULL,
 
 	The gaction constructor creates reusable objects for use with
 	buttons, menubars and toolbars. Once constructed, the main
-	methods are \code{svalue} which refers to the label and
-	\code{enabled<-} which can changes whether the widgets
-	depending on the action are sensitive to user input. An action
-	object contains a label, an optional icon, an optional
-	keyboard accelerator, and a handler. The handler does not have
-	the widget from which it is called passed in to the \code{obj}
-	component of the first argument, but one can parametrize the
-	argument with the \code{action} argument. The icon, tooltip,
-	and keyboard accelerator are very much toolkit and OS
-	dependent, and so may not always be available by the widget
-	using the gaction object. The keyboard accelerator is not yet
-	implemented in any toolkit. 
+	methods are \code{svalue}, and \code{svalue<-} for getting and
+	setting the label text and \code{enabled<-} which can changes
+	whether the widgets depending on the action are sensitive to
+	user input. An action object contains a label, an optional
+	icon, an optional keyboard accelerator, and a handler. The
+	handler does not have the widget from which it is called
+	passed in to the \code{obj} component of the first argument,
+	but one can parametrize the argument with the \code{action}
+	argument. The icon, tooltip, and keyboard accelerator are very
+	much toolkit and OS dependent, and so may not always be
+	available by the widget using the gaction object. The keyboard
+	accelerator is not yet implemented in any toolkit.
 
 	The lists defining a menubar or toolbar are very similar.
 

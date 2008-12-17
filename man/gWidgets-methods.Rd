@@ -18,6 +18,8 @@
 \alias{[<-,guiWidget-method}
 \alias{add3rdmousepopupmenu,guiWidget-method}
 \alias{add,guiWidget-method}
+\alias{add,guiComponent-method}
+\alias{add,guiContainer-method}
 \alias{addSpace,guiWidget-method}
 \alias{addSpring,guiWidget-method}
 \alias{adddropmotion,guiWidget-method}
@@ -71,6 +73,8 @@
 \alias{font<-,guiWidget-method}
 \alias{id,guiWidget-method}
 \alias{id<-,guiWidget-method}
+\alias{insert}
+\alias{insert,guiComponent-method}
 \alias{length,guiWidget-method}
 \alias{names,guiWidget-method}
 \alias{names<-,guiWidget-method}
@@ -296,18 +300,16 @@
     close button}
 }
     
-    For the text buffer widget (\code{gtext}) \code{add} is used
-    to append text to the buffer. In this case, extra
-    arguments  available: 
-    \description{
-       \item{ \code{font.attr}}{ can be used to specify font
-    attributes for the text}
+    For the text buffer widget (\code{gtext}) \code{insert} (or
+    \code{add}) is used to insert text into the buffer. In this case,
+    extra arguments available: \description{ \item{ \code{font.attr}}{
+    can be used to specify font attributes for the text}
 
     \item{do.newline}{ a logical indicating if a newline should be
     added after the text}
 
     \item{where}{An indicator of where to place the text: "beginning",
-    "ending", or "at.cursor"}
+    "ending", or "at.cursor", although the latter may not be implemented.}
   }
   }	
   

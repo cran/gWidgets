@@ -140,7 +140,7 @@ setClass("guiContainer",
          contains="guiWidget",
          prototype=prototype(new("guiWidget"))
          )
-## define a subclass
+## define useless subclass
 setClass("guiDialog",
          contains="guiWidget",
          prototype=prototype(new("guiWidget"))
@@ -543,9 +543,6 @@ gfile =function(
     text=text, type=type, initialfilename=initialfilename,
     filter=filter, handler=handler, action=action ,...
     )
-  ## dialogs don't return anything. They are modal.
-  ##  obj = new('guiDialog',widget=widget,toolkit=toolkit) 
-  ##  return(obj)
 }
 
 
@@ -581,11 +578,11 @@ gcalendar =function(
   text = "", format = "%Y-%m-%d", 
   handler = NULL, action=NULL, container = NULL,...,
   toolkit=guiToolkit()){
- widget =  .gcalendar (toolkit,
-   text=text, format=format, handler=handler,action=action,
-   container=container , ...
-   )
- obj = new( 'guiDialog',widget=widget,toolkit=toolkit) 
+  widget =  .gcalendar (toolkit,
+    text=text, format=format, handler=handler,action=action,
+    container=container , ...
+    )
+  obj = new( 'guiWidget',widget=widget,toolkit=toolkit) 
  return(obj)
 }
 
@@ -776,6 +773,7 @@ setGeneric( '.ghelp' ,
 ## the constructor
 ghelpbrowser =function(
   title = "Help browser", maxTerms = 100, width = 550,      height = 600 ,
+  ...,
   toolkit=guiToolkit()) {
   widget =  .ghelpbrowser(toolkit,
     title=title, maxTerms=maxTerms, width=width
@@ -1128,8 +1126,47 @@ setMethod("add",signature(obj="guiWidget"),
             toolkit = obj@toolkit
             .add(obj@widget, toolkit,value,...)
           })
+setMethod("add",signature(obj="guiContainer"),
+          function(obj, value, ...) {
+            toolkit = obj@toolkit
+            ladd <- function(obj, value, ...,do.newline, font.attr, where)
+              .add(obj@widget, obj@toolkit, value, ...)
+            ladd(obj, value,...)
+          })
+setMethod("add",signature(obj="guiComponent"),
+          function(obj, value, ...) {
+            toolkit = obj@toolkit
+            ladd <- function(obj,value, ..., label, name, override.closebuttons, index, pageno, markup, anchor, expand) .add(obj@widget,obj@toolkit,value,...)
+             ladd(obj,value,...)
+          })
+
+
 ## dispatch with toolkit
 setGeneric(".add",function(obj, toolkit,value,...) standardGeneric(".add"))
+
+
+## Insert is new add for components (gtext)
+setGeneric("insert",function(obj,value,
+                             where = c("end","beginning","at.cursor"),
+                             font.attr=NULL,
+                             do.newline=TRUE,
+                             ...) standardGeneric("insert"))
+
+setMethod("insert",signature(obj="guiComponent"),
+          function(obj, value, where = c("end","beginning","at.cursor"), font.attr = NULL,
+                   do.newline = TRUE, ...) {
+            toolkit = obj@toolkit
+            where = match.arg(where)
+            .insert(obj@widget, toolkit, value, where, font.attr,do.newline,...)
+          })
+
+## dispatch with toolkit
+setGeneric(".insert",function(obj, toolkit,value, where=c("end","beginning","at.cursor"),
+                              font.attr=NULL, do.newline=TRUE,...)
+           standardGeneric(".insert"))
+
+
+
 
 ## addSpace
 setGeneric("addSpace",function(obj,value, ...) standardGeneric("addSpace"))
@@ -1828,15 +1865,16 @@ setMethod("addDropTarget",signature(obj="guiWidget"),
 ## like gmessage, only for transient messages -- not modal
 galert = function(
   message,
-  title = message,
+  title = "message",
   delay = 3,
+  parent = NULL, 
   ..., toolkit=guiToolkit()) {
   .galert(toolkit,message, title, 
             ...)
 }
 setGeneric(".galert",
            function(toolkit,
-                    message, title=message, delay=3, ...)
+                    message, title="message", delay=3, parent=NULL, ...)
            standardGeneric(".galert"))
 
 
@@ -1899,15 +1937,22 @@ setGeneric(".gconfirm",
            standardGeneric(".gconfirm"))
 
 ## gbasicdialog
+## when no widget we dispath different
 gbasicdialog = function(
   title = "Dialog", widget,
   parent = NULL,
   handler = NULL, action = NULL,
   ..., toolkit=guiToolkit()) {
-  .gbasicdialog(toolkit,
-                title=title, widget=widget,parent=parent,
-                handler=handler, action=action,
-                ...)
+  if(missing(widget)) {
+    obj <- .gbasicdialognoparent(toolkit, title, parent, handler, action,...)
+    obj = new( 'guiDialog',widget=obj,toolkit=toolkit) 
+  } else {
+    obj <- .gbasicdialog(toolkit,
+                  title=title, widget=widget,parent=parent,
+                  handler=handler, action=action,
+                         ...)
+  }
+  return(obj)
 }
 setGeneric(".gbasicdialog",
            function(toolkit,
@@ -1915,6 +1960,13 @@ setGeneric(".gbasicdialog",
                     handler = NULL, action = NULL,
                     ...)
            standardGeneric(".gbasicdialog"))
+
+setGeneric(".gbasicdialognoparent",
+           function(toolkit,
+                    title = "Dialog",  parent,
+                    handler = NULL, action = NULL,
+                    ...)
+           standardGeneric(".gbasicdialognoparent"))
 
 
 

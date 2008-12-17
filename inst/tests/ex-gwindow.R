@@ -39,3 +39,15 @@ svalue(w) <- "title added via svalue"
 
 
 visible(w) <- TRUE
+
+
+## tests for RUnit
+test.gwindow <- function() {
+  title <- "test"
+  w <- gwindow(title)
+  checkEquals(svalue(w), title)
+  svalue(w) <- toupper(title)
+  checkEquals(svalue(w), toupper(title))
+  dispose(w)
+  checkException(svalue(w) <- title)
+}

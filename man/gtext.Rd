@@ -33,14 +33,17 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
 	The \code{svalue<-} method replaces the text in the buffer
 	with the new text.
 
-	New text is added with the \code{add} method. The basic usage
-	is \code{add(obj,text)} where "text" could be a single line or
-	a vector of text, or a gwidget (although some, like gedit,  are kind of
-	flaky). Extra arguments include \code{do.newline} a
-	logical indicating if a new line after the last line should be
-	added (default is \code{TRUE}); \code{font.attr} to specify
-	any font attributes; \code{where} indicating where to add the
-	text (either \code{end}  or \code{beginning}).
+	New text is added with the \code{insert} method. The basic
+	usage is \code{insert(obj,text)} where "text" could be a
+	single line or a vector of text, or --for gWidgetsRGtk2 -- a
+	gwidget (although some, like gedit, are kind of flaky). Extra
+	arguments include \code{do.newline} a logical indicating if a
+	new line after the last line should be added (default is
+	\code{TRUE}); \code{font.attr} to specify any font attributes;
+	\code{where} indicating where to add the text (either
+	\code{end} or \code{beginning}). The \code{insert} generic
+	replaces the overused \code{add} for \code{gtext}, but
+	\code{add} will still work.
 
 	The font can be changed. The \code{font.attr} argument to the
 	constructon and to \code{add} specifies fonts using a
@@ -70,8 +73,8 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
 \dontrun{
         ## gtext example
         obj <- gtext("First line", container=gwindow())
-        add(obj,"second line", font.attr=c(family="monospace"))
-        add(obj,"third line", font.attr=c(foreground.colors="red"))
+	insert(obj,"second line", font.attr=c(family="monospace"))
+        insert(obj,"third line", font.attr=c(foreground.colors="red"))
 }
 }
 \keyword{interface }

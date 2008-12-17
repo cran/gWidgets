@@ -13,8 +13,10 @@ setMethod(".ghelp",
                    container = NULL,
                    ...) {                                # passed to gnotebook
             force(toolkit)
-            
-            group = ggroup(horizontal=FALSE, container = container)
+
+            lggroup <- function(horizontal, container, width, height,...)
+              ggroup(horizontal=horizontal, container=container, ...)
+            group <- lggroup(horizontal=FALSE, container = container, ...)
 
             theArgs = list(...)
             ## width height also adjustable via size<-
@@ -28,7 +30,7 @@ setMethod(".ghelp",
 
 
             
-            showPage = gtext("", width=width,height=height, cont=group)
+            showPage = gtext("", width=width,height=height, cont=group, expand=TRUE)
               
             obj = new("gHelpANY", block=group, widget=showPage,
               toolkit=toolkit)
@@ -68,7 +70,7 @@ setMethod(".add",
             
             ## error check
             if(!is.character(topic) || length(topic) > 1 || length(topic) == 0) {
-              warning("Adios, adding to ghelp needs a valid topic\n")
+              warning("Adios, adding to ghelp needs a valid topic. You tried",topic,"\n")
               return()
             }
 
@@ -137,19 +139,20 @@ makeHelpPage = function(topic, pkg, helpPage) {
     dispose(helpPage)                   # clean out old one!
     text = readLines(helpFile)
     text = sapply(text, function(i) gsub("\\_\\\b","",i))
-    add(helpPage, text[2])
-    add(helpPage, text[3], font.attr=c(style="bold",size="large",color="blue"))
+    insert(helpPage, text[2])
+    insert(helpPage, text[3], font.attr=c(style="bold",size="large",color="blue"))
 ##    add(helpPage, text[-(1:3)])
     ## This gave troubles when there were more than a few pages open!
     sapply(text[-(1:3)], function(x) {
       if( length(grep("^\\w+:", x)) > 0) {
         tmp = unlist(strsplit(x,":"))
-        add(helpPage,Paste(tmp[1],":"),font.attr=c(color="blue"), do.newline=FALSE)
-        add(helpPage,paste(tmp[-1], sep="", collapse=":"))
+        insert(helpPage,Paste(tmp[1],":"),font.attr=c(color="blue"), do.newline=FALSE)
+        insert(helpPage,paste(tmp[-1], sep="", collapse=":"))
       } else {
-        add(helpPage,x)
+        insert(helpPage,x)
       }
     })
+    insert(helpPage,"",where="beginning")
   } else {
     add(helpPage,paste("Page for ",topic," in package ",pkg," was not found.",collapse=" "))
   }
@@ -309,9 +312,12 @@ setMethod(".ghelpbrowser",
             searchBox = gedit("", container = toolbarGroup)
             
             ## search through packages
-            expgp = gexpandgroup("Browse package help pages:",container = gp)
+            expgp = gexpandgroup("Browse package help pages:",container = gp,
+              expand=TRUE)
+            visible(expgp) <- FALSE
+            
             packageNotebook = gnotebook(container=expgp, expand=TRUE)
-            size(packageNotebook) <- c(400,300)
+#            size(packageNotebook) <- c(400,300)
 
 
 #            addhandlerchanged(packageNotebook,function(h,...) {
@@ -321,10 +327,11 @@ setMethod(".ghelpbrowser",
             allPackages = .packages(all=TRUE)
             packageList = gtable(
               data.frame("Package names"=allPackages,stringsAsFactors=FALSE),
-              container = packageNotebook, label="All packages"
+              container = packageNotebook, label="All packages",
+              expand=TRUE
               )
-            
-            addhandlerdoubleclick(packageList, handler = function(h,...) {
+
+            addHandlerDoubleclick(packageList, handler = function(h,...) {
               ## get contents, show with filter
               package = svalue(h$obj)
               contents = getContentsOfPackage(package)
@@ -338,7 +345,7 @@ setMethod(".ghelpbrowser",
               page = ggroup(horizontal=FALSE,
                 cont = packageNotebook, label=Paste("Objects in ",package) )
               ## objectList
-              objectList = gtable(contents, filter.column=2,
+              objectList = gtable(contents, ## filter.column didn't work here
                 cont = page, expand=TRUE)
 
               addhandlerdoubleclick(objectList,action=package,
@@ -361,29 +368,31 @@ setMethod(".ghelpbrowser",
 
             
             help.notebook  = ghelp(tab.pos=1,closebuttons=TRUE,
-              container=nb, label="Help pages")     # bottom tab
+              container=nb, label="Help pages", expand=TRUE)     # bottom tab
 
             emptyDataFrame = data.frame(Title=c(""), Package=c(""),Descr=c(""))
             for(j in 1:3) emptyDataFrame[,j] <- as.character(emptyDataFrame[,j])
 
             search.results = gtable(emptyDataFrame, ## filter.column=2,
-              container=nb, label="Search results")
-            size(search.results) <- c(400,250)
+              container=nb, label="Search results", expand=TRUE)
+#            size(search.results) <- c(400,250)
             svalue(nb) <-1                # help page first
             
-            statusBar = gstatusbar(container=gp)
+            statusBar = gstatusbar(container=win)
             svalue(statusBar) <- "Enter search term in box, click ENTER to begin"
             ## actions
             ## double click on search results
             addhandlerdoubleclick(search.results,
                                   handler = function(h,...) {
-                                    vals = svalue(search.results, drop=FALSE) # a data frame
-                                    topic = vals[,1,drop=TRUE]
-                                    package = vals[,2,drop=TRUE]
+                                    vals = svalue(h$obj, drop=FALSE) # a data frame
+                                    vals <- as.data.frame(vals)      # may be list
+                                    topic = as.character(vals[,1,drop=TRUE])
+                                    package = as.character(vals[,2,drop=TRUE])
+
                                     svalue(statusBar) <-
                                       Paste("Getting help page for ",topic)
                                     add(help.notebook, list(topic=topic, package=package))
-                                    svalue(statusBar) # pops statusbar?
+                                    svalue(statusBar) <- ""
                                     ## swap tabs
                                     svalue(nb) <- 1
                                     return(FALSE) # no mas

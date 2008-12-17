@@ -1,6 +1,7 @@
 \name{gWidgets-package}
 \alias{gWidgets-package}
 \alias{gWidgets}
+\alias{installing_gWidgets_toolkits}
 \docType{package}
 \title{
 gWidgets API for building toolkit-independent, interactive GUIs
@@ -15,6 +16,8 @@ interactive GUIs
   toolkits. This package is toolkit neutral. The interactions is
   provided by a further package, such as gWidgetsRGtk2, or gWidgetsrJava.
 
+  Some details on the installation of toolkits is provided by
+  \code{installing_gWidgets_toolkits}.
   
 Index:
 \preformatted{
@@ -25,6 +28,7 @@ gWidgets-handlers       Methods to add event handlers to objects
 gWidgets-icons          Functions for adding icons
 gWidgets-methods        Methods for gWidgets instances
 gWidgets-undocumented.Rd
+gaction			Reusable objects for buttons, menus, toolbars
                         Undocumented, but exported, functions
 gcheckbox               Constructor of widget to indicate whether a
                         value is desired or not
@@ -38,6 +42,7 @@ ggraphics               Constructor for a toolkit specific plot device
                         and a notebook to wrap plots in
 ggroup                  Containers for packing in subsequent widgets
 ghelp                   Widget to interface with help pages
+ghtml			widget to show html. (not implemented)
 glabel                  Constructors for widgets that show text or
                         images
 glayout                 A container for aligning widgets in a table

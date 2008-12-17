@@ -9,7 +9,7 @@
 }
 \usage{
 ghelp(topic = NULL, package = NULL, container = NULL, ..., toolkit = guiToolkit())
-ghelpbrowser(title = "Help browser", maxTerms=100, width=550, height=600, toolkit = guiToolkit()) 
+ghelpbrowser(title = "Help browser", maxTerms=100, width=550, height=600, ..., toolkit = guiToolkit()) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,10 +26,20 @@ ghelpbrowser(title = "Help browser", maxTerms=100, width=550, height=600, toolki
 \details{
   Finding the help page can be a little slow.
 
+  This does not work with chm files on windows. However, the help
+  browser in that environment is far superior than this, so no
+  incentive exists to implement that.
+
   The \code{add(obj,value)} method can be used to add a new page. The
-  page may be specified as a list with components \code{topic} and
-  \code{package}, as a string in the form \code{package:::topic}, or a
-  string of the form \code{topic}.
+  page may be specified to \code{value} in different ways: as a string
+  containing the \code{topic}, as a list with components \code{topic}
+  and \code{package}, or as a string in the form
+  \code{package:::topic}.
+
+  The \code{ghelpbrowser} constructor produces a stand alone GUI for
+  browsing help pages, running the corresponding examples and viewing
+  a packages vignettes. Unlike other \pkg{gWidgets} constructors, this
+  has no \code{container} argument.
   
 }
 % \value{}
