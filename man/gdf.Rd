@@ -60,7 +60,7 @@ gdfnotebook(items = NULL, container = NULL, ..., toolkit=guiToolkit())
 	The \code{"["} method is used for data-frame like extraction
 	from the object.
 
-	The code{"[<-"} method can be used for data-frame like
+	The \code{"[<-"} method can be used for data-frame like
 	assignment, with limitations.
 
 	

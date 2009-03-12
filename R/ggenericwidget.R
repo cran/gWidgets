@@ -26,21 +26,36 @@ setMethod(".ggenericwidget",
               eval(parse(text=string), envir=envir)
             }
 
+            theArgs <- list(...)
+            if(!is.null(theArgs$fName))
+              lst <- theArgs$fName      # to pass in fun name
             
-            ## if lst is not a list, but refers to a function, autogenerate
-            if(!is.list(lst) && is.character(lst)) {
+
+            if(is.character(lst)) {
               if(rpel(Paste("is.function(",lst,")"))) {
                 ## run automenugenerator
-                lst = rpel(autogenerategeneric(lst))
-              } else if(is.function(lst)) {
-                lst = rpel(autogenerategeneric(lst))
+                lst = rpel(autogenerategeneric(lst), environment())
+              } else {
+                gwCat(paste("Can not create genericwidget from", lst,"\n",sep=" "))
+                return(glabel("", cont = container))
               }
             }
+      
+
+            
+##             if(!is.list(lst) && is.character(lst)) {
+##               if(rpel(Paste("is.function(",lst,")"))) {
+##                 ## run automenugenerator
+##                 lst = rpel(autogenerategeneric(lst))
+##               } else if(is.function(lst)) {
+##                 lst = rpel(autogenerategeneric(lst))
+##               }
+##             }
             
             ## error check
             if(!is.list(lst)) {
               warning("ggenericwidget needs to be called with a list, a function name or a function to work\n")
-              return()
+              return(glabel("", cont = container))
             }
 
             
@@ -193,9 +208,9 @@ setMethod(".ggenericwidget",
                   container=NULL)
               } else {
                 cli = h$action$cli
+                command <- str; names(command) <- assignto
+                svalue(cli) <- command
               }
-              command <- str; names(command) <- assignto
-              svalue(cli) <- command
             }
             
             cancel.cb = function(h,...) {
@@ -242,15 +257,18 @@ setMethod(".svalue",
 
 ### returns a string that evaluates to a list
 autogenerategeneric = function(f,
+  fName,
   help = fName,                             # name of help function
   variableType = NULL   # one ofc(NULL,"univariate","bivariate","model","lattice"),
   ) {
-  
-  if(is.function(f)) {
-    fName = deparse(substitute(f))
-  } else{                               # f is a string
-    fName = f 
-    f = get(f)
+
+  if(missing(fName)) {
+    if(is.function(f)) {
+      fName = deparse(substitute(f))
+    } else{                               # f is a string
+      fName = f 
+      f = get(f)
+    }
   }
   lst = formals(f)
 

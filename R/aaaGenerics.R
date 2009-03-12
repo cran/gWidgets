@@ -733,7 +733,7 @@ gcommandline =function(
   widget =  .gcommandline (toolkit,
     command=command, assignto=assignto,
     useGUI = useGUI, useConsole=useConsole,
-    prompt=prompt, width=width, height=height, container=container ,...
+    prompt=prompt, width=width, height=height, container=container, ...
     )
   obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
   return(obj)
@@ -797,8 +797,14 @@ ggenericwidget =function(
   lst,  cli = NULL, container = NULL,
   ... ,
   toolkit=guiToolkit()){
+
+  ## if lst is a function, we much fix
+  fName <- NULL
+  if(is.function(lst)) 
+    fName <- deparse(substitute(lst))
+
   widget =  .ggenericwidget (toolkit,
-    lst=lst, cli=cli, container=container ,...
+    lst=lst, cli=cli, container=container , fName=fName, ...
     )
   obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
   return(obj)

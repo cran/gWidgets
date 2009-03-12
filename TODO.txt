@@ -1,4 +1,5 @@
-* gcommandline is not very good
+DONE * fix ggenericwidget under tcltk -- print twice. gcommandline issue I believe.
+* gcommandline is not very good -- IT IS AWFUL. Do tcltk --- see
 * size argument in gdroplist as formal argument, we have it as ... now.
 * methods in docs -- work on API
 * fix ghelp to work with windows -- RPAD?

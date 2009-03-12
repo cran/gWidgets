@@ -141,7 +141,7 @@ removehandler(obj, ID, ...)
 	as pointers, not copies, so that when queried, their current
 	state is used.
 
-
+	\itemize{
 	\item{\code{addHandlerChanged}:}{ This handler is called when a widget
 	is "changed."  This is interpreted differently by the various
 	widgets. For \code{gedit} change refers to a changed value,
@@ -194,7 +194,7 @@ removehandler(obj, ID, ...)
 	an extra argument 
 	\code{interval} specifying the interval in milliseconds with a
 	default of 1000 or 1 second. }
-
+        }
 
 	Although not handlers, the \code{addPopupMenu} method adds a
 	popup menu to a mouse click. The popup menu is specified using

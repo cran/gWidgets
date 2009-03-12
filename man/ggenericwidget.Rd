@@ -57,7 +57,7 @@ ggenericwidget(lst,  cli = NULL, container = NULL, ..., toolkit = guiToolkit())
 
   
   The list contains several named components
-
+  \itemize{
   \item{title}{The title for the widget}
   \item{help}{What help page is called}
   \item{type}{Either "text" or "graphic." Currently ignored.}
@@ -94,6 +94,7 @@ ggenericwidget(lst,  cli = NULL, container = NULL, ..., toolkit = guiToolkit())
     In the more complicated cases, these named components can be
     grouped into a list component. The name of this is then used
     to block the arguments. See the example.
+  }
   }	   
 
   The \code{svalue} method returns the value of the list. This can be

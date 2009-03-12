@@ -137,222 +137,237 @@
   \code{svalue(obj,...) <- .svalue(obj@widget, obj@toolkit, ...)} where
   \code{.svalue()} and  \code{obj@widget} are in toolkit, and
   \code{obj@toolkit} is used for dispatching in the appropriate toolkit.
-
-
+  
+  
   The gComponent methods are:
-
+  
   \describe{  
-  \item{\code{svalue(obj, index=NULL, drop=NULL, ...)}:}{
-    This method returns the "selected" value in a widget. Selection
-  varies from widget to widget, but should generally is what can be
-  added to the widget by mouse click or typing. For some
-    widgets, the extra argument \code{index=TRUE} will return the
-    index of the selected value, not the value. For some widget, the
-  argument \code{drop} is given to either prevent or encourage
-  dropping of information. 
-  }
-  
-  \item{  \code{svalue<-(obj, index=NULL,  ... ,value)}:}{
-    This method is used to set the selected value in a widget
-    programaticaly. The \code{index} argument is used when the value
-    is set by index.
-  
-} 
-  
-  
-  \item{ \code{[(x,i,j,...,drop=TRUE)}:}{ 
-
-  For widgets where selection is a choice from a collection of items,
-  the \code{svalue} method refers to the choice and the square bracket
-  notation refers to the items.  For instance, in a radio button
-  (\code{gradio}) the svalue method returns the selected value, the
-  \code{"["} method refers to the vector of possible values. Whereas in
-  a notebook (\code{gnotebook}), the \code{svalue} method refers to
-  the currently opened page and the \code{"["} refers to all the pages.
-  }
-  
-  \item{  \code{"[<-"(x, i, j, ..., value) }:}{
-    In those cases where it makes sense assignment to pieces of
-    the widget can be made with the square bracket notation. For
-    instance, for the radio widget, this can be used to change
-    the labels. 
-}   
-  
-  
-  \item{  \code{size(obj, ...)} or
-  \code{size<-(obj, ..., value)}:}{
-    Returns or sets the size of the object.  For setting
-    the size, the value is given in terms of width and
-    height of widget in pixels.
-  }
-  
-\item{
-  \code{visible(obj ...)} or
-  \code{visible<-(obj,..., value)}:}{
-    Used to check if widget is visible or not. When setting the
-    visibility, \code{value} should be a logical. "Visibility"
-    differs from widget to widget. For \code{gwindow} it refers
-    to whether the base container is shown or not. For the
-    dataframe-like widgets \code{gdf} and \code{gtable}
-    visibility refers to which rows are shown.
-  }
-\item{
-  \code{visible(obj ...)}
-}{
-  Used to check if a gwindow object is extant (not been destroyed). An R
-  object can point to a window that can no longer be shown, as it may
-  have been closed by the window manager.
-}
-  
-  \item{
-  \code{enabled(obj,...)} or
-  \code{enabled<-(obj,..., value)}
-}{
-    When a widget is disabled, the toolkit makes it unresponsive
-    to user input and changes the color of it, usually by
-    graying it out, to indicate it is disabled. This method is
-    used to change the state.
-  }
-  
-  \item{ \code{focus(obj,...)} or \code{focus<-(obj,...,value)}: }{
-  method to check if a widget has focus, or to force focus on a widget.
- }
-
- \item{\code{tooltip<-(obj,value)}}{ Add a tooltip to the widget. Tooltips are toolkit and eventloop dependent, so may be unrealiable.
-}
-
- \item{\code{defaultWidget(obj,...)} or \code{defaultWidget<-(obj,..., value)}}{
-   Sets the widget to be activated when the parent window has focus and
-   the enter key is pressed. 
- }
-  
-
-  \item{\code{font(obj, ...)} or
-  \code{font<-(obj,...,value)}:}{
-  Can be used to check or set font attributes in
-  a widget. In gWidgetsRGtk, the font attributes
-  are given as a named vector. The available names are \code{family}
-  with a value of "normal","sans","serif",or "monospace";
-  \code{style} with a value of "normal","oblique", or "italic";
-  \code{weight} with a value of
-  "ultra-light","light","normal","bold","ultra-bold", or "heavy";
-  and
-  \code{color} which for gWidgetsRGtk is any of the values returned by
-  \code{colors}. 
-  [Prior to version 0.0-22 the weight and style were switched. Old
-  code can be run as before.]
-}
-  
-  \item{  \code{tag(obj,i, drop=TRUE, ...)} or
-  \code{tag<-(obj,i, replace=TRUE, ...,value)}:}{
-    These functions work like the \code{attr} function -- they
-    set values within an object. In RGtk, these are carried with
-    the pointer which is passed into functions -- not a
-    copy. This allows values to be set without worrying about the
-    scope of the assignment.
+    \item{\code{svalue(obj, index=NULL, drop=NULL, ...)}:
+    }{
+      This method returns the "selected" value in a widget. Selection
+      varies from widget to widget, but should generally is what can be
+      added to the widget by mouse click or typing. For some
+      widgets, the extra argument \code{index=TRUE} will return the
+      index of the selected value, not the value. For some widget, the
+      argument \code{drop} is given to either prevent or encourage
+      dropping of information. 
+    }
     
-    When setting a tag, the argument \code{replace} can be
-    set to \code{FALSE} so that the value appends.
+    \item{  \code{svalue<-(obj, index=NULL,  ... ,value)}:
+    }{
+      This method is used to set the selected value in a widget
+      programaticaly. The \code{index} argument is used when the value
+      is set by index.
+    }
     
-    The tags are stored internally in a list. Calling
-    \code{tag(obj)} will return this list.
-   }
   
-  \item{  \code{id(obj,...)} or
-  \code{id<-(obj,..., value)}:}{
-    An id is a name for a widget. This is primarily used with a the
-  spread-sheet like widgets so that columns can have values -- the
-  data in the column, and an id -- the column name. 
-    Objects can be given an id like a name. For non-widget items, the
-    id is an attribute.
-  }
-  
-  \item{  \code{update(object,...)}:}{
-
-   Some classes use this method
-    to update the state of the widget
-}   
-  
-  \item{  \code{ add(obj, value,  ...)}: }{
-    This widget is used to add something to a widget. What
-    "adding" means varies from widget to widget.
-  
-  \emph{  For this method, there are several different arguments that can be
-  passed in via the \code{"..."} argument. When the API is cleaned up
-  this should change.}
-
-  
-    For the containers (\code{gwindow}, \code{ggroup}, ...) adding
-    adds a widget to be packed in. For the parent container
-    produced by \code{gwindow} only one item can be added. For
-    groups, this is not the case. For \code{ggroup}, \code{gframe}
-    and \code{gexpandgroup} the extra argument \code{expand=TRUE}
-    will cause the widget to take up all possible space within the
-    container.
+    \item{ \code{[(x,i,j,...,drop=TRUE)}:}{ 
+      For widgets where selection is a choice from a collection of items,
+      the \code{svalue} method refers to the choice and the square bracket
+      notation refers to the items.  For instance, in a radio button
+      (\code{gradio}) the svalue method returns the selected value, the
+      \code{"["} method refers to the vector of possible values. Whereas in
+      a notebook (\code{gnotebook}), the \code{svalue} method refers to
+      the currently opened page and the \code{"["} refers to all the pages.
+    }
     
-    For the components, \code{add} has different meanings. For
-    notebooks (\code{gnotebook}, ...) \code{add} is used to add
-    pages. In this case the extra arguments are:
-    \description{
-    \item{\code{label}}{ to  assign the label.  This may be a text
-    string or a gWidget}
-    \item{\code{override.closebutton}}{To override the placing of a
-    close button}
-}
-    
-    For the text buffer widget (\code{gtext}) \code{insert} (or
-    \code{add}) is used to insert text into the buffer. In this case,
-    extra arguments available: \description{ \item{ \code{font.attr}}{
-    can be used to specify font attributes for the text}
-
-    \item{do.newline}{ a logical indicating if a newline should be
-    added after the text}
-
-    \item{where}{An indicator of where to place the text: "beginning",
-    "ending", or "at.cursor", although the latter may not be implemented.}
-  }
-  }	
-  
-  \item{\code{delete(obj, widget,...)}:}{
-   For gContainers this
-    method is used to delete a widget that has been added with
-    \code{add}. In RGtk, the widget is actually detached and can
-    be added at a later time. Any handler assigned by
-    \code{addhandlerunrealize} is called when the widget is
-    detached
+    \item{  \code{"[<-"(x, i, j, ..., value) }:}{
+      In those cases where it makes sense assignment to pieces of
+      the widget can be made with the square bracket notation. For
+      instance, for the radio widget, this can be used to change
+      the labels. 
+    }   
     
     
-    For notebooks, the \code{delete} method removes a page in the notebook.
-  }
+    \item{  \code{size(obj, ...)} or
+      \code{size<-(obj, ..., value)}:}{
+      Returns or sets the size of the object.  For setting
+      the size, the value is given in terms of width and
+      height of widget in pixels.
+    }
+    
+    \item{
+      \code{visible(obj ...)} or
+      \code{visible<-(obj,..., value)}:}{
+      Used to check if widget is visible or not. When setting the
+      visibility, \code{value} should be a logical. "Visibility"
+      differs from widget to widget. For \code{gwindow} it refers
+      to whether the base container is shown or not. For the
+      dataframe-like widgets \code{gdf} and \code{gtable}
+      visibility refers to which rows are shown.
+    }
+    
+    \item{
+      \code{visible(obj ...)}
+    }{
+      Used to check if a gwindow object is extant (not been destroyed). An R
+      object can point to a window that can no longer be shown, as it may
+      have been closed by the window manager.
+    }
+    
+    \item{
+      \code{enabled(obj,...)} or
+      \code{enabled<-(obj,..., value)}
+    }{
+      When a widget is disabled, the toolkit makes it unresponsive
+      to user input and changes the color of it, usually by
+      graying it out, to indicate it is disabled. This method is
+      used to change the state.
+    }
+    
+    \item{ \code{focus(obj,...)} or \code{focus<-(obj,...,value)}:
+    }{
+      method to check if a widget has focus, or to force focus on a widget.
+    }
+    
+    \item{\code{tooltip<-(obj,value)}
+    }{
+      Add a tooltip to the widget. Tooltips are toolkit and eventloop dependent, so may be unrealiable.
+    }
+    
+    \item{\code{defaultWidget(obj,...)} or \code{defaultWidget<-(obj,...,value)}
+    }{
+      Sets the widget to be activated when the parent window has focus and
+      the enter key is pressed. 
+    }
   
-  \item{\code{dispose(obj,...)}:}{
-    This method is used to remove an object.
 
-    For top-level windows it destroys the window.
-
-    For notebooks, it removes the current page.
-
-    In RGtk2, for other objects it will destroy the top-level window.
-  }
+    \item{\code{font(obj, ...)} or \code{font<-(obj,...,value)}:
+    }{
+      Can be used to check or set font attributes in
+      a widget. In gWidgetsRGtk, the font attributes
+      are given as a named vector. The available names are \code{family}
+      with a value of "normal","sans","serif",or "monospace";
+      \code{style} with a value of "normal","oblique", or "italic";
+      \code{weight} with a value of
+      "ultra-light","light","normal","bold","ultra-bold", or "heavy";
+      and
+      \code{color} which for gWidgetsRGtk is any of the values returned by
+      \code{colors}. 
+      [Prior to version 0.0-22 the weight and style were switched. Old
+      code can be run as before.]
+    }
   
-  \item{\code{ addSpace(obj, value, horizontal=TRUE,...)}:}{
-    Used to add space between widgets in a container
- 	     }
- 
-  
-  \item{  \code{addSpring(obj, ...)}:}{
-  When packing widgets into a group the widget abut each other filling
-  in from left to right or top to bottom. This puts a "spring" between
-  two widgets forcing the ones to the right of (or below) the spring to be pushed
-  as far as possible to the right (or bottom).
-}
-  }
-}
-     
-	
+    \item{  \code{tag(obj,i, drop=TRUE, ...)} or
+      \code{tag<-(obj,i, replace=TRUE, ...,value)}:
+    }{
+      These functions work like the \code{attr} function -- they
+      set values within an object. In RGtk, these are carried with
+      the pointer which is passed into functions -- not a
+      copy. This allows values to be set without worrying about the
+      scope of the assignment.
       
-
-	
+      When setting a tag, the argument \code{replace} can be
+      set to \code{FALSE} so that the value appends.
+      
+      The tags are stored internally in a list. Calling
+      \code{tag(obj)} will return this list.
+    }
+    
+    \item{  \code{id(obj,...)} or
+      \code{id<-(obj,..., value)}:
+    }{
+      An id is a name for a widget. This is primarily used internally with  the
+      spread-sheet like widgets so that columns can have values -- the
+      data in the column, and an id -- the column name. 
+      Objects can be given an id like a name. For non-widget items, the
+      id is an attribute.
+    }
+    
+    \item{  \code{update(object,...)}:
+    }{
+      Some classes use this method to update the state of the widget
+    }   
+    
+    \item{  \code{ add(obj, value,  ...)}:
+    }{
+      This widget is used to add something to a widget. What
+      "adding" means varies from widget to widget.
+      
+      \emph{  For this method, there are several different arguments that can be
+	passed in via the \code{"..."} argument. When the API is cleaned up
+	this should change.}
+      
+      For the containers (\code{gwindow}, \code{ggroup}, ...) adding
+      adds a widget to be packed in. For the parent container
+      produced by \code{gwindow} only one item can be added. For
+      groups, this is not the case. For \code{ggroup}, \code{gframe}
+      and \code{gexpandgroup} the extra argument \code{expand=TRUE}
+      will cause the widget to take up all possible space within the
+      container.
+      
+      For the components, \code{add} has different meanings. For
+      notebooks (\code{gnotebook}, ...) \code{add} is used to add
+      pages. In this case the extra arguments are:
+      
+      \describe{
+	\item{\code{label}}{ to  assign the label.  This may be a text
+	  string or a gWidget}
+	\item{\code{override.closebutton}}{To override the placing of a
+	  close button}
+      }   
+    
+      For the text buffer widget (\code{gtext}) \code{insert} (origally
+      called \code{add} which still works but is deprecated) is used to
+      insert text into the buffer. In this case, extra arguments are
+      available:
+      
+      \describe{
+	\item{ \code{font.attr}}{
+	  can be used to specify font attributes for the text
+	}
+	\item{do.newline}{
+	  a logical indicating if a newline should be  added after the
+	  text
+	}
+      
+	\item{where}{
+	  An indicator of where to place the text: "beginning",
+	  "ending", or "at.cursor", although the latter may not be
+	  implemented.
+	}
+      }
+    }
+  
+    \item{\code{delete(obj, widget,...)}:
+    }{
+      For gContainers this
+      method is used to delete a widget that has been added with
+      \code{add}. In RGtk, the widget is actually detached and can
+      be added at a later time. Any handler assigned by
+      \code{addhandlerunrealize} is called when the widget is
+      detached
+      
+      For notebooks, the \code{delete} method removes a page in the notebook.
+    }
+    
+    \item{\code{dispose(obj,...)}:
+    }{
+      This method is used to remove an object.
+      
+      For top-level windows it destroys the window.
+      
+      For notebooks, it removes the current page.
+      
+      In RGtk2, for other objects it will destroy the top-level window.
+    }
+    
+    \item{\code{ addSpace(obj, value, horizontal=TRUE,...)}:
+    }{
+      Used to add space between widgets in a container
+    }
+    
+    
+    \item{  \code{addSpring(obj, ...)}:
+    }{
+      When packing widgets into a group the widget abut each other filling
+      in from left to right or top to bottom. This puts a "spring" between
+      two widgets forcing the ones to the right of (or below) the spring to be pushed
+      as far as possible to the right (or bottom).
+    }
+  }
+}
+    
 % \author{}
 \note{See package vignette for more examples}
 \seealso{\code{\link{gWidgets-handlers}} for methods related to handlers.}

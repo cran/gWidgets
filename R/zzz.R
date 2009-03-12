@@ -43,14 +43,15 @@
   tmp = installed.packages() 
   choices = tmp[grep("^gWidgets.",tmp[,1]),1]
   if(length(choices) == 0) {
+    ### popup() ## disabled -- had issues iwth automatic builds
 
-    popup()
-
-    stop("\n\n*** gWidgets requires a toolkit implementation to be\n installed, for instance gWidgetsRGtk2 or gWidgetstcltk***\n\n.")
+    msg <- gettext("gWidgets requires a toolkit implementation to be\n installed, for instance gWidgetsRGtk2 or gWidgetstcltk.")
+    warning(paste("\n\n**",msg,"**\n\n", sep=""))
   }
 
   
 }
 
 .onAttach <- function(...) {
+
 }

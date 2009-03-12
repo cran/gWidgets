@@ -1,3 +1,21 @@
+2009-03-07  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/gcommandline.R: fixed little bug with history, redid
+	layout. Still not great
+
+2009-03-05  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/zzz.R (popup): removed popup when no toolkits are installed so
+	that automatic builds go through.
+
+2009-02-13  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/ggenericwidget.R: Fixes to handling of functino
+
+2009-02-12  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/ggenericwidget.R: fix to cli call (thanks to Diego Zardetto)
+
 2008-12-15  john verzani  <verzani@john-verzanis-macbook-pro.local>
 
 	* R/aaaGenerics.R: put in code for gbasicdialog to be able to use

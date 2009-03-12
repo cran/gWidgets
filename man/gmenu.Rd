@@ -79,7 +79,7 @@ gaction(label, tooltip = NULL, icon = NULL, key.accel = NULL,
 
 	The \code{"["} method refers to the components of the list.
 
-	The code{"[<-"} method can be used to change pieces of the
+	The \code{"[<-"} method can be used to change pieces of the
 	menubar or toolbar.
 
 	The \code{add} method with signature \code{(obj,lst)} or

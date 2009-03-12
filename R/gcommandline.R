@@ -24,7 +24,7 @@ setMethod(".gcommandline",
                    useGUI = TRUE, 
                    useConsole = FALSE,
                    prompt = getOption("prompt"),
-                   width = 500, height = .6*width,
+                   width = 500, height = 0.6 * width,
                    container = NULL,
                    ...) { 
 
@@ -39,39 +39,40 @@ setMethod(".gcommandline",
 
 
             if(is(container,"logical") && container)
-              container = gwindow()
+              container = gwindow("gCommandLIne")
           ##
             if(useGUI == TRUE) {
               
               
               ## the main widgets
-              group = ggroup(horizontal=FALSE, cont=container)
+              group = do.call("ggroup", list(horizontal=FALSE, cont=container, expand=TRUE, width=width, height=height))
+              ## main objects
+              bgroup <- ggroup(horizontal=TRUE, cont = group)
+              pgroup = gpanedgroup(horizontal=FALSE, cont=group, expand=TRUE)
+
               ## toolbar
-              toolbar = list(
-                open = list(
-                  icon="open",
-                  handler = function(h,...) {
+              openButton = gbutton("open",
+                handler = function(h,...) {
                     gfile("Select a file to read into command line",
                           type="open",
                           handler = function(h,...) {
                             file = h$file
                             svalue(editArea) <- readLines(file)
                           })
-                  }),
-                save = list(
-                  icon="save",
-                  handler = function(h,...) {
-                    sw = gwindow("Save buffer contents")
-                    group = ggroup(horizontal=FALSE, container=sw)
+                  }, cont = bgroup)
+              saveButton = gbutton("save",
+                handler = function(h,...) {
+                  sw = gwindow("Save buffer contents")
+                  group = ggroup(horizontal=FALSE, container=sw)
                     saveFileName = gfilebrowse("",type="save", cont=group)
-
-                    tgroup = ggroup(cont=group);
-                    glabel("Save which values?", cont=tgroup)
-                    saveType = gradio(c("commands","output"),horizontal=TRUE,
-                      index=FALSE, cont=tgroup)
-                    gseparator(container=group)
-                    buttonGroup = ggroup(container=group)
-                    addSpring(buttonGroup)
+                  
+                  tgroup = ggroup(cont=group);
+                  glabel("Save which values?", cont=tgroup)
+                  saveType = gradio(c("commands","output"),horizontal=TRUE,
+                    index=FALSE, cont=tgroup)
+                  gseparator(container=group)
+                  buttonGroup = ggroup(container=group)
+                  addSpring(buttonGroup)
                     gbutton("save",handler=function(h,...) {
                       filename = svalue(saveFileName)
                       if(filename == "") {
@@ -85,59 +86,53 @@ setMethod(".gcommandline",
                       writeLines(values, filename)
                       dispose(sw)
                     }, container=buttonGroup)
-                  }),
-                history = list(
-                  icon="history",
-                  handler = function(h,...) {
-                    wh = gwindow("Command history")
-                    gh = ggroup(horizontal=FALSE, cont=wh)
-                    .history = tag(h$obj,"history")
-                    ##                    df = data.frame(history=.history, stringsAsFactors=FALSE)
+                }, cont = bgroup)
+              historyButton = gbutton("history",
+                handler = function(h,...) {
+                  wh = gwindow("Command history")
+                  gh = ggroup(horizontal=FALSE, cont=wh)
+                  .history = tag(obj,"history") # obj is gcli object
+                  ##                    df = data.frame(history=.history, stringsAsFactors=FALSE)
                     tbl = gtable(.history, handler=function(h,...) {
                       svalue(editArea) <- as.character(svalue(tbl,drop=TRUE))
                       dispose(wh)
                     },
                       cont=gh, expand=TRUE)
-                    tg = ggroup(cont=gh); addSpring(tg)
-                    gbutton("close",cont=tg,handler=function(h,...) dispose(wh))
-                  }),
-                clear = list(
-                  icon = "clear",
-                  handler = function(h,...) svalue(editArea) <- ""
-                  ),
-                evaluate = list(
-                  icon = "evaluate",
-                  handler = function(h,...) evalEditArea(obj)
-                  )
+                  tg = ggroup(cont=gh); addSpring(tg)
+                  gbutton("close",cont=tg,handler=function(h,...) dispose(wh))
+                }, cont = bgroup)
+              clearButton = gbutton("clear",
+                handler = function(h,...) svalue(editArea) <- "",
+                cont = bgroup
                 )
+              evaluateButton = gbutton("evaluate",
+                handler = function(h,...) evalEditArea(obj),
+                cont = bgroup)
               
-              tb = gtoolbar(toolbar,container=group, anchor = c(-1,1))
+              editArea = gtext("## Type commands here, then click on evaluate", container=pgroup, width=width)
+              outputArea = gtext("Output:", container=pgroup, width=width)
+              svalue(pgroup) <- 0.3
               
-              ##
-              ##
-              outputArea = gtext("Output:", container=group,width=250,height=200)
-              editArea = gtext("## Type commands here, then click on evaluate", container=group, width=250, height=200)
-              
-              ##            pg = gpanedgroup(outputArea, editArea, horizontal=FALSE)
-              ##            add(group, pg, expand=TRUE)
-              
-              obj = new("gCommandlineANY",
-                block=group,
+          ##            pg = gpanedgroup(outputArea, editArea, horizontal=FALSE)
+          ##            add(group, pg, expand=TRUE)
+          
+          obj = new("gCommandlineANY",
+            block=group,
                 widget = group,
-                toolkit=toolkit,
-                ID=getNewID(),
-                editArea = editArea,
-                outputArea = outputArea,
-                useGUI = useGUI,
-                useConsole = useConsole
+            toolkit=toolkit,
+            ID=getNewID(),
+            editArea = editArea,
+            outputArea = outputArea,
+            useGUI = useGUI,
+            useConsole = useConsole
                 )
-              
-              ## initialize history
-              tag(obj,"history")  <- c()
-            } else {
-
-              obj = new("gCommandlineANY",
-                block=container,
+          
+          ## initialize history
+          tag(obj,"history")  <- c()
+        } else {
+          
+          obj = new("gCommandlineANY",
+            block=container,
                 widget = container,
                 toolkit=toolkit,
                 ID=getNewID(),
