@@ -1,5 +1,5 @@
 w <- gwindow("container", visible = FALSE)
-
+size(w) <- c(500,400)
 
 pg <- gpanedgroup(cont = w, horizontal=TRUE)
 

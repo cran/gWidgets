@@ -1,3 +1,4 @@
+if(interactive()) {
 w <- gwindow("dialogs example", visible=FALSE)
 g <- ggroup(cont = w, horizontal = FALSE)
 
@@ -8,7 +9,7 @@ gfilebrowse("select a file", cont = g)
 gcalendar("date", cont = g)
 
 ## gfile
-gbutton("gfile()", cont = g, handler = function(...) {
+gbutton("gfile", cont = g, handler = function(...) {
   out <- gfile()
   print(out)
 })
@@ -32,3 +33,5 @@ gbutton("ginput", cont = g, handler = function(h,...) {
 
 
 visible(w) <- TRUE
+
+}
