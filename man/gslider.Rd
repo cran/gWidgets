@@ -38,6 +38,8 @@ gspinbutton (from = 0, to = 10, by = 1, value = from, digits = 0,
 
 	The \code{svalue<-} method is used to set the selected value.
 
+    The \code{[<-} method can be used to change the sequence that the value is selected from. It expects a regular sequence. 
+
 	The \code{addhandlerchanged} handler is called when the
 	widgets' value is changed.
 }
@@ -64,6 +66,9 @@ gspinbutton (from = 0, to = 10, by = 1, value = from, digits = 0,
   tbl[2,1] <- "No. breaks"
   tbl[2,2, expand=TRUE] <- (sl <- gslider(from = 1, to= 100, by=1, value = 10,
     cont = tbl, handler = plotHist))
+
+## update slider using [<-
+  sl[] <- seq(2,50, by=2)
 }
 }
 \keyword{interface}% at least one, from doc/KEYWORDS

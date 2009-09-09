@@ -141,7 +141,7 @@ removehandler(obj, ID, ...)
 	as pointers, not copies, so that when queried, their current
 	state is used.
 
-	\itemize{
+	\describe{
 	\item{\code{addHandlerChanged}:}{ This handler is called when a widget
 	is "changed."  This is interpreted differently by the various
 	widgets. For \code{gedit} change refers to a changed value,

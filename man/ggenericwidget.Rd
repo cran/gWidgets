@@ -57,7 +57,7 @@ ggenericwidget(lst,  cli = NULL, container = NULL, ..., toolkit = guiToolkit())
 
   
   The list contains several named components
-  \itemize{
+  \describe{
   \item{title}{The title for the widget}
   \item{help}{What help page is called}
   \item{type}{Either "text" or "graphic." Currently ignored.}

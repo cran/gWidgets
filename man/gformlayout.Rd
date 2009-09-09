@@ -23,7 +23,7 @@ gformlayout(lst,  container = NULL, ..., toolkit = guiToolkit())
 \details{
 	The list defining the layout has the following key named components:
 
-	\itemize{
+	\describe{
 	  \item{type}{The type is the name of a gWidgets constructor or
 	    "fieldset". The latter specifies that the children should be
 	    layed out using a table. The type can specify either a container

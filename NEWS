@@ -1,0 +1,85 @@
+Dear Emacs, please make this -*-Text-*- mode!
+
+NEWS for gWidgets
+
+Changes for 0.0-36
+------------------
+ 
+* added [<- method for gspinbutton, gslider to update value. The value
+  must be a regular sequence
+
+Changes for 0.0-33
+------------------
+
+* remove popup when no toolkits are installed.
+
+* fix to ggenericwidget and cli
+
+Changes for 0.0-32
+------------------
+
+* fixes to the ghelpbrowser GUI. This works -- and looks -- much
+  better under tcltk, RGtk2. (Under rJava it is still awfule).
+
+* added new function installing_gWidgets_toolkits
+
+* made svalue<- for gcheckboxgroup use logicals, character or indices;
+  fixed up docs
+
+* added gseparator() in defn of gmenu, gtoolbar list.
+
+* started puting in RUnit test suites for better testingn of packages.
+
+* new gformlayout constructor. This allows programmer to define
+  compound GUI components using a list (like how XML is used with
+  glade, say). This is similar, but much more flexible and better
+  layed out, than ggenericwidget.
+
+Changes for 0.0-31
+------------------
+
+* Added gaction constructor to make action object for buttons, menus,
+  toolbars.
+
+* Added tooltip<- method to set a tooltip for a widget. Should work
+  with RGtk2 and windows at a minimum
+
+* to handle case with no toolkit, check with popups is made.
+
+* added toolkits to SUGGESTS: line in DESCRIPTION
+
+Changes for 0.0-29
+------------------
+
+* updated gWidgets vignette
+
+Changes for 0.0-28
+-------------------
+
+* fix to ghelp to work better under windows
+
+* added a tests suddirectory to inst. This allows the toolkit packages
+  to run tests on installation.
+
+
+Changes for  0.0-27
+-------------------
+
+* Added parent argument to dialogs. If specified will located dialog
+  in relation to the parent gwindow instance. Also changed "location"
+  argument for gwindow to "parent" to match argument names. That
+  argument still accepts x,y coordinates too. 
+
+* added function gwCat to be used to give messages in toolkit. Set
+  option gWidgetsDebug=TRUE to see messages.
+
+* added blockHandler, unblockHandler to API. Only implemented in
+  gWidgetsRGtk2
+
+* names method refers to label for gframe, gexpandgroup
+
+* added addHandlerMouseMotion -- like mouse over, different from
+  draggin drop action over an item
+
+* added defaultWidget, and defaultWidget<- for setting the default
+  widget in a dialog.
