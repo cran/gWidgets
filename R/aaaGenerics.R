@@ -1596,6 +1596,85 @@ setMethod("addHandlerDoubleclick",signature(obj="guiWidget"),
           })
 
 
+
+## addhandlerrightclick
+setGeneric("addhandlerrightclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerrightclick"))
+setMethod("addhandlerrightclick",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerrightclick(obj@widget,toolkit,handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandlerrightclick",function(obj,toolkit,...) standardGeneric(".addhandlerrightclick"))
+## caps
+setGeneric("addHandlerRightclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerRightclick"))
+setMethod("addHandlerRightclick",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlerrightclick(obj@widget,toolkit,handler, action, ...)
+          })
+
+
+###
+## Column clicks
+## clicked
+setGeneric("addhandlercolumnclicked",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlercolumnclicked"))
+setMethod("addhandlercolumnclicked",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlercolumnclicked(obj@widget, toolkit,handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandlercolumnclicked",function(obj, toolkit,...) standardGeneric(".addhandlercolumnclicked"))
+## caps
+setGeneric("addHandlerColumnClicked",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerColumnClicked"))
+setMethod("addHandlerColumnClicked",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlercolumnclicked(obj@widget, toolkit,handler, action, ...)
+          })
+
+
+
+## addhandlerCOLUMNdoubleclick
+setGeneric("addhandlercolumndoubleclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlercolumndoubleclick"))
+setMethod("addhandlercolumndoubleclick",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlercolumndoubleclick(obj@widget,toolkit,handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandlercolumndoubleclick",function(obj, toolkit,...) standardGeneric(".addhandlercolumndoubleclick"))
+## caps
+setGeneric("addHandlerColumnDoubleclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerColumnDoubleclick"))
+setMethod("addHandlerColumnDoubleclick",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlercolumndoubleclick(obj@widget,toolkit,handler, action, ...)
+          })
+
+## columnrightclick
+
+
+## addhandlerCOLUMNdoubleclick
+setGeneric("addhandlercolumnrightclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlercolumnrightclick"))
+setMethod("addhandlercolumnrightclick",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlercolumnrightclick(obj@widget,toolkit,handler, action, ...)
+          })
+## dispatch with toolkit
+setGeneric(".addhandlercolumnrightclick",function(obj, toolkit,...) standardGeneric(".addhandlercolumnrightclick"))
+## caps
+setGeneric("addHandlerColumnRightclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerColumnRightclick"))
+setMethod("addHandlerColumnRightclick",signature(obj="guiWidget"),
+          function(obj, handler=NULL, action=NULL, ...) {
+            toolkit = obj@toolkit
+            .addhandlercolumnrightclick(obj@widget,toolkit,handler, action, ...)
+          })
+
+
+
 ## Selections
 setGeneric("addhandlerselect",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerselect"))
 setMethod("addhandlerselect",signature(obj="guiWidget"),
@@ -1614,23 +1693,6 @@ setMethod("addHandlerSelect",signature(obj="guiWidget"),
           })
 
 
-
-## addhandlerrightclick
-setGeneric("addhandlerrightclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addhandlerrightclick"))
-setMethod("addhandlerrightclick",signature(obj="guiWidget"),
-          function(obj, handler=NULL, action=NULL, ...) {
-            toolkit = obj@toolkit
-            .addhandlerrightclick(obj@widget,toolkit,handler, action, ...)
-          })
-## dispatch with toolkit
-setGeneric(".addhandlerrightclick",function(obj,toolkit,...) standardGeneric(".addhandlerrightclick"))
-## caps
-setGeneric("addHandlerRightclick",function(obj, handler=NULL, action=NULL, ...) standardGeneric("addHandlerRightclick"))
-setMethod("addHandlerRightclick",signature(obj="guiWidget"),
-          function(obj, handler=NULL, action=NULL, ...) {
-            toolkit = obj@toolkit
-            .addhandlerrightclick(obj@widget,toolkit,handler, action, ...)
-          })
 
 
 

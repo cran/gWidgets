@@ -68,10 +68,7 @@
 \alias{.svalue,gFormLayoutANY-method}
 \alias{[,gFormLayoutANY-method}
 
-\alias{addHandlerBlur,guiWidget-method}
-\alias{addHandlerFocus,guiWidget-method}
-\alias{addhandlerblur,guiWidget-method}
-\alias{addhandlerfocus,guiWidget-method}
+
 
 
 %% these from ANY methods

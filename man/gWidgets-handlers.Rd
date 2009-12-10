@@ -32,6 +32,14 @@
 \alias{addHandlerUnrealize}
 \alias{addHandlerDestroy}
 \alias{addHandlerIdle}
+\alias{addHandlerColumnClicked}
+\alias{addhandlercolumnclicked}
+\alias{addHandlerColumnRightclick}
+\alias{addhandlercolumnrightclick}
+\alias{addHandlerColumnDoubleclick}
+\alias{addhandlercolumndoubleclick}
+
+
 \alias{addPopupmenu}
 \alias{add3rdMousePopupmenu}
 \alias{removeHandler}

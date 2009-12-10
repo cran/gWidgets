@@ -2,6 +2,13 @@ Dear Emacs, please make this -*-Text-*- mode!
 
 NEWS for gWidgets
 
+Changes for 0.0-38
+------------------
+
+* change to API to introduce addHandlerColumnClicked,
+addHandlerColumnDoubleClick, addHandlerColumnRightClick. For use with
+grid widgets gdf and gtable.
+
 Changes for 0.0-37
 ------------------
 * fix to tests to get passed CRAN checks

@@ -38,6 +38,17 @@
 \alias{addhandlerunrealize,guiWidget-method}
 \alias{addhandlermousemotion,guiWidget-method}
 \alias{addHandlerMouseMotion,guiWidget-method}
+\alias{addHandlerBlur,guiWidget-method}
+\alias{addhandlerblur,guiWidget-method}
+\alias{addHandlerFocus,guiWidget-method}
+\alias{addhandlerfocus,guiWidget-method}
+\alias{addHandlerColumnClicked,guiWidget-method}
+\alias{addhandlercolumnclicked,guiWidget-method}
+\alias{addHandlerColumnDoubleclick,guiWidget-method}
+\alias{addhandlercolumndoubleclick,guiWidget-method}
+\alias{addHandlerColumnRightclick,guiWidget-method}
+\alias{addhandlercolumnrightclick,guiWidget-method}
+
 \alias{addpopupmenu,guiWidget-method}
 \alias{add3rdMousePopupmenu,guiWidget-method}
 \alias{addDropMotion,guiWidget-method}
