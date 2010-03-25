@@ -2,6 +2,16 @@ Dear Emacs, please make this -*-Text-*- mode!
 
 NEWS for gWidgets
 
+Changes for 0.0-39
+-------------------
+* deprecated .fixFontMessUp -- was giving issues in the toolkit. From
+  now on fonts are specified in appropriate way (see ?font)
+
+* font(gtext_object) <- value will set for entire buffer if no
+  selection. Aslo gtext(---, font.attr=c(...)) will set font
+  attributes for
+  buffer, not just initial text.
+
 Changes for 0.0-38
 ------------------
 

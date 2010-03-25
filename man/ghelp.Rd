@@ -24,6 +24,8 @@ ghelpbrowser(title = "Help browser", maxTerms=100, width=550, height=600, ..., t
   \item{toolkit}{Which GUI toolkit to use}
 }
 \details{
+  [This widget/interface needs to be updated to reflect changes to the R help system]
+
   Finding the help page can be a little slow.
 
   This does not work with chm files on windows. However, the help

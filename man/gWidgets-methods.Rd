@@ -255,8 +255,9 @@
       and
       \code{color} which for gWidgetsRGtk is any of the values returned by
       \code{colors}. 
-      [Prior to version 0.0-22 the weight and style were switched. Old
-      code can be run as before.]
+      [Prior to version 0.0-22 the weight and style were switched. Old code needs to be changed.]
+
+      For \pkg{gWidgetstcltk} the above should work as well.
     }
   
     \item{  \code{tag(obj,i, drop=TRUE, ...)} or

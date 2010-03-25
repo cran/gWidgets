@@ -112,7 +112,7 @@ removehandler(obj, ID, ...)
     list which is in turn passed to \code{gmenu}.}
   \item{ID}{When a handler is assigned, an id is returned. This
     id can be used to remove a handler from an object.}
-  \item{...}{}
+  \item{...}{Not documented, currently has no role.}
 }
 \details{
   At first these handlers were all lowercase. These functions are still

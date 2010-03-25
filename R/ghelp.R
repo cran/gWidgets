@@ -166,7 +166,7 @@ getPossiblePackages = function(topic) {
   for (lib in lib.loc) {
     for (pkg in packages) {
       dir <- system.file(package = pkg, lib.loc = lib)
-      path = index.search(topic, dir, "AnIndex", "help")
+      path = utils:::index.search(topic, dir, "AnIndex", "help")
       if(path != "")
         possiblePackages = c(possiblePackages, pkg)
     }

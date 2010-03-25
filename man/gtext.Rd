@@ -46,15 +46,18 @@ gtext (text = NULL, width = NULL, height = 300, font.attr = NULL,
 	\code{add} will still work.
 
 	The font can be changed. The \code{font.attr} argument to the
-	constructon and to \code{add} specifies fonts using a
-	namedcharacter vector. For instance
-	\code{c(style="normal", weights="bold",sizes="medium")}.
-	The command \code{obj[['tags']]} will produce a list
-	containing all the available attributes. 
+	constructor is used to specify font properties for the
+	buffer. When specifed to the \code{add} method, the font
+	specification applies to the new text. Both uses use a named
+	character vector to specify the font properties. For instance
+	\code{c(style="normal", weights="bold",sizes="medium")}.  The
+	command \code{obj[['tags']]} will produce a list containing
+	all the available attributes.
 
 	The \code{font<-} method is used to change the font of the
 	currently selected text. It too takes a named character vector
-	specifying the font attributes.
+	specifying the font attributes. If there is no currently selected text, the 
+	entire buffer will have the new font attribute.
 
 	The \code{dispose} method clears the text in the buffer.
 

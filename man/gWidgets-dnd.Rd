@@ -29,7 +29,7 @@ adddroptarget (obj, targetType = "text", handler = NULL, action = NULL,
 	"pixmap" or "entry".}
 	\item{handler}{Handler called for the drop motion}
 	\item{action}{action passed to handler}
-	\item{...}{}
+	\item{...}{Not documented, currently has no role.}
 }
 \details{
 	To specify if one can drag values from a widget use

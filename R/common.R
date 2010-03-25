@@ -199,7 +199,7 @@ is.empty = function(obj) {
 }
 
 
-## fix font mess up
+## fix font mess up DEPRECATED!!
 .fixFontMessUp = function(val) {
   if(is.vector(val)) {
     tmp = val

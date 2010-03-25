@@ -5,7 +5,7 @@
 
   doRequire <- function(pkg) do.call("require",list(pkg))
   popup <- function() {
-    ## popup install message if note presnet
+    ## popup install message if not presnet
     ## already checked that no gWidgetsXXX is available
     all <- installed.packages()
     pkgs <- rownames(all)

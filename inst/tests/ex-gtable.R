@@ -18,3 +18,11 @@ gbutton("dismiss", cont=bg, handler = function(h,...) dispose(w))
 
 visible(w) <- TRUE
 
+## test svalue, []
+svalue(tab, index=TRUE) <- 2 ## set by index
+svalue(tab) <- 3             # set by index if 3 is integer
+svalue(tab) <- m[1,2]        # set by values
+svalue(tab, index=FALSE) <- m[1,2]        # explicit set by value
+
+tab[] <- head(m)                        # shrink
+tab[] <- m                              # grow

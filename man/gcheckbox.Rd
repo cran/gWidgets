@@ -20,7 +20,7 @@ container = NULL, ..., toolkit = guiToolkit())
   \item{handler}{ Called when box is toggled.}
   \item{action}{ Passed to handler}
   \item{container}{ Optional container to attach widget to.}
-  \item{\dots}{ }
+    \item{...}{Not documented, currently has no role.}
   \item{toolkit}{Which toolkit to use?}
 }
 \details{

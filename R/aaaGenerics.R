@@ -1378,7 +1378,7 @@ setGeneric("font<-",function(obj, ..., value) standardGeneric("font<-"))
 setMethod("font<-",signature(obj="guiWidget"),
           function(obj, ..., value) {
             toolkit = obj@toolkit
-            .font(obj@widget, toolkit,...) <- .fixFontMessUp(value)
+            .font(obj@widget, toolkit,...) <- value ## DEPRECATED.fixFontMessUp(value)
             return(obj)
           })
 ## dispatch with toolkit
