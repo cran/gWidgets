@@ -1,5 +1,5 @@
 Package: gWidgets
-Version: 0.0-40
+Version: 0.0-41
 Title: gWidgets API for building toolkit-independent, interactive GUIs
 Author: John Verzani. Based on the iwidgets code of Simon Urbanek and
         suggestions by Simon Urbanek, Philippe Grosjean and Michael
@@ -15,6 +15,6 @@ Description: gWidgets provides a toolkit-independent API for building
 License: GPL (>= 2)
 URL: http://www.math.csi.cuny.edu/pmg
 LazyLoad: yes
-Packaged: 2010-03-25 12:08:02 UTC; verzani
+Packaged: 2010-05-06 02:05:27 UTC; verzani
 Repository: CRAN
-Date/Publication: 2010-03-25 14:32:48
+Date/Publication: 2010-05-06 05:40:03

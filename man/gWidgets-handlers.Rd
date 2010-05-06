@@ -54,37 +54,41 @@
 
 }
 \usage{
-addhandlerchanged(obj, handler = NULL, action = NULL, ...) 
+addHandlerChanged(obj, handler = NULL, action = NULL, ...) 
 
-addhandlerkeystroke(obj, handler = NULL, action = NULL, ...) 
+addHandlerKeystroke(obj, handler = NULL, action = NULL, ...) 
 
-addhandlerclicked(obj, handler = NULL, action = NULL, ...) 
+addHandlerClicked(obj, handler = NULL, action = NULL, ...) 
 
-addhandlerdoubleclick(obj, handler = NULL, action = NULL, ...) 
+addHandlerDoubleclick(obj, handler = NULL, action = NULL, ...) 
 
-addhandlerrightclick(obj, handler = NULL, action = NULL, ...) 
+addHandlerRightclick(obj, handler = NULL, action = NULL, ...) 
 
-addhandlerfocus(obj, handler = NULL, action = NULL, ...) 
+addHandlerFocus(obj, handler = NULL, action = NULL, ...) 
 
-addhandlerblur(obj, handler = NULL, action = NULL, ...) 
+addHandlerBlur(obj, handler = NULL, action = NULL, ...) 
 
-addhandlermousemotion(obj, handler = NULL, action = NULL, ...)
+addHandlerMouseMotion(obj, handler = NULL, action = NULL, ...)
 
-addhandlerexpose(obj, handler = NULL, action = NULL, ...) 
+addHandlerExpose(obj, handler = NULL, action = NULL, ...) 
 
-addhandlerunrealize(obj, handler = NULL, action = NULL, ...) 
+addHandlerUnrealize(obj, handler = NULL, action = NULL, ...) 
 
-addhandlerdestroy(obj, handler = NULL, action = NULL, ...) 
+addHandlerDestroy(obj, handler = NULL, action = NULL, ...) 
 
-addhandleridle (obj, handler = NULL, action = NULL, interval = 1000,   ...) 
+addHandlerIdle (obj, handler = NULL, action = NULL, interval = 1000,   ...) 
 
-addpopupmenu(obj, menulist, action=NULL, ...)
+addPopupmenu(obj, menulist, action=NULL, ...)
 
-add3rdmousepopupmenu(obj, menulist, action=NULL, ...)
+add3rdMousePopupmenu(obj, menulist, action=NULL, ...)
 
-%%addhandler(obj, signal, handler = NULL, action = NULL, ...)
+%%addHandler(obj, signal, handler = NULL, action = NULL, ...)
 
-removehandler(obj, ID, ...)
+removeHandler(obj, ID=NULL, ...)
+
+blockHandler(obj, ID=NULL, ...)
+
+unblockHandler(obj, ID=NULL, ...)
 }
 
 \arguments{
@@ -100,18 +104,18 @@ removehandler(obj, ID, ...)
     
     Sometimes there are other components. For drag and drop
     handlers the component \code{dropdata} refers to the dropped
-    data. For \code{ggraphics} the \code{addhandlerclicked}
+    data. For \code{ggraphics} the \code{addHandlerclicked}
     contains components \code{x} and \code{y} indicating where the
     click occurred.
   }
   \item{action}{Used to pass extra information into handlers }
-  \item{interval}{For \code{addhandleridle} this specifies the
+  \item{interval}{For \code{addHandleridle} this specifies the
     time in milliseconds between calls to the handler.}
   \item{menulist}{For \code{addpopupmenu} and
     \code{add3rdmousepopupmenu} this specifies a menubar using a
     list which is in turn passed to \code{gmenu}.}
   \item{ID}{When a handler is assigned, an id is returned. This
-    id can be used to remove a handler from an object.}
+    id can be used to remove or block a handler from an object.}
   \item{...}{Not documented, currently has no role.}
 }
 \details{
@@ -126,7 +130,7 @@ removehandler(obj, ID, ...)
 	programmer. say. These functions attempt to shield the
 	gWidgets user from needing to learn these signals. For
 	gWidgetsRGtk, if these handlers prove insufficient then the
-	non-exported \code{addhandler} function has an additional
+	non-exported \code{addHandler} function has an additional
 	\code{signal} argument: \code{(obj,signal,handler,
 	action,...)} for specifying a GTK signal. By avoiding this, we
 	can make the gWidgets API non-toolkit specific.
@@ -210,6 +214,10 @@ removehandler(obj, ID, ...)
 
 	A refinement of this is the \code{add3rdMousePopupmenu} method
 	which puts the popupmenu on the right mouse click.
+
+
+	The method \code{removeHandler} is used to remove a handler from an object. If an ID is specified, just that handler is removed, otherwise all handlers will be. To temporarily disable a handler, use \code{blockHandler} then \code{unblockHandler}.
+
 }
 % \value{}
 % \author{}

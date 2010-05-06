@@ -22,13 +22,13 @@ gcalendar(text = "", format = "\%Y-\%m-\%d", handler=NULL, action=NULL, containe
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{text}{Initial text}
+  \item{text}{Initial text. For thecalendar, an optional date in a form matching \code{format}}
   \item{type}{When selecting a file it can be selected for opening,
   for saving or you may want to select a directory.}
 \item{initialfilename}{Suggested name for file save}
   \item{filter}{Filter for files shown during selection }
   \item{quote}{Is result quoted}
-  \item{format}{Format of date}
+  \item{format}{Format of date, default is year-month-day}
   \item{handler}{Handler for when file is changed. The component
     \code{file} of the first argument contains the file name}
   \item{action}{ Passed to handler }

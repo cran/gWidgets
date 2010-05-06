@@ -2,6 +2,21 @@ Dear Emacs, please make this -*-Text-*- mode!
 
 NEWS for gWidgets
 
+Changes for 0.0-41
+-------------------
+* toolkitProvidesWidget: new method to test if a widget is provided by the toolkit
+* did ghelp for R2.11.0. (Working?)
+* new constructor gsvg (Qt, WWW only)
+* bug fix in gcommandline
+* leave message for ghelp if newer R version. (Need to update for html
+  help changes)
+* added use.table argument for gcheckboxgroup. If implemented, uses a two column
+  table with a checkbox column and a labels column.
+
+Changes for 0.0-40	
+-------------------
+* oops, forgot to document
+
 Changes for 0.0-39
 -------------------
 * deprecated .fixFontMessUp -- was giving issues in the toolkit. From

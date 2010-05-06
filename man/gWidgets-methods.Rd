@@ -101,6 +101,7 @@
 \alias{visible,guiWidget-method}
 \alias{visible<-,guiWidget-method}
 \alias{isExtant,guiWidget-method}
+\alias{toolkitProvidesWidget}
 \alias{defaultWidget}
 \alias{defaultWidget<-}
 \alias{blockhandler}
@@ -109,6 +110,8 @@
 \alias{svalue<-}
 \alias{size}
 \alias{size<-}
+\alias{undo}
+\alias{redo}
 \alias{visible}
 \alias{visible<-}
 \alias{isExtant}
@@ -130,6 +133,10 @@
 \alias{addSpring}
 \alias{getToolkitWidget}
 \alias{getToolkitWidget,guiWidget-method}
+\alias{redo,guiWidget-method}
+\alias{redo,gWidgetANY-method}
+\alias{undo,guiWidget-method}
+\alias{undo,gWidgetANY-method}
 
 \title{Methods for gWidgets instances}
 \description{
@@ -247,17 +254,28 @@
     }{
       Can be used to check or set font attributes in
       a widget. In gWidgetsRGtk, the font attributes
-      are given as a named vector. The available names are \code{family}
+      are given as a named vector. The available names are 
+
+      \code{family}
       with a value of "normal","sans","serif",or "monospace";
       \code{style} with a value of "normal","oblique", or "italic";
+      
       \code{weight} with a value of
       "ultra-light","light","normal","bold","ultra-bold", or "heavy";
+
+      \code{size} with a value of "xx-small", "x-small", "small", "medium", "large","x-large", and "xx-large". In some tollkits this can also be an integer, as in 16 for 16point font.
+
       and
       \code{color} which for gWidgetsRGtk is any of the values returned by
       \code{colors}. 
       [Prior to version 0.0-22 the weight and style were switched. Old code needs to be changed.]
 
       For \pkg{gWidgetstcltk} the above should work as well.
+    }
+
+    \item{\code{undo(obj, ...)} or \code{redo(obj,...}:
+      For toolkits that support undo/redo operations. (Qt and the \code{gtext} and \code{gedit} widgets.)
+    }{
     }
   
     \item{  \code{tag(obj,i, drop=TRUE, ...)} or

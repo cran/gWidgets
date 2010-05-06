@@ -107,7 +107,7 @@ setClass("gUnivariateANY",
 
 gunivariate = function(xlabel="x",container=NULL, ..., toolkit=guiToolkit()) {
   frame = gframe(text = "data", horizontal=TRUE, container=container, expand=TRUE)
-  font(frame) <- list(style="bold", size=10)
+  font(frame) <- c(weight="bold", size="small")
   
   xentry = gedit(text="",width=30, container=frame) # was NULL
   xarg = addArg(argument=xlabel, xentry, container=frame)
@@ -136,7 +136,7 @@ gunivariatetable = function(xlabel="x",container=NULL, ..., toolkit=guiToolkit()
 
   frame = gframe(text = "data", horizontal=TRUE, container=container,
     expand=TRUE)
-  font(frame) <- list(style="bold")
+  font(frame) <- c(weight="bold")
   
   xentry = gedit(text="",width=30, container=frame)
   xarg = addArg(argument=xlabel, xentry, container=frame)
@@ -170,7 +170,7 @@ gfileurl = function(xlabel="file",container=NULL, ..., toolkit=guiToolkit()) {
 
   frame = gframe(text = "file", horizontal=TRUE, container=container,
     expand=TRUE)
-  font(frame) <- list(style="bold")
+  font(frame) <- c(weight="bold")
   
   xentry = gfilebrowse(text="",width=40, container=frame)
   xarg = addArg(argument=xlabel, xentry, container=frame)
@@ -202,7 +202,7 @@ gbivariate = function(xlabel = "x", ylabel = "y", container=NULL, ...,
   
   frame = gframe(text = "data", horizontal=TRUE, container=container,
     expand=TRUE)
-  font(frame) <- list(style="bold")
+  font(frame) <- c(weight="bold")
 
   xentry = gedit(text="",width=30, container=frame)
   ##  adddroptarget(xentry, handler = basicdrophandler)
@@ -247,7 +247,7 @@ gmodel = function(lattice=FALSE, container=NULL,...,toolkit=guiToolkit()) {
   ## containers
   frame = gframe(text = "data",  horizontal=FALSE, container=container,
     expand=TRUE, anchor=c(-1,1))
-  font(frame) <- list(style="bold", size=10)
+  font(frame) <- c(weight="bold", size="small")
 
   
   ## we have 4 main things: response, predictor(s), data, subset
@@ -432,7 +432,7 @@ setClass("gLmerANY",
 glmer = function(container=NULL, ..., toolkit=guiToolkit()) {
   
   frame = gframe(text = "data",  horizontal=FALSE, container=container)
-  font(frame) <- list(style="bold")
+  font(frame) <- c(weight="bold")
   
   tbl = glayout(container=frame)
   tbl[1,1] = "formula"
@@ -543,7 +543,7 @@ editFormulaDialog = function(
   size(datagroup) <- c(300,200)
   glabel("Dataset: ", container=datagroup)
   tmp = glabel(dataName, container=datagroup);
-  font(tmp) <- list(style="bold")
+  font(tmp) <- c(weight="bold")
   addSpace(datagroup, 10)
 
   variables = gtable(varNames,multiple=TRUE, cont=datagroup, expand=TRUE)
@@ -729,7 +729,7 @@ editSubsetDialog = function(
   outputGroup = ggroup(container=group)
   glabel("Subset by",container=outputGroup)
   output = glabel("", cont=group)
-  font(output) <- list(style="bold")  # make bold
+  font(output) <- c(weight="bold")  # make bold
   status = glabel("",cont=group)
   
   gseparator(container=group)
@@ -915,7 +915,7 @@ editSelectDialog = function(data,widget) {
   group = ggroup(horizontal=FALSE,container=win)
   frame = gframe("Select all the desired variables",
     container=group, expand=TRUE)
-  font(frame) <- list(style="bold")
+  font(frame) <- c(weight="bold")
 
   varList = gtable(varNames, multiple=TRUE, cont=frame, expand=TRUE)
 

@@ -1,3 +1,19 @@
+2010-04-29  verzani  <verzani@verzani-desktop>
+
+	* R/aaaGenerics.R (toolkitProvidesWidget): new method to see if widget is provided by toolkit. E.g. is gsvg defined, or ggraphics?
+
+2010-04-18  verzani  <verzani@verzani-desktop>
+
+	* R/gvariables.R: fix fonts -- use c, not list
+
+2010-04-06  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/aaaGenerics.R: removed gWIdgetsWWW from possible choices.
+
+2010-04-02  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/aaaGenerics.R: added guiToolkitQt, added generics undo/redo
+
 2009-11-15  john verzani  <verzani@john-verzanis-macbook-pro.local>
 
 	* R/aaaGenerics.R: add column clicked, doubleclick and rightclick

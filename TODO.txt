@@ -1,17 +1,15 @@
 DONE * fix ggenericwidget under tcltk -- print twice. gcommandline issue I believe.
 * gcommandline is not very good -- IT IS AWFUL. Do tcltk --- see
-* size argument in gdroplist as formal argument, we have it as ... now.
+* size argument in gcombobox as formal argument, we have it as ... now.
 * methods in docs -- work on API
 * fix ghelp to work with windows -- RPAD?
-* add icons to droplist in others DONE in RGTK2, gWidgetsWWW
-* visible API (not visible<-) with set is wanky -- deprecate visible,
-  make visible<- the method
+* visible API (not visible<-) with set is wanky, Should deprecate, but need with gbasicdialog
 * gtable -- help page -- check this
 DONE * Write API for these guys, even if they aren't implemented
-  DONE  * gaction (in gWidgetsWWW)
-  DONE  * galert -- like gmessage only appears differently (gWidgetsWWW has implementation)
-  DONE  * ghtml widget (for RwxWidgets, gWidgetsWWW)
-  DONE  * tooltip (in gWidgetsWWW)
+DONE  * gaction (in gWidgetsWWW)
+DONE  * galert -- like gmessage only appears differently (gWidgetsWWW has implementation)
+DONE  * ghtml widget (for RwxWidgets, gWidgetsWWW)
+DONE  * tooltip (in gWidgetsWWW)
 NO * gformlayout -- case to be made that depends on should be done in
  separate pass
 DONE * add check for toolkit package on startup, if not there pop up GUI based on what exists.

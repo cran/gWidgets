@@ -48,7 +48,13 @@ setClass("guiWidgetsToolkitRwxWidgets",
          )
 
 
-##
+## Qt
+setClass("guiWidgetsToolkitQt",
+         contains="guiWidgetsToolkit",
+         prototype=prototype(new("guiWidgetsToolkit"))
+         )
+
+
 ##################################################
 
 
@@ -76,9 +82,10 @@ guiToolkit = function(name=NULL) {
   if(!is.null(name) && is.na(name)) return(NULL)          # use NA to override choice
   ## no if it is null, we have to find the possible choices
   if(is.null(name)) {
-    tmp = installed.packages() 
-    choices = tmp[grep("^gWidgets.",tmp[,1]),1]
-  
+    tmp <- installed.packages() 
+    choices <- tmp[grep("^gWidgets.",tmp[,1]),1]
+    choices <- setdiff(choices, "gWidgetsWWW")
+    
     if(interactive()) {
       if(length(choices) == 0) {
         warning("No toolkits installed")
@@ -192,6 +199,7 @@ setGeneric(".glabel",function(toolkit,
 gbutton =function(
   text = "", border=TRUE, handler = NULL, action = NULL, container = NULL,      ...,
   toolkit=guiToolkit()){
+  force(toolkit)                        # load package
   widget =  .gbutton (toolkit,
     text, border, handler, action, container,...)  
   obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
@@ -259,11 +267,12 @@ gcombobox <- gdroplist
 ## gcheckboxgroup
 ## the constructor
 gcheckboxgroup =function(
-  items, checked = FALSE, horizontal = FALSE, handler = NULL,
+  items, checked = FALSE, horizontal = FALSE,
+  use.table=FALSE, handler = NULL,
   action = NULL, container = NULL, ... ,
   toolkit=guiToolkit()){
   widget =  .gcheckboxgroup (toolkit,
-    items=items, checked=checked, horizontal=horizontal,
+    items=items, checked=checked, horizontal=horizontal, use.table=use.table,
     handler=handler, action=action, container=container, ...
     )
   obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
@@ -659,6 +668,43 @@ setGeneric( '.gimage' ,
                     handler = NULL,action = NULL, container = NULL, ... )
            standardGeneric( '.gimage' ))
 
+
+## gsvg
+
+## the constructor
+gsvg <- function(
+                 filename="", width=480, height=480,
+                 handler=NULL, action=NULL,
+                 container = NULL, ... ,
+                 toolkit=guiToolkit()){
+  widget =  .gsvg (toolkit,
+    filename=filename, width=width, height=height,
+    handler=handler, action=action, container=container ,...
+    )
+  obj = new( 'guiComponent',widget=widget,toolkit=toolkit) 
+  return(obj)
+}
+
+## generic for toolkit dispatch
+setGeneric( '.gsvg' ,
+           function(toolkit,
+                    filename = "", width=480,  height=480,
+                    handler=NULL, action=NULL,
+                    container = NULL, ... )
+           standardGeneric( '.gsvg' ))
+
+
+## ANY constructor
+setMethod(".gsvg",
+          signature(toolkit="ANY"),
+          function(toolkit,
+                   filename = "", width=480, height=480,
+                   handler=NULL, action=NULL,
+                   container = NULL,
+                   ...) {
+            cat(gettext("gsvg widget not imlemented"))
+            return(glabel(container=container, ...))
+          })
 
 
 ## gstatusbar
@@ -1386,6 +1432,29 @@ setGeneric(".font<-",function(obj, toolkit,...,value)
            standardGeneric(".font<-"))
 
 
+## undo
+setGeneric("undo",function(obj, ...) standardGeneric("undo"))
+## add generic for Containers and sometimes widgets
+setMethod("undo",signature(obj="guiWidget"),
+          function(obj, ...) {
+            toolkit = obj@toolkit
+            .undo(obj@widget, toolkit,...)
+          })
+## dispatch with toolkit
+setGeneric(".undo",function(obj,toolkit,...) standardGeneric(".undo"))
+
+## redo
+setGeneric("redo",function(obj, ...) standardGeneric("redo"))
+## add generic for Containers and sometimes widgets
+setMethod("redo",signature(obj="guiWidget"),
+          function(obj, ...) {
+            toolkit = obj@toolkit
+            .redo(obj@widget, toolkit,...)
+          })
+## dispatch with toolkit
+setGeneric(".redo",function(obj,toolkit,...) standardGeneric(".redo"))
+
+
 ## tag
 setGeneric("tag",function(obj,i, drop=TRUE, ...) standardGeneric("tag"))
 ## add generic for Containers and sometimes widgets
@@ -1446,6 +1515,39 @@ setMethod("isExtant",signature(obj="guiWidget"),
           })
 ## dispatch with toolkit
 setGeneric(".isExtant",function(obj, toolkit, ...) standardGeneric(".isExtant"))
+
+
+## toOlkitprovidesgwidgetsdg
+## Does thie toolkit provide the widget
+## the constructor
+toolkitProvidesWidget <- function(
+                                  widgetname,
+                                  toolkit=guiToolkit()){
+  .toolkitProvidesWidget (toolkit, widgetname)
+}
+
+## generic for toolkit dispatch
+setGeneric( '.toolkitProvidesWidget' ,
+           function(toolkit,
+                    widgetname)
+           standardGeneric( '.toolkitProvidesWidget' ))
+
+
+## ANY constructor
+setMethod(".toolkitProvidesWidget",
+          signature(toolkit="ANY"),
+          function(toolkit,
+                   widgetname) {
+            notThere <- list(guiWidgetsToolkitQt=c("ggraphics","ggraphicsnotebook"),
+                             guiWidgestToolkitRGtk2=c("gsvg", "ghtml"),
+                             guiWidgetsrToolkitJava=c("gsvg", "ghtml", "ggraphics", "ggraphicsnotebook"),
+                             guiWidgetsToolkittcltk=c("gsvg", "ghtml", "ggraphics", "ggraphicsnotebook",
+                               "gdfnotebook")
+                             )
+
+            notThere <- notThere[[class(toolkit)]]
+            return(!widgetname %in% notThere)
+          })
 
 
 

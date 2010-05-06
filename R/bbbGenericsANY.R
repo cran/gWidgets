@@ -168,6 +168,11 @@ setMethod(".svalue",signature(toolkit = "ANY", obj="character"),
                    )
           })
 
+setMethod(".svalue",signature(toolkit = "ANY", obj="NULL"),
+          function(obj, toolkit, index=NULL, drop=NULL,  ...)  {
+            return(NULL)
+          })
+
 
 setMethod("svalue",signature(obj="gWidgetANY"),
           function(obj, index=NULL, drop=NULL, ... ) {
@@ -297,4 +302,35 @@ setMethod(".add",
                     obj="ANY", value="gWidgetANY"),
           function(obj, toolkit, value, ...) {
             .add(obj, toolkit, value@widget, ...)
+          })
+
+
+
+## undo and redo only implemented in some toolkits
+setMethod("undo",signature(obj="gWidgetANY"),
+          function(obj,...) {
+            .undo(obj, obj@toolkit,...)
+          })
+
+setMethod(".undo", signature(toolkit="ANY",obj="guiWidget"),
+          function(obj, toolkit, ...) {
+            .undo(obj@widget,toolkit,...)
+          })
+setMethod(".undo", signature(toolkit="ANY",obj="gWidgetANY"),
+          function(obj,toolkit, ...) {
+            ## nothing
+          })
+
+setMethod("redo",signature(obj="gWidgetANY"),
+          function(obj,...) {
+            .redo(obj, obj@toolkit,...)
+          })
+
+setMethod(".redo", signature(toolkit="ANY",obj="guiWidget"),
+          function(obj, toolkit, ...) {
+            .redo(obj@widget,toolkit)
+          })
+setMethod(".redo", signature(toolkit="ANY",obj="gWidgetANY"),
+          function(obj, toolkit, ...) {
+            ## nothing
           })

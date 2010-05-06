@@ -1,4 +1,4 @@
-test.gbutton <- function() {
+  test.gbutton <- function() {
   w <- gwindow()
   g <- ggroup(cont = w, horiz = FALSE)
   

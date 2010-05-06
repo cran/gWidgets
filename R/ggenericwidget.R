@@ -104,7 +104,7 @@ setMethod(".ggenericwidget",
               frame = gframe(text="Arguments",
                 horizontal=FALSE, cont=mainGroup,
                 anchor=c(-1,0), expand=TRUE)
-              font(frame) <- list(style="bold", size=10)
+              font(frame) <- c(weight="bold", size="small")
 
               group = ggroup(horizontal=FALSE, container=frame)
               table = glayout(container=group)        # k rows, 4 cols
@@ -119,7 +119,7 @@ setMethod(".ggenericwidget",
                     ## add some indication that this is a seperate group. Not in a frame
                     ## but this might end up looking better if in a frame
                     label = glabel(name, cont=table)
-                    font(label) <- list(weight="italic",style="bold")
+                    font(label) <- c(style="italic", weight="bold")
                     table[trow,1] <<- label
                     table[trow,2:4] <<- gseparator(horizontal=TRUE, cont=table)
                     trow <<- trow+1; tcol <<- 1
@@ -143,10 +143,12 @@ setMethod(".ggenericwidget",
                                                   showHelpAtArgument(name, lst$help)
                                                 },
                                                 cont=table) 
-                    lstele$container=table # need this for tcltk
+
+                    lstele$container <- table # need this for tcltk
                     vals[[name]] <<- do.call(lstele$type, lstele[-1])
                     table[trow,tcol + 1, anchor=c(-1,0)] <<- vals[[name]]
-                    
+                    visible(vals[[name]]) <- TRUE
+
                     if(tcol == 3) trow <<- trow + 1
                     tcol <<- (tcol+2) %% 4
                   }
@@ -155,7 +157,8 @@ setMethod(".ggenericwidget",
               
               
               ## now call function to recurse down list
-              addWidgetToDialog("arguments",lst$arguments)
+              if(!is.null(lst$arguments))
+                addWidgetToDialog("arguments",lst$arguments)
               ## now we need to make table visible
               visible(table) <- TRUE
             }
@@ -164,7 +167,7 @@ setMethod(".ggenericwidget",
             assignto = NULL                       # initialize
             if(!is.null(lst$assignto)) {
               frame = gframe("Assign output to:",cont=mainGroup, anchor=c(-1,0), expand=TRUE)
-              font(frame) <- list(style="bold")
+              font(frame) <- c(weight="bold")
               
               assignto = gedit("",container=frame)
               ##    adddroptarget(assignto)
@@ -201,6 +204,7 @@ setMethod(".ggenericwidget",
                 names(str) = make.names(assignto)
               else
                 assignto = NULL
+
               ## send to fcommandline instance
               if(is.null(h$action$cli)) {
                 cli <- gcommandline(command=str, assignto=assignto,

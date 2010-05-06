@@ -10,6 +10,8 @@
 
 %% These from the ANY class for compound widgets
 \alias{.add,ANY,ANY,gWidgetANY-method}
+\alias{.add,gHelpANY,ANY,character-method}
+\alias{.add,gHelpANY,ANY,list-method}
 \alias{.add,gHelpANY-method}
 \alias{add,ANY-method}
 \alias{[<-,gWidgetANY-method}
@@ -62,6 +64,14 @@
 \alias{visible,gWidgetANY-method}
 \alias{isExtant,gWidgetANY-method}
 
+\alias{.gsvg,ANY-method}
+\alias{.redo,guiWidget-method}
+\alias{.redo,gWidgetANY-method}
+\alias{.svalue,NULL-method}
+\alias{.toolkitProvidesWidget,ANY-method}
+\alias{.undo,guiWidget-method}
+\alias{.undo,gWidgetANY-method}
+
 \alias{.gformlayout,ANY-method}
 \alias{.leftBracket,gFormLayoutANY-method}
 \alias{.names,gFormLayoutANY-method}
@@ -75,3 +85,4 @@
 \title{Undocumented, but exported, functions}
 \description{Undocumented, but exported functions from gWidgets.}
 \keyword{interface}% at least one, from doc/KEYWORDS
+\keyword{internal}

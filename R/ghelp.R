@@ -14,6 +14,13 @@ setMethod(".ghelp",
                    ...) {                                # passed to gnotebook
             force(toolkit)
 
+            ## check if newversion of R, if so, we con't do a thing but return a label
+            if(getRversion() >= "2.10.0" && getRversion() < "2.11.0") {
+              l <- glabel("ghelp doesn't work with R version 2.10.0 or 2.10.1. Sorry.", cont=container)
+              return(l)
+            }
+
+            
             lggroup <- function(horizontal, container, width, height,...)
               ggroup(horizontal=horizontal, container=container, ...)
             group <- lggroup(horizontal=FALSE, container = container, ...)
@@ -26,10 +33,8 @@ setMethod(".ghelp",
 
             topGroup = ggroup(cont=group, expand=TRUE); addSpring(topGroup)
             glabel("Help on:", cont=topGroup)
-            selectPage = gdroplist(c(""),width=50, editable=TRUE,cont=topGroup)
 
-
-            
+            selectPage = gcombobox(c(""),width=50, editable=TRUE,cont=topGroup)
             showPage = gtext("", width=width,height=height, cont=group, expand=TRUE)
               
             obj = new("gHelpANY", block=group, widget=showPage,
@@ -38,7 +43,7 @@ setMethod(".ghelp",
             tag(obj,"selectPage") <- selectPage # update this
 
             if(!is.null(topic))
-              .add(obj,toolkit, value = list(topic=topic, package=package))
+              .add(obj, toolkit, value = list(topic=topic, package=package))
 
             addhandlerchanged(selectPage, handler = function(h,...) {
               value = svalue(selectPage)
@@ -54,12 +59,10 @@ setMethod(".ghelp",
 ## workhorse is add -- value is either
 ## just a topic (not a list), or a list with components topic, package
 setMethod(".add",
-          signature(toolkit="ANY",obj="gHelpANY"),
+          signature(toolkit="ANY",obj="gHelpANY", value="character"),
           function(obj, toolkit, value, ...) {
-            if(is.list(value)) {
-              topic = value$topic
-              package = value$package
-            } else if(length(grep(":",value)) > 0) { # "stats:::t.test" works here
+
+            if(length(grep(":",value)) > 0) { # "stats:::t.test" works here
               tmp = unlist(strsplit(value, ":+"))
               package = tmp[1]
               topic = tmp[2]
@@ -67,6 +70,14 @@ setMethod(".add",
               topic = value
               package = NULL
             }
+            .add(obj, toolkit, list(topic=topic, package=package))
+          })
+
+setMethod(".add",
+          signature(toolkit="ANY",obj="gHelpANY", value="list"),
+          function(obj, toolkit, value, ...) {
+            topic <- value$topic
+            package <- value$package
             
             ## error check
             if(!is.character(topic) || length(topic) > 1 || length(topic) == 0) {
@@ -74,26 +85,64 @@ setMethod(".add",
               return()
             }
 
-            ## if package is NULL, we find them
-            if(is.null(package)) {
-              possiblePackages = getPossiblePackages(topic)
-              if(length(possiblePackages) > 0) {
-                package = possiblePackages
-              } else {
-                warning(Paste("Can't find a package containing ", topic,"\n"))
-                return()
+
+            if(getRversion() < "2.10.0") {
+              ## if package is NULL, we find them
+              if(is.null(package)) {
+                possiblePackages <- getPossiblePackages(topic)
+                if(length(possiblePackages) > 0) {
+                  package = possiblePackages
+                } else {
+                  galert(sprintf("Can't find a package containing ", topic,"\n"))
+                  return()
+                }
               }
-            }
-            ## add a page for each package
-            for(pkg in package) {
-              makeHelpPage(topic, pkg, obj@widget) # obj@widget is gtext
-              selectPage = tag(obj,"selectPage")
-              curItems = selectPage[]
-              newPage = paste(pkg,":",topic,sep="")
-              selectPage[] <- unique(c(newPage, curItems))
+              ## add a page for each package
+              for(pkg in package) {
+                ## make page
+                makeHelpPage(obj, topic, pkg) # obj@widget is gtext
+                ## update pages selection
+                selectPage <- tag(obj,"selectPage")
+                curItems <- selectPage[]
+                newPage <- paste(pkg,":",topic,sep="")
+                selectPage[] <- unique(c(newPage, curItems))
+              }
+            } else if(getRversion() >= "2.11.0") {
+              ## add a page for each package
+              l <- list(topic=topic)
+              if(!is.null(package))
+                l$package <- package
+              out <- do.call("help", l)
+              pkgname <-  basename(dirname(dirname(out)))
+              temp <- tools::Rd2txt(utils:::.getHelpFile(out), out = tempfile("Rtxt"), package=pkgname)
+              x <- readLines(temp)
+              unlink(temp)
+              dispose(obj@widget)       # clear
+              ## add text to gtext widget
+              ## we want to add with bold, but this causes tcltk to stall out, not sure why.
+              ## try to fix that bug
+              isTclTk <- obj@widget@toolkit@toolkit == "tcltk"
+              out <- c()
+              for(i in x) {
+                if(grepl("^_\b",i)) {
+                  if(isTclTk)
+                    out <- c(out, gsub("_\b","",i))
+                  else
+                    insert(obj@widget, gsub("_\b","",i), font.attr=c(weight="bold"))
+                } else {
+                  if(isTclTk)
+                    out <- c(out,i)
+                  else
+                    insert(obj@widget, i)
+                }
+              }
+              if(isTclTk)
+                svalue(obj@widget) <- out
+              else
+                insert(obj@widget, "", do.newline=FALSE, where="beginning")              
             }
             return()
-          })
+            })
 
 ## value returns the topic of the current page or the one give by index
 setMethod(".svalue",
@@ -127,12 +176,12 @@ setMethod(".dispose",
 ## helpers
 
 ## Return gtext widget with help page
-makeHelpPage = function(topic, pkg, helpPage) {
-  helpFile = try(
-    help(topic, package=force(pkg), verbose=TRUE,
-         chmhelp=FALSE, htmlhelp=FALSE
-         )[1],
-    silent=TRUE)
+## Only called if R Version <= 2.10.0
+makeHelpPage = function(obj, topic, pkg) {
+  helpPage <- obj@widget
+  l <- list(topic, package=force(pkg), verbose=TRUE,
+         chmhelp=FALSE, htmlhelp=FALSE) # avoid warning
+  helpFile = try(do.call("help", l)[1], silent=TRUE)
 
   ## if as.character(helpFile) == character(0) then no good
   if(length(as.character(helpFile) != 0)) {
@@ -140,7 +189,7 @@ makeHelpPage = function(topic, pkg, helpPage) {
     text = readLines(helpFile)
     text = sapply(text, function(i) gsub("\\_\\\b","",i))
     insert(helpPage, text[2])
-    insert(helpPage, text[3], font.attr=c(style="bold",size="large",color="blue"))
+    insert(helpPage, text[3], font.attr=c(weight="bold",size="large",color="blue"))
 ##    add(helpPage, text[-(1:3)])
     ## This gave troubles when there were more than a few pages open!
     sapply(text[-(1:3)], function(x) {
@@ -221,15 +270,15 @@ showHelpAtArgument = function(argument, topic, package=NULL,
         visible(win) <- TRUE            # show window
       }
 
-      add(textwindow,Paste("From package:",pkg), font.attr=c(style="bold"))
+      add(textwindow,Paste("From package:",pkg), font.attr=c(weight="bold"))
       ## add first line (it has a :)
-      add(textwindow,text[argPosition+1],font.attr=c(style="bold",color="blue"))
+      add(textwindow,text[argPosition+1],font.attr=c(weight="bold",color="blue"))
       ## add until a :
       i = 2; n = length(text)
       while(length(grep(":",text[argPosition+i])) == 0 &&
             (argPosition + i) <= n
             ) {
-        add(textwindow,text[argPosition+i],font.attr=c(style="bold",color="blue"))
+        add(textwindow,text[argPosition+i],font.attr=c(weight="bold",color="blue"))
         i = i + 1
       }
       add(textwindow,"\n")
@@ -314,6 +363,7 @@ setMethod(".ghelpbrowser",
             ## search through packages
             expgp = gexpandgroup("Browse package help pages:",container = gp,
               expand=TRUE)
+            addSpring(gp)
             visible(expgp) <- FALSE
             
             packageNotebook = gnotebook(container=expgp, expand=TRUE)
@@ -454,14 +504,23 @@ setMethod(".ghelpbrowser",
 ## these are from old version
 ## contents a matrix with entry, keywords, description and URL
 getContentsOfPackage = function(package=NULL) {
-  if(is.null(package)) {
-    warning("Empty package name")
-    return(NA)
+  if(getRversion() <= "2.10.0") {  
+    if(is.null(package)) {
+      warning("Empty package name")
+      return(NA)
+    }
+    contents = read.dcf(system.file("CONTENTS",package=package))
+    
+    return(data.frame(Entry=contents[,1],Keywords=contents[,3],
+                      Description=contents[,4],
+                      stringsAsFactors = FALSE))
+  } else {
+    ## return a data frame with entry keywords description
+    path <- system.file("help", package = package)
+    contents <- .readRDS(sub("/help", "/Meta/Rd.rds", path, fixed = TRUE))    
+    return(data.frame(Entry=contents[,'Name'],Keywords=contents[,'Keywords'],
+                      Description=contents[,'Title'],
+                      stringsAsFactors = FALSE))
   }
-  contents = read.dcf(system.file("CONTENTS",package=package))
-  
-  return(data.frame(Entry=contents[,1],Keywords=contents[,3],
-                    Description=contents[,4],
-                    stringsAsFactors = FALSE))
 }
 
