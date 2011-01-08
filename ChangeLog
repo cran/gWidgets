@@ -1,3 +1,48 @@
+2011-01-05  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/gedit.R (gedit): added new argument initial.msg to display a
+	grayed out message when no intial value is specified
+
+2010-12-30  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/gaction.R (gaction): added parent argument (like gWidgetsWWW),
+	allows one to insert key accelerator into toplevel window of parent
+
+2010-10-17  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/gcheckbox.R: added use.togglebutton argument to use toggle
+	button in place of checkbox
+
+2010-10-15  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/gcommandline.R: updated this widget, works better with Qt, tcltk
+
+2010-10-10  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/gcheckbox.R: added ... to gcheckbox!
+
+2010-10-05  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/ghelp.R (.findHelpPage): cleaned up code thanks to Josef L. and
+	his textConnection snippet
+
+2010-09-19  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/ghelp.R: reworked this, made work for all three toolkits
+
+2010-08-22  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/aaaGenerics.R (gwindow): added check to options for whether
+	visible=TRUE should be default.
+
+2010-07-06  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* man/ggraphics.Rd: new example
+
+2010-05-19  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* man/gimage.Rd: new help page example contributed by Richie Cotton.
+
 2010-04-29  verzani  <verzani@verzani-desktop>
 
 	* R/aaaGenerics.R (toolkitProvidesWidget): new method to see if widget is provided by toolkit. E.g. is gsvg defined, or ggraphics?

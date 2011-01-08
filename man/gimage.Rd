@@ -49,6 +49,26 @@ gimage(filename = "", dirname = "",  size = "",
 \dontrun{
    w <- gwindow("Stock icon example")
    gimage("ok",dirname="stock", cont = w)
+
+   ## example contributed by Richard Cotton
+
+w <- gwindow("Help button window")
+add_help_button <- function(help_text, container = w,
+                            width = getOption("width"), indent = 2, ...) {
+  gimage("help",	      
+         dirname   = "stock",
+         container = container,
+         handler   = function(h, ...) {
+           help_win <- gwindow("Help")
+           help_label <- glabel(text= strwrap(help_text, width = width, indent = indent),
+                                container = help_win)
+         })
+}
+
+add_help_button(paste("Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                      "Nunc magna magna, vestibulum sit amet posuere sit amet, gravida placerat odio.",
+                      "Integer et purus lorem, quis suscipit risus.", collapse=" "))
+
 }
 }
 \keyword{ interface }% at least one, from doc/KEYWORDS
