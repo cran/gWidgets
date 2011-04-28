@@ -1,10 +1,10 @@
 Package: gWidgets
-Version: 0.0-43
+Version: 0.0-44
 Title: gWidgets API for building toolkit-independent, interactive GUIs
 Author: John Verzani. Based on the iwidgets code of Simon Urbanek and
         suggestions by Simon Urbanek, Philippe Grosjean and Michael
         Lawrence
-Maintainer: John Verzani <gwidgetsrgtk@gmail.com>
+Maintainer: John Verzani <jverzani@gmail.com>
 Depends: methods, utils
 Suggests: gWidgetsRGtk2, gWidgetstcltk
 Description: gWidgets provides a toolkit-independent API for building
@@ -13,7 +13,7 @@ Description: gWidgets provides a toolkit-independent API for building
         from the scigraphica project
         http://scigraphica.sourceforge.net.
 License: GPL (>= 2)
-URL: http://www.math.csi.cuny.edu/pmg
+URL: https://r-forge.r-project.org/R/?group_id=761
 Collate: aaaGenerics.R common.R toolkitClasses.R guiWidget.R
         guiContainer.R guiComponent.R guiComponentWithItems.R
         handlers.R ggroup.R gframe.R gexpandgroup.R gspinbutton.R
@@ -27,6 +27,6 @@ Collate: aaaGenerics.R common.R toolkitClasses.R guiWidget.R
 LazyLoad: yes
 Repository: CRAN
 Repository/R-Forge/Project: gwidgets
-Repository/R-Forge/Revision: 258
-Date/Publication: 2011-01-10 07:46:31
-Packaged: 2011-01-08 21:58:10 UTC; rforge
+Repository/R-Forge/Revision: 298
+Date/Publication: 2011-04-30 12:41:16
+Packaged: 2011-04-28 12:40:30 UTC; rforge
