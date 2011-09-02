@@ -1,3 +1,29 @@
+2011-08-07  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/toolkitClasses.R (guiToolkit): new function toolkit to return
+	string naming toolkit (for comparison)
+
+2011-07-27  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/dialogs.R: forgot to pass parent along in galert
+
+2011-07-26  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* R/gslider.R (gslider): added length.out, along.with arguments
+
+	* R/gspinbutton.R: added length.out, along.with arguments
+
+2011-07-22  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* man/gWidgets-dialogs.Rd (icon): doc changes to gbasicdialog
+
+	* R/glayout.R (glayout): worked on [ method to return subset of
+	one row or one column. (Before just an item)
+
+2011-07-13  john verzani  <verzani@john-verzanis-macbook-pro.local>
+
+	* DESCRIPTION (Version): version bump
+
 2011-04-07  john verzani  <verzani@john-verzanis-macbook-pro.local>
 
 	* man/gWidgets-methods.Rd: put in new methods editable[<-]. Can be
