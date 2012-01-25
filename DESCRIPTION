@@ -1,12 +1,12 @@
 Package: gWidgets
-Version: 0.0-47
+Version: 0.0-49
 Title: gWidgets API for building toolkit-independent, interactive GUIs
 Author: John Verzani. Based on the iwidgets code of Simon Urbanek and
         suggestions by Simon Urbanek, Philippe Grosjean and Michael
         Lawrence
 Maintainer: John Verzani <jverzani@gmail.com>
 Depends: methods, utils
-Suggests: gWidgetsRGtk2, gWidgetstcltk
+Suggests: gWidgetsRGtk2, cairoDevice, gWidgetstcltk
 Description: gWidgets provides a toolkit-independent API for building
         interactive GUIs. Atleast one of the gWidgetsXXX packages, such
         as gWidgetstcltk, needs to be installed. Some icons are on loan
@@ -25,6 +25,6 @@ Collate: aaaGenerics.R common.R toolkitClasses.R guiWidget.R
         gwindow.R gdfnotebook.R gradio.R gedit.R gseparator.R icons.R
         gfile.R gformlayout.R gstatusbar.R bbbGenericsANY.R zzz.R
 LazyLoad: yes
-Packaged: 2011-10-24 03:14:11 UTC; verzani
+Packaged: 2012-01-25 21:02:40 UTC; verzani
 Repository: CRAN
-Date/Publication: 2011-10-24 06:16:47
+Date/Publication: 2012-01-26 07:43:35
