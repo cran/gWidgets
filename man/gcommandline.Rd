@@ -5,7 +5,9 @@
   This constructs a simple command line interface for R
 }
 \usage{
-gcommandline(command = "", assignto = NULL, useGUI = TRUE, useConsole = FALSE, prompt = getOption("prompt"), width = 500, height = 0.6 * width, container = NULL, ...,toolkit =
+gcommandline(command = "", assignto = NULL, useGUI = TRUE, 
+useConsole = FALSE, prompt = getOption("prompt"), width = 500, 
+height = 0.6 * width, container = NULL, ...,toolkit =
                  guiToolkit())
 }
 %- maybe also 'usage' for other objects documented here.

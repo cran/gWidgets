@@ -7,7 +7,8 @@
 }
 \usage{
 gimage(filename = "", dirname = "",  size = "", 
-    handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit()) 
+    handler = NULL, action = NULL, container = NULL, ..., 
+    toolkit = guiToolkit()) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -66,7 +67,8 @@ add_help_button <- function(help_text, container = w,
 }
 
 add_help_button(paste("Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                      "Nunc magna magna, vestibulum sit amet posuere sit amet, gravida placerat odio.",
+                      "Nunc magna magna, vestibulum sit amet posuere sit amet, ",
+		      "gravida placerat odio.",
                       "Integer et purus lorem, quis suscipit risus.", collapse=" "))
 
 }

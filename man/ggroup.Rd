@@ -11,11 +11,13 @@
 
 }
 \usage{
-ggroup(horizontal = TRUE, spacing = 5,  use.scrollwindow = FALSE, container = NULL, ..., toolkit = guiToolkit())
+ggroup(horizontal = TRUE, spacing = 5,  use.scrollwindow = FALSE, 
+container = NULL, ..., toolkit = guiToolkit())
 
 gframe(text = "", markup = FALSE, pos = 0, horizontal=TRUE, container = NULL, 
     ..., toolkit = guiToolkit()) 
-gexpandgroup(text = "", markup = FALSE, horizontal=TRUE, handler = NULL, action = NULL, 
+gexpandgroup(text = "", markup = FALSE, horizontal=TRUE, handler = NULL, 
+action = NULL, 
     container = NULL, ..., toolkit = guiToolkit())
 }
 \arguments{

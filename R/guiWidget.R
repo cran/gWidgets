@@ -83,7 +83,7 @@ setMethod("svalue",signature(obj="guiWidget"),
             ## do we have coercewith?
             ## we check lots of ways, these should just be slots, someday...
             coercewith <- NULL
-            if(methods:::.hasSlot(obj@widget, "coercewith"))
+            if(methods::.hasSlot(obj@widget, "coercewith"))
               coercewith <- obj@widget@coercewith
 
             if(is.null(coercewith))

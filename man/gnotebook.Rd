@@ -8,7 +8,9 @@
 	the tab raises the associated page.
 }
 \usage{
-gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = NULL, ..., toolkit = guiToolkit())
+gnotebook(tab.pos = 3, closebuttons = FALSE, 
+dontCloseThese = NULL, container = NULL, ..., 
+toolkit = guiToolkit())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -76,8 +78,10 @@ gnotebook(tab.pos = 3, closebuttons = FALSE, dontCloseThese = NULL, container = 
 \dontrun{
   w <- gwindow("gnotebook example")
   nb <- gnotebook(container=w)
-  glabel("Widget 1", container=nb, label="page 1")   ## "add" called by constructor
-  glabel("Widget 2", container=nb, label="page 2")   ## label argument passed by constructor to add method
+  ## "add" called by constructor
+  glabel("Widget 1", container=nb, label="page 1")  
+  ## label argument passed by constructor to add method
+  glabel("Widget 2", container=nb, label="page 2")   
 
   length(nb)
   names(nb)

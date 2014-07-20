@@ -8,7 +8,9 @@
 }
 
 \usage{
-gtable(items, multiple = FALSE, chosencol = 1, icon.FUN = NULL, filter.column = NULL, filter.labels = NULL, filter.FUN = NULL, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+gtable(items, multiple = FALSE, chosencol = 1, icon.FUN = NULL,
+filter.column = NULL, filter.labels = NULL, filter.FUN = NULL, 
+handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 }
 
 \arguments{

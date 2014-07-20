@@ -1,8 +1,3 @@
-##' @include guiComponents.R
-
-## ghelp relies on unexported values :::. It should be treated with caution. Here we put into
-## eval/parse hack to get it passed R CMD check. XXX SHould deprecate
-
 
 ##' Widget to provide interface to help system
 setClass("gHelp",
@@ -193,8 +188,7 @@ setMethod(".dispose",
   ## thanks to Josef L for this
   help.txt <- "" ## keep R CMD check happy  
   help.con <- textConnection("help.txt", "w", local = TRUE)
-  x <- eval(parse(text=sprintf("utils:::%s", ".getHelpFile(out)")))
-  tools::Rd2txt(x, out=help.con, package=pkgname,
+  tools::Rd2txt(utils:::.getHelpFile(out), out=help.con, package=pkgname,
                 width=80L)
   close(help.con)
   
@@ -239,7 +233,7 @@ getPossiblePackages = function(topic) {
   for (lib in lib.loc) {
     for (pkg in packages) {
       dir <- system.file(package = pkg, lib.loc = lib)
-      path = eval(parse(text=sprintf("utils:::%s(topic, dir, \"AnIndex\", \"help\")","index.search")))
+      path = utils:::index.search(topic, dir, "AnIndex", "help")
       if(path != "")
         possiblePackages = c(possiblePackages, pkg)
     }

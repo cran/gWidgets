@@ -13,9 +13,12 @@
 	Some toolkits only allow integer values for these.
 }
 \usage{
-gslider(from = 0, to = 100, by = 1, length.out=NULL, along.with=NULL, value = from[1], horizontal = TRUE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+gslider(from = 0, to = 100, by = 1, length.out=NULL, along.with=NULL, 
+value = from[1], horizontal = TRUE, handler = NULL, action = NULL, 
+container = NULL, ..., toolkit = guiToolkit())
 
-gspinbutton (from = 0, to = 10, by = 1, length.out=NULL, along.with=NULL, value = from, digits = 0, 
+gspinbutton (from = 0, to = 10, by = 1, length.out=NULL, along.with=NULL, 
+value = from, digits = 0, 
     handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit()) 
 }
 %- maybe also 'usage' for other objects documented here.

@@ -5,7 +5,8 @@
 	The \code{gedit} widget is used to enter single lines of text. 
 	}
 \usage{
-gedit(text = "", width = 25, coerce.with = NULL, initial.msg="", handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+gedit(text = "", width = 25, coerce.with = NULL, initial.msg="", 
+handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 }
 \arguments{
   \item{text}{Initial text in widget}

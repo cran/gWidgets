@@ -9,7 +9,8 @@
 }
 \usage{
 ghelp(topic = NULL, package = NULL, container = NULL, ..., toolkit = guiToolkit())
-ghelpbrowser(title = "Help browser", maxTerms=100, width=1000, height=600, ..., toolkit = guiToolkit()) 
+ghelpbrowser(title = "Help browser", maxTerms=100, width=1000, 
+height=600, ..., toolkit = guiToolkit()) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

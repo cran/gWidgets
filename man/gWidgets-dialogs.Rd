@@ -28,7 +28,8 @@ gconfirm(message, title="Confirm", icon = c("info", "warning", "error",
  "question"), parent=NULL,
  handler = NULL, action = NULL, ..., toolkit=guiToolkit())
 
-gbasicdialog(title = "Dialog", widget, parent=NULL, do.buttons=TRUE, handler = NULL, action=NULL,  ..., toolkit=guiToolkit())
+gbasicdialog(title = "Dialog", widget, parent=NULL, do.buttons=TRUE, 
+handler = NULL, action=NULL,  ..., toolkit=guiToolkit())
 
 galert(message, title = "message", delay=3, parent=NULL, ..., toolkit=guiToolkit())
 }

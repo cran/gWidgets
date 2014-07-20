@@ -9,7 +9,8 @@
 	be seen as simply mapping these lists into the corresponding widget.
 }
 \usage{
-gmenu(menulist,  popup = FALSE, action=NULL, container = NULL, ..., toolkit = guiToolkit())
+gmenu(menulist,  popup = FALSE, action=NULL, container = NULL, ..., 
+toolkit = guiToolkit())
 
 gtoolbar (toolbarlist, style = c("both", "icons", "text",
 	 "both-horiz"), 

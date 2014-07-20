@@ -1,3 +1,6 @@
+require(methods)
+require(utils)
+
 ## Set up generics and classes for ANY widgets.                                 
 ## ANY widgets are meant to work with any toolkit. They are compound widgets
 ## their methods are not inherited from the toolkit ones, but rather are made explicit here.

@@ -13,7 +13,8 @@
 ggraphics(width = dpi * 6, height = dpi * 6, dpi = 75, ps = 12, container =
 NULL, ..., toolkit = guiToolkit())
 
-ggraphicsnotebook(width=dpi*6, height=dpi*6,dpi=75, container = NULL,..., toolkit = guiToolkit()) 
+ggraphicsnotebook(width=dpi*6, height=dpi*6,dpi=75, 
+container = NULL,..., toolkit = guiToolkit()) 
 }
 \arguments{
   \item{width}{width in pixels of device}
