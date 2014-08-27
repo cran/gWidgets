@@ -1,7 +1,7 @@
 9fbef98603c86cadefaba5af2a8b9a3b *ChangeLog
-035b95d6548d7e601f4aea62cfded6a5 *DESCRIPTION
+96a9c16b3732fe442ddd9361253c5c49 *DESCRIPTION
 e33f8dbbd78e89b2e9fc48c809f6a533 *NAMESPACE
-a9d815063a81836403fc9015192a1a60 *NEWS
+db05dfa9103c9017bedc5030670c6460 *NEWS
 e71b184cfdbadfe186f595afd3d4ce02 *R/aaaGenerics.R
 b7836e37079c52f38fb6bcfc7f81cd46 *R/bbbGenericsANY.R
 df66251e89295bd11a92330ae75b3ae9 *R/common.R
@@ -12,7 +12,7 @@ b586639fb5b6c1d32b8953b4fdaf8220 *R/dialogs.R
 8a83a9e2ef646b4201ea27d8a8aa2c77 *R/gcheckbox.R
 128110caf4ac4e7b1f737e449fc0de37 *R/gcheckboxgroup.R
 70e71c02a51f696e40c7fbe48d25f60e *R/gcombobox.R
-775e9229f53f2fb936f0b971f0a2ae7d *R/gcommandline.R
+44466642db07e71efdebcb7bf1724ebd *R/gcommandline.R
 463c36bdd2853c863150c5bbe2147698 *R/gdf.R
 f5ef3e8895a346a4fa31fde47141b714 *R/gdfnotebook.R
 f79ceb4ced41353f337fb4b1c57d021b *R/gedit.R
@@ -46,7 +46,7 @@ d36c7aa88be308b77e02a301d6472bdc *R/gtree.R
 7dc9d6276024988b7cb8e9b5d29dd6f5 *R/guiContainer.R
 a6bb0ba0c960f8c6500dd27c869a409c *R/guiWidget.R
 4f9fa6c7cf92e460ddf0f025127310ce *R/gvarbrowser.R
-2fe8d84f415d0306f2adbc0e2705956b *R/gvariables.R
+fc5f821a965092e30ee71dba5301e9b3 *R/gvariables.R
 2877066e8d8f3063d54f328ccfdb52a9 *R/gwindow.R
 c320a2a5713436876b8bb3169a054136 *R/handlers.R
 b8860fe15d8eef7e3abe6c2f68667eda *R/icons.R
@@ -55,10 +55,10 @@ b8860fe15d8eef7e3abe6c2f68667eda *R/icons.R
 805b3b8619f7404f9892821331c2b85b *build/vignette.rds
 e497f137939ab6b5175613b615a63d41 *inst/TODO.txt
 177a6caf58ce37b07ff9ef313e363926 *inst/doc/addingToolkit.Rnw
-e6c8fdc639fd810f7f4b7efecd15b68e *inst/doc/addingToolkit.pdf
+7ad4270b9849d58bb0d157b07d62d337 *inst/doc/addingToolkit.pdf
 0e227d5e275d514ee1e508fd0667be86 *inst/doc/gWidgets.R
 946f868ea2c8c49cedceaadc6c834ea8 *inst/doc/gWidgets.Rnw
-fb65bbda7c0a7ba2aedad7585ebd2dbe *inst/doc/gWidgets.pdf
+43900f9e395463d4242053b2212446e3 *inst/doc/gWidgets.pdf
 e9ccb6ca944bbc728017e5b3fc09d9ec *inst/images/1downarrow.gif
 ce9ed0824f97365131503c32cd6a4d07 *inst/images/1leftarrow.gif
 5aafce51322865a1e7559cd5b0d0efa2 *inst/images/1rightarrow.gif

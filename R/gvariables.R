@@ -261,7 +261,7 @@ gmodel = function(lattice=FALSE, container=NULL,...,toolkit=guiToolkit()) {
   dataDropHandler = function(h,...) {
      val.str = h$dropdata
      ## in gWidgetsRGtk2 dnd is a little messy
-     if(getOption("guiToolkit") != "RGtk2")
+#JV     if(getOption("guiToolkit") != "RGtk2")
        svalue(h$obj) <- val.str ## gets on enter handler?
      names = try(getNamesofObject(val.str))
      if(!inherits(names,"try-error") &&
@@ -305,13 +305,14 @@ gmodel = function(lattice=FALSE, container=NULL,...,toolkit=guiToolkit()) {
   tbl = glayout(container=frame, anchor=c(-1,1), width=500,height=100)
   tbl[1,1] <- (responseEntry = gcombobox(variableNames,width=40,editable=TRUE, container =tbl))
   tbl[2,1] <- "response"
-
+  size(responseEntry) <- c(200, -1)
+  
   ## add ~
   tbl[1,2] <- " ~ "
 
   tbl[1,3] <- (predictorEntry = gcombobox(variableNames,width=50, editable=TRUE, container =tbl))
   tbl[2,3] <- "predictor(s)"
-
+  size(predictorEntry) <- c(200, -1)
   
   tbl[1,4] <- (predictorEdit = gbutton("edit",container=tbl))
   
@@ -322,10 +323,10 @@ gmodel = function(lattice=FALSE, container=NULL,...,toolkit=guiToolkit()) {
   ## define this even if not needed
   conditionEntry = NULL
   if(lattice) {
-    tbl[3,3] <- (conditionEntry = gcombobox(variableNames, editable=TRUE,
-                   container=tbl))
-    
-    tbl[4,3] <- " conditioning variable(s) | "
+      tbl[3,2] <- " | "
+      tbl[3,3] <- (conditionEntry = gcombobox(variableNames, editable=TRUE,
+                       container=tbl))
+      tbl[4,3] <- "conditioning variable(s)"
     
     
     tbl[3,4] <- (conditionEdit = gbutton("edit",container=tbl))
@@ -817,7 +818,7 @@ editSubsetDialog = function(
 
 ## add terms 
 editConditionDialog <- function(data,widget) {
-
+    data <- svalue(data)
   if(is.na(data) || is.null(data)) {
     warning("empty dataset")
     return()

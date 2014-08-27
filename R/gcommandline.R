@@ -201,8 +201,8 @@ setMethod(".gcommandline",
                 widget = container,
                 toolkit=toolkit,
                 ID=getNewID(),
-                editArea = container,
-                outputArea = container,
+                commandBox = container,
+                outputBox = container,
                 useGUI = useGUI,
                 useConsole = useConsole
                 )
