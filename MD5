@@ -1,5 +1,5 @@
 9fbef98603c86cadefaba5af2a8b9a3b *ChangeLog
-b79605be583999debd5f1f0d28824312 *DESCRIPTION
+74a4d0e2abf2da193bb9a40f008cfeb0 *DESCRIPTION
 e591f971e2945c751bee3512a73d1c17 *NAMESPACE
 db05dfa9103c9017bedc5030670c6460 *NEWS
 e71b184cfdbadfe186f595afd3d4ce02 *R/aaaGenerics.R
@@ -23,7 +23,7 @@ dfd9be70aa57dc192e701608552f6346 *R/gframe.R
 5254b38edb8182b64597c62dced4c607 *R/ggenericwidget.R
 0d7a647b6eaa7bdf82b35d5199428c26 *R/ggraphics.R
 0e08f36d08c38927c5c9f7f166772539 *R/ggroup.R
-6d9829eefe4573e936c4857cf61be564 *R/ghelp.R
+5dc0b457841f451d9bc289cd2b4b9a9d *R/ghelp.R
 8e2991c844d74beef589cf43a3482f0e *R/ghtml.R
 c3773973b3c684f8b2e872642b8cd65b *R/gimage.R
 361f776e00e39947dc2881deca369e3c *R/glabel.R
@@ -142,7 +142,7 @@ a73fc85f52b09f9a1c13dbb5ca3d346d *inst/images/symbol_square.gif
 09e5a2457d75e5299007c4a889db0033 *inst/images/up.gif
 7912f01b80d99edf7794d462b94ca6c0 *inst/images/zoom.gif
 22cece7600d78c82d52c0a51f6096ef1 *inst/install/Installing_gWidgets_toolkits.txt
-f4ee63f0a7f1298ff96ad5469a108adb *inst/src/ghelp.R
+832191271e57a0c05d9029efb28b5144 *inst/src/ghelp.R
 78022fb8bdd221dd8b5f432b640cc0c4 *inst/tests/README
 6eef258269b3264e79ee7d0c80adc2cf *inst/tests/ex-containers.R
 27d77b3e68d4f1e57f673657fa12d7a0 *inst/tests/ex-gbutton.R
